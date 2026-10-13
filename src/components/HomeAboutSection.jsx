@@ -55,7 +55,7 @@ export default function HomeAboutSection() {
                 <div className="relative w-full h-[380px] sm:h-[420px] lg:h-[450px] rounded-sm overflow-hidden bg-[#F3F0EA]">
                   {/* Clean, Pure Photograph */}
                   <img
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop"
                     alt="Anchal, Founder & Principal Designer of Insync Interiors"
                     loading="lazy"
                     decoding="async"

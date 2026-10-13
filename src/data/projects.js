@@ -15,12 +15,12 @@ export const projects = [
       "A glass-encased sky sanctuary combining minimal lines, brushed champagne brass accents, and raw monolithic travertine architecture.",
     tagline: "A glass-encased sky sanctuary combining minimal lines.",
     cover: {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=85&w=2400&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
       alt: "The Solstice Penthouse, Gurugram",
     },
     hero: {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
       alt: "The Solstice Penthouse Living Hall",
     },
     concept: [
@@ -29,8 +29,8 @@ export const projects = [
     ],
     materials: ["Smoked glass", "Calacatta marble", "Antiqued bronze", "Heavy bouclé"],
     chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=85&w=2400&auto=format&fit=crop", alt: "Grand skyline living space" }] },
-      { title: "Fireplace Salon", text: "Floor-to-ceiling glass is framed, not hidden.", images: [{ src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=85&w=1600&auto=format&fit=crop", alt: "Penthouse terrace" }] },
+      { images: [{ src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Grand skyline living space" }] },
+      { title: "Fireplace Salon", text: "Floor-to-ceiling glass is framed, not hidden.", images: [{ src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Penthouse terrace" }] },
     ],
   },
   {
@@ -45,12 +45,12 @@ export const projects = [
       "A bespoke 7,200 sq. ft. architectural villa with double-height travertine walls, fluted oak millwork, and monolithic proportions.",
     tagline: "Double-height travertine volumes bathed in natural light.",
     cover: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2400&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop",
       alt: "Skylight Residence, Ludhiana",
     },
     hero: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
       alt: "Skylight Residence Foyer",
     },
     concept: [
@@ -59,7 +59,7 @@ export const projects = [
     ],
     materials: ["Honed travertine", "Natural oak", "Brushed brass", "Belgian linen"],
     chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2400&auto=format&fit=crop", alt: "Double-height living volume" }] },
+      { images: [{ src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height living volume" }] },
     ],
   },
   {
@@ -74,12 +74,12 @@ export const projects = [
       "Harmonizing natural daylight, indoor reflecting pools, and hand-troweled Venetian plaster walls across an open-concept estate.",
     tagline: "Natural daylight, indoor reflecting pools, and plaster finishes.",
     cover: {
-      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=85&w=2400&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop",
       alt: "Oasis Wellness Sanctuary, Chandigarh",
     },
     hero: {
-      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
       alt: "Oasis Sanctuary Courtyard",
     },
     concept: [
@@ -87,7 +87,7 @@ export const projects = [
     ],
     materials: ["Venetian plaster", "Slotted acoustic oak", "Basalt stone", "Raw silk"],
     chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=85&w=2400&auto=format&fit=crop", alt: "Reflecting pool" }] },
+      { images: [{ src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Reflecting pool" }] },
     ],
   },
   {
@@ -102,12 +102,12 @@ export const projects = [
     tagline: "Warm curved plaster and organic textiles in a serene duplex.",
     status: "Completed",
     cover: {
-      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=2400&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
       alt: "Celica Home, Kolkata",
     },
     hero: {
-      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop",
       alt: "Celica Home curved living hall",
     },
     concept: [
@@ -115,7 +115,7 @@ export const projects = [
     ],
     materials: ["Clay plaster", "Travertine", "Bouclé", "Natural teak"],
     chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=2400&auto=format&fit=crop", alt: "Living lounge" }] },
+      { images: [{ src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Living lounge" }] },
     ],
   },
   {
@@ -130,12 +130,12 @@ export const projects = [
       "Double-height grand foyer, curved boucle furniture, and seamless indoor-outdoor tropical terrace transitions.",
     tagline: "Seamless indoor-outdoor coastal architecture and teak verandas.",
     cover: {
-      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=85&w=2400&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
       alt: "Villa Riviera Estates, Goa",
     },
     hero: {
-      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop",
       alt: "Villa Riviera Estates pool terrace",
     },
     concept: [
@@ -143,7 +143,7 @@ export const projects = [
     ],
     materials: ["Laterite stone", "Weathered teak", "Cast bronze", "Belgian linen"],
     chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=85&w=2400&auto=format&fit=crop", alt: "Tropical terrace" }] },
+      { images: [{ src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop", alt: "Tropical terrace" }] },
     ],
   },
   {
@@ -158,12 +158,12 @@ export const projects = [
       "A family residence built around a contemplative inner courtyard, where each living volume borrows generous daylight from the central open sky.",
     tagline: "A home organised around light.",
     cover: {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=85&w=2400&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
       alt: "The Courtyard Residence, Ludhiana",
     },
     hero: {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=85&w=2400&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
       alt: "Courtyard residence living volume",
     },
     concept: [
@@ -171,7 +171,7 @@ export const projects = [
     ],
     materials: ["Honed travertine", "Natural oak", "Brushed brass", "Belgian linen"],
     chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=85&w=2400&auto=format&fit=crop", alt: "Courtyard living" }] },
+      { images: [{ src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Courtyard living" }] },
     ],
   },
 ];

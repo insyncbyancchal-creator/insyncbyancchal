@@ -21,7 +21,7 @@ const INTRO = {
 
 const OWNER = {
   // Put the photo in public/about/ and set photo: "/about/owner.jpg"  (portrait, about 4:5, 1600px tall)
-  photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop",
+  photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop",
   alt: "Portrait of Anchal, founder of Insync",
   focus: "50% 30%", // where to keep centred if the photo gets cropped
   name: "Anchal", // add surname if wanted
@@ -49,7 +49,7 @@ const MANIFESTO = {
   quote:
     "Because the most exceptional spaces are not defined by what they display, but by what they make you feel.",
   image:
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1000&auto=format&fit=crop",
   imageAlt:
     "Luxury architectural interior with serene natural light, fluted oak and organic travertine",
 };

@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="bg-[#1A1A1A] text-white min-h-screen selection:bg-[#C5A059] selection:text-[#1A1A1A]">
+    <div className="bg-[#FBF9F6] text-[#1A1A1A] min-h-screen selection:bg-[#C5A059] selection:text-white">
       <Preloader />
       <Navbar />
       <HeroSection />
