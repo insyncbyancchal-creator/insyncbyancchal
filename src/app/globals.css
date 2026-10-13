@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=MonteCarlo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Manrope:wght@300;400;500&family=Pinyon+Script&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-serif: 'Bodoni Moda', serif;
+  --font-heading: 'Bodoni Moda', serif;
+  --font-bodoni: 'Bodoni Moda', serif;
+  --font-subheading: 'Montserrat', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-calligraphy: 'MonteCarlo', cursive;
+  --font-montecarlo: 'MonteCarlo', cursive;
+  
+  --bg-alabaster: #FBF9F6;
+  --bg-sand: #F3F0EA;
+  --bg-card: #FFFFFF;
+  
+  --text-primary: #1A1A1A;
+  --text-muted: #66625C;
+  
+  --gold-accent: #C5A059;
+  --gold-light: #E6D2B0;
+  --gold-dark: #9A7B39;
+
+  --border-subtle: rgba(26, 26, 26, 0.08);
+  --border-gold: rgba(197, 160, 89, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-alabaster);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* User-Requested Google Font: Bodoni Moda (For All Headings) */
+.bodoni-moda,
+.bodoni-moda-regular,
+[class*="bodoni-moda"] {
+  font-family: "Bodoni Moda", serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* User-Requested Google Font: Montserrat (For All Subheadings) */
+.montserrat,
+.montserrat-regular,
+[class*="montserrat"] {
+  font-family: "Montserrat", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* User-Requested Google Font: MonteCarlo Regular (For Calligraphic Italian Accents) */
+.montecarlo-regular {
+  font-family: "MonteCarlo", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  letter-spacing: 0.01em !important;
+  line-height: normal !important;
+}
+
+/* Global Headings: Bodoni Moda with Optical Sizing */
+h1, h2, h3, h4, .font-serif, .font-heading, .heading-bodoni {
+  font-family: 'Bodoni Moda', serif !important;
+  font-optical-sizing: auto;
+}
+
+/* Global Subheadings & Eyebrows: Montserrat with Clean Spacing */
+.font-subheading,
+.subheading,
+.eyebrow,
+[class*="eyebrow"],
+[class*="subheading"] {
+  font-family: 'Montserrat', sans-serif !important;
+  font-optical-sizing: auto;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-calligraphy {
+  font-family: var(--font-calligraphy);
+}
+
+/* Sized & Calibrated Italian Calligraphy Script for Headings */
+.font-italian,
+.heading-italian,
+.heading-script,
+.montecarlo-heading {
+  font-family: "MonteCarlo", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 1.35em;
+  line-height: 0.95;
+  letter-spacing: 0.01em !important;
+  display: inline-block;
+  vertical-align: -0.04em;
+  padding: 0 0.12em;
+  text-transform: none;
+}
+
+/* Automatically style Italian/Cursive span highlights inside Bodoni Headings across all pages */
+h1 span.italic,
+h1 .italic,
+h2 span.italic,
+h2 .italic,
+h3 span.italic,
+h3 .italic,
+h4 span.italic,
+h4 .italic,
+.heading-italic,
+.hero-italic {
+  font-family: "MonteCarlo", cursive !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 1.35em;
+  line-height: 0.95;
+  letter-spacing: 0.01em !important;
+  display: inline-block;
+  vertical-align: -0.04em;
+  padding: 0 0.12em;
+  text-transform: none; /* Prevents all-caps distortion from parent Bodoni */
+}
+
+/* Custom Editorial Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alabaster);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8D2C7;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-accent);
+}
+
+/* Light Gold Text & Border Utilities */
+.text-gold {
+  color: var(--gold-accent);
+}
+
+.border-gold {
+  border-color: var(--gold-accent);
+}
+
+.bg-sand-panel {
+  background-color: var(--bg-sand);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Editorial Shadow & Hover Effects */
+.editorial-card {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
