@@ -22,14 +22,11 @@ export default function AboutHero() {
       {/* Pristine White Loading Placeholder - Zero Black Screen */}
       {!isLoaded && (
         <div className="absolute inset-0 z-[5] bg-white flex flex-col items-center justify-center pointer-events-none">
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
             <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:150ms]" />
             <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:300ms]" />
           </div>
-          <span className="text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.28em] text-[#C5A059] font-medium">
-            IMAGE LOADING...
-          </span>
         </div>
       )}
 

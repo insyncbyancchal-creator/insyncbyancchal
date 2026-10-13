@@ -4,8 +4,19 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
+let preloaderShownInSession = false
+
 export default function Preloader() {
-  const [shouldRender, setShouldRender] = useState(true)
+  const [shouldRender, setShouldRender] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        if (preloaderShownInSession || sessionStorage.getItem('insync_preloader_seen')) {
+          return false
+        }
+      } catch {}
+    }
+    return !preloaderShownInSession
+  })
   const [isExiting, setIsExiting] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -13,6 +24,10 @@ export default function Preloader() {
   const hasSeekedRef = useRef(false)
 
   const handleExit = () => {
+    try {
+      sessionStorage.setItem('insync_preloader_seen', 'true')
+      preloaderShownInSession = true
+    } catch {}
     setIsExiting(true)
     if (typeof document !== 'undefined') {
       document.body.style.overflow = ''
@@ -23,7 +38,18 @@ export default function Preloader() {
   }
 
   useEffect(() => {
-    if (!shouldRender) return
+    if (!shouldRender) {
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = ''
+      }
+      return
+    }
+
+    try {
+      sessionStorage.setItem('insync_preloader_seen', 'true')
+      preloaderShownInSession = true
+    } catch {}
+
     if (typeof document !== 'undefined') {
       document.body.style.overflow = 'hidden'
     }
