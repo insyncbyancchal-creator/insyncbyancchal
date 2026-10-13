@@ -114,13 +114,22 @@ function useReveal() {
       (entries) =>
         entries.forEach((e) => {
           if (e.isIntersecting) {
+            e.target.setAttribute("data-in", "1");
             e.target.classList.add(styles.in);
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.12 }
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
-    els.forEach((el) => io.observe(el));
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.setAttribute("data-in", "1");
+        el.classList.add(styles.in);
+      } else {
+        io.observe(el);
+      }
+    });
     return () => io.disconnect();
   }, []);
 }
@@ -274,29 +283,27 @@ export default function ServicesExperience() {
         </section>
 
         {/* ---------- THE INDEX ---------- */}
-        <section className={styles.stage} aria-label="Our services">
+        <section className={styles.stage} aria-label="Our services" data-reveal>
           <ol className={styles.list}>
             {SERVICES.map((s, i) => (
               <li
                 key={s.title}
                 className={`${styles.row} ${active === i ? styles.on : ""}`}
                 onMouseEnter={() => go(i)}
-                onTouchStart={() => go(i)}
                 onClick={() => go(i)}
-                data-reveal
               >
                 {/* stacked image: tablet & mobile only */}
-                <div className={`${styles.mImg} ${styles.wipe}`} data-wipe ref={(el) => (mRefs.current[i] = el)}>
+                <div className={styles.mImg} ref={(el) => (mRefs.current[i] = el)}>
                   <span className={styles.mImgInner} style={{ backgroundImage: bg(s) }} />
                 </div>
 
                 <button
                   type="button"
                   className={styles.rowHead}
-                  onMouseEnter={() => go(i)}
-                  onFocus={() => go(i)}
-                  onClick={() => go(i)}
-                  onTouchStart={() => go(i)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    go(i);
+                  }}
                   aria-expanded={active === i}
                 >
                   <span className={`${styles.no} ${styles.sans}`}>{s.no}</span>

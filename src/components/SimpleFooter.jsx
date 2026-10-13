@@ -39,34 +39,41 @@ export default function SimpleFooter() {
             </span>
           </div>
 
-          {/* Quick Nav Links */}
+          {/* Quick Nav Links (matching Navbar sequence) */}
           <div className="flex flex-wrap items-center gap-8 text-[13px] tracking-[0.18em] uppercase text-[#555048] font-medium">
             <Link href="/" className="hover:text-[#1A1A1A] transition-colors">Home</Link>
-            <Link href="/portfolio" className="hover:text-[#1A1A1A] transition-colors">Portfolio</Link>
             <Link href="/about" className="hover:text-[#1A1A1A] transition-colors">About</Link>
+            <Link href="/portfolio" className="hover:text-[#1A1A1A] transition-colors">Portfolio</Link>
             <Link href="/services" className="hover:text-[#1A1A1A] transition-colors">Services</Link>
             <Link href="/contact" className="hover:text-[#1A1A1A] transition-colors">Contact</Link>
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center space-x-6">
+          {/* Social Links & Inquire Button matching Navbar */}
+          <div className="flex items-center space-x-2.5 sm:space-x-3.5 shrink-0">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1A1A1A] hover:text-[#C5A059] transition-colors"
-              title="Instagram"
+              className="p-2 rounded-full text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 transition-all"
+              title="Instagram Profile"
             >
               <InstagramIcon className="w-4 h-4 text-[#C5A059]" />
             </a>
 
             <a
               href="mailto:contact@insyncinteriors.com"
-              className="text-[#1A1A1A] hover:text-[#C5A059] transition-colors"
-              title="Email"
+              className="p-2 rounded-full text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 transition-all"
+              title="Email Insync Interiors"
             >
               <Mail className="w-4 h-4 text-[#C5A059]" />
             </a>
+
+            <Link
+              href="/contact"
+              className="ml-1.5 px-4 py-1.5 rounded-full border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white text-[11.5px] uppercase tracking-[0.2em] font-semibold transition-all inline-block"
+            >
+              INQUIRE
+            </Link>
           </div>
         </div>
 
