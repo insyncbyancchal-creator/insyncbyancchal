@@ -54,8 +54,8 @@ export default function HeroSection() {
       ),
       description:
         'Indoor reflecting pools, acoustic ceiling slat baffles, and circadian rhythm architectural lighting composed with natural restraint.',
-      image: '/hero/photo_3.jpg',
-      fallbackCandidates: ['/hero/photo_5.jpg', '/hero/photo_1.avif'],
+      image: '/hero/photo_3.jpg?v=2',
+      fallbackCandidates: ['/hero/photo_3.jpg', '/hero/photo_1.avif', '/hero/photo_5.jpg'],
     },
     {
       id: 4,
@@ -170,6 +170,20 @@ export default function HeroSection() {
               }}
               className="absolute inset-0 pointer-events-none bg-white"
             >
+              {/* Pristine White Loading Placeholder - Zero Black Screen */}
+              {!isLoaded && isActive && (
+                <div className="absolute inset-0 z-[2] bg-white flex flex-col items-center justify-center pointer-events-none">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:150ms]" />
+                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:300ms]" />
+                  </div>
+                  <span className="text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.28em] text-[#C5A059] font-medium">
+                    IMAGE LOADING...
+                  </span>
+                </div>
+              )}
+
               {isVideo ? (
                 <video
                   src={slide.video}
@@ -238,15 +252,22 @@ export default function HeroSection() {
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Eyebrow: Category · Location */}
-            <p
-              className={`text-[12.5px] sm:text-[13px] font-sans uppercase tracking-[0.2em] font-semibold mb-2.5 transition-colors duration-500 ${
-                isCurrentLoaded
-                  ? 'text-[#E5BA69] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]'
-                  : 'text-[#C5A059]'
-              }`}
-            >
-              {currentSlideObj.category}
-            </p>
+            <div className="flex items-center gap-3 mb-2.5">
+              <p
+                className={`text-[12.5px] sm:text-[13px] font-sans uppercase tracking-[0.2em] font-semibold transition-colors duration-500 ${
+                  isCurrentLoaded
+                    ? 'text-[#E5BA69] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]'
+                    : 'text-[#C5A059]'
+                }`}
+              >
+                {currentSlideObj.category}
+              </p>
+              {!isCurrentLoaded && (
+                <span className="text-[10px] font-sans uppercase tracking-[0.22em] text-[#C5A059] font-medium">
+                  • IMAGE LOADING...
+                </span>
+              )}
+            </div>
 
             {/* Main Headline - Styled with Bodoni Moda & MonteCarlo Italian Cursive */}
             <h1

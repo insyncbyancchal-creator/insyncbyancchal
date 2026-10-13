@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import styles from "./Servicesexperience.module.css";
 
 /* ------------------------------------------------------------------
@@ -177,7 +178,7 @@ function HomeShowcase() {
         {BESPOKE_PRODUCTS.map((prod) => (
           <article key={prod.id} className={styles.homeCard} data-reveal>
             <div className={styles.cardThumb}>
-              <img src={prod.img} alt={prod.name} loading="lazy" />
+              <img src={prod.img} alt={prod.name} loading="lazy" decoding="async" />
               {prod.badge && <span className={`${styles.cardBadge} ${styles.sans}`}>{prod.badge}</span>}
             </div>
 
@@ -214,14 +215,22 @@ function HomeShowcase() {
 export default function ServicesExperience() {
   useReveal();
   const [active, setActive] = useState(0);
-  const [prev, setPrev] = useState(-1);
   const panelRef = useRef(null);
   const mRefs = useRef([]);
   useParallax(mRefs);
 
+  // Preload all 5 service images so image transitions are instantaneous with zero delay
+  useEffect(() => {
+    SERVICES.forEach((s) => {
+      if (s.img && typeof window !== "undefined") {
+        const img = new window.Image();
+        img.src = s.img;
+      }
+    });
+  }, []);
+
   const go = (i) => {
     if (i === active) return;
-    setPrev(active);
     setActive(i);
   };
 
@@ -242,109 +251,151 @@ export default function ServicesExperience() {
   };
 
   return (
-    <main
-      className={styles.root}
-      style={{
-        fontFamily: "'Bodoni Moda', serif",
-        "--sans": "'Montserrat', sans-serif",
-      }}
-    >
-      {/* ---------- HERO ---------- */}
-      <section className={styles.hero}>
-        <h1 className={styles.title}>
-          <span className={styles.line}>
-            <span>
-              FIVE DISCIPLINES, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one quiet</span> STUDIO.
+    <MotionConfig reducedMotion="never">
+      <main
+        className={styles.root}
+        style={{
+          fontFamily: "'Bodoni Moda', serif",
+          "--sans": "'Montserrat', sans-serif",
+        }}
+      >
+        {/* ---------- HERO ---------- */}
+        <section className={styles.hero}>
+          <h1 className={styles.title}>
+            <span className={styles.line}>
+              <span>
+                FIVE DISCIPLINES, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one quiet</span> STUDIO.
+              </span>
             </span>
-          </span>
-        </h1>
-        <p className={`${styles.lede} ${styles.sans}`} data-reveal>
-          From the first sketch to the final cushion, everything under one roof, and one standard.
-        </p>
-      </section>
+          </h1>
+          <p className={`${styles.lede} ${styles.sans}`} data-reveal>
+            From the first sketch to the final cushion, everything under one roof, and one standard.
+          </p>
+        </section>
 
-      {/* ---------- THE INDEX ---------- */}
-      <section className={styles.stage} aria-label="Our services">
-        <ol className={styles.list}>
-          {SERVICES.map((s, i) => (
-            <li key={s.title} className={`${styles.row} ${active === i ? styles.on : ""}`} data-reveal>
-              {/* stacked image: tablet & mobile only */}
-              <div className={`${styles.mImg} ${styles.wipe}`} data-wipe ref={(el) => (mRefs.current[i] = el)}>
-                <span className={styles.mImgInner} style={{ backgroundImage: bg(s) }} />
-              </div>
-
-              <button
-                type="button"
-                className={styles.rowHead}
+        {/* ---------- THE INDEX ---------- */}
+        <section className={styles.stage} aria-label="Our services">
+          <ol className={styles.list}>
+            {SERVICES.map((s, i) => (
+              <li
+                key={s.title}
+                className={`${styles.row} ${active === i ? styles.on : ""}`}
                 onMouseEnter={() => go(i)}
-                onFocus={() => go(i)}
+                onTouchStart={() => go(i)}
                 onClick={() => go(i)}
-                aria-expanded={active === i}
+                data-reveal
               >
-                <span className={`${styles.no} ${styles.sans}`}>{s.no}</span>
-                <span className={styles.rowTitle}>{s.title}</span>
-                {s.shop && <span className={`${styles.shopTag} ${styles.sans}`}>Shop &amp; customise</span>}
-                <span className={styles.arrow} aria-hidden="true">
-                  →
-                </span>
-              </button>
+                {/* stacked image: tablet & mobile only */}
+                <div className={`${styles.mImg} ${styles.wipe}`} data-wipe ref={(el) => (mRefs.current[i] = el)}>
+                  <span className={styles.mImgInner} style={{ backgroundImage: bg(s) }} />
+                </div>
 
-              <div className={styles.rowBody}>
-                <div>
-                  <p className={`${styles.desc} ${styles.sans}`}>{s.line}</p>
-                  <ul className={`${styles.tags} ${styles.sans}`}>
-                    {s.tags.map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
-                  <div className={`${styles.links} ${styles.sans}`}>
-                    <Link href={enquire(s.title)}>Enquire →</Link>
-                    {s.shop && <a href="#insync-home">Customise a piece ↓</a>}
+                <button
+                  type="button"
+                  className={styles.rowHead}
+                  onMouseEnter={() => go(i)}
+                  onFocus={() => go(i)}
+                  onClick={() => go(i)}
+                  onTouchStart={() => go(i)}
+                  aria-expanded={active === i}
+                >
+                  <span className={`${styles.no} ${styles.sans}`}>{s.no}</span>
+                  <span className={styles.rowTitle}>{s.title}</span>
+                  {s.shop && <span className={`${styles.shopTag} ${styles.sans}`}>Shop &amp; customise</span>}
+                  <span className={styles.arrow} aria-hidden="true">
+                    →
+                  </span>
+                </button>
+
+                <div className={styles.rowBody}>
+                  <div>
+                    <p className={`${styles.desc} ${styles.sans}`}>{s.line}</p>
+                    <ul className={`${styles.tags} ${styles.sans}`}>
+                      {s.tags.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                    <div className={`${styles.links} ${styles.sans}`}>
+                      <Link href={enquire(s.title)}>Enquire →</Link>
+                      {s.shop && <a href="#insync-home">Customise a piece ↓</a>}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        {/* sticky image panel: desktop only */}
-        <div className={styles.panelWrap} aria-hidden="true">
-          <div className={styles.panel} ref={panelRef} onMouseMove={onMove} onMouseLeave={onLeave}>
-            {SERVICES.map((s, i) => (
-              <div
-                key={s.title}
-                className={`${styles.slide} ${active === i ? styles.slideOn : ""} ${prev === i ? styles.slidePrev : ""}`}
-              >
-                <div className={styles.slideInner}>
-                  <span className={styles.slideImg} style={{ backgroundImage: bg(s) }} />
-                </div>
-              </div>
+              </li>
             ))}
-            <div className={`${styles.chip} ${styles.sans}`} key={active}>
-              <b>{SERVICES[active].no}</b>
-              <span>{SERVICES[active].title}</span>
+          </ol>
+
+          {/* sticky image panel: desktop only */}
+          <div className={styles.panelWrap} aria-hidden="true">
+            <div className={styles.panel} ref={panelRef} onMouseMove={onMove} onMouseLeave={onLeave}>
+              <AnimatePresence initial={false}>
+                <motion.div
+                  key={active}
+                  className={styles.slideMotion}
+                  initial={{ y: "100%", zIndex: 2 }}
+                  animate={{ y: "0%", zIndex: 2 }}
+                  exit={{ y: "-20%", opacity: 0.35, zIndex: 1 }}
+                  transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <motion.div
+                    className={styles.slideInner}
+                    initial={{ y: "-12%", scale: 1.06 }}
+                    animate={{ y: "0%", scale: 1 }}
+                    transition={{ duration: 1.02, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {SERVICES[active].img ? (
+                      <img
+                        src={SERVICES[active].img}
+                        alt={SERVICES[active].title}
+                        className={styles.slideImg}
+                      />
+                    ) : (
+                      <div
+                        className={styles.slideImg}
+                        style={{
+                          background: `linear-gradient(150deg, ${SERVICES[active].tone[0]}, ${SERVICES[active].tone[1]})`,
+                        }}
+                      />
+                    )}
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`chip-${active}`}
+                  className={`${styles.chip} ${styles.sans}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <b>{SERVICES[active].no}</b>
+                  <span>{SERVICES[active].title}</span>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ---------- INSYNC HOME ---------- */}
-      <HomeShowcase />
+        {/* ---------- INSYNC HOME ---------- */}
+        <HomeShowcase />
 
-      {/* ---------- CLOSING ---------- */}
-      <section className={styles.cta} data-reveal>
-        <p className={styles.eyebrow}>Begin</p>
-        <h2 className={styles.ctaTitle}>
-          Not sure where <em>to start?</em>
-        </h2>
-        <p className={`${styles.homeLede} ${styles.sans}`} style={{ margin: "0 auto 2.4rem" }}>
-          Tell us about your space. We will suggest the right path.
-        </p>
-        <Link href="/contact" className={`${styles.btn} ${styles.sans}`}>
-          <span>Start a conversation</span>
-          <i aria-hidden="true">→</i>
-        </Link>
-      </section>
-    </main>
+        {/* ---------- CLOSING ---------- */}
+        <section className={styles.cta} data-reveal>
+          <p className={styles.eyebrow}>Begin</p>
+          <h2 className={styles.ctaTitle}>
+            Not sure where <em>to start?</em>
+          </h2>
+          <p className={`${styles.homeLede} ${styles.sans}`} style={{ margin: "0 auto 2.4rem" }}>
+            Tell us about your space. We will suggest the right path.
+          </p>
+          <Link href="/contact" className={`${styles.btn} ${styles.sans}`}>
+            <span>Start a conversation</span>
+            <i aria-hidden="true">→</i>
+          </Link>
+        </section>
+      </main>
+    </MotionConfig>
   );
 }

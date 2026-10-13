@@ -57,6 +57,8 @@ export default function HomeAboutSection() {
                   <img
                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop"
                     alt="Anchal, Founder & Principal Designer of Insync Interiors"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-[50%_20%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]"
                   />
                 </div>
@@ -96,13 +98,19 @@ export default function HomeAboutSection() {
 
               <h2
                 id="about-atelier-heading"
-                className="font-serif text-[26px] sm:text-[32px] md:text-[36px] lg:text-[38px] xl:text-[42px] text-[#1A1A1A] font-light leading-[1.2] tracking-[0.04em]"
+                className="font-serif text-[26px] sm:text-[32px] md:text-[36px] lg:text-[38px] xl:text-[42px] text-[#1A1A1A] font-light tracking-[0.04em]"
               >
-                WHERE ARCHITECTURE{' '}
-                <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">meets</span>{' '}
-                QUIET RESTRAINT{' '}
-                <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and soulful</span>{' '}
-                PRECISION
+                <span className="block leading-[1.16]">
+                  WHERE ARCHITECTURE{' '}
+                  <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">meets</span>
+                </span>
+                <span className="block leading-[1.16] mt-1.5 sm:mt-2">
+                  QUIET RESTRAINT{' '}
+                  <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and soulful</span>
+                </span>
+                <span className="block leading-[1.16] mt-1.5 sm:mt-2">
+                  PRECISION
+                </span>
               </h2>
             </div>
 
@@ -148,13 +156,13 @@ export default function HomeAboutSection() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="group relative inline-flex items-center gap-3 px-7 py-3 bg-[#1A1A1A] text-[#F7F5F0] rounded-xs border border-transparent hover:border-[#C5A059]/40 hover:bg-[#111111] transition-all duration-300 shadow-xs cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C5A059]"
+                className="group relative inline-flex items-center gap-3 px-7 py-3 bg-[#1A1A1A] text-[#F7F5F0] rounded-xs border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_14px_rgba(27,26,23,0.1)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] active:scale-98 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C5A059]"
                 aria-label="Know more about Insync Interiors atelier"
               >
-                <span className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.26em] font-semibold transition-colors duration-300">
+                <span className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.26em] font-semibold transition-colors duration-300 group-hover:text-[#1A1A1A]">
                   KNOW MORE
                 </span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] group-hover:text-[#1A1A1A] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5" />
               </Link>
             </div>
           </motion.div>

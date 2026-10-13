@@ -1,22 +1,48 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 export default function ContactHero() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const imgRef = useRef(null)
+
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true)
+    }
+  }, [])
+
   return (
     <section
       aria-label="Contact Hero"
-      className="relative w-full h-[78vh] sm:h-[85vh] lg:h-[90vh] bg-[#1A1A1A] overflow-hidden select-none flex items-center justify-center"
+      className="relative w-full h-[78vh] sm:h-[85vh] lg:h-[90vh] bg-white overflow-hidden select-none flex items-center justify-center"
     >
-      {/* 100% Natural Background Photo - No dark overlays applied */}
-      {/* Replace image anytime at: public/contact/contact-hero.jpg */}
-      <div className="absolute inset-0 w-full h-full">
+      {/* Pristine White Loading Placeholder - Zero Black Screen */}
+      {!isLoaded && (
+        <div className="absolute inset-0 z-[5] bg-white flex flex-col items-center justify-center pointer-events-none">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:150ms]" />
+            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:300ms]" />
+          </div>
+          <span className="text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.28em] text-[#C5A059] font-medium">
+            IMAGE LOADING...
+          </span>
+        </div>
+      )}
+
+      {/* 100% Natural Background Photo - Smoothly fades in once loaded */}
+      <div className="absolute inset-0 w-full h-full bg-white">
         <img
+          ref={imgRef}
           src="/contact/contact-hero.jpg"
+          onLoad={() => setIsLoaded(true)}
           alt="Insync Interiors Atelier Contact"
-          className="w-full h-full object-cover object-center"
+          className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
       </div>
 
@@ -32,7 +58,13 @@ export default function ContactHero() {
           <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
 
           {/* Clean Architectural Brand Typography: CONTACT */}
-          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.24em] text-white uppercase font-light drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+          <h1
+            className={`font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.24em] uppercase font-light transition-colors duration-700 ${
+              isLoaded
+                ? 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]'
+                : 'text-[#1A1A1A]'
+            }`}
+          >
             CONTACT
           </h1>
 
@@ -46,7 +78,11 @@ export default function ContactHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, delay: 0.5 }}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] pointer-events-none"
+        className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 transition-colors duration-700 pointer-events-none ${
+          isLoaded
+            ? 'text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]'
+            : 'text-[#1A1A1A]/70'
+        }`}
       >
         <span className="text-[9px] font-sans uppercase tracking-[0.3em] font-medium">
           SCROLL TO EXPLORE

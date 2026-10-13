@@ -84,6 +84,7 @@ export default function PortfolioExperience({ projects }) {
                           alt={p.title}
                           className={styles.primaryImg}
                           loading="lazy"
+                          decoding="async"
                         />
 
                         {p.cover?.hoverSrc && (
@@ -92,6 +93,7 @@ export default function PortfolioExperience({ projects }) {
                             alt={`${p.title} interior detail`}
                             className={styles.hoverImg}
                             loading="lazy"
+                            decoding="async"
                           />
                         )}
                       </Link>
@@ -111,6 +113,7 @@ export default function PortfolioExperience({ projects }) {
                           alt={p.title}
                           className={styles.primaryImg}
                           loading="lazy"
+                          decoding="async"
                         />
 
                         {p.cover?.hoverSrc && (
@@ -119,6 +122,7 @@ export default function PortfolioExperience({ projects }) {
                             alt={`${p.title} interior detail`}
                             className={styles.hoverImg}
                             loading="lazy"
+                            decoding="async"
                           />
                         )}
                       </Link>

@@ -81,7 +81,7 @@ export default function OwnerSection() {
               <div className="w-16 h-[1px] bg-[#C5A059] mt-3 mb-1" />
             </div>
 
-            <div className="space-y-4 text-[13px] text-[#6B665F] font-light leading-[1.7]">
+            <div className="space-y-4 text-[15px] sm:text-[16px] text-[#423E38] font-normal leading-[1.75]">
               <p>
                 As the founder of INSYNC INTERIORS, Anchal brings an intuitive eye for proportion, light, and architectural materiality. Her work is guided by the belief that a well-conceived interior should feel like a natural extension of its surroundings—refined, serene, and enduring.
               </p>

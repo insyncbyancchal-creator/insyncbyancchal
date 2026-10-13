@@ -115,15 +115,43 @@
   background: var(--gold-soft);
   box-shadow: 0 20px 45px -15px rgba(27, 26, 23, 0.06);
 }
-.slide { position: absolute; inset: 0; clip-path: inset(0 0 100% 0); z-index: 0; transition: clip-path 0s 1.3s; }
-.slidePrev { clip-path: inset(0); z-index: 1; transition: none; }
-.slideOn { clip-path: inset(0); z-index: 2; transition: clip-path 1.2s cubic-bezier(.7,0,.2,1); }
-.slideInner { position: absolute; inset: 0; transform: scale(1.18); transition: transform 1.8s cubic-bezier(.2,.8,.2,1); }
-.slideOn .slideInner { transform: scale(1); }
-.slideImg { position: absolute; inset: -24px; background-size: cover; background-position: center; transform: translate(var(--tx), var(--ty)); transition: transform .7s ease-out; }
+/* Smooth Down-To-Up Architectural Reveal On Hover (Framer Motion) */
+.slideMotion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: 0 -15px 35px rgba(27, 26, 23, 0.12);
+}
+
+.slideInner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.slideImg {
+  position: absolute;
+  inset: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  object-fit: cover;
+  object-position: center;
+  background-color: var(--gold-soft);
+  transform: translate(var(--tx, 0px), var(--ty, 0px));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  display: block;
+}
+
 .chip {
   position: absolute;
-  z-index: 5;
+  z-index: 10;
   left: 1.2rem;
   bottom: 1.2rem;
   display: inline-flex;
@@ -137,10 +165,14 @@
   font-size: 11px;
   letter-spacing: .2em;
   text-transform: uppercase;
-  animation: chipIn .9s .35s cubic-bezier(.2,.8,.2,1) backwards;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
 }
-.chip b { font-weight: 600; color: var(--gold); }
-@keyframes chipIn { from { opacity: 0; transform: translateY(10px); } }
+
+.chip b {
+  font-weight: 600;
+  color: var(--gold);
+}
 
 /* mobile stacked image */
 .mImg { display: none; }
@@ -362,7 +394,6 @@
   .links { flex-wrap: wrap; gap: .8rem 1.6rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .root, .root * { animation: none !important; transition: none !important; }
   .root [data-reveal] { opacity: 1; transform: none; }
   .wipe::after { display: none; }
   .line > span { transform: none; }

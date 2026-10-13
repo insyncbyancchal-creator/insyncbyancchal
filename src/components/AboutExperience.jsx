@@ -97,14 +97,14 @@ export default function AboutExperience({ children }) {
         <figure className={styles.portrait} data-reveal>
           <span className={styles.frame}>
             {OWNER.photo ? (
-              <img src={OWNER.photo} alt={OWNER.alt} style={{ objectPosition: OWNER.focus }} loading="eager" />
+              <img src={OWNER.photo} alt={OWNER.alt} style={{ objectPosition: OWNER.focus }} />
             ) : (
               <span className={`${styles.ph} ${styles.sans}`} role="img" aria-label={OWNER.alt}>Portrait</span>
             )}
           </span>
           <div className={`${styles.portraitCaption} ${styles.sans}`}>
-            <span>Anchal</span>
-            <span>FOUNDER & PRINCIPAL DESIGNER</span>
+            <span className={styles.captionName}>Anchal</span>
+            <span className={styles.captionRole}>FOUNDER & PRINCIPAL DESIGNER</span>
           </div>
         </figure>
 
@@ -160,6 +160,7 @@ export default function AboutExperience({ children }) {
                     src={MANIFESTO.image}
                     alt={MANIFESTO.imageAlt}
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
