@@ -184,7 +184,7 @@ export default function FooterSection() {
               {/* Clickable Social & Email Links */}
               <div className="flex items-center space-x-6 pt-2">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/insync_interiors/?hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-xs uppercase tracking-widest text-[#FBF9F6] hover:text-[#C5A059] transition-colors"

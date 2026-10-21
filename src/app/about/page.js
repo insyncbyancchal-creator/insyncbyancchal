@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import SimpleFooter from "@/components/SimpleFooter";
 import AboutHero from "@/components/AboutHero";
 import AboutExperience from "@/components/AboutExperience";
+import SpacesInMotion from "@/components/SpacesInMotion";
 import TestimonialSection from "@/components/TestimonialSection";
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function AboutPage() {
       <Navbar />
       <AboutHero />
       <AboutExperience>
+        <SpacesInMotion />
         <TestimonialSection />
       </AboutExperience>
       <SimpleFooter />

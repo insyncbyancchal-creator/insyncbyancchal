@@ -22,7 +22,7 @@ const STUDIO = {
   phoneHref: "+919888800000",
   whatsapp: "919888800000",
   email: "hello@insyncinteriors.com",
-  instagram: "https://instagram.com/insync_byanchal",
+  instagram: "https://www.instagram.com/insync_interiors/?hl=en",
 };
 
 const PROJECT_TYPES = [

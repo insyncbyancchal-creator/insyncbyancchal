@@ -1,223 +1,148 @@
 'use client'
 
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowUpRight } from 'lucide-react'
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 
 const PROJECTS = [
   {
     id: 1,
-    title: 'Celica Home',
-    location: 'KOLKATA',
-    description:
-      'A serene 5,000 sq. ft. duplex designed for light, calm, and connection with warm curved plaster and organic textiles.',
+    slug: 'the-solstice-penthouse',
+    title: 'The Solstice Penthouse',
+    location: 'GURUGRAM',
+    type: 'Penthouse Residence',
     image:
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=85&w=1200&auto=format&fit=crop',
     hoverImage:
-      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=1600&auto=format&fit=crop',
-    details:
-      'Completed in 2024. Featuring custom hand-plastered terracotta wall reliefs, low-profile boucle modular seating, bespoke travertine coffee tables, and floor-to-ceiling recessed architectural glazing.',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=85&w=1200&auto=format&fit=crop',
   },
   {
     id: 2,
+    slug: 'skylight-residence',
     title: 'Skylight Residence',
     location: 'LUDHIANA',
-    description:
-      'A bespoke 7,200 sq. ft. architectural villa with double-height travertine walls, fluted oak millwork, and monolithic proportions.',
+    type: 'Bespoke Villa',
     image:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1200&auto=format&fit=crop',
     hoverImage:
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=85&w=1600&auto=format&fit=crop',
-    details:
-      'Completed in 2024. Features a grand architectural chandelier suite, custom brass inlays, Italian Statuario marble floors, and motorized bronze window louvers.',
+      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=85&w=1200&auto=format&fit=crop',
   },
   {
     id: 3,
+    slug: 'oasis-wellness-sanctuary',
     title: 'Oasis Wellness Sanctuary',
     location: 'CHANDIGARH',
-    description:
-      'Harmonizing natural daylight, indoor reflecting pools, and hand-troweled Venetian plaster walls across an open-concept estate.',
+    type: 'Wellness Estate',
     image:
-      'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=85&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=85&w=1200&auto=format&fit=crop',
     hoverImage:
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=85&w=1600&auto=format&fit=crop',
-    details:
-      'Completed in 2024. Centered around a private zen courtyard with monolithic water features, acoustic wood slat ceiling baffles, and integrated circadian rhythm lighting.',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=85&w=1200&auto=format&fit=crop',
   },
   {
     id: 4,
-    title: 'The Solstice Penthouse',
-    location: 'GURUGRAM',
-    description:
-      'A glass-encased sky sanctuary combining minimal lines, brushed champagne brass accents, and raw monolithic travertine architecture.',
+    slug: 'celica-home',
+    title: 'Celica Home',
+    location: 'KOLKATA',
+    type: 'Duplex Residence',
     image:
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=85&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=1200&auto=format&fit=crop',
     hoverImage:
-      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=85&w=1600&auto=format&fit=crop',
-    details:
-      'Completed in 2023. Custom suspended bronze fireplace, full-height bookmatched Calacatta marble wall reveals, and 360-degree panoramic skyline views.',
+      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=1200&auto=format&fit=crop',
   },
   {
     id: 5,
+    slug: 'villa-riviera-estates',
     title: 'Villa Riviera Estates',
     location: 'GOA',
-    description:
-      'Double-height grand foyer, curved boucle furniture, and seamless indoor-outdoor tropical terrace transitions.',
+    type: 'Coastal Architecture',
     image:
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=85&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=85&w=1200&auto=format&fit=crop',
     hoverImage:
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=85&w=1600&auto=format&fit=crop',
-    details:
-      'Completed in 2023. Coastal contemporary architecture featuring hand-carved stone pillars, teak louvers, and bespoke linen upholstery.',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=85&w=1200&auto=format&fit=crop',
+  },
+  {
+    id: 6,
+    slug: 'courtyard-residence',
+    title: 'The Courtyard Residence',
+    location: 'LUDHIANA',
+    type: 'Residential Villa',
+    image:
+      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=85&w=1200&auto=format&fit=crop',
+    hoverImage:
+      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=1200&auto=format&fit=crop',
   },
 ]
 
 export default function PortfolioShowcase() {
-  const [modalProject, setModalProject] = useState(null)
-
   return (
-    <section id="portfolio-showcase" className="relative w-full bg-[#FFFFFF] text-[#1A1A1A] py-16 sm:py-24 select-none">
-      {/* Top Divider (Clean, slightly thicker luxury gold line, no dots) */}
-      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-12 lg:px-16 mb-12 sm:mb-16">
-        <div className="w-full border-t-[1.5px] border-[#D4AF67]/60" />
-      </div>
-
-      {/* Down-Scrolling Projects List (Occupying left and right space cleanly) */}
-      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-12 lg:px-16 space-y-16 sm:space-y-24">
-        {PROJECTS.map((project) => (
-          <div key={project.id}>
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
+    <section id="portfolio-showcase" className="relative w-full bg-[#FBF9F6] text-[#1A1A1A] py-16 sm:py-24 select-none">
+      <div className="w-full max-w-[1380px] mx-auto px-6 sm:px-10 lg:px-16">
+        {/* 3-Column Equal Grid Matching Reference Photo */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          {PROJECTS.map((project, index) => (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16"
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{
+                duration: 0.65,
+                delay: (index % 3) * 0.07,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="flex flex-col"
             >
-              {/* Left Column: Anchored Left, Modest Refined Typography */}
-              <div className="w-full lg:w-[36%] xl:w-[32%] shrink-0 space-y-4 sm:space-y-5 text-left">
-                <div className="space-y-1">
-                  <h2 className="font-serif text-2xl sm:text-3xl text-[#C5A059] font-normal tracking-tight">
-                    {project.title}
-                  </h2>
-                  <span className="text-xs font-sans tracking-[0.25em] uppercase text-[#1A1A1A] font-semibold block pt-0.5">
-                    {project.location}
-                  </span>
-                </div>
-
-                <p className="text-[14.5px] sm:text-[15.5px] text-[#3E3A34] font-normal leading-relaxed max-w-md">
-                  {project.description}
-                </p>
-
-                {/* Explore Project Outline Button */}
-                <div className="pt-2">
-                  <button
-                    onClick={() => setModalProject(project)}
-                    className="px-6 py-2.5 border border-[#C5A059] text-[#C5A059] text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#C5A059] hover:text-white transition-all duration-300 inline-block cursor-pointer shadow-xs"
-                  >
-                    EXPLORE PROJECT
-                  </button>
-                </div>
-              </div>
-
-              {/* Right Column: Anchored Right, Wide Landscape Rectangle with Hover Reveal */}
-              <div className="w-full lg:w-[64%] xl:w-[68%] flex justify-end">
-                <div
-                  onClick={() => setModalProject(project)}
-                  className="group relative w-full aspect-[16/10] max-h-[380px] sm:max-h-[440px] rounded-2xl sm:rounded-3xl border border-[#C5A059]/20 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-700 cursor-pointer bg-[#F3F0EA]"
-                >
-                  {/* Primary Photo */}
+              <Link
+                href={`/portfolio/${project.slug}`}
+                className="group block text-inherit no-underline"
+                aria-label={`View project: ${project.title}`}
+              >
+                {/* 1:1 Square Image Container with Ultra-Smooth Dissolve Hover */}
+                <div className="relative aspect-square w-full overflow-hidden bg-[#ECE6D8] rounded-[2px] shadow-[0_8px_25px_-10px_rgba(27,26,23,0.06)] group-hover:shadow-[0_16px_36px_-10px_rgba(27,26,23,0.13)] transition-shadow duration-700">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading={index < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035]"
                   />
+                  {project.hoverImage && (
+                    <img
+                      src={project.hoverImage}
+                      alt={`${project.title} interior detail`}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035]"
+                    />
+                  )}
+                  {/* Whitish-Golden Frosted Glass Blur Overlay on Hover */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#FFFEFA]/75 via-[#F8F2E5]/68 to-[#EEE1C8]/62 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FFFDF8]/95 border border-[#C5A059]/75 shadow-[0_10px_28px_-6px_rgba(27,26,23,0.14),0_0_20px_rgba(197,160,89,0.22)] transform translate-y-2 scale-95 group-hover:translate-y-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                      <span className="font-sans text-[11px] tracking-[0.26em] uppercase font-semibold text-[#1A1A1A]">
+                        VIEW PROJECT
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    </div>
+                  </div>
 
-                  {/* Secondary Hover Reveal Photo (Crossfades Smoothly on Hover) */}
-                  <img
-                    src={project.hoverImage}
-                    alt={`${project.title} detail`}
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out group-hover:scale-105"
-                  />
-
-                  {/* Gentle Ambient Vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-70 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Separator Line Between Projects (1.5px warm gold, no dots) */}
-            <div className="w-full mt-16 sm:mt-24">
-              <div className="w-full border-t-[1.5px] border-[#D4AF67]/60" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Interactive Project Lightbox Modal */}
-      <AnimatePresence>
-        {modalProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
-            onClick={() => setModalProject(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl bg-[#FFFFFF] rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/30"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setModalProject(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 border border-black/10 flex items-center justify-center text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-colors shadow-lg cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 sm:p-5 bg-[#FBF9F6]">
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
-                  <img
-                    src={modalProject.image}
-                    alt={modalProject.title}
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="absolute inset-0 border border-black/5 pointer-events-none group-hover:border-[#C5A059]/40 transition-colors duration-500 z-20" />
                 </div>
 
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
-                  <img
-                    src={modalProject.hoverImage}
-                    alt={`${modalProject.title} detail`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="p-6 sm:p-8 space-y-3 bg-[#FFFFFF]">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#C5A059] font-light">
-                    {modalProject.title}
+                {/* Minimal Left-Aligned Serif Title & Meta (Matching Reference Photo) */}
+                <div className="mt-4 text-left">
+                  <h3 className="font-serif text-[22px] sm:text-[25px] font-normal tracking-[0.01em] text-[#1A1A1A] group-hover:text-[#C5A059] transition-colors duration-300 leading-snug">
+                    {project.title}
                   </h3>
-                  <span className="text-[11px] uppercase tracking-widest text-[#1A1A1A] font-bold">
-                    {modalProject.location}
+                  <span className="block font-sans text-[11px] sm:text-[11.5px] tracking-[0.22em] uppercase text-[#7A746B] font-medium mt-1.5">
+                    {project.location} &bull; {project.type}
                   </span>
                 </div>
-
-                <p className="text-xs text-[#66625C] leading-relaxed font-light">
-                  {modalProject.description}
-                </p>
-
-                <p className="text-xs text-[#8C857B] leading-relaxed border-t border-[#C5A059]/20 pt-3 font-light">
-                  {modalProject.details}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

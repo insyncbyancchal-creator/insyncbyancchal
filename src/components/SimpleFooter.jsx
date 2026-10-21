@@ -30,14 +30,13 @@ export default function SimpleFooter() {
       <div className="max-w-7xl mx-auto space-y-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-12 border-b border-[#1A1A1A]/10">
           {/* Logo */}
-          <div className="flex flex-col">
-            <span className="font-serif text-3xl tracking-[0.24em] text-[#1A1A1A] font-light leading-none">
-              INSYNC
-            </span>
-            <span className="text-[12px] tracking-[0.28em] uppercase text-[#C5A059] font-semibold mt-1">
-              BY ANCHAL
-            </span>
-          </div>
+          <Link href="/" className="group inline-flex items-center shrink-0" aria-label="iNSYNC by Ancchal">
+            <img
+              src="/logo-gold.png?v=gold_v2"
+              alt="iNSYNC by Ancchal"
+              className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </Link>
 
           {/* Quick Nav Links (matching Navbar sequence) */}
           <div className="flex flex-wrap items-center gap-8 text-[13px] tracking-[0.18em] uppercase text-[#555048] font-medium">
@@ -51,7 +50,7 @@ export default function SimpleFooter() {
           {/* Social Links & Inquire Button matching Navbar */}
           <div className="flex items-center space-x-2.5 sm:space-x-3.5 shrink-0">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/insync_interiors/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 transition-all"

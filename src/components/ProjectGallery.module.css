@@ -1,0 +1,259 @@
+.galleryRoot {
+  width: 100%;
+  position: relative;
+}
+
+/* ---------------- 5-Column Editorial Masonry Matching Reference ---------------- */
+.masonry {
+  column-count: 5;
+  column-gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 1240px) {
+  .masonry {
+    column-count: 4;
+    column-gap: 12px;
+  }
+}
+
+@media (max-width: 960px) {
+  .masonry {
+    column-count: 3;
+    column-gap: 12px;
+  }
+}
+
+@media (max-width: 680px) {
+  .masonry {
+    column-count: 2;
+    column-gap: 10px;
+  }
+}
+
+@media (max-width: 440px) {
+  .masonry {
+    column-count: 1;
+    column-gap: 0;
+  }
+}
+
+/* ---------------- Individual Masonry Item Card ---------------- */
+.item {
+  break-inside: avoid;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #ECE6D8;
+  cursor: pointer;
+  box-shadow: 0 4px 18px -6px rgba(27, 26, 23, 0.06);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 1240px) {
+  .item {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 680px) {
+  .item {
+    margin-bottom: 10px;
+  }
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -8px rgba(27, 26, 23, 0.16);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item:hover .img {
+  transform: scale(1.035);
+}
+
+/* ---------------- Whitish-Golden Ambient Sheen on Hover ---------------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 254, 250, 0.55) 0%,
+    rgba(247, 240, 226, 0.42) 50%,
+    rgba(236, 222, 196, 0.35) 100%
+  );
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.item:hover .overlay {
+  opacity: 1;
+}
+
+.zoomBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background: rgba(255, 253, 248, 0.95);
+  border: 1px solid rgba(197, 160, 89, 0.75);
+  color: #C5A059;
+  box-shadow: 0 6px 20px rgba(27, 26, 23, 0.12), 0 0 12px rgba(197, 160, 89, 0.2);
+  transform: scale(0.85);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item:hover .zoomBadge {
+  transform: scale(1);
+}
+
+.rim {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+  z-index: 2;
+}
+
+.item:hover .rim {
+  border-color: rgba(197, 160, 89, 0.5);
+}
+
+/* ---------------- Fullscreen Luxury Lightbox ---------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(14, 13, 11, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1rem, 3vh, 2rem) clamp(1.2rem, 4vw, 3rem);
+  user-select: none;
+}
+
+.lbHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #F7F5F0;
+  z-index: 10;
+}
+
+.lbTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #C5A059;
+  font-weight: 600;
+}
+
+.lbCount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: rgba(247, 245, 240, 0.6);
+}
+
+.lbClose {
+  background: transparent;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: #F7F5F0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lbClose:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #1A1A1A;
+}
+
+.lbStage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: 0.75rem;
+  min-height: 0;
+}
+
+.lbImg {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+}
+
+.lbNavBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(27, 26, 23, 0.65);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: #F7F5F0;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.lbNavBtn:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #1A1A1A;
+}
+
+.lbPrev {
+  left: clamp(0.5rem, 2vw, 2.5rem);
+}
+
+.lbNext {
+  right: clamp(0.5rem, 2vw, 2.5rem);
+}
+
+.lbFooter {
+  text-align: center;
+  color: rgba(247, 245, 240, 0.75);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding-top: 0.5rem;
+}

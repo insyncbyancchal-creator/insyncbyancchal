@@ -2,11 +2,8 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import ProjectGallery from "./ProjectGallery";
 import styles from "./ProjectStory.module.css";
-
-const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "400", "500"], style: ["normal", "italic"] });
-const sans = Manrope({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
 /* fade-up when scrolled into view (marks [data-reveal] elements with data-in) */
 function useReveal(dep) {
@@ -51,7 +48,7 @@ export default function ProjectStory({ project, next, others }) {
   const more = [next, ...(others || [])].filter(Boolean).slice(0, 3);
 
   return (
-    <main className={`${styles.root} ${serif.className}`} style={{ "--sans": sans.style.fontFamily }}>
+    <main className={styles.root}>
       {/* ---------- title ---------- */}
       <header className={styles.head}>
         <Link href="/portfolio" className={`${styles.back} ${styles.sans}`}>
@@ -73,21 +70,14 @@ export default function ProjectStory({ project, next, others }) {
             </div>
           ))}
         </dl>
-        <div className={styles.concept} data-reveal>
+        <div className={`${styles.concept} ${styles.sans}`} data-reveal>
           {p.concept.map((t, i) => <p key={i}>{t}</p>)}
         </div>
       </section>
 
-      <div className={styles.plus} aria-hidden="true"><i /></div>
-
-      {/* ---------- GALLERY SLOT ----------
-          Build your gallery component here. Everything you need is on `p`:
-            p.hero                 the lead image   { src, alt, ar? }
-            p.chapters[]           [{ title?, text?, quote?, images: [{ src, alt, caption?, ar? }] }]
-          Example:   <ProjectGallery project={p} />
-          It sits inside the same centred width as the rest of the page.                    */}
+      {/* ---------- 5-Column Editorial Gallery Matching Reference ---------- */}
       <section className={styles.gallery} id="gallery">
-        {/* <ProjectGallery project={p} /> */}
+        <ProjectGallery project={p} />
       </section>
 
       {/* ---------- more projects ---------- */}

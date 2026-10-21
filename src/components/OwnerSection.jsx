@@ -92,7 +92,7 @@ export default function OwnerSection() {
 
             <div className="pt-6 flex flex-wrap items-center gap-6 border-t border-[#1A1A1A]/10">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/insync_interiors/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-xs uppercase tracking-widest text-[#1A1A1A] hover:text-[#C5A059] transition-colors"

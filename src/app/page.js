@@ -4,7 +4,6 @@ import BrandStatement from '@/components/BrandStatement'
 import HomeAboutSection from '@/components/HomeAboutSection'
 import LatestProjectsGrid from '@/components/LatestProjectsGrid'
 import HomeClosingCta from '@/components/HomeClosingCta'
-import Preloader from '@/components/Preloader'
 import SimpleFooter from '@/components/SimpleFooter'
 
 export const metadata = {
@@ -16,7 +15,6 @@ export const metadata = {
 export default function Home() {
   return (
     <div className="bg-[#FBF9F6] text-[#1A1A1A] min-h-screen selection:bg-[#C5A059] selection:text-white">
-      <Preloader />
       <Navbar />
       <HeroSection />
       <BrandStatement />

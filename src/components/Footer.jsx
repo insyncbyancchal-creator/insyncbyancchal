@@ -110,7 +110,7 @@ export default function Footer({ siteSettings, onOpenConsultation }) {
               Full editorial access to update, replace or add project images, stories & services.
             </p>
             <Link
-              href="/studio"
+              href="/admin"
               target="_blank"
               className="inline-flex items-center space-x-2 text-xs tracking-widest uppercase py-3 px-5 rounded-lg glass-panel border border-[#D4AF37]/30 text-white/90 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all"
             >
@@ -134,7 +134,7 @@ export default function Footer({ siteSettings, onOpenConsultation }) {
               Terms of Art Commission
             </Link>
             <span className="text-white/20">•</span>
-            <Link href="/studio" target="_blank" className="text-[#D4AF37] hover:underline">
+            <Link href="/admin" target="_blank" className="text-[#D4AF37] hover:underline">
               Sanity CMS Admin
             </Link>
           </div>

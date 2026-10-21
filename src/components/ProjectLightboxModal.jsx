@@ -105,7 +105,7 @@ export default function ProjectLightboxModal({ project, onClose }) {
               Image {activeIdx + 1} of {images.length}
             </span>
             <Link
-              href="/studio"
+              href="/admin"
               target="_blank"
               className="text-[#D4AF37] hover:underline flex items-center space-x-1"
             >

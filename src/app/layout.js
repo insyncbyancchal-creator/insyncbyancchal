@@ -1,15 +1,23 @@
 import "./globals.css";
+import Preloader from "@/components/Preloader/Preloader";
 
 export const metadata = {
   title: "Insync Interiors | Luxury Architectural & Interior Design Atelier",
   description: "Bespoke architectural and interior design studio in Ludhiana, Punjab. Conceived from the ground up: light, proportion and quiet luxury.",
   keywords: ["Interior Design", "Architectural Atelier", "Insync Interiors", "Ludhiana", "Luxury Interiors", "Custom Decor", "Insync Home"],
+  icons: {
+    icon: "/logo-icon.png?v=gold_v2",
+    shortcut: "/logo-icon.png?v=gold_v2",
+    apple: "/logo-icon.png?v=gold_v2",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased dark" suppressHydrationWarning>
       <head>
+        <link rel="icon" type="image/png" href="/logo-icon.png?v=gold_v2" />
+        <link rel="apple-touch-icon" href="/logo-icon.png?v=gold_v2" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" />
@@ -22,6 +30,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#FBF9F6] text-[#1A1A1A]" suppressHydrationWarning>
+        <Preloader />
         {children}
       </body>
     </html>

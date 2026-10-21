@@ -2,11 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { Bodoni_Moda, Montserrat } from "next/font/google";
 import styles from "./AboutExperience.module.css";
-
-const serif = Bodoni_Moda({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"] });
-const sans = Montserrat({ subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 
 /* =====================================================================
    EDIT THE CONTENT HERE. Nothing below this block needs touching.
@@ -78,7 +74,7 @@ export default function AboutExperience({ children }) {
   useReveal();
 
   return (
-    <main className={`${styles.root} ${serif.className}`} style={{ "--sans": sans.style.fontFamily }}>
+    <main className={styles.root}>
       {/* ---------- INTRO ---------- */}
       <header className={styles.intro}>
         <p className={`${styles.eyebrow} ${styles.sans}`}>{INTRO.eyebrow}</p>
