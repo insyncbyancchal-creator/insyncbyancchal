@@ -36,7 +36,7 @@ export default function Footer({ siteSettings, onOpenConsultation }) {
             <div className="pt-2">
               <button
                 onClick={onOpenConsultation}
-                className="inline-flex items-center space-x-2 text-xs tracking-widest uppercase py-3 px-6 rounded-full border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all"
+                className="inline-flex items-center space-x-2 text-xs tracking-widest uppercase py-3 px-6 rounded-none border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all"
               >
                 <span>Inquire Private Commission</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -98,6 +98,16 @@ export default function Footer({ siteSettings, onOpenConsultation }) {
                 <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
                 <span>{settings.contactPhone}</span>
               </li>
+              <li className="flex items-center space-x-3">
+                <a
+                  href="https://wa.me/919888800000?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-xs uppercase tracking-wider text-[#D4AF37] hover:text-[#25D366] transition-colors"
+                >
+                  <span>Chat on WhatsApp ↗</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -112,7 +122,7 @@ export default function Footer({ siteSettings, onOpenConsultation }) {
             <Link
               href="/admin"
               target="_blank"
-              className="inline-flex items-center space-x-2 text-xs tracking-widest uppercase py-3 px-5 rounded-lg glass-panel border border-[#D4AF37]/30 text-white/90 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all"
+              className="inline-flex items-center space-x-2 text-xs tracking-widest uppercase py-3 px-5 rounded-none glass-panel border border-[#D4AF37]/30 text-white/90 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all"
             >
               <SlidersHorizontal className="w-4 h-4 text-[#D4AF37]" />
               <span>Sanity Studio CMS</span>

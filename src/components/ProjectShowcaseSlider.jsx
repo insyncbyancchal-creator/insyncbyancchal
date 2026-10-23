@@ -264,7 +264,7 @@ export default function ProjectShowcaseSlider() {
 
                     <Link
                       href={`/portfolio/${project.slug}`}
-                      className="w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-[#C5A059] text-[#1A1A1A] flex items-center justify-center hover:bg-white transition-colors shadow-md shrink-0 ml-3 group"
+                      className="w-8 sm:w-9 h-8 sm:h-9 rounded-none bg-[#C5A059] text-[#1A1A1A] flex items-center justify-center hover:bg-white transition-colors shadow-md shrink-0 ml-3 group"
                       aria-label={`Explore ${project.title}`}
                     >
                       <ArrowUpRight className="w-3.5 sm:w-4 h-3.5 sm:h-4 group-hover:scale-110 transition-transform" />
@@ -287,7 +287,7 @@ export default function ProjectShowcaseSlider() {
           <button
             onClick={prevSlide}
             aria-label="Previous Project"
-            className="relative z-10 w-9 sm:w-10 h-9 sm:h-10 bg-[#FBF9F6] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 group rounded-md"
+            className="relative z-10 w-9 sm:w-10 h-9 sm:h-10 bg-[#FBF9F6] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 group rounded-none"
           >
             <ChevronLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5 group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -295,7 +295,7 @@ export default function ProjectShowcaseSlider() {
           {/* Center Link Button [ SEE MORE PROJECTS ] */}
           <Link
             href="/portfolio"
-            className="relative z-10 px-6 sm:px-8 py-2 sm:py-2.5 bg-[#FBF9F6] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 text-[11.5px] sm:text-[12px] uppercase tracking-[0.22em] font-semibold flex items-center gap-2 shadow-xs group rounded-md"
+            className="relative z-10 px-6 sm:px-8 py-2 sm:py-2.5 bg-[#FBF9F6] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 text-[11.5px] sm:text-[12px] uppercase tracking-[0.22em] font-semibold flex items-center gap-2 shadow-xs group rounded-none"
           >
             <span className="group-hover:tracking-[0.25em] transition-all duration-300">SEE MORE PROJECTS</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -305,7 +305,7 @@ export default function ProjectShowcaseSlider() {
           <button
             onClick={nextSlide}
             aria-label="Next Project"
-            className="relative z-10 w-9 sm:w-10 h-9 sm:h-10 bg-[#FBF9F6] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 group rounded-md"
+            className="relative z-10 w-9 sm:w-10 h-9 sm:h-10 bg-[#FBF9F6] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 group rounded-none"
           >
             <ChevronRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 group-hover:translate-x-0.5 transition-transform" />
           </button>

@@ -7,7 +7,7 @@ import HomeClosingCta from '@/components/HomeClosingCta'
 import SimpleFooter from '@/components/SimpleFooter'
 
 export const metadata = {
-  title: 'Insync Interiors | Luxury Architectural & Interior Design Atelier',
+  title: 'Insync by Ancchal | Luxury Architectural & Interior Design Atelier',
   description:
     'Bespoke architectural and interior design studio in Ludhiana, Punjab. Conceived from the ground up: light, proportion and quiet luxury.',
 }

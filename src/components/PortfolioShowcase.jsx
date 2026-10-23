@@ -118,7 +118,7 @@ export default function PortfolioShowcase() {
                   )}
                   {/* Whitish-Golden Frosted Glass Blur Overlay on Hover */}
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#FFFEFA]/75 via-[#F8F2E5]/68 to-[#EEE1C8]/62 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
-                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FFFDF8]/95 border border-[#C5A059]/75 shadow-[0_10px_28px_-6px_rgba(27,26,23,0.14),0_0_20px_rgba(197,160,89,0.22)] transform translate-y-2 scale-95 group-hover:translate-y-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-none bg-[#FFFDF8]/95 border border-[#C5A059] shadow-[0_10px_28px_-6px_rgba(27,26,23,0.14),0_0_20px_rgba(197,160,89,0.22)] transform translate-y-2 scale-95 group-hover:translate-y-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                       <span className="font-sans text-[11px] tracking-[0.26em] uppercase font-semibold text-[#1A1A1A]">
                         VIEW PROJECT
                       </span>

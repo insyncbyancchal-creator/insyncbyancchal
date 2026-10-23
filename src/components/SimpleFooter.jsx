@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
+import BrandLogo from '@/components/BrandLogo'
+import WhatsAppIcon from '@/components/WhatsAppIcon'
 
 function InstagramIcon(props) {
   return (
@@ -30,12 +32,8 @@ export default function SimpleFooter() {
       <div className="max-w-7xl mx-auto space-y-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-12 border-b border-[#1A1A1A]/10">
           {/* Logo */}
-          <Link href="/" className="group inline-flex items-center shrink-0" aria-label="iNSYNC by Ancchal">
-            <img
-              src="/logo-gold.png?v=gold_v2"
-              alt="iNSYNC by Ancchal"
-              className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
+          <Link href="/" className="group inline-flex items-center shrink-0" aria-label="Insync by Ancchal">
+            <BrandLogo className="h-9 sm:h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Quick Nav Links (matching Navbar sequence) */}
@@ -53,23 +51,36 @@ export default function SimpleFooter() {
               href="https://www.instagram.com/insync_interiors/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 transition-all"
+              className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-transparent hover:border-[#C5A059]/30 flex items-center justify-center transition-all group"
               title="Instagram Profile"
+              aria-label="Instagram Profile"
             >
-              <InstagramIcon className="w-4 h-4 text-[#C5A059]" />
+              <InstagramIcon className="w-4 h-4 text-[#C5A059] group-hover:scale-105 transition-transform" />
+            </a>
+
+            <a
+              href="https://wa.me/919888800000?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#25D366] hover:bg-[#25D366]/10 border border-transparent hover:border-[#25D366]/40 flex items-center justify-center transition-all group"
+              title="Chat on WhatsApp"
+              aria-label="Chat with Insync by Ancchal on WhatsApp"
+            >
+              <WhatsAppIcon className="w-4 h-4 text-[#C5A059] group-hover:text-[#25D366] transition-colors" />
             </a>
 
             <a
               href="mailto:contact@insyncinteriors.com"
-              className="p-2 rounded-full text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 transition-all"
-              title="Email Insync Interiors"
+              className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-transparent hover:border-[#C5A059]/30 flex items-center justify-center transition-all group"
+              title="Email Insync by Ancchal"
+              aria-label="Email Insync by Ancchal"
             >
-              <Mail className="w-4 h-4 text-[#C5A059]" />
+              <Mail className="w-4 h-4 text-[#C5A059] group-hover:scale-105 transition-transform" />
             </a>
 
             <Link
               href="/contact"
-              className="ml-1.5 px-4 py-1.5 rounded-full border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white text-[11.5px] uppercase tracking-[0.2em] font-semibold transition-all inline-block"
+              className="ml-2 px-5 py-2 rounded-none border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white text-[11px] sm:text-[11.5px] uppercase tracking-[0.24em] font-semibold transition-all inline-block"
             >
               INQUIRE
             </Link>
@@ -78,7 +89,7 @@ export default function SimpleFooter() {
 
         {/* Sub Footer Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#8C857B] space-y-4 sm:space-y-0">
-          <div>© {new Date().getFullYear()} INSYNC INTERIORS. All Rights Reserved.</div>
+          <div>© {new Date().getFullYear()} INSYNC BY ANCCHAL. All Rights Reserved.</div>
           <div>Ludhiana Atelier • SCF - 1, Third Floor, Sarabha Nagar</div>
         </div>
       </div>

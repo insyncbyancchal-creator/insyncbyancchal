@@ -23,7 +23,7 @@ const PROCESS_STEPS = [
     step: '03.',
     title: 'Material Sourcing & Craft',
     description:
-      'Direct global procurement of rare marbles, custom Italian joinery, hand-worked metals, and bespoke textiles selected by Anchal.',
+      'Direct global procurement of rare marbles, custom Italian joinery, hand-worked metals, and bespoke textiles selected by Ancchal.',
     side: 'left',
   },
   {

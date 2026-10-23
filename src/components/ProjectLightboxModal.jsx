@@ -47,13 +47,13 @@ export default function ProjectLightboxModal({ project, onClose }) {
           <div className="flex items-center space-x-4">
             <Link
               href={`/projects/${project.slug}`}
-              className="hidden sm:inline-flex items-center space-x-2 text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all"
+              className="hidden sm:inline-flex items-center space-x-2 text-xs uppercase tracking-widest px-4 py-2 rounded-none border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all"
             >
               <span>Full Case Study</span>
             </Link>
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white flex items-center justify-center transition-all"
+              className="w-10 h-10 rounded-none bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white flex items-center justify-center transition-all"
             >
               <X className="w-5 h-5" />
             </button>
@@ -71,7 +71,7 @@ export default function ProjectLightboxModal({ project, onClose }) {
               transition={{ duration: 0.4 }}
               src={images[activeIdx].url}
               alt={images[activeIdx].caption}
-              className="max-h-[72vh] max-w-full object-contain rounded-lg shadow-2xl border border-white/10"
+              className="max-h-[72vh] max-w-full object-contain rounded-none shadow-2xl border border-white/10"
             />
           </AnimatePresence>
 
@@ -80,13 +80,13 @@ export default function ProjectLightboxModal({ project, onClose }) {
             <>
               <button
                 onClick={prevImg}
-                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-all"
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-none bg-black/60 backdrop-blur-md border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-all"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextImg}
-                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-all"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-none bg-black/60 backdrop-blur-md border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-all"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>

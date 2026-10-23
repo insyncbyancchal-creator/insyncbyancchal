@@ -36,7 +36,7 @@ export default function AboutHero() {
           ref={imgRef}
           src="/about/about-hero.jpg"
           onLoad={() => setIsLoaded(true)}
-          alt="Insync Interiors Atelier"
+          alt="Insync by Ancchal Atelier"
           className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}

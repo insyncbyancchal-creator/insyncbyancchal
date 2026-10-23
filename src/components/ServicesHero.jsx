@@ -36,7 +36,7 @@ export default function ServicesHero() {
           ref={imgRef}
           src="/services/services-hero.jpg"
           onLoad={() => setIsLoaded(true)}
-          alt="Insync Interiors Bespoke Services"
+          alt="Insync by Ancchal Bespoke Services"
           className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}

@@ -41,7 +41,7 @@ export default function ManifestoSection() {
 
             <div className="md:col-span-8 space-y-4 text-[13px] text-[#6B665F] font-light leading-[1.7]">
               <p>
-                At INSYNC INTERIORS, led by Anchal, every architectural project is approached as a living canvas. True luxury lies in restraint—allowing pure natural marble, tactile lime plaster, hand-worked metals, and bespoke millwork to speak with quiet elegance.
+                At INSYNC BY ANCCHAL, led by Ancchal, every architectural project is approached as a living canvas. True luxury lies in restraint—allowing pure natural marble, tactile lime plaster, hand-worked metals, and bespoke millwork to speak with quiet elegance.
               </p>
               <p>
                 From private luxury residences to bespoke commercial spaces, our atelier combines architectural precision with timeless craftsmanship, creating environments that feel effortless and refined.

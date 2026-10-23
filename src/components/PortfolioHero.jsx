@@ -39,7 +39,7 @@ export default function PortfolioHero() {
           onError={(e) => {
             e.currentTarget.src = "/video/portfolio-hero.jpg"
           }}
-          alt="Insync Interiors Portfolio Atelier"
+          alt="Insync by Ancchal Portfolio Atelier"
           className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}

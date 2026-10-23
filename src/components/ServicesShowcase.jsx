@@ -49,7 +49,7 @@ export default function ServicesShowcase() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#1A1A1A]/10 pb-8">
           <div>
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-[#C5A059]/40 bg-[#F3F0EA] shadow-sm mb-3">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-none border border-[#C5A059]/40 bg-[#F3F0EA] shadow-sm mb-3">
               <Diamond className="w-3 h-3 text-[#C5A059]" />
               <span className="text-[12px] uppercase tracking-[0.22em] text-[#C5A059] font-medium font-serif">
                 Our Capabilities
@@ -76,17 +76,17 @@ export default function ServicesShowcase() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08 }}
-                className="group relative bg-[#F3F0EA] rounded-2xl overflow-hidden p-8 border border-[#1A1A1A]/08 flex flex-col justify-between space-y-8 hover:border-[#C5A059]/40 transition-all duration-500 shadow-sm hover:shadow-xl"
+                className="group relative bg-[#F3F0EA] rounded-none overflow-hidden p-8 border border-[#1A1A1A]/08 flex flex-col justify-between space-y-8 hover:border-[#C5A059]/40 transition-all duration-500 shadow-sm hover:shadow-xl"
               >
                 {/* Background Image Container */}
-                <div className="relative h-48 rounded-xl overflow-hidden bg-[#1A1A1A]">
+                <div className="relative h-48 rounded-none overflow-hidden bg-[#1A1A1A]">
                   <img
                     src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                   />
                   {service.badge && (
-                    <span className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1A1A] text-[9px] uppercase tracking-widest font-semibold">
+                    <span className="absolute top-3 right-3 px-3 py-1 rounded-none bg-[#C5A059] text-[#1A1A1A] text-[9px] uppercase tracking-widest font-semibold">
                       {service.badge}
                     </span>
                   )}

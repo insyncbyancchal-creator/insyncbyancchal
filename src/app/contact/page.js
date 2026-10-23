@@ -4,9 +4,9 @@ import ContactExperience from "@/components/ContactExperience";
 import SimpleFooter from "@/components/SimpleFooter";
 
 export const metadata = {
-  title: "Contact | Insync Interiors",
+  title: "Contact | Insync by Ancchal",
   description:
-    "Begin a conversation with Insync Interiors, Ludhiana. Visit our studio at Sarabha Nagar or send an enquiry.",
+    "Begin a conversation with Insync by Ancchal, Ludhiana. Visit our studio at Sarabha Nagar or send an enquiry.",
 };
 
 export default function ContactPage() {

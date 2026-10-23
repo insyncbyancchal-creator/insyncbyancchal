@@ -14,7 +14,7 @@ export default function ProjectCard({ project, onOpenLightbox }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="group relative rounded-2xl overflow-hidden glass-panel border-gold-glow flex flex-col justify-between"
+      className="group relative rounded-none overflow-hidden glass-panel border-gold-glow flex flex-col justify-between"
     >
       {/* Thumbnail Container */}
       <div className="relative h-[340px] md:h-[400px] w-full overflow-hidden bg-black">
@@ -28,7 +28,7 @@ export default function ProjectCard({ project, onOpenLightbox }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-transparent to-black/20 opacity-80 group-hover:opacity-60 transition-opacity" />
 
         {/* Category Pill */}
-        <div className="absolute top-4 left-4 z-10 px-3.5 py-1.5 rounded-full glass-panel border border-[#D4AF37]/40 text-[11.5px] uppercase tracking-[0.18em] text-[#D4AF37] font-semibold">
+        <div className="absolute top-4 left-4 z-10 px-3.5 py-1.5 rounded-none glass-panel border border-[#D4AF37]/40 text-[11.5px] uppercase tracking-[0.18em] text-[#D4AF37] font-semibold">
           {project.category}
         </div>
 
@@ -36,7 +36,7 @@ export default function ProjectCard({ project, onOpenLightbox }) {
         {onOpenLightbox && (
           <button
             onClick={() => onOpenLightbox(project)}
-            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white/80 hover:text-[#D4AF37] hover:border-[#D4AF37] flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-none bg-black/60 backdrop-blur-md border border-white/20 text-white/80 hover:text-[#D4AF37] hover:border-[#D4AF37] flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
             title="Expand Gallery Lightbox"
           >
             <Maximize2 className="w-4 h-4" />
@@ -66,7 +66,7 @@ export default function ProjectCard({ project, onOpenLightbox }) {
 
         <Link
           href={`/projects/${project.slug}`}
-          className="w-10 h-10 rounded-full border border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black flex items-center justify-center transition-all shrink-0 ml-3"
+          className="w-10 h-10 rounded-none border border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black flex items-center justify-center transition-all shrink-0 ml-3"
           title="View Full Project Case Study"
         >
           <ArrowUpRight className="w-4 h-4" />

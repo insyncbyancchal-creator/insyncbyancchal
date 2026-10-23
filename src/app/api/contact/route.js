@@ -80,15 +80,15 @@ export async function POST(req) {
 
       // 2) Automated response to the visitor (requirement #16)
       await transporter.sendMail({
-        from: `"Insync Interiors" <${process.env.SMTP_USER}>`,
+        from: `"Insync by Ancchal" <${process.env.SMTP_USER}>`,
         to: email,
-        subject: "Thank you for reaching out | Insync Interiors",
+        subject: "Thank you for reaching out | Insync by Ancchal",
         html: `<div style="font-family:Georgia,serif;max-width:520px;margin:auto;padding:40px 28px;background:#f7f4ee;color:#1b1a17">
-          <p style="letter-spacing:.3em;font-size:12px;color:#b99a5b;margin:0 0 24px">INSYNC INTERIORS</p>
+          <p style="letter-spacing:.3em;font-size:12px;color:#b99a5b;margin:0 0 24px">INSYNC BY ANCCHAL</p>
           <h1 style="font-weight:300;font-size:30px;margin:0 0 18px">Dear ${esc(name.split(" ")[0])},</h1>
           <p style="line-height:1.7">Thank you for getting in touch. Your enquiry has reached our studio and we will respond personally within one working day.</p>
           <p style="line-height:1.7">Our studio is open Monday to Saturday, 10 AM – 6 PM at SCF-1, Third Floor, I Block Market, Sarabha Nagar, Ludhiana.</p>
-          <p style="margin-top:32px">Warmly,<br/>Team Insync</p>
+          <p style="margin-top:32px">Warmly,<br/>Team Insync by Ancchal</p>
         </div>`,
       });
     } else {

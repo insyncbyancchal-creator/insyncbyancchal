@@ -18,17 +18,17 @@ const INTRO = {
 const OWNER = {
   // Put the photo in public/about/ and set photo: "/about/owner.jpg"  (portrait, about 4:5, 1600px tall)
   photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop",
-  alt: "Portrait of Anchal, founder of Insync",
+  alt: "Portrait of Ancchal, founder of Insync by Ancchal",
   focus: "50% 30%", // where to keep centred if the photo gets cropped
-  name: "Anchal", // add surname if wanted
+  name: "Ancchal", // add surname if wanted
   role: "Founder & Principal Designer",
   lead: "Spaces should feel calm the moment you walk in, and better every day you stay.",
   paragraphs: [
-    "Anchal founded Insync to design interiors that are considered rather than decorated: rooms shaped by light, proportion and the way people actually live.",
+    "Ancchal founded Insync by Ancchal to design interiors that are considered rather than decorated: rooms shaped by light, proportion and the way people actually live.",
     "Every project begins with listening. The result is quiet, tactile and personal, never a repeat of the last one.",
   ],
   details: [
-    ["Studio", "Insync Interiors"],
+    ["Studio", "Insync by Ancchal"],
     ["Based in", "Ludhiana, Punjab"],
     ["Practice", "Architecture · Interiors · Insync Home"],
   ],
@@ -99,7 +99,7 @@ export default function AboutExperience({ children }) {
             )}
           </span>
           <div className={`${styles.portraitCaption} ${styles.sans}`}>
-            <span className={styles.captionName}>Anchal</span>
+            <span className={styles.captionName}>Ancchal</span>
             <span className={styles.captionRole}>FOUNDER & PRINCIPAL DESIGNER</span>
           </div>
         </figure>

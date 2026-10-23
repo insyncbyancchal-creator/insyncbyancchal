@@ -4,7 +4,7 @@ import ServicesExperience from "@/components/Servicesexperience";
 import SimpleFooter from "@/components/SimpleFooter";
 
 export const metadata = {
-  title: "Services | Insync Interiors",
+  title: "Services | Insync by Ancchal",
   description:
     "Architectural design, interior design, procurement, delivery & installation, and Insync Home: five disciplines, one studio.",
 };

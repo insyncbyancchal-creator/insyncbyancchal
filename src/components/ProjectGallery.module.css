@@ -1,77 +1,497 @@
 .galleryRoot {
   width: 100%;
   position: relative;
+  margin-top: 1.5rem;
+  user-select: none;
 }
 
-/* ---------------- 5-Column Editorial Masonry Matching Reference ---------------- */
+/* -------------------------------------------------------------
+   Top Architectural Control Bar
+   ------------------------------------------------------------- */
+.controlBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  background: rgba(251, 249, 246, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.28);
+  border-radius: 9999px;
+  margin-bottom: 2.25rem;
+  box-shadow: 0 4px 20px rgba(27, 26, 23, 0.04);
+}
+
+.barLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.plateEyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C5A059;
+  font-weight: 600;
+}
+
+.plateCounter {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: #1A1A1A;
+  font-weight: 500;
+  padding: 0.2rem 0.65rem;
+  background: rgba(197, 160, 89, 0.12);
+  border-radius: 0;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.barCenter {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(26, 26, 26, 0.04);
+  padding: 0.25rem;
+  border-radius: 0;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.modeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: #66625C;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modeBtnActive {
+  background: #1A1A1A;
+  color: #FBF9F6;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.modeBtn:not(.modeBtnActive):hover {
+  color: #1A1A1A;
+  background: rgba(197, 160, 89, 0.12);
+}
+
+.barRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 0;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  background: transparent;
+  color: #1A1A1A;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.actionBtn:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #1A1A1A;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.3);
+}
+
+.actionBtnActive {
+  background: rgba(197, 160, 89, 0.18);
+  border-color: #C5A059;
+  color: #9A7B39;
+}
+
+/* -------------------------------------------------------------
+   MODE 1: Cinematic Exhibition Reel / Carousel
+   ------------------------------------------------------------- */
+.cinematicWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: 0.5rem 2rem;
+}
+
+.stageContainer {
+  position: relative;
+  width: 100%;
+  min-height: min(72vh, 600px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideCard {
+  position: relative;
+  max-width: 92%;
+  max-height: min(68vh, 580px);
+  background: #FAF8F4;
+  padding: clamp(0.75rem, 1.5vw, 1.5rem);
+  border-radius: 4px;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  box-shadow: 0 24px 60px -15px rgba(27, 26, 23, 0.14),
+              0 6px 20px rgba(197, 160, 89, 0.08);
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slideCard:hover {
+  transform: translateY(-3px) scale(1.008);
+  box-shadow: 0 32px 75px -12px rgba(27, 26, 23, 0.22),
+              0 0 24px rgba(197, 160, 89, 0.25);
+}
+
+.passePartout {
+  position: relative;
+  max-height: min(56vh, 480px);
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #EBE6DC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cinematicImg {
+  max-height: min(56vh, 480px);
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideCard:hover .cinematicImg {
+  transform: scale(1.025);
+}
+
+/* Architectural Crosshair Corners */
+.crosshairTL, .crosshairTR, .crosshairBL, .crosshairBR {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.crosshairTL {
+  top: 8px;
+  left: 8px;
+  border-top: 1.5px solid #C5A059;
+  border-left: 1.5px solid #C5A059;
+}
+
+.crosshairTR {
+  top: 8px;
+  right: 8px;
+  border-top: 1.5px solid #C5A059;
+  border-right: 1.5px solid #C5A059;
+}
+
+.crosshairBL {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 1.5px solid #C5A059;
+  border-left: 1.5px solid #C5A059;
+}
+
+.crosshairBR {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1.5px solid #C5A059;
+  border-right: 1.5px solid #C5A059;
+}
+
+.slideFooter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(197, 160, 89, 0.2);
+  margin-top: 0.75rem;
+}
+
+.slidePlateNum {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C5A059;
+  font-weight: 600;
+}
+
+.slideCaption {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  font-weight: 500;
+  max-width: 60%;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Navigation Arrow Controls */
+.carouselNavBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0;
+  background: rgba(251, 249, 246, 0.95);
+  border: 1px solid rgba(197, 160, 89, 0.5);
+  color: #1A1A1A;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.carouselNavBtn:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #FBF9F6;
+  box-shadow: 0 10px 24px rgba(197, 160, 89, 0.35);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carouselPrev {
+  left: 0.75rem;
+}
+
+.carouselNext {
+  right: 0.75rem;
+}
+
+/* Autoplay Progress Bar & Playback Pill */
+.progressRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  width: min(92%, 680px);
+  margin: 1.25rem auto 0.5rem;
+}
+
+.progressBarTrack {
+  flex: 1;
+  height: 2px;
+  background: rgba(197, 160, 89, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #9A7B39, #C5A059, #E6D2B0);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+  transition: width 0.05s linear;
+}
+
+.playbackPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.8rem;
+  border-radius: 0;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  background: #FAF8F4;
+  color: #1A1A1A;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.playbackPill:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #1A1A1A;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.3);
+  transform: translateY(-1px);
+}
+
+.playbackPillPaused {
+  background: rgba(197, 160, 89, 0.16);
+  border-color: #C5A059;
+  color: #9A7B39;
+}
+
+/* Filmstrip Thumbnails Track */
+.thumbTrack {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding: 1rem 0.5rem 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #C5A059 rgba(26, 26, 26, 0.06);
+}
+
+.thumbTrack::-webkit-scrollbar {
+  height: 4px;
+}
+
+.thumbTrack::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 9999px;
+}
+
+.thumbBtn {
+  position: relative;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 44px;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  background: #EAE5DB;
+  transition: all 0.3s ease;
+  opacity: 0.55;
+}
+
+.thumbBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.thumbBtnActive {
+  opacity: 1;
+  border-color: #C5A059;
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.4);
+  transform: scale(1.08);
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Auto-play Timer Progress Bar */
+.progressBarTrack {
+  width: 100%;
+  height: 2px;
+  background: rgba(197, 160, 89, 0.15);
+  border-radius: 2px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #9A7B39, #C5A059, #E6D2B0);
+  transition: width 0.1s linear;
+}
+
+/* -------------------------------------------------------------
+   MODE 2: Editorial Architectural Mosaic (Curtain Wipe Animation)
+   ------------------------------------------------------------- */
 .masonry {
-  column-count: 5;
-  column-gap: 14px;
+  column-count: 4;
+  column-gap: 16px;
   width: 100%;
 }
 
-@media (max-width: 1240px) {
-  .masonry {
-    column-count: 4;
-    column-gap: 12px;
-  }
-}
-
-@media (max-width: 960px) {
+@media (max-width: 1200px) {
   .masonry {
     column-count: 3;
+    column-gap: 14px;
+  }
+}
+
+@media (max-width: 840px) {
+  .masonry {
+    column-count: 2;
     column-gap: 12px;
   }
 }
 
-@media (max-width: 680px) {
-  .masonry {
-    column-count: 2;
-    column-gap: 10px;
-  }
-}
-
-@media (max-width: 440px) {
+@media (max-width: 500px) {
   .masonry {
     column-count: 1;
     column-gap: 0;
   }
 }
 
-/* ---------------- Individual Masonry Item Card ---------------- */
-.item {
+.mosaicCard {
   break-inside: avoid;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   position: relative;
   overflow: hidden;
-  border-radius: 2px;
-  background: #ECE6D8;
+  border-radius: 3px;
+  background: #FAF8F4;
+  padding: 8px;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 6px 22px -8px rgba(27, 26, 23, 0.08);
   cursor: pointer;
-  box-shadow: 0 4px 18px -6px rgba(27, 26, 23, 0.06);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
+}
+
+.mosaicCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -10px rgba(27, 26, 23, 0.18),
+              0 0 16px rgba(197, 160, 89, 0.2);
+  border-color: rgba(197, 160, 89, 0.6);
+}
+
+.mosaicFrame {
+  position: relative;
   width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #EAE6DE;
 }
 
-@media (max-width: 1240px) {
-  .item {
-    margin-bottom: 12px;
-  }
-}
-
-@media (max-width: 680px) {
-  .item {
-    margin-bottom: 10px;
-  }
-}
-
-.item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px -8px rgba(27, 26, 23, 0.16);
-}
-
-.img {
+.mosaicImg {
   width: 100%;
   height: 100%;
   display: block;
@@ -79,75 +499,115 @@
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.item:hover .img {
-  transform: scale(1.035);
+.mosaicCard:hover .mosaicImg {
+  transform: scale(1.04);
 }
 
-/* ---------------- Whitish-Golden Ambient Sheen on Hover ---------------- */
-.overlay {
+/* Silky Architectural Shutter Curtain Wipe */
+.shutterCurtain {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 254, 250, 0.55) 0%,
-    rgba(247, 240, 226, 0.42) 50%,
-    rgba(236, 222, 196, 0.35) 100%
-  );
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  opacity: 0;
-  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, #FAF7F2 0%, #EFE8DA 50%, #C5A059 100%);
+  z-index: 4;
   pointer-events: none;
-  z-index: 1;
 }
 
-.item:hover .overlay {
+/* Frosted Viewfinder Overlay */
+.mosaicOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 254, 250, 0.65) 0%,
+    rgba(247, 240, 226, 0.45) 50%,
+    rgba(236, 222, 196, 0.35) 100%
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.mosaicCard:hover .mosaicOverlay {
   opacity: 1;
 }
 
-.zoomBadge {
-  display: inline-flex;
+.viewfinderTop {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  width: 2.35rem;
-  height: 2.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  font-weight: 600;
+}
+
+.viewfinderCenter {
+  align-self: center;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: rgba(255, 253, 248, 0.95);
-  border: 1px solid rgba(197, 160, 89, 0.75);
+  border: 1px solid rgba(197, 160, 89, 0.85);
   color: #C5A059;
-  box-shadow: 0 6px 20px rgba(27, 26, 23, 0.12), 0 0 12px rgba(197, 160, 89, 0.2);
-  transform: scale(0.85);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-.item:hover .zoomBadge {
-  transform: scale(1);
+.viewfinderBottom {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  font-weight: 600;
+  text-align: center;
 }
 
-.rim {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  pointer-events: none;
-  transition: border-color 0.4s ease;
-  z-index: 2;
+.mosaicDetails {
+  padding-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.item:hover .rim {
-  border-color: rgba(197, 160, 89, 0.5);
+.mosaicPlate {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C5A059;
+  font-weight: 600;
 }
 
-/* ---------------- Fullscreen Luxury Lightbox ---------------- */
+.mosaicCap {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #66625C;
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------
+   Fullscreen Luxury Lightbox
+   ------------------------------------------------------------- */
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: rgba(14, 13, 11, 0.94);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  z-index: 99999;
+  background: rgba(14, 13, 11, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -157,11 +617,34 @@
 
 .lbHeader {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.85rem;
   width: 100%;
   color: #F7F5F0;
   z-index: 10;
+}
+
+.lbHeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.lbProgressBarTrack {
+  width: 100%;
+  height: 2px;
+  background: rgba(197, 160, 89, 0.18);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.lbProgressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #9A7B39, #C5A059, #E6D2B0);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.6);
+  transition: width 0.05s linear;
 }
 
 .lbTitle {
@@ -180,13 +663,50 @@
   color: rgba(247, 245, 240, 0.6);
 }
 
+.lbActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lbPlaybackBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.95rem;
+  border-radius: 0;
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  background: rgba(27, 26, 23, 0.65);
+  color: #F7F5F0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lbPlaybackBtn:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #1A1A1A;
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.35);
+}
+
+.lbPlaybackBtnPaused {
+  background: rgba(197, 160, 89, 0.25);
+  border-color: #C5A059;
+  color: #E6D2B0;
+}
+
 .lbClose {
   background: transparent;
   border: 1px solid rgba(197, 160, 89, 0.4);
   color: #F7F5F0;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 50%;
+  border-radius: 0;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -210,23 +730,23 @@
 }
 
 .lbImg {
-  max-width: 100%;
-  max-height: 80vh;
+  max-width: 90vw;
+  max-height: 75vh;
   object-fit: contain;
-  border-radius: 2px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
 }
 
 .lbNavBtn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(27, 26, 23, 0.65);
+  background: rgba(27, 26, 23, 0.75);
   border: 1px solid rgba(197, 160, 89, 0.4);
   color: #F7F5F0;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -238,6 +758,7 @@
   background: #C5A059;
   border-color: #C5A059;
   color: #1A1A1A;
+  transform: translateY(-50%) scale(1.08);
 }
 
 .lbPrev {
@@ -250,10 +771,10 @@
 
 .lbFooter {
   text-align: center;
-  color: rgba(247, 245, 240, 0.75);
+  color: rgba(247, 245, 240, 0.85);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   padding-top: 0.5rem;
 }

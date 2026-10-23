@@ -8,7 +8,7 @@ export default function BeforeAfterSlider({
   beforeImage = 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop',
   afterImage = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop',
   labelBefore = 'Raw Shell Structure',
-  labelAfter = 'Completed Insync Interior',
+  labelAfter = 'Completed Insync by Ancchal Interior',
   title = 'Spatial Transformation',
   subtitle = 'Experience the architectural transition from structural shell to bespoke luxury residence.'
 }) {
@@ -49,7 +49,7 @@ export default function BeforeAfterSlider({
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-[#C5A059]/40 bg-[#F3F0EA] shadow-sm">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-none border border-[#C5A059]/40 bg-[#F3F0EA] shadow-sm">
             <Diamond className="w-3 h-3 text-[#C5A059]" />
             <span className="text-[11px] uppercase tracking-[0.25em] text-[#C5A059] font-semibold">
               Spatial Evolution
@@ -74,7 +74,7 @@ export default function BeforeAfterSlider({
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
           onTouchMove={handleTouchMove}
-          className="relative w-full h-[380px] sm:h-[480px] md:h-[600px] rounded-2xl overflow-hidden cursor-ew-resize select-none border border-[#C5A059]/50 shadow-2xl"
+          className="relative w-full h-[380px] sm:h-[480px] md:h-[600px] rounded-none overflow-hidden cursor-ew-resize select-none border border-[#C5A059]/50 shadow-2xl"
         >
           {/* AFTER IMAGE (Background Layer) */}
           <div className="absolute inset-0 w-full h-full">
@@ -84,8 +84,8 @@ export default function BeforeAfterSlider({
               className="w-full h-full object-cover"
             />
             {/* After Tag */}
-            <div className="absolute top-6 right-6 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#C5A059]/50 text-[11px] uppercase tracking-[0.2em] text-[#C5A059] font-semibold shadow-md pointer-events-none flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
+            <div className="absolute top-6 right-6 px-4 py-2 rounded-none bg-white/90 backdrop-blur-md border border-[#C5A059]/50 text-[11px] uppercase tracking-[0.2em] text-[#C5A059] font-semibold shadow-md pointer-events-none flex items-center space-x-2">
+              <span className="w-2 h-2 rounded-none bg-[#C5A059] animate-pulse" />
               <span>{labelAfter}</span>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function BeforeAfterSlider({
               className="w-full h-full object-cover"
             />
             {/* Before Tag */}
-            <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-[#1A1A1A]/90 backdrop-blur-md border border-white/20 text-[11px] uppercase tracking-[0.2em] text-white/90 font-medium shadow-md pointer-events-none">
+            <div className="absolute top-6 left-6 px-4 py-2 rounded-none bg-[#1A1A1A]/90 backdrop-blur-md border border-white/20 text-[11px] uppercase tracking-[0.2em] text-white/90 font-medium shadow-md pointer-events-none">
               {labelBefore}
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function BeforeAfterSlider({
             className="absolute top-0 bottom-0 w-0.5 bg-[#C5A059] shadow-[0_0_15px_#C5A059] pointer-events-none"
             style={{ left: `${sliderPos}%` }}
           >
-            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-white border-2 border-[#C5A059] text-[#C5A059] flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.5)]">
+            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-none bg-white border-2 border-[#C5A059] text-[#C5A059] flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.5)]">
               <SlidersHorizontal className="w-4 h-4 rotate-90" />
             </div>
           </div>

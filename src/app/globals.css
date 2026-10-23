@@ -26,9 +26,12 @@
   --border-gold: rgba(197, 160, 89, 0.3);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 body {

@@ -188,7 +188,7 @@
   align-items: center;
   gap: 0.55rem;
   padding: 0.72rem 1.45rem;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(255, 253, 248, 0.94);
   border: 1px solid rgba(197, 160, 89, 0.75);
   box-shadow: 

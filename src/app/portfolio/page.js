@@ -5,9 +5,9 @@ import PortfolioExperience from "@/components/PortfolioExperience";
 import { getProjects } from "@/lib/projects";
 
 export const metadata = {
-  title: "Portfolio | Insync Interiors",
+  title: "Portfolio | Insync by Ancchal",
   description:
-    "Selected architectural, residential, commercial and hospitality interiors by Insync Interiors, Ludhiana.",
+    "Selected architectural, residential, commercial and hospitality interiors by Insync by Ancchal, Ludhiana.",
 };
 
 export default async function PortfolioPage() {

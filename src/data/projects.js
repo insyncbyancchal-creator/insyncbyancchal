@@ -8,6 +8,7 @@ export const projects = [
     title: "The Solstice Penthouse",
     location: "GURUGRAM",
     type: "Penthouse Residence",
+    category: "Residential",
     year: "2024",
     area: "6,400 sq ft",
     status: "Completed",
@@ -55,6 +56,7 @@ export const projects = [
     title: "Skylight Residence",
     location: "LUDHIANA",
     type: "Bespoke Villa",
+    category: "Residential",
     year: "2024",
     area: "7,200 sq ft",
     status: "Completed",
@@ -101,6 +103,7 @@ export const projects = [
     title: "Oasis Wellness Sanctuary",
     location: "CHANDIGARH",
     type: "Wellness Estate",
+    category: "Hospitality",
     year: "2024",
     area: "8,500 sq ft",
     status: "Completed",
@@ -146,6 +149,7 @@ export const projects = [
     title: "Celica Home",
     location: "KOLKATA",
     type: "Duplex Residence",
+    category: "Residential",
     year: "2024",
     area: "5,000 sq ft",
     description:
@@ -191,6 +195,7 @@ export const projects = [
     title: "Villa Riviera Estates",
     location: "GOA",
     type: "Coastal Architecture",
+    category: "Hospitality",
     year: "2023",
     area: "7,800 sq ft",
     status: "Completed",
@@ -236,6 +241,7 @@ export const projects = [
     title: "The Courtyard Residence",
     location: "LUDHIANA",
     type: "Residential Villa",
+    category: "Residential",
     year: "2025",
     area: "6,200 sq ft",
     status: "Completed",
@@ -274,6 +280,420 @@ export const projects = [
       { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Kitchen in warm walnut millwork", caption: "Walnut Kitchen", aspectRatio: "3 / 4" },
       { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Courtyard sliding glass pocket doors", caption: "Courtyard Threshold", aspectRatio: "16 / 10" },
       { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Bedroom with textured linen and timber headboard", caption: "Courtyard Bedroom", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-amber-pavilion",
+    title: "The Amber Pavilion",
+    location: "DELHI NCR",
+    type: "Glasshouse Villa",
+    category: "Commercial",
+    year: "2024",
+    area: "8,200 sq ft",
+    status: "Completed",
+    description:
+      "A glass-encased garden pavilion where structural bronze frameworks and fluted Jura limestone celebrate the ambient golden hours.",
+    tagline: "Structural bronze frameworks and fluted limestone in Delhi NCR.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Amber Pavilion, Delhi NCR",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Amber Pavilion Grand Hall",
+    },
+    concept: [
+      "Designed as a continuous visual flow between interior salon volumes and sunken garden courts, anchored by brushed champagne bronze accents.",
+    ],
+    materials: ["Jura limestone", "Brushed bronze", "Fluted smoked glass", "Raw Belgian bouclé"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Pavilion salon" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Amber Pavilion grand hall", caption: "Grand Pavilion Hall", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop", alt: "Sunken garden court vista", caption: "Garden Court Transition", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Bronze hearth detail", caption: "Bronze Fireplace Niche", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Kitchen gallery", caption: "Minimalist Kitchen", aspectRatio: "4 / 3" },
+      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lounge seating", caption: "Pavilion Lounge", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Stone craftsmanship detail", caption: "Joinery Craft", aspectRatio: "1 / 1" },
+    ],
+  },
+  {
+    slug: "villa-monolith",
+    title: "Villa Monolith",
+    location: "KASAULI HILLS",
+    type: "Hillside Estate",
+    category: "Residential",
+    year: "2025",
+    area: "9,500 sq ft",
+    status: "Completed",
+    description:
+      "Cast concrete, hand-quarried local quartzite, and panoramic glass terraces stepping gently across an alpine pine ridge.",
+    tagline: "Cast concrete and alpine quartzite cascading down pine hillsides.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
+      alt: "Villa Monolith, Kasauli Hills",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop",
+      alt: "Villa Monolith Exterior Terraces",
+    },
+    concept: [
+      "Anchored into the mountain rockface, every space frames misty valley horizons while enveloping occupants in warm, acoustic cedar woodwork.",
+    ],
+    materials: ["Local quartzite", "Board-formed concrete", "Smoked oak", "Cashmere upholstery"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Hillside panorama" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Mountain terrace salon", caption: "Alpine Horizon Terrace", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Cantilevered deck", caption: "Cantilevered Sky Deck", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Great room fireplace", caption: "Monolithic Fire Hearth", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Ridge suite bedroom", caption: "Alpine Primary Suite", aspectRatio: "4 / 3" },
+      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Stone bath overlooking pine trees", caption: "Valley Bath Suite", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-statuario-manor",
+    title: "The Statuario Manor",
+    location: "LUDHIANA",
+    type: "Classical Modern Villa",
+    category: "Residential",
+    year: "2024",
+    area: "11,000 sq ft",
+    status: "Completed",
+    description:
+      "A grand 11,000 sq. ft. private estate pairing classical European symmetry with modern architectural lightness and bookmatched Italian marble.",
+    tagline: "Classical symmetry and modern lightness in Ludhiana.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Statuario Manor, Ludhiana",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Statuario Manor Atrium",
+    },
+    concept: [
+      "Conceived around a double-height rotunda that filters gentle northern daylight across fluted colonnades and custom champagne gold hardware.",
+    ],
+    materials: ["Statuario marble", "Champagne gold brass", "European walnut", "Mulberry silk"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Statuario atrium" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Grand salon", caption: "Grand Salon Volume", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Marble gallery", caption: "Statuario Gallery", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Formal banquet dining", caption: "Banquet Hall", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Private study and salon", caption: "Manor Study", aspectRatio: "4 / 3" },
+    ],
+  },
+  {
+    slug: "lumina-house",
+    title: "Lumina House",
+    location: "AMRITSAR",
+    type: "Modern Courtyard Villa",
+    category: "Commercial",
+    year: "2023",
+    area: "6,800 sq ft",
+    status: "Completed",
+    description:
+      "Perforated brick screens and internal water rills create microclimates of calm, casting shifting sunlit choreographies throughout the day.",
+    tagline: "Perforated brick screens and internal water rills in Amritsar.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop",
+      alt: "Lumina House, Amritsar",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
+      alt: "Lumina House Central Court",
+    },
+    concept: [
+      "A tribute to regional heritage reimagined through raw minimalism, featuring clay brick lattices and honed sandstone floors.",
+    ],
+    materials: ["Handmade terracotta brick", "Honed sandstone", "Acoustic oak slats", "Raw linen"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lumina courtyard" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lumina courtyard living", caption: "Lattice Light Court", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Sandstone dining salon", caption: "Sandstone Dining", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Sculptural stair transition", caption: "Stair Architecture", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "atelier-botanica",
+    title: "Atelier Botanica",
+    location: "CHANDIGARH",
+    type: "Biophilic Penthouse",
+    category: "Commercial",
+    year: "2024",
+    area: "5,600 sq ft",
+    status: "Completed",
+    description:
+      "A biophilic rooftop sanctuary combining suspended botanical gardens, cast travertine monoliths, and seamless indoor-outdoor living.",
+    tagline: "Suspended botanical gardens and cast travertine in Chandigarh.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop",
+      alt: "Atelier Botanica, Chandigarh",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
+      alt: "Atelier Botanica Green Terrace",
+    },
+    concept: [
+      "Integrating living flora directly into architecture, creating acoustic peace and clean visual stillness high above the city.",
+    ],
+    materials: ["Travertine stone", "Reclaimed teak", "Cast bronze", "Organic boucle"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Botanica salon" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Botanica living hall", caption: "Botanical Salon", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Terrazzo garden bathroom", caption: "Garden Ensuite", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Sky terrace deck", caption: "Rooftop Sky Garden", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-serenade-residence",
+    title: "The Serenade Residence",
+    location: "MOHALI",
+    type: "Atelier Residence",
+    category: "Residential",
+    year: "2025",
+    area: "7,400 sq ft",
+    status: "Completed",
+    description:
+      "A serene architectural residence exploring curved micro-cement surfaces, fluted timber joinery, and soft subterranean natural light shafts.",
+    tagline: "Curved micro-cement surfaces and fluted timber joinery in Mohali.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Serenade Residence, Mohali",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Serenade Residence Living Suite",
+    },
+    concept: [
+      "Sculptural plaster sweeps eliminate rigid corners, creating an enveloping, gentle acoustic ambiance ideal for contemporary family life.",
+    ],
+    materials: ["Micro-cement", "Fluted walnut", "Aged brass", "Heavy linen drapes"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Serenade salon" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Sculptural living space", caption: "Curved Plaster Salon", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height mezzanine", caption: "Mezzanine Atrium", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Evening lighting scheme", caption: "Ambient Evening Vista", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-zenith-sky-mansion",
+    title: "The Zenith Sky Mansion",
+    location: "MUMBAI",
+    type: "Sky Mansion",
+    category: "Residential",
+    year: "2024",
+    area: "10,200 sq ft",
+    status: "Completed",
+    description:
+      "A private high-rise duplex featuring cantilevered infinity lap pools, bookmatched Patagonia quartz, and panoramic Arabian Sea views.",
+    tagline: "Cantilevered infinity lap pools and Patagonia quartz over the Arabian Sea.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Zenith Sky Mansion, Mumbai",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Zenith Sky Mansion Terrace",
+    },
+    concept: [
+      "Perched high above the coastline, fluid interior open spaces are defined by floating travertine partitions and floor-to-ceiling sea glazing.",
+    ],
+    materials: ["Patagonia quartzite", "Brushed titanium brass", "Acoustic smoked oak", "Raw silk"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Skyline salon" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Sky salon", caption: "Sea Vista Salon", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height living volume", caption: "Double-Height Atrium", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Patagonia marble bar", caption: "Bespoke Marble Bar", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "villa-solarium",
+    title: "Villa Solarium",
+    location: "JAIPUR",
+    type: "Heritage Atelier Villa",
+    category: "Residential",
+    year: "2025",
+    area: "8,900 sq ft",
+    status: "Completed",
+    description:
+      "Hand-chiselled Dholpur sandstone porticos, internal reflecting lily ponds, and contemporary minimal arches celebrating Rajasthani light.",
+    tagline: "Dholpur sandstone porticos and internal lily ponds in Jaipur.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
+      alt: "Villa Solarium, Jaipur",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
+      alt: "Villa Solarium Courtyard",
+    },
+    concept: [
+      "Traditional microclimatic courtyards reinterpreted with modern architectural purity, casting delicate patterned shadow choreographies throughout the day.",
+    ],
+    materials: ["Dholpur sandstone", "Antiqued brass inlays", "Lime wash plaster", "Custom woven dhurries"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Sandstone courtyard" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Courtyard salon", caption: "Reflecting Court", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Arched portico", caption: "Stone Portico Arch", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Living lounge", caption: "Solarium Lounge", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-arcadia-residence",
+    title: "The Arcadia Residence",
+    location: "LUDHIANA",
+    type: "Minimalist Villa",
+    category: "Residential",
+    year: "2024",
+    area: "7,500 sq ft",
+    status: "Completed",
+    description:
+      "Sculptural fluted concrete volumes, integrated central skylights, and low-slung Italian bouclé seating looking out to private bamboo courts.",
+    tagline: "Sculptural fluted concrete and private bamboo courtyards in Ludhiana.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Arcadia Residence, Ludhiana",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Arcadia Residence Living Pavilion",
+    },
+    concept: [
+      "Organized around a monolithic central skylight that bathes honed concrete walls in gentle daylight, framing minimalist garden greenery.",
+    ],
+    materials: ["Fluted concrete", "Smoked glass", "Monolithic travertine", "Belgian bouclé"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Arcadia living" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Arcadia dining", caption: "Minimal Dining Volume", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lounge corner", caption: "Bouclé Lounge Nook", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Bamboo court vista", caption: "Bamboo Court Vista", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-emerald-pavilion",
+    title: "The Emerald Pavilion",
+    location: "DEHRADUN",
+    type: "Forest Retreat",
+    category: "Hospitality",
+    year: "2025",
+    area: "6,600 sq ft",
+    status: "Completed",
+    description:
+      "Tucked inside sal tree canopies, featuring floor-to-ceiling glass pavilions, warm walnut timber joinery, and natural stone hearths.",
+    tagline: "Floor-to-ceiling glass pavilions tucked inside sal tree canopies.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Emerald Pavilion, Dehradun",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Emerald Pavilion Forest Deck",
+    },
+    concept: [
+      "A glass sanctuary suspended amid dense forest foliage, combining deep forest hues with warm organic timber and glowing stone fireplaces.",
+    ],
+    materials: ["River quartzite", "Natural walnut", "Aged bronze", "Woolen felt drapery"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Forest deck" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Forest deck lounge", caption: "Canopy Deck", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Great room", caption: "Forest Pavilion Hall", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Fireplace corner", caption: "Walnut Hearth", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "palazzo-di-luce",
+    title: "Palazzo Di Luce",
+    location: "CHANDIGARH",
+    type: "Contemporary Classical Atelier",
+    category: "Commercial",
+    year: "2023",
+    area: "9,800 sq ft",
+    status: "Completed",
+    description:
+      "A modern homage to northern Italian villas featuring arched colonnades, Roman travertine terraces, and custom bronze fixtures.",
+    tagline: "Arched colonnades and Roman travertine terraces in Chandigarh.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop",
+      alt: "Palazzo Di Luce, Chandigarh",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop",
+      alt: "Palazzo Di Luce Grand Colonnade",
+    },
+    concept: [
+      "Rigorous neoclassical proportions meet clean contemporary lines, creating timeless grandeur softened by natural filtered light.",
+    ],
+    materials: ["Roman travertine", "Champagne brass", "Fluted teak", "Cashmere upholstery"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Grand colonnade" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Grand colonnade", caption: "Travertine Colonnade", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Salone di Luce", caption: "Salone Di Luce", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Formal dining", caption: "Bespoke Dining Suite", aspectRatio: "16 / 10" },
+    ],
+  },
+  {
+    slug: "the-haven-penthouse",
+    title: "The Haven Penthouse",
+    location: "GURUGRAM",
+    type: "Duplex Penthouse",
+    category: "Hospitality",
+    year: "2025",
+    area: "6,900 sq ft",
+    status: "Completed",
+    description:
+      "Double-height glazing framing evening city skylines, sculptural spiral plaster stairs, and monolithic marble kitchen islands.",
+    tagline: "Sculptural spiral plaster stairs and double-height glazing in Gurugram.",
+    cover: {
+      src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop",
+      hoverSrc: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Haven Penthouse, Gurugram",
+    },
+    hero: {
+      src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop",
+      alt: "The Haven Penthouse Great Room",
+    },
+    concept: [
+      "A private urban aerie offering tranquil sanctuary from city momentum, unified by sculptural plaster surfaces and midnight marble plinths.",
+    ],
+    materials: ["Nero Marquina marble", "Venetian clay plaster", "Champagne gold trim", "Raw linen"],
+    chapters: [
+      { images: [{ src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Skyline penthouse" }] },
+    ],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Skyline master bedroom", caption: "Skyline Suite", aspectRatio: "16 / 10" },
+      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Sculptural staircase", caption: "Spiral Plaster Stair", aspectRatio: "3 / 4" },
+      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Great room evening view", caption: "Evening Skyline Salon", aspectRatio: "16 / 10" },
     ],
   },
 ];

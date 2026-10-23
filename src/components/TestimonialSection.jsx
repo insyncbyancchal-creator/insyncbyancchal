@@ -11,7 +11,7 @@ const TESTIMONIALS = [
     role: 'PSYCHOTHERAPIST',
     location: 'KOLKATA & GURUGRAM',
     quote:
-      'Anchal and her team are people I trust 100% with any space. She sets the bar so high that when I envision an interior, I cannot think beyond her. Intuitive and deeply attentive, she brings forth the client’s true personality through spatial stillness and soulful materials.',
+      'Ancchal and her team are people I trust 100% with any space. She sets the bar so high that when I envision an interior, I cannot think beyond her. Intuitive and deeply attentive, she brings forth the client’s true personality through spatial stillness and soulful materials.',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const TESTIMONIALS = [
     role: 'ESTATE OWNER & INDUSTRIALIST',
     location: 'SARABHA NAGAR, LUDHIANA',
     quote:
-      'Insync brought a quiet, museum-level discipline to our family residence. Anchal understood from day one that we didn’t seek loud opulence—we wanted timeless stillness, natural travertine, and daylight that changes gracefully through the day.',
+      'Insync by Ancchal brought a quiet, museum-level discipline to our family residence. Ancchal understood from day one that we didn’t seek loud opulence—we wanted timeless stillness, natural travertine, and daylight that changes gracefully through the day.',
   },
   {
     id: 3,
@@ -118,13 +118,13 @@ export default function TestimonialSection() {
           </h2>
         </div>
 
-        {/* Testimonial Stage with Subtle Circular Controls */}
+        {/* Testimonial Stage with Subtle Rectangular Controls */}
         <div className="relative max-w-4xl mx-auto flex items-center justify-between gap-4 sm:gap-6 min-h-[220px] sm:min-h-[200px]">
           {/* Previous Arrow Button */}
           <button
             onClick={prevTestimonial}
             aria-label="Previous Testimonial"
-            className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C5A059]/35 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group"
+            className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-none border border-[#C5A059]/40 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -163,13 +163,13 @@ export default function TestimonialSection() {
           <button
             onClick={nextTestimonial}
             aria-label="Next Testimonial"
-            className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C5A059]/35 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group"
+            className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-none border border-[#C5A059]/40 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group"
           >
             <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
-        {/* Minimal Pagination Dots */}
+        {/* Minimal Rectangular Pagination Indicators */}
         <div className="flex items-center justify-center gap-2 mt-8 sm:mt-9">
           {TESTIMONIALS.map((t, index) => {
             const isActive = index === currentIndex
@@ -181,10 +181,10 @@ export default function TestimonialSection() {
                   setCurrentIndex(index)
                 }}
                 aria-label={`Jump to testimonial ${index + 1}`}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                className={`transition-all duration-300 rounded-none cursor-pointer ${
                   isActive
-                    ? 'w-2 h-2 bg-[#C5A059] scale-125'
-                    : 'w-1.5 h-1.5 bg-[#DDD6C6] hover:bg-[#C5A059]/60'
+                    ? 'w-5 h-1 bg-[#C5A059]'
+                    : 'w-2 h-1 bg-[#DDD6C6] hover:bg-[#C5A059]/60'
                 }`}
               />
             )

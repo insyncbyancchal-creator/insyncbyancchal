@@ -9,14 +9,14 @@ import styles from "./ContactExperience.module.css";
 /* EDIT THESE: single source of truth for studio details              */
 /* ------------------------------------------------------------------ */
 const STUDIO = {
-  name: "INSYNC INTERIORS",
+  name: "INSYNC BY ANCCHAL",
   addressLines: [
     "SCF - 1, Third Floor,",
     "I Block Market, Sarabha Nagar",
     "(Opp. Nav Durga Mata Mandir),",
     "Ludhiana – 141001",
   ],
-  mapQuery: "Insync Interiors, SCF 1, I Block Market, Sarabha Nagar, Ludhiana 141001",
+  mapQuery: "Insync by Ancchal, SCF 1, I Block Market, Sarabha Nagar, Ludhiana 141001",
   hours: "Monday – Saturday · 10:00 AM – 6:00 PM",
   phone: "+91 98888 00000",
   phoneHref: "+919888800000",
@@ -378,7 +378,7 @@ export default function ContactExperience() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="group relative inline-flex items-center justify-center gap-3.5 px-9 py-4 sm:px-11 sm:py-4.5 bg-[#1A1A1A] text-[#FBF9F6] rounded-full border border-[#C5A059]/50 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_8px_24px_rgba(27,26,23,0.12)] hover:shadow-[0_14px_40px_rgba(197,160,89,0.38)] active:scale-98 cursor-pointer"
+              className="group relative inline-flex items-center justify-center gap-3.5 px-9 py-4 sm:px-11 sm:py-4.5 bg-[#1A1A1A] text-[#FBF9F6] rounded-none border border-[#C5A059]/50 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_8px_24px_rgba(27,26,23,0.12)] hover:shadow-[0_14px_40px_rgba(197,160,89,0.38)] active:scale-98 cursor-pointer"
               aria-label="Open project enquiry form"
             >
               <span className="text-[11px] sm:text-xs font-sans uppercase tracking-[0.28em] font-semibold transition-colors duration-300">
@@ -586,13 +586,13 @@ export default function ContactExperience() {
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
                   <span className="text-[10px] font-sans uppercase tracking-[0.24em] text-[#C5A059] font-semibold">
-                    INSYNC INTERIORS · ENQUIRY
+                    INSYNC BY ANCCHAL · ENQUIRY
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#6B665E] hover:text-[#1A1A1A] hover:bg-[#F3EFE6] transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-none flex items-center justify-center text-[#6B665E] hover:text-[#1A1A1A] hover:bg-[#F3EFE6] border border-transparent hover:border-[#C5A059]/30 transition-colors cursor-pointer"
                   aria-label="Close enquiry modal"
                 >
                   <X className="w-4 h-4" />
@@ -620,7 +620,7 @@ export default function ContactExperience() {
                           setState("idle");
                           setStep(0);
                         }}
-                        className="px-8 py-3 bg-[#1A1A1A] text-white rounded-full text-xs uppercase tracking-[0.24em] font-semibold hover:bg-[#C5A059] hover:text-[#1A1A1A] transition-colors cursor-pointer"
+                        className="px-8 py-3 bg-[#1A1A1A] text-white rounded-none text-xs uppercase tracking-[0.24em] font-semibold hover:bg-[#C5A059] hover:text-[#1A1A1A] border border-[#C5A059]/50 transition-colors cursor-pointer"
                       >
                         CLOSE
                       </button>
@@ -785,7 +785,7 @@ export default function ContactExperience() {
           onMouseLeave={() => setMapLive(false)}
         >
           <iframe
-            title="Insync Interiors on Google Maps"
+            title="Insync by Ancchal on Google Maps"
             src={mapSrc}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -802,7 +802,7 @@ export default function ContactExperience() {
             </button>
           )}
           <div className={`${styles.pin} ${styles.sans}`}>
-            <strong>Insync Interiors</strong>
+            <strong>Insync by Ancchal</strong>
             <span>SCF-1, Third Floor, I Block Market</span>
             <a href={directions} target="_blank" rel="noopener noreferrer">
               Directions ↗

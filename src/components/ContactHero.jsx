@@ -36,7 +36,7 @@ export default function ContactHero() {
           ref={imgRef}
           src="/contact/contact-hero.jpg"
           onLoad={() => setIsLoaded(true)}
-          alt="Insync Interiors Atelier Contact"
+          alt="Insync by Ancchal Atelier Contact"
           className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}

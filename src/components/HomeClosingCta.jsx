@@ -40,8 +40,8 @@ export default function HomeClosingCta() {
         >
           <Link
             href="/contact"
-            className="group relative inline-flex items-center justify-center gap-3.5 px-9 sm:px-11 py-3.5 sm:py-4 bg-[#1A1A1A] text-[#FBF9F6] rounded-full border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_16px_rgba(27,26,23,0.1)] hover:shadow-[0_12px_36px_rgba(197,160,89,0.38)] active:scale-98 cursor-pointer"
-            aria-label="Start a conversation with Insync Interiors"
+            className="group relative inline-flex items-center justify-center gap-3.5 px-9 sm:px-11 py-3.5 sm:py-4 bg-[#1A1A1A] text-[#FBF9F6] rounded-none border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_16px_rgba(27,26,23,0.1)] hover:shadow-[0_12px_36px_rgba(197,160,89,0.38)] active:scale-98 cursor-pointer"
+            aria-label="Start a conversation with Insync by Ancchal"
           >
             <span className="text-[10.5px] sm:text-[11px] font-sans uppercase tracking-[0.28em] font-semibold transition-colors duration-300">
               START A CONVERSATION

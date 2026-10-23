@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { MapPin, Clock, Mail, Send, CheckCircle2 } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import WhatsAppIcon from '@/components/WhatsAppIcon'
 
 function InstagramIcon(props) {
   return (
@@ -27,7 +28,7 @@ function InstagramIcon(props) {
 }
 
 // Statement text for horizontal split-text scroll
-const SPLIT_TEXT = "INSYNC BY ANCHAL • WANT TO CONTACT WITH US?"
+const SPLIT_TEXT = "INSYNC BY ANCCHAL • WANT TO CONTACT WITH US?"
 
 export default function FooterSection() {
   const wrapperRef = useRef(null)
@@ -131,8 +132,8 @@ export default function FooterSection() {
       <section className="relative z-10 max-w-7xl mx-auto px-4 py-24">
         {/* Header Badge */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-[#C5A059]/40 bg-[#F3F0EA] shadow-sm mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-none border border-[#C5A059]/40 bg-[#F3F0EA] shadow-sm mb-4">
+            <span className="w-2 h-2 rounded-none bg-[#C5A059] animate-pulse" />
             <span className="text-[12px] uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
               INSYNC ATELIER
             </span>
@@ -145,7 +146,7 @@ export default function FooterSection() {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="font-sans relative z-20 mx-auto w-full rounded-[2.5rem] bg-[#1A1A1A] p-8 sm:p-14 text-[#FBF9F6] shadow-2xl border border-[#C5A059]/40"
+          className="font-sans relative z-20 mx-auto w-full rounded-none bg-[#1A1A1A] p-8 sm:p-14 text-[#FBF9F6] shadow-2xl border border-[#C5A059]/40"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Left Column: Studio Address & Info */}
@@ -155,7 +156,7 @@ export default function FooterSection() {
                   INSYNC
                 </span>
                 <span className="text-[12px] tracking-[0.28em] uppercase text-[#C5A059] font-semibold block">
-                  BY ANCHAL
+                  BY ANCCHAL
                 </span>
                 <p className="text-xs md:text-sm text-[#FBF9F6]/70 leading-relaxed font-light max-w-md pt-2">
                   We welcome private inquiries for high-end residential, penthouse, and commercial architectural interior commissions.
@@ -163,7 +164,7 @@ export default function FooterSection() {
               </div>
 
               {/* Address & Office Hours Card */}
-              <div className="space-y-4 bg-white/05 p-6 rounded-2xl border border-white/10 text-xs text-[#FBF9F6]">
+              <div className="space-y-4 bg-white/05 p-6 rounded-none border border-white/10 text-xs text-[#FBF9F6]">
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
                   <div>
@@ -181,8 +182,8 @@ export default function FooterSection() {
                 </div>
               </div>
 
-              {/* Clickable Social & Email Links */}
-              <div className="flex items-center space-x-6 pt-2">
+              {/* Clickable Social, WhatsApp & Email Links */}
+              <div className="flex flex-wrap items-center gap-6 pt-2">
                 <a
                   href="https://www.instagram.com/insync_interiors/?hl=en"
                   target="_blank"
@@ -190,7 +191,17 @@ export default function FooterSection() {
                   className="flex items-center space-x-2 text-xs uppercase tracking-widest text-[#FBF9F6] hover:text-[#C5A059] transition-colors"
                 >
                   <InstagramIcon className="w-4 h-4 text-[#C5A059]" />
-                  <span>Instagram Profile</span>
+                  <span>Instagram</span>
+                </a>
+
+                <a
+                  href="https://wa.me/919888800000?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-xs uppercase tracking-widest text-[#FBF9F6] hover:text-[#25D366] transition-colors"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#C5A059] hover:text-[#25D366]" />
+                  <span>WhatsApp</span>
                 </a>
 
                 <a
@@ -204,14 +215,14 @@ export default function FooterSection() {
             </div>
 
             {/* Right Column: Interactive Form Inputs */}
-            <div className="lg:col-span-7 bg-white/05 p-6 sm:p-10 rounded-3xl border border-white/10 space-y-6">
+            <div className="lg:col-span-7 bg-white/05 p-6 sm:p-10 rounded-none border border-white/10 space-y-6">
               <h3 className="font-serif text-3xl text-[#FBF9F6] font-light">
                 Send an <span className="montecarlo-regular italic font-normal text-[#C5A059]">Enquiry</span>
               </h3>
 
               {sent ? (
                 <div className="text-center py-12 space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-[#C5A059]/10 border border-[#C5A059] text-[#C5A059] flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 rounded-none bg-[#C5A059]/10 border border-[#C5A059] text-[#C5A059] flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="font-serif text-2xl text-[#FBF9F6]">Thank You for Reaching Out</h4>
@@ -229,8 +240,8 @@ export default function FooterSection() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Anchal Sharma"
-                        className="w-full rounded-xl border border-white/20 bg-white/05 px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
+                        placeholder="e.g. Ancchal Sharma"
+                        className="w-full rounded-none border border-white/20 bg-white/05 px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
                       />
                     </div>
 
@@ -242,7 +253,7 @@ export default function FooterSection() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="name@domain.com"
-                        className="w-full rounded-xl border border-white/20 bg-white/05 px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
+                        className="w-full rounded-none border border-white/20 bg-white/05 px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
                       />
                     </div>
                   </div>
@@ -254,7 +265,7 @@ export default function FooterSection() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 98765 43210"
-                      className="w-full rounded-xl border border-white/20 bg-white/05 px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
+                      className="w-full rounded-none border border-white/20 bg-white/05 px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
                     />
                   </div>
 
@@ -265,13 +276,13 @@ export default function FooterSection() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Tell us about your property location, residence size, and desired timeline..."
-                      className="w-full rounded-xl border border-white/20 bg-white/05 px-4 py-3 text-xs text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
+                      className="w-full rounded-none border border-white/20 bg-white/05 px-4 py-3 text-xs text-white placeholder-white/40 outline-none focus:border-[#C5A059] transition-colors"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl bg-[#C5A059] text-[#1A1A1A] font-bold text-xs tracking-widest uppercase flex items-center justify-center space-x-2 hover:bg-white transition-all duration-300 shadow-lg cursor-pointer"
+                    className="w-full py-4 rounded-none bg-[#C5A059] text-[#1A1A1A] font-bold text-xs tracking-widest uppercase flex items-center justify-center space-x-2 hover:bg-white transition-all duration-300 shadow-lg cursor-pointer"
                   >
                     <span>{sent ? "Message sent ✓" : "Submit Studio Enquiry"}</span>
                     <Send className="w-4 h-4" />
@@ -283,7 +294,7 @@ export default function FooterSection() {
 
           {/* Sub Footer Bar */}
           <div className="pt-8 mt-12 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FBF9F6]/60 space-y-4 sm:space-y-0">
-            <div>© {new Date().getFullYear()} INSYNC INTERIORS. All Rights Reserved.</div>
+            <div>© {new Date().getFullYear()} INSYNC BY ANCCHAL. All Rights Reserved.</div>
             <div className="flex items-center space-x-6">
               <span className="hover:text-white">Ludhiana Atelier</span>
               <span>•</span>

@@ -291,7 +291,7 @@ export default function HeroSection() {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`transition-all duration-300 rounded-full cursor-pointer ${
+              className={`transition-all duration-300 rounded-none cursor-pointer ${
                 idx === currentSlide
                   ? isCurrentLoaded
                     ? 'w-7 sm:w-8 h-1.5 sm:h-2 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]'

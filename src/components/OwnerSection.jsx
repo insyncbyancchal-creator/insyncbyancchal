@@ -49,13 +49,13 @@ export default function OwnerSection() {
             <div className="relative h-[480px] md:h-[600px] rounded-2xl overflow-hidden bg-[#1A1A1A] shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop"
-                alt="Anchal - Founder & Lead Interior Designer of Insync Interiors"
+                alt="Ancchal - Founder & Lead Interior Designer of Insync by Ancchal"
                 className="w-full h-full object-cover filter contrast-[1.05]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/60 via-transparent to-transparent" />
 
               <div className="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-[#FBF9F6]/90 backdrop-blur-md border border-[#1A1A1A]/10 shadow-lg">
-                <span className="font-serif text-xl text-[#1A1A1A] block font-light">Anchal</span>
+                <span className="font-serif text-xl text-[#1A1A1A] block font-light">Ancchal</span>
                 <span className="text-[12px] uppercase tracking-[0.2em] text-[#C5A059] block font-semibold mt-1">
                   Founder & Principal Designer
                 </span>
@@ -73,7 +73,7 @@ export default function OwnerSection() {
           >
             <div className="space-y-3">
               <span className="text-[12.5px] uppercase tracking-[0.22em] text-[#C5A059] font-semibold block">
-                MEET ANCHAL
+                MEET ANCCHAL
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] font-light text-[#1A1A1A] leading-[1.22] tracking-tight">
                 Designing Spaces with <span className="montecarlo-regular italic font-normal text-[#C5A059]">Quiet Elegance</span>
@@ -83,10 +83,10 @@ export default function OwnerSection() {
 
             <div className="space-y-4 text-[15px] sm:text-[16px] text-[#423E38] font-normal leading-[1.75]">
               <p>
-                As the founder of INSYNC INTERIORS, Anchal brings an intuitive eye for proportion, light, and architectural materiality. Her work is guided by the belief that a well-conceived interior should feel like a natural extension of its surroundings—refined, serene, and enduring.
+                As the founder of INSYNC BY ANCCHAL, Ancchal brings an intuitive eye for proportion, light, and architectural materiality. Her work is guided by the belief that a well-conceived interior should feel like a natural extension of its surroundings—refined, serene, and enduring.
               </p>
               <p>
-                From curating high-end private residences across India to crafting custom interior accents under <strong className="text-[#1A1A1A] font-medium">INSYNC HOME</strong>, Anchal directs every single commission with personal dedication and attention to detail.
+                From curating high-end private residences across India to crafting custom interior accents under <strong className="text-[#1A1A1A] font-medium">INSYNC HOME</strong>, Ancchal directs every single commission with personal dedication and attention to detail.
               </p>
             </div>
 

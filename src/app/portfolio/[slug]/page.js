@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const p = await getProject(slug);
   if (!p) return {};
   return {
-    title: `${p.title} | Insync Interiors`,
+    title: `${p.title} | Insync by Ancchal`,
     description: p.tagline || p.concept?.[0],
     openGraph: p.cover?.src ? { images: [p.cover.src] } : undefined,
   };

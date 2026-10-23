@@ -6,8 +6,8 @@ import SpacesInMotion from "@/components/SpacesInMotion";
 import TestimonialSection from "@/components/TestimonialSection";
 
 export const metadata = {
-  title: "About | Insync Interiors",
-  description: "The people, philosophy and design approach behind Insync Interiors, Ludhiana.",
+  title: "About | Insync by Ancchal",
+  description: "The people, philosophy and design approach behind Insync by Ancchal, Ludhiana.",
 };
 
 export default function AboutPage() {
