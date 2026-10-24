@@ -17,25 +17,34 @@ export default function HomeClosingCta() {
 
       <div className="max-w-4xl mx-auto px-6 sm:px-10 text-center relative z-10">
         
-        {/* Headline: Let's design something together. */}
+        {/* Headline: Let's design something together with Smooth Scroll Entrance */}
         <motion.h2
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] text-[#1A1A1A] font-light leading-[1.2] tracking-[0.05em] max-w-2xl mx-auto"
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: '-50px' }}
+          className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#1A1A1A] font-light leading-[1.25] tracking-[0.05em] max-w-2xl mx-auto"
         >
           LET’S DESIGN{' '}
           <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">something</span>{' '}
           TOGETHER.
         </motion.h2>
 
+        {/* Delicate Gold Architectural Hairline */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="w-12 h-[1px] bg-[#C5A059] mx-auto mt-4 origin-center"
+        />
+
         {/* Single Centered Button with Golden Luxury Hover Effect */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: '-40px' }}
           className="mt-8 sm:mt-9 flex justify-center"
         >
           <Link

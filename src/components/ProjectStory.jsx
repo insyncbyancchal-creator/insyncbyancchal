@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import ProjectGallery from "./ProjectGallery";
 import styles from "./ProjectStory.module.css";
 
@@ -50,7 +51,13 @@ export default function ProjectStory({ project, next, others }) {
   return (
     <main className={styles.root}>
       {/* ---------- title ---------- */}
-      <header className={styles.head}>
+      <motion.header
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.head}
+      >
         <Link href="/portfolio" className={`${styles.back} ${styles.sans}`}>
           <span aria-hidden="true">‹</span> Projects
         </Link>
@@ -58,21 +65,33 @@ export default function ProjectStory({ project, next, others }) {
           <span className={styles.line}><span>{p.title}</span></span>
         </h1>
         {p.tagline && <p className={styles.tagline}>{p.tagline}</p>}
-      </header>
+      </motion.header>
 
-      {/* ---------- facts + concept ---------- */}
+      {/* ---------- facts + concept (Directional Entrance) ---------- */}
       <section className={styles.info}>
-        <dl className={`${styles.facts} ${styles.sans}`} data-reveal>
+        <motion.dl
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className={`${styles.facts} ${styles.sans}`}
+        >
           {facts.map(([k, v]) => (
             <div key={k}>
               <dt>{k}</dt>
               <dd>{v}</dd>
             </div>
           ))}
-        </dl>
-        <div className={`${styles.concept} ${styles.sans}`} data-reveal>
+        </motion.dl>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className={`${styles.concept} ${styles.sans}`}
+        >
           {p.concept.map((t, i) => <p key={i}>{t}</p>)}
-        </div>
+        </motion.div>
       </section>
 
       {/* ---------- 5-Column Editorial Gallery Matching Reference ---------- */}
@@ -82,12 +101,40 @@ export default function ProjectStory({ project, next, others }) {
 
       {/* ---------- more projects ---------- */}
       {more.length > 0 && (
-        <section className={styles.more} aria-label="More projects">
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.more}
+          aria-label="More projects"
+        >
           <div className={styles.moreInner}>
-            <h2 className={`${styles.moreHead} ${styles.sans}`}>More projects</h2>
+            <div className="text-center mb-10">
+              <span className="text-[11px] font-sans uppercase tracking-[0.28em] text-[#C5A059] font-semibold block mb-2">
+                CONTINUE EXPLORING
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#1A1A1A] font-light">
+                MORE <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">selected</span> COMMISSIONS
+              </h2>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="w-16 h-[1.5px] bg-[#C5A059] mx-auto mt-4 origin-center"
+              />
+            </div>
+
             <ul className={styles.moreGrid}>
               {more.map((o, i) => (
-                <li key={o.slug} data-reveal style={{ "--k": i }}>
+                <motion.li
+                  key={o.slug}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                >
                   <Link
                     href={`/portfolio/${o.slug}`}
                     className="group block focus-visible:outline-2 focus-visible:outline-[#C5A059]"
@@ -124,7 +171,7 @@ export default function ProjectStory({ project, next, others }) {
                       </p>
                     </div>
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
             <div className={styles.allWrap}>
@@ -133,7 +180,7 @@ export default function ProjectStory({ project, next, others }) {
               </Link>
             </div>
           </div>
-        </section>
+        </motion.section>
       )}
     </main>
   );

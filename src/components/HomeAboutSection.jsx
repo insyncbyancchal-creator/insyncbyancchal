@@ -43,11 +43,11 @@ export default function HomeAboutSection() {
               Animates smoothly from the LEFT on scroll
               ========================================================= */}
           <motion.div
-            initial={{ opacity: 0, x: -65 }}
+            initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: '-50px' }}
-            className="order-1 lg:order-1 lg:col-span-5 w-full flex flex-col items-center lg:items-start"
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-20px 0px' }}
+            className="order-1 lg:order-1 lg:col-span-5 w-full flex flex-col items-center lg:items-start will-change-transform"
           >
             <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-none">
               {/* Champagne-Gold Hairline Architectural Frame */}
@@ -81,11 +81,11 @@ export default function HomeAboutSection() {
               Animates smoothly from the RIGHT on scroll
               ========================================================= */}
           <motion.div
-            initial={{ opacity: 0, x: 65 }}
+            initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: '-50px' }}
-            className="order-2 lg:order-2 lg:col-span-7 w-full space-y-4 sm:space-y-5 text-left lg:pl-4 xl:pl-6"
+            transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-20px 0px' }}
+            className="order-2 lg:order-2 lg:col-span-7 w-full space-y-4 sm:space-y-5 text-left lg:pl-4 xl:pl-6 will-change-transform"
           >
             {/* 1. Uppercase Section Label & Editorial Headline */}
             <div className="space-y-2">

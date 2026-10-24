@@ -66,7 +66,7 @@ const BESPOKE_PRODUCTS = [
     no: "01",
     name: "Monolithic Travertine Plinth",
     category: "Stone Furniture",
-    desc: "Quarried in Tivoli and hand-carved in our atelier. Features distinctive geological veining, honed bevels, and quiet gravity.",
+    desc: "Hand-carved Italian travertine with distinctive geological veining and honed bevels.",
     img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=650&auto=format&fit=crop",
     badge: "Bespoke Stone",
     options: "Travertine · Marble · Onyx",
@@ -76,7 +76,7 @@ const BESPOKE_PRODUCTS = [
     no: "02",
     name: "Alabaster & Brass Pendant",
     category: "Architectural Lighting",
-    desc: "Solid Spanish alabaster sphere with hand-brushed brass hardware. Casts an ethereal ambient luminescence celebrating natural stone translucency.",
+    desc: "Solid Spanish alabaster sphere with hand-brushed brass emitting ambient luminescence.",
     img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=650&auto=format&fit=crop",
     badge: "Made to Order",
     options: "Alabaster · Fluted Glass",
@@ -86,7 +86,7 @@ const BESPOKE_PRODUCTS = [
     no: "03",
     name: "Solstice Bouclé Lounge Chair",
     category: "Bespoke Seating",
-    desc: "Sculptural low-slung curves upholstered in tactile French bouclé over an internal kiln-dried hardwood armature and recessed shadow plinth.",
+    desc: "Sculptural low-slung curves in tactile French bouclé over a kiln-dried hardwood frame.",
     img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=75&w=650&auto=format&fit=crop",
     badge: "Atelier Crafted",
     options: "Bouclé · Linen · Leather",
@@ -96,7 +96,7 @@ const BESPOKE_PRODUCTS = [
     no: "04",
     name: "Monumental Arched Atelier Mirror",
     category: "Architectural Accents",
-    desc: "Hand-rolled iron frame with deep architectural reveal and beveled crystal glass. Custom-sized to harmonize with room ceiling proportions.",
+    desc: "Hand-rolled iron frame with deep architectural reveal and beveled crystal glass.",
     img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=650&auto=format&fit=crop",
     badge: "Custom Dimensions",
     options: "Aged Bronze · Brass · Steel",
@@ -134,26 +134,34 @@ function useReveal() {
   }, []);
 }
 
-// Gentle scroll parallax for the stacked (tablet/mobile) images
+// Gentle, throttled scroll parallax for the stacked (tablet/mobile) images
 function useParallax(refs) {
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 999px)");
     if (!mq.matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
+    const lastP = new Map();
     const tick = () => {
       raf = 0;
       const vh = window.innerHeight;
-      refs.current.forEach((el) => {
+      refs.current.forEach((el, i) => {
         if (!el) return;
         const r = el.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return; // Skip off-screen images to avoid layout thrashing
         const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh));
-        el.style.setProperty("--p", p.toFixed(3));
+        const prev = lastP.get(i);
+        if (prev === undefined || Math.abs(p - prev) > 0.015) {
+          lastP.set(i, p);
+          el.style.setProperty("--p", p.toFixed(2));
+        }
       });
     };
-    const onScroll = () => !raf && (raf = requestAnimationFrame(tick));
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
     tick();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -172,22 +180,55 @@ function HomeShowcase() {
   return (
     <section className={styles.homeSection} id="insync-home">
       {/* Header */}
-      <div className={styles.homeHeader} data-reveal>
-        <p className={styles.eyebrow}>Insync Home</p>
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.homeHeader}
+      >
+        <p className={styles.eyebrow}>INSYNC HOME</p>
         <h2 className={styles.homeTitle}>
           CURATED OBJECTS, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">made for your</span> SPACE.
         </h2>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="w-16 h-[1.5px] bg-[#C5A059] mx-auto my-5 origin-center"
+        />
         <p className={`${styles.homeLede} ${styles.sans}`}>
           Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.
         </p>
-      </div>
+      </motion.div>
 
       {/* Grid of Décor Product Cards */}
       <div className={styles.homeGrid}>
-        {BESPOKE_PRODUCTS.map((prod) => (
-          <article key={prod.id} className={styles.homeCard} data-reveal>
+        {BESPOKE_PRODUCTS.map((prod, idx) => (
+          <motion.article
+            key={prod.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{
+              duration: 0.85,
+              delay: (idx % 2) * 0.12,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className={styles.homeCard}
+          >
             <div className={styles.cardThumb}>
-              <img src={prod.img} alt={prod.name} loading="lazy" decoding="async" />
+              <motion.img
+                initial={{ scale: 1.08 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                src={prod.img}
+                alt={prod.name}
+                loading="lazy"
+                decoding="async"
+              />
               {prod.badge && <span className={`${styles.cardBadge} ${styles.sans}`}>{prod.badge}</span>}
             </div>
 
@@ -211,7 +252,7 @@ function HomeShowcase() {
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
     </section>
@@ -269,7 +310,14 @@ export default function ServicesExperience() {
         }}
       >
         {/* ---------- HERO ---------- */}
-        <section className={styles.hero}>
+        <motion.section
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.hero}
+        >
+          <p className={styles.eyebrow}>OUR PRACTICE</p>
           <h1 className={styles.title}>
             <span className={styles.line}>
               <span>
@@ -277,17 +325,35 @@ export default function ServicesExperience() {
               </span>
             </span>
           </h1>
-          <p className={`${styles.lede} ${styles.sans}`} data-reveal>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-20 h-[1.5px] bg-[#C5A059] mt-5 origin-left"
+          />
+          <p className={`${styles.lede} ${styles.sans}`}>
             From the first sketch to the final cushion, everything under one roof, and one standard.
           </p>
-        </section>
+        </motion.section>
 
         {/* ---------- THE INDEX ---------- */}
-        <section className={styles.stage} aria-label="Our services" data-reveal>
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.stage}
+          aria-label="Our services"
+        >
           <ol className={styles.list}>
             {SERVICES.map((s, i) => (
-              <li
+              <motion.li
                 key={s.title}
+                initial={{ opacity: 0, x: -25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className={`${styles.row} ${active === i ? styles.on : ""}`}
                 onMouseEnter={() => go(i)}
                 onClick={() => go(i)}
@@ -328,12 +394,19 @@ export default function ServicesExperience() {
                     </div>
                   </div>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ol>
 
           {/* sticky image panel: desktop only */}
-          <div className={styles.panelWrap} aria-hidden="true">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.panelWrap}
+            aria-hidden="true"
+          >
             <div className={styles.panel} ref={panelRef} onMouseMove={onMove} onMouseLeave={onLeave}>
               <AnimatePresence initial={false}>
                 <motion.div
@@ -382,18 +455,31 @@ export default function ServicesExperience() {
                 </motion.div>
               </AnimatePresence>
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* ---------- INSYNC HOME ---------- */}
         <HomeShowcase />
 
         {/* ---------- CLOSING ---------- */}
-        <section className={styles.cta} data-reveal>
-          <p className={styles.eyebrow}>Begin</p>
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.cta}
+        >
+          <p className={styles.eyebrow}>BEGIN</p>
           <h2 className={styles.ctaTitle}>
-            Not sure where <em>to start?</em>
+            NOT SURE WHERE <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">to begin?</span>
           </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-14 h-[1.5px] bg-[#C5A059] mx-auto my-5 origin-center"
+          />
           <p className={`${styles.homeLede} ${styles.sans}`} style={{ margin: "0 auto 2.4rem" }}>
             Tell us about your space. We will suggest the right path.
           </p>
@@ -401,7 +487,7 @@ export default function ServicesExperience() {
             <span>Start a conversation</span>
             <i aria-hidden="true">→</i>
           </Link>
-        </section>
+        </motion.section>
       </main>
     </MotionConfig>
   );

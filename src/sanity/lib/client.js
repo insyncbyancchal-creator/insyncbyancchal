@@ -130,32 +130,34 @@ export const MOCK_SERVICES = [
 export const MOCK_TESTIMONIALS = [
   {
     _id: 'test-1',
-    clientName: 'Alexander & Elena Vance',
-    roleTitle: 'Owners, The Solstice Penthouse',
-    quote: 'AURA transformed our Manhattan penthouse into a living masterpiece. The attention to material craftsmanship and lighting details surpassed our highest expectations.',
+    clientName: 'Vikramjit Singh Grewal',
+    roleTitle: 'Owner, The Skylight Villa',
+    location: 'Sarabha Nagar, Ludhiana',
+    quote: 'Insync Interiors brought a quiet, museum-level discipline to our family residence. Ancchal understood from day one that we wanted timeless stillness, natural travertine, and daylight that changes gracefully through the day.',
     rating: 5,
-    projectName: 'The Solstice Penthouse'
+    projectName: 'The Skylight Villa'
   },
   {
     _id: 'test-2',
-    clientName: 'Jean-Luc Beaufort',
-    roleTitle: 'Managing Director, Haute Couture Group',
-    quote: 'Working with AURA was flawless. They understood our brand vision effortlessly and delivered a Paris salon that wows every high-net-worth client entering our space.',
+    clientName: 'Harpreet & Amanat Dhillon',
+    roleTitle: 'Villa Patrons',
+    location: 'Model Town, Jalandhar',
+    quote: 'Working with Insync was flawless. They understood our architectural vision effortlessly and delivered an estate that brings calm and elegance every single day.',
     rating: 5,
-    projectName: 'Maison Noir Atelier'
+    projectName: 'Model Town Villa'
   }
 ];
 
 export const MOCK_SITE_SETTINGS = {
-  studioName: 'AURA | Luxury Interior Atelier',
-  heroHeadline: 'Sculpting Timeless Architectural Spaces & Bespoke Interiors',
-  heroSubtitle: 'An international award-winning studio creating high-end residential estates, sky penthouses, and bespoke luxury hospitality environments worldwide.',
-  contactEmail: 'concierge@aura-interior.atelier',
-  contactPhone: '+1 (212) 555-0199',
-  studioAddress: '740 Park Avenue, 18th Floor, New York, NY 10021',
-  yearsExperience: 16,
-  completedProjects: 185,
-  awardsCount: 28
+  studioName: 'INSYNC INTERIORS | Architectural & Interior Atelier',
+  heroHeadline: 'Curating Quiet Spaces & Soulful Architectural Residences',
+  heroSubtitle: 'A bespoke interior architecture studio based in Ludhiana, Punjab crafting timeless residential estates and curated spaces.',
+  contactEmail: 'contact@insyncinteriors.in',
+  contactPhone: '+91 98889 00000',
+  studioAddress: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar, Ludhiana 141001',
+  yearsExperience: 8,
+  completedProjects: 65,
+  awardsCount: 12
 };
 
 // Safe fetch wrapper that queries Sanity CMS and falls back gracefully

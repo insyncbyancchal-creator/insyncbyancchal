@@ -30,44 +30,52 @@ export default function ContactHero() {
         </div>
       )}
 
-      {/* 100% Natural Background Photo - Smoothly fades in once loaded */}
-      <div className="absolute inset-0 w-full h-full bg-white">
-        <img
+      {/* 100% Natural Background Photo - Smoothly fades in once loaded with slow ambient zoom */}
+      <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
+        <motion.img
           ref={imgRef}
           src="/contact/contact-hero.jpg"
           onLoad={() => setIsLoaded(true)}
+          initial={{ scale: 1.08 }}
+          animate={{ scale: isLoaded ? 1 : 1.08 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
           alt="Insync by Ancchal Atelier Contact"
           className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
+        {/* Subtle cinematic gradient overlay for flawless high contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/35 pointer-events-none" />
       </div>
 
       {/* Centerpiece Hero Title: Matching Brand Text Style with Architectural Golden Lines */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8"
         >
           {/* Left Golden Line */}
           <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
 
           {/* Clean Architectural Brand Typography: CONTACT */}
-          <h1
-            className={`font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.24em] uppercase font-light transition-colors duration-700 ${
-              isLoaded
-                ? 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]'
-                : 'text-[#1A1A1A]'
-            }`}
-          >
+          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.24em] uppercase font-light text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
             CONTACT
           </h1>
 
           {/* Right Golden Line */}
           <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-4 text-[10.5px] sm:text-[11.5px] font-sans uppercase tracking-[0.3em] text-[#C5A059] font-medium drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
+        >
+          STUDIO ATELIER · SARABHA NAGAR, LUDHIANA
+        </motion.p>
       </div>
 
       {/* Subtle Scroll Indicator */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import {
   PATHS,
@@ -74,26 +75,58 @@ function buildMarkup() {
 export default function Preloader({
   onDone,
   holdAfterIntroMs = 700,
-  skipIfSeenThisSession = false,
   letterStart = 1.7,
   letterStagger = 0.11,
 } = {}) {
+  const pathname = usePathname();
   const overlayRef = useRef(null);
   const svgRef = useRef(null);
   const onDoneRef = useRef(onDone);
   onDoneRef.current = onDone;
   const [done, setDone] = useState(false);
+  const hasMountedRef = useRef(false);
 
-  // Skip on repeat visits (runs before paint so there is no flash of the curtain)
+  // Exact Preloader Logic:
+  // 1. First time visitor opening the website: ALWAYS SHOW
+  // 2. Full document reload on Home page ('/' or '/insync-home'): ALWAYS SHOW
+  // 3. Client navigation from another page to Home: NEVER SHOW
+  // 4. Reload on any other page (/about, /portfolio, etc.): NEVER SHOW
   useIsoLayoutEffect(() => {
-    if (!skipIfSeenThisSession) return;
+    if (typeof window === "undefined") return;
+
+    // If component was already mounted, subsequent route transitions are client-side.
+    // Client-side navigation should never trigger the preloader.
+    if (hasMountedRef.current) {
+      return;
+    }
+    hasMountedRef.current = true;
+
+    let visited = false;
     try {
-      if (sessionStorage.getItem("insync-seen") === "1") {
-        document.body.classList.add("is-loaded");
-        setDone(true);
-      }
+      visited = sessionStorage.getItem("insync_visited") === "1";
     } catch {}
-  }, [skipIfSeenThisSession]);
+
+    const cur = pathname || window.location.pathname || "";
+    const isHome = cur === "/" || cur === "/insync-home";
+
+    const isFirstVisit = !visited;
+    const isHomeReload = isHome;
+
+    const shouldShow = isFirstVisit || isHomeReload;
+
+    if (!shouldShow) {
+      document.documentElement.classList.remove("js-preload");
+      document.documentElement.classList.remove("no-preloader");
+      document.body.classList.add("is-loaded");
+      setDone(true);
+      return;
+    }
+
+    try {
+      sessionStorage.setItem("insync_visited", "1");
+      sessionStorage.setItem("insync-seen", "1");
+    } catch {}
+  }, []);
 
   useEffect(() => {
     const overlay = overlayRef.current;
@@ -174,7 +207,10 @@ export default function Preloader({
     function finish() {
       if (!alive) return;
       document.body.classList.add("is-loaded");
+      root.classList.remove("js-preload");
+      root.classList.remove("no-preloader");
       try {
+        sessionStorage.setItem("insync_visited", "1");
         sessionStorage.setItem("insync-seen", "1");
       } catch {}
       window.dispatchEvent(new CustomEvent("insync:preloader-done"));
@@ -230,12 +266,12 @@ export default function Preloader({
       exitTl?.kill();
       root.style.overflow = "";
     };
-  }, [done, holdAfterIntroMs, letterStart, letterStagger, skipIfSeenThisSession]);
+  }, [done, holdAfterIntroMs, letterStart, letterStagger]);
 
   if (done) return null;
 
   return (
-    <div ref={overlayRef} className={styles.overlay} role="status" aria-live="polite">
+    <div id="insync-preloader-overlay" ref={overlayRef} className={styles.overlay} role="status" aria-live="polite">
       <span className={styles.srOnly}>Loading Insync</span>
       <svg
         ref={svgRef}

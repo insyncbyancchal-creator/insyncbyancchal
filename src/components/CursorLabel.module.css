@@ -1,4 +1,0 @@
-.ring { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; will-change: transform; }
-.txt { position: absolute; left: 0; top: 0; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; display: grid; place-items: center; background: rgba(247,244,238,.94); color: #1b1a17; font-family: system-ui, sans-serif; font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; box-shadow: 0 10px 40px -10px rgba(0,0,0,.35); transform: scale(0); opacity: 0; transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .3s; }
-.on .txt { transform: scale(1); opacity: 1; }
-@media (hover: none), (pointer: coarse) { .ring { display: none; } }

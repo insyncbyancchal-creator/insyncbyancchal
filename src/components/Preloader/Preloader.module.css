@@ -9,6 +9,10 @@
   will-change: transform;
 }
 
+:global(html.no-preloader) .overlay {
+  display: none !important;
+}
+
 .logo {
   width: min(88vw, 980px);
   height: auto;

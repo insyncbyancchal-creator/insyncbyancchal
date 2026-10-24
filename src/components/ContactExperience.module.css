@@ -255,20 +255,31 @@
   border-radius: 0;
   transition: all .3s cubic-bezier(.2,.7,.2,1);
 }
-.chip:hover {
-  border-color: var(--gold);
-  background: rgba(197, 160, 89, 0.08);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover {
+    border-color: var(--gold);
+    background: rgba(197, 160, 89, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .chipOn:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+  }
 }
+
 .chipOn {
   background: var(--ink);
   border-color: var(--ink);
   color: #FFFFFF;
   box-shadow: 0 4px 12px rgba(27, 26, 23, 0.15);
 }
-.chipOn:hover {
-  border-color: var(--ink);
-  background: var(--ink);
+
+@media (hover: none) or (pointer: coarse) {
+  .chip:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease-out;
+  }
 }
 
 .err { color: #b4432a; font-size: 11px; letter-spacing: .05em; min-height: 1.2rem; margin: .8rem 0 0; }
@@ -319,11 +330,25 @@
   transform: translateY(101%);
   transition: transform .45s cubic-bezier(.2,.8,.2,1);
 }
-.next:hover::before { transform: none; }
-.next:hover { border-color: var(--gold); }
+@media (hover: hover) and (pointer: fine) {
+  .next:hover::before { transform: none; }
+  .next:hover { border-color: var(--gold); }
+  .next:hover i { transform: translateX(3px); }
+  .back:hover:not(:disabled) { color: var(--ink); }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .next:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+  .back:active:not(:disabled) {
+    color: var(--ink);
+  }
+}
+
 .next span, .next i { position: relative; font-style: normal; }
 .next i { transition: transform .3s; }
-.next:hover i { transform: translateX(3px); }
 .next:disabled { opacity: .6; cursor: progress; }
 
 .keyhint {

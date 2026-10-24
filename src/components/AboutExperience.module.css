@@ -1,8 +1,8 @@
 .root {
   --bg: #F7F4EE;
-  --ink: #1B1A17;
-  --mute: #7A766C;
-  --line: #DDD6C6;
+  --ink: #11100D;
+  --mute: #454038;
+  --line: rgba(197, 160, 89, 0.35);
   --gold: #C5A059;
   --gutter: clamp(1.25rem, 5vw, 5rem);
   --gap: clamp(1.2rem, 2.5vw, 2.5rem);
@@ -12,13 +12,14 @@
   min-height: 100vh;
   position: relative;
   overflow-x: clip;
-  font-family: 'Bodoni Moda', serif;
-  font-optical-sizing: auto;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .sans {
-  font-family: var(--sans), 'Montserrat', sans-serif;
-  font-optical-sizing: auto;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .root em {
@@ -41,12 +42,12 @@
 }
 
 .eyebrow {
-  font-family: var(--sans), 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: var(--gold);
+  font-weight: 700;
+  color: #9A7B39;
   margin: 0 0 0.65rem;
 }
 
@@ -102,12 +103,13 @@
 }
 
 .lede {
-  max-width: 34rem;
-  color: #3C3831;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.75;
-  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  color: #1A1A1A;
+  font-weight: 450;
+  font-size: 16.5px;
+  line-height: 1.78;
+  margin: 0.95rem 0 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* ---------------- OWNER SECTION ---------------- */
@@ -115,7 +117,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
-  align-items: center;
+  align-items: start;
   padding-top: 1.25rem;
   padding-bottom: clamp(2.5rem, 5vh, 3.8rem);
 }
@@ -123,9 +125,11 @@
 .portrait {
   grid-column: 1 / span 5;
   margin: 0 auto;
-  max-width: 360px;
+  max-width: 365px;
   width: 100%;
   position: relative;
+  perspective: 1000px;
+  padding-top: 1.6rem;
 }
 
 .frame {
@@ -133,46 +137,79 @@
   display: block;
   aspect-ratio: 4 / 4.7;
   max-height: 440px;
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
-  padding: 1px;
-  background: linear-gradient(to bottom, rgba(197, 160, 89, 0.45), rgba(197, 160, 89, 0.15), rgba(197, 160, 89, 0.35));
-  box-shadow: 0 16px 36px -12px rgba(27, 26, 23, 0.1);
+  padding: 1.5px;
+  background: linear-gradient(
+    140deg,
+    rgba(197, 160, 89, 0.85) 0%,
+    rgba(255, 255, 255, 0.6) 28%,
+    rgba(197, 160, 89, 0.25) 65%,
+    rgba(197, 160, 89, 0.7) 100%
+  );
+  /* Crisp, Dark 3D Architectural Shadow: High Contrast & Tight Sculpted Drop */
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.22),
+    0 10px 20px -3px rgba(18, 16, 13, 0.38),
+    0 22px 36px -6px rgba(18, 16, 13, 0.42),
+    0 14px 28px -4px rgba(197, 160, 89, 0.32);
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 3px;
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.portrait:hover .frame img {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .portrait:hover .frame {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.26),
+      0 16px 28px -4px rgba(18, 16, 13, 0.44),
+      0 30px 48px -6px rgba(18, 16, 13, 0.48),
+      0 20px 38px -4px rgba(197, 160, 89, 0.4);
+  }
+
+  .portrait:hover .frame img {
+    transform: scale(1.04);
+  }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .portrait:active .frame {
+    transform: scale(0.985);
+    transition: transform 0.15s ease-out;
+  }
 }
 
 .portraitCaption {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  margin-top: 0.85rem;
+  margin-top: 1.6rem;
   padding-inline: 0.2rem;
 }
 
 .captionName {
+  font-family: 'Montserrat', sans-serif;
   font-size: 13.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #1A1A1A;
+  color: #11100D;
 }
 
 .captionRole {
-  font-size: 11.5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #9A7B39;
   font-weight: 600;
 }
 
@@ -192,22 +229,23 @@
 }
 
 .role {
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
-  font-size: 13.5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--gold);
+  color: #9A7B39;
   margin: 0 0 0.5rem;
 }
 
 .name {
+  font-family: 'Bodoni Moda', serif;
   font-weight: 300;
-  font-size: clamp(2.2rem, 3vw, 2.75rem);
+  font-size: clamp(2.4rem, 3.2vw, 3rem);
   line-height: 1.15;
   letter-spacing: -0.015em;
-  margin: 0 0 0.85rem;
-  color: var(--ink);
+  margin: 0 0 1rem;
+  color: #11100D;
 }
 
 .lead {
@@ -217,50 +255,158 @@
   line-height: 1.68;
   margin: 0 0 1.25rem;
   max-width: 38rem;
-  color: #24221D;
+  color: #1A1A1A;
+}
+
+.paras {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .paras p {
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 400;
-  font-size: clamp(15px, 1.1vw, 16px);
-  line-height: 1.78;
-  color: #3C3831;
-  margin: 0 0 1.1rem;
-  max-width: 38rem;
+  font-size: clamp(15px, 1.05vw, 16px);
+  line-height: 1.82;
+  color: #22201C;
+  margin: 0 0 1.25rem;
+  max-width: 42rem;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.paras p.firstPara {
+  color: #11100D;
+  font-weight: 500;
+  font-size: clamp(15.5px, 1.1vw, 16.5px);
+  line-height: 1.84;
+}
+
+.magHighlight {
+  color: #11100D;
+  font-weight: 700;
+  background: linear-gradient(180deg, transparent 65%, rgba(197, 160, 89, 0.3) 65%);
+  padding: 0 2px;
+}
+
+/* ---------------- Editorial Press Recognition Plaque ---------------- */
+.pressBadge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  border-left: 3px solid #C5A059;
+  border-radius: 4px;
+  margin-top: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 18px rgba(27, 26, 23, 0.07);
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.pressBadge:hover {
+  background: #FFFDF9;
+  border-color: rgba(197, 160, 89, 0.7);
+  box-shadow: 0 8px 24px rgba(197, 160, 89, 0.16);
+  transform: translateY(-2px);
+}
+
+.pressBadgeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.pressDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #C5A059;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(197, 160, 89, 0.85);
+}
+
+.pressEyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8C6D2B;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pressBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pressMag {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #11100D;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.pressEdition {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #454038;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
 }
 
 .details {
-  margin: 1.5rem 0 0;
-  max-width: 38rem;
-  border-top: 1px solid var(--line);
+  margin: 1.8rem 0 0;
+  max-width: 40rem;
+  border-top: 1px solid rgba(197, 160, 89, 0.35);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .details div {
   display: grid;
-  grid-template-columns: 8.5rem 1fr;
+  grid-template-columns: 9rem 1fr;
   gap: 1.25rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 15px;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+  font-size: 14.5px;
   line-height: 1.55;
+  align-items: baseline;
 }
 
 .details dt {
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.2em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #7A7468;
-  padding-top: 0.15rem;
+  color: #555048;
   font-weight: 600;
 }
 
 .details dd {
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
-  color: #1A1A1A;
+  color: #11100D;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14.5px;
+  letter-spacing: 0.01em;
+}
+
+.editorialRow {
+  background: rgba(197, 160, 89, 0.05);
+  padding-inline: 0.65rem !important;
+  border-left: 2.5px solid #C5A059;
+}
+
+.editorialHighlight strong {
+  color: #11100D;
+  font-weight: 700;
 }
 
 /* ---------------- MANIFESTO / OUR APPROACH (WARM CREAM PALETTE) ---------------- */
@@ -319,12 +465,12 @@
 }
 
 .mBody p {
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: clamp(14px, 1.05vw, 15.5px);
-  line-height: 1.78;
-  color: #3E3A34;
-  margin: 0 0 1.15rem;
+  font-size: clamp(15px, 1.05vw, 16px);
+  line-height: 1.82;
+  color: #22201C;
+  margin: 0 0 1.25rem;
 }
 
 .mQuote {
@@ -374,8 +520,10 @@
   transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mImageInner:hover img {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .mImageInner:hover img {
+    transform: scale(1.03);
+  }
 }
 
 .mImageCaption {
@@ -410,34 +558,37 @@
   transition: border-color 0.4s ease, opacity 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.principles li:hover {
-  border-top-color: var(--gold);
+@media (hover: hover) and (pointer: fine) {
+  .principles li:hover {
+    border-top-color: var(--gold);
+  }
 }
 
 .pNo {
   display: block;
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   letter-spacing: 0.22em;
-  font-weight: 600;
-  color: var(--gold);
+  font-weight: 700;
+  color: #9A7B39;
   margin-bottom: 0.85rem;
 }
 
 .principles h3 {
-  font-weight: 400;
-  font-size: 1.25rem;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: 1.35rem;
   margin: 0 0 0.55rem;
-  color: var(--ink);
+  color: #11100D;
 }
 
 .principles p {
   margin: 0;
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.72;
   font-weight: 400;
-  color: #4A463F;
+  color: #26231E;
   max-width: 18rem;
 }
 
@@ -474,7 +625,7 @@
   color: #FFFFFF;
   border: 1px solid var(--ink);
   padding: 0.75rem 1.75rem;
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -494,12 +645,25 @@
   transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.btn:hover::before {
-  transform: none;
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::before {
+    transform: none;
+  }
+
+  .btn:hover {
+    border-color: var(--gold);
+  }
+
+  .btn:hover i {
+    transform: translateX(3px);
+  }
 }
 
-.btn:hover {
-  border-color: var(--gold);
+@media (hover: none) or (pointer: coarse) {
+  .btn:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
 }
 
 .btn span, .btn i {
@@ -511,12 +675,8 @@
   transition: transform 0.3s;
 }
 
-.btn:hover i {
-  transform: translateX(3px);
-}
-
 .textLink {
-  font-family: var(--sans), 'Manrope', system-ui, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -530,10 +690,18 @@
   transition: background-size 0.4s, color 0.3s;
 }
 
-.textLink:hover {
-  color: var(--gold);
-  background-size: 0 1px;
-  background-position: 100% 100%;
+@media (hover: hover) and (pointer: fine) {
+  .textLink:hover {
+    color: var(--gold);
+    background-size: 0 1px;
+    background-position: 100% 100%;
+  }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .textLink:active {
+    color: var(--gold);
+  }
 }
 
 /* ---------------- RESPONSIVE BREAKPOINTS ---------------- */

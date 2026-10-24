@@ -4,6 +4,74 @@
 
 export const projects = [
   {
+    slug: "anirudh-estate",
+    title: "The Anirudh Estate",
+    location: "LUDHIANA",
+    type: "Boutique Residence & BNB",
+    category: "Residential",
+    year: "2025",
+    area: "8,500 sq ft",
+    status: "Completed",
+    description:
+      "A bespoke hospitality and residential retreat blending sculpted architectural lighting, fluted oak millwork, organic stone masonry, and tailored bedroom sanctuaries.",
+    tagline: "A bespoke architectural sanctuary of quiet luxury and hospitality.",
+    cover: {
+      src: "/portfolio/anirudh/lobby-a.webp",
+      hoverSrc: "/portfolio/anirudh/lobby-d.webp",
+      alt: "The Anirudh Estate, Ludhiana",
+    },
+    hero: {
+      src: "/portfolio/anirudh/lobby-a.webp",
+      alt: "The Anirudh Estate Grand Reception Lounge",
+    },
+    concept: [
+      "Conceived as an intimate architectural sanctuary, The Anirudh Estate balances expansive communal reception volumes with deeply restorative private bedroom suites.",
+      "Every detail — from tactile wood fluting and calibrated warm ambient lighting to hand-finished stone surfaces — was custom designed by Insync by Ancchal to evoke calm, clarity, and enduring warmth.",
+    ],
+    materials: ["Travertine stone", "Fluted oak", "Champagne brass", "Tactile bouclé", "Belgian linen"],
+    chapters: [
+      {
+        title: "Reception & Grand Lobby",
+        text: "Monolithic stone volumes and warm illumination welcome guests into an atmosphere of quiet hospitality.",
+        images: [
+          { src: "/portfolio/anirudh/lobby-a.webp", alt: "Grand Lobby Lounge" },
+          { src: "/portfolio/anirudh/lobby-d.webp", alt: "Lobby Seating Detail" },
+        ],
+      },
+      {
+        title: "The Dining Salon",
+        text: "A gathering space composed with architectural restraint and refined materiality.",
+        images: [
+          { src: "/portfolio/anirudh/dining-b.webp", alt: "Formal Dining Pavilion" },
+        ],
+      },
+      {
+        title: "The Bedroom Suites",
+        text: "Private sanctuaries defined by soft indirect glow, fluted headboards, and tailored textiles.",
+        images: [
+          { src: "/portfolio/anirudh/bedroom-1-a.webp", alt: "Primary Bedroom Suite" },
+          { src: "/portfolio/anirudh/bedroom-2-b.webp", alt: "Guest Suite" },
+        ],
+      },
+    ],
+    gallery: [
+      { src: "/portfolio/anirudh/lobby-a.webp", alt: "Grand Lobby Lounge & Architectural Staircase", caption: "Grand Lobby Lounge", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/lobby-d.webp", alt: "Lobby Seating & Ambient Light", caption: "Lobby Living Volume", aspectRatio: "4 / 3" },
+      { src: "/portfolio/anirudh/dining-b.webp", alt: "Formal Dining Pavilion", caption: "The Dining Salon", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/lobby-f.webp", alt: "Atelier Sculpture & Joinery Detail", caption: "Foyer Transition Detail", aspectRatio: "3 / 4" },
+      { src: "/portfolio/anirudh/bedroom-1-a.webp", alt: "Primary Suite Bedstead & Wall Paneling", caption: "Primary Bedroom Suite", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/bedroom-1-c.webp", alt: "Primary Suite Study & Millwork", caption: "Bespoke Study Corner", aspectRatio: "3 / 4" },
+      { src: "/portfolio/anirudh/bedroom-2-b.webp", alt: "Guest Suite with Fluted Oak", caption: "Guest Bedroom Sanctuary", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/bedroom-2-f.webp", alt: "Guest Suite Dressing & Texture", caption: "Suite Joinery & Texture", aspectRatio: "3 / 4" },
+      { src: "/portfolio/anirudh/anirudh-bnb-3.webp", alt: "Private Salon Lounge", caption: "Private Salon Lounge", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/anirudh-bnb-5.webp", alt: "Architectural Lighting & Corridor", caption: "Illuminated Gallery Corridor", aspectRatio: "3 / 4" },
+      { src: "/portfolio/anirudh/anirudh-bnb-6.webp", alt: "Curated Living Space", caption: "Curated Living Pavilion", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/anirudh-bnb-8.webp", alt: "Custom Dressing & Millwork", caption: "Dressing Wardrobe Detail", aspectRatio: "3 / 4" },
+      { src: "/portfolio/anirudh/anirudh-bnb-9.webp", alt: "Ensuite Stone Finish", caption: "Ensuite Bath & Stone", aspectRatio: "16 / 10" },
+      { src: "/portfolio/anirudh/anirudh-bnb-10.webp", alt: "Courtyard & Evening Ambiance", caption: "Evening Ambiance", aspectRatio: "4 / 3" },
+    ],
+  },
+  {
     slug: "the-solstice-penthouse",
     title: "The Solstice Penthouse",
     location: "GURUGRAM",

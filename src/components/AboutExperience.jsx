@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import styles from "./AboutExperience.module.css";
 
 /* =====================================================================
@@ -11,24 +12,24 @@ import styles from "./AboutExperience.module.css";
 
 const INTRO = {
   eyebrow: "About",
-  title: ["Designed with", "intention."], // second line is shown in gold italic
+  title: ["Designed with", "intention."],
   lede: "Insync is an architecture and interior studio in Ludhiana. This is who we are, and how we think.",
 };
 
 const OWNER = {
-  // Put the photo in public/about/ and set photo: "/about/owner.jpg"  (portrait, about 4:5, 1600px tall)
   photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop",
-  alt: "Portrait of Ancchal, founder of Insync by Ancchal",
-  focus: "50% 30%", // where to keep centred if the photo gets cropped
-  name: "Ancchal", // add surname if wanted
+  alt: "Portrait of Ancchal Sharma, Founder and Principal Designer of Insync Interiors",
+  focus: "50% 30%",
+  name: "Ancchal",
   role: "Founder & Principal Designer",
-  lead: "Spaces should feel calm the moment you walk in, and better every day you stay.",
+  lead: null,
   paragraphs: [
-    "Ancchal founded Insync by Ancchal to design interiors that are considered rather than decorated: rooms shaped by light, proportion and the way people actually live.",
-    "Every project begins with listening. The result is quiet, tactile and personal, never a repeat of the last one.",
+    "Ancchal Sharma, Founder and Principal Designer of Insync Interiors, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.",
+    "At Insync Interiors, every project begins with listening — understanding each client's lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by Urban Melange in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.",
   ],
   details: [
-    ["Studio", "Insync by Ancchal"],
+    ["Studio", "Insync Interiors"],
+    ["Editorial", "Urban Melange (Dec 2025)"],
     ["Based in", "Ludhiana, Punjab"],
     ["Practice", "Architecture · Interiors · Insync Home"],
   ],
@@ -52,31 +53,17 @@ const MANIFESTO = {
 
 /* ===================================================================== */
 
-function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll("[data-reveal]");
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.setAttribute("data-in", "1");
-            io.unobserve(e.target);
-          }
-        }),
-      { threshold: 0.12 }
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-}
-
 export default function AboutExperience({ children }) {
-  useReveal();
-
   return (
     <main className={styles.root}>
       {/* ---------- INTRO ---------- */}
-      <header className={styles.intro}>
+      <motion.header
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-20px 0px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        className={`${styles.intro} will-change-transform`}
+      >
         <p className={`${styles.eyebrow} ${styles.sans}`}>{INTRO.eyebrow}</p>
         <h1 className={styles.h1}>
           <span className={styles.line}>
@@ -86,14 +73,29 @@ export default function AboutExperience({ children }) {
           </span>
         </h1>
         <p className={`${styles.lede} ${styles.sans}`}>{INTRO.lede}</p>
-      </header>
+      </motion.header>
 
-      {/* ---------- 6.1 OWNER ---------- */}
+      {/* ---------- 6.1 OWNER (Directional Entrance) ---------- */}
       <section className={styles.owner} aria-label="Founder">
-        <figure className={styles.portrait} data-reveal>
+        {/* Left Column: Portrait Frame with subtle scale reveal */}
+        <motion.figure
+          initial={{ opacity: 0, x: -35 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-20px 0px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className={`${styles.portrait} will-change-transform`}
+        >
           <span className={styles.frame}>
             {OWNER.photo ? (
-              <img src={OWNER.photo} alt={OWNER.alt} style={{ objectPosition: OWNER.focus }} />
+              <motion.img
+                src={OWNER.photo}
+                alt={OWNER.alt}
+                style={{ objectPosition: OWNER.focus }}
+                initial={{ scale: 1.06 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              />
             ) : (
               <span className={`${styles.ph} ${styles.sans}`} role="img" aria-label={OWNER.alt}>Portrait</span>
             )}
@@ -102,33 +104,72 @@ export default function AboutExperience({ children }) {
             <span className={styles.captionName}>Ancchal</span>
             <span className={styles.captionRole}>FOUNDER & PRINCIPAL DESIGNER</span>
           </div>
-        </figure>
 
-        <div className={styles.bio} data-reveal>
-          <p className={`${styles.role} ${styles.sans}`}>{OWNER.role}</p>
-          <h2 className={styles.name}>{OWNER.name}</h2>
-          <p className={styles.lead}>{OWNER.lead}</p>
-          <div className={`${styles.paras} ${styles.sans}`}>
-            {OWNER.paragraphs.map((t, i) => <p key={i}>{t}</p>)}
+          {/* Editorial Press Recognition Plaque */}
+          <div className={styles.pressBadge}>
+            <div className={styles.pressBadgeHeader}>
+              <span className={styles.pressDot} />
+              <span className={styles.pressEyebrow}>EDITORIAL FEATURE</span>
+            </div>
+            <div className={styles.pressBody}>
+              <span className={styles.pressMag}>Urban Melange</span>
+              <span className={styles.pressEdition}>December 2025 Edition &bull; Luxury Interiors Focus</span>
+            </div>
           </div>
-          <dl className={`${styles.details} ${styles.sans}`}>
+        </motion.figure>
+
+        {/* Right Column: Founder Biography */}
+        <motion.div
+          initial={{ opacity: 0, x: 35 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-20px 0px' }}
+          transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className={`${styles.bio} will-change-transform`}
+        >
+          <p className={styles.role}>{OWNER.role}</p>
+          <h2 className={styles.name}>{OWNER.name}</h2>
+          {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
+          <div className={styles.paras}>
+            <p className={styles.firstPara}>
+              Ancchal Sharma, Founder and Principal Designer of Insync Interiors, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.
+            </p>
+            <p>
+              At Insync Interiors, every project begins with listening — understanding each client&apos;s lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by <strong className={styles.magHighlight}>Urban Melange</strong> in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.
+            </p>
+          </div>
+
+          <dl className={styles.details}>
             {OWNER.details.map(([k, v]) => (
-              <div key={k}>
+              <div key={k} className={k === "Editorial" ? styles.editorialRow : ""}>
                 <dt>{k}</dt>
-                <dd>{v}</dd>
+                <dd>
+                  {k === "Editorial" ? (
+                    <span className={styles.editorialHighlight}>
+                      <strong>Urban Melange</strong> (Dec 2025 Edition)
+                    </span>
+                  ) : (
+                    v
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
-        </div>
+        </motion.div>
       </section>
 
-      {/* ---------- 6.2 MANIFESTO / OUR APPROACH ---------- */}
+      {/* ---------- 6.2 MANIFESTO / OUR APPROACH (Directional Entrance) ---------- */}
       <section className={styles.manifesto} aria-label="Our approach">
         <div className={styles.mContainer}>
           <div className={styles.mGrid}>
             
             {/* Left Column: Editorial Text */}
-            <div className={styles.mTextCol} data-reveal>
+            <motion.div
+              initial={{ opacity: 0, x: -35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-20px 0px' }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className={`${styles.mTextCol} will-change-transform`}
+            >
               <p className={`${styles.eyebrow} ${styles.sans}`}>{MANIFESTO.eyebrow}</p>
 
               <h2 className={styles.mHeading}>
@@ -146,17 +187,27 @@ export default function AboutExperience({ children }) {
               <blockquote className={styles.mQuote}>
                 <p>&ldquo;{MANIFESTO.quote}&rdquo;</p>
               </blockquote>
-            </div>
+            </motion.div>
 
             {/* Right Column: Premium Architectural Image */}
-            <div className={styles.mImageCol} data-reveal>
+            <motion.div
+              initial={{ opacity: 0, x: 35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-20px 0px' }}
+              transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className={`${styles.mImageCol} will-change-transform`}
+            >
               <div className={styles.mImageFrame}>
                 <div className={styles.mImageInner}>
-                  <img
+                  <motion.img
                     src={MANIFESTO.image}
                     alt={MANIFESTO.imageAlt}
                     loading="lazy"
                     decoding="async"
+                    initial={{ scale: 1.08 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   />
                 </div>
               </div>
@@ -164,26 +215,37 @@ export default function AboutExperience({ children }) {
                 <span>STUDIO PHILOSOPHY IN PRACTICE</span>
                 <span>LIGHT · TEXTURE · RESTRAINT</span>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
       </section>
 
-      {/* Embedded Testimonial Section (rendered above CTA) */}
+      {/* Embedded SpacesInMotion and Testimonials */}
       {children}
 
-      {/* ---------- CLOSING CTA (RENDERED UNDER TESTIMONIAL) ---------- */}
-      <section className={styles.cta} data-reveal>
-        <h2>Let&rsquo;s design something <em>together.</em></h2>
+      {/* ---------- CLOSING CTA ---------- */}
+      <motion.section
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.cta}
+      >
+        <h2>
+          Let&rsquo;s design something{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">together.</span>
+        </h2>
         <div className={styles.ctaLinks}>
           <Link href="/contact" className={`${styles.btn} ${styles.sans}`}>
             <span>Start a conversation</span>
-            <i aria-hidden="true">→</i>
+            <i aria-hidden="true">&rarr;</i>
           </Link>
-          <Link href="/portfolio" className={`${styles.textLink} ${styles.sans}`}>View our work</Link>
+          <Link href="/portfolio" className={`${styles.textLink} ${styles.sans}`}>
+            View our work
+          </Link>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Mail } from 'lucide-react'
 import BrandLogo from '@/components/BrandLogo'
 import WhatsAppIcon from '@/components/WhatsAppIcon'
@@ -28,16 +29,22 @@ function InstagramIcon(props) {
 
 export default function SimpleFooter() {
   return (
-    <footer className="bg-[#FBF9F6] text-[#1A1A1A] py-16 px-6 md:px-12 border-t border-[#1A1A1A]/10">
-      <div className="max-w-7xl mx-auto space-y-12">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-12 border-b border-[#1A1A1A]/10">
+    <footer className="bg-[#FBF9F6] text-[#1A1A1A] py-8 sm:py-10 px-6 md:px-12 border-t border-[#1A1A1A]/10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-7xl mx-auto space-y-6 sm:space-y-7"
+      >
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           {/* Logo */}
           <Link href="/" className="group inline-flex items-center shrink-0" aria-label="Insync by Ancchal">
-            <BrandLogo className="h-9 sm:h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
+            <BrandLogo className="h-8 sm:h-9 w-auto transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Quick Nav Links (matching Navbar sequence) */}
-          <div className="flex flex-wrap items-center gap-8 text-[13px] tracking-[0.18em] uppercase text-[#555048] font-medium">
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-[12.5px] sm:text-[13px] tracking-[0.18em] uppercase text-[#555048] font-medium">
             <Link href="/" className="hover:text-[#1A1A1A] transition-colors">Home</Link>
             <Link href="/about" className="hover:text-[#1A1A1A] transition-colors">About</Link>
             <Link href="/portfolio" className="hover:text-[#1A1A1A] transition-colors">Portfolio</Link>
@@ -48,34 +55,34 @@ export default function SimpleFooter() {
           {/* Social Links & Inquire Button matching Navbar */}
           <div className="flex items-center space-x-2.5 sm:space-x-3.5 shrink-0">
             <a
-              href="https://www.instagram.com/insync_interiors/?hl=en"
+              href="https://www.instagram.com/insync_byancchal/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-transparent hover:border-[#C5A059]/30 flex items-center justify-center transition-all group"
+              className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
               title="Instagram Profile"
               aria-label="Instagram Profile"
             >
-              <InstagramIcon className="w-4 h-4 text-[#C5A059] group-hover:scale-105 transition-transform" />
+              <InstagramIcon className="w-4 h-4 text-[#C5A059] group-hover:scale-110 transition-transform" />
             </a>
 
             <a
-              href="https://wa.me/919888800000?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+              href="https://wa.me/919877417531?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#25D366] hover:bg-[#25D366]/10 border border-transparent hover:border-[#25D366]/40 flex items-center justify-center transition-all group"
+              className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#25D366] transition-all group"
               title="Chat on WhatsApp"
               aria-label="Chat with Insync by Ancchal on WhatsApp"
             >
-              <WhatsAppIcon className="w-4 h-4 text-[#C5A059] group-hover:text-[#25D366] transition-colors" />
+              <WhatsAppIcon className="w-4 h-4 text-[#C5A059] group-hover:text-[#25D366] group-hover:scale-110 transition-all" />
             </a>
 
             <a
               href="mailto:contact@insyncinteriors.com"
-              className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-transparent hover:border-[#C5A059]/30 flex items-center justify-center transition-all group"
+              className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
               title="Email Insync by Ancchal"
               aria-label="Email Insync by Ancchal"
             >
-              <Mail className="w-4 h-4 text-[#C5A059] group-hover:scale-105 transition-transform" />
+              <Mail className="w-4 h-4 text-[#C5A059] group-hover:scale-110 transition-transform" />
             </a>
 
             <Link
@@ -87,12 +94,32 @@ export default function SimpleFooter() {
           </div>
         </div>
 
-        {/* Sub Footer Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#8C857B] space-y-4 sm:space-y-0">
+        {/* Sub Footer Bar (Single clean 1px divider line & compact luxury layout) */}
+        <div className="pt-5 sm:pt-6 border-t border-[#1A1A1A]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#8C857B] gap-3">
           <div>© {new Date().getFullYear()} INSYNC BY ANCCHAL. All Rights Reserved.</div>
-          <div>Ludhiana Atelier • SCF - 1, Third Floor, Sarabha Nagar</div>
+
+          {/* Right side: Atelier location + credit aligned neatly with 1-line tight spacing */}
+          <div className="flex flex-col sm:items-end text-left sm:text-right gap-1 font-sans text-[11px] sm:text-[11.5px]">
+            <span>INSYNC INTERIORS • SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001</span>
+            <p>
+              Design and Developed by{' '}
+              <a
+                href="#"
+                className="text-[#555048] hover:text-[#C5A059] hover:underline underline-offset-4 transition-colors font-medium"
+              >
+                Diksha Bhatt
+              </a>{' '}
+              and{' '}
+              <a
+                href="#"
+                className="text-[#555048] hover:text-[#C5A059] hover:underline underline-offset-4 transition-colors font-medium"
+              >
+                Sachin Parihar
+              </a>
+            </p>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   )
 }

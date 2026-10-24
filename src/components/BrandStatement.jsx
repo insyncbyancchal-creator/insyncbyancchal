@@ -7,7 +7,13 @@ const KEYWORDS = ['LUXURY', 'CRAFTSMANSHIP', 'ELEGANCE', 'OPULENCE', 'MAJESTIC',
 
 export default function BrandStatement() {
   return (
-    <section className="relative w-full bg-[#FBF9F6] text-[#1A1A1A] py-3 overflow-hidden select-none border-y border-[#C5A059]/30 bg-[#F3F0EA]">
+    <motion.section
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full bg-[#FBF9F6] text-[#1A1A1A] py-3 overflow-hidden select-none border-y border-[#C5A059]/30 bg-[#F3F0EA]"
+    >
       {/* Continuous Luxury Keywords Ribbon Ticker */}
       <div className="w-full flex whitespace-nowrap overflow-hidden">
         <motion.div
@@ -29,6 +35,6 @@ export default function BrandStatement() {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

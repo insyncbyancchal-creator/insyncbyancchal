@@ -87,7 +87,7 @@ export async function POST(req) {
           <p style="letter-spacing:.3em;font-size:12px;color:#b99a5b;margin:0 0 24px">INSYNC BY ANCCHAL</p>
           <h1 style="font-weight:300;font-size:30px;margin:0 0 18px">Dear ${esc(name.split(" ")[0])},</h1>
           <p style="line-height:1.7">Thank you for getting in touch. Your enquiry has reached our studio and we will respond personally within one working day.</p>
-          <p style="line-height:1.7">Our studio is open Monday to Saturday, 10 AM – 6 PM at SCF-1, Third Floor, I Block Market, Sarabha Nagar, Ludhiana.</p>
+          <p style="line-height:1.7">Our studio is open Monday to Saturday, 10 AM – 6 PM at INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001.</p>
           <p style="margin-top:32px">Warmly,<br/>Team Insync by Ancchal</p>
         </div>`,
       });

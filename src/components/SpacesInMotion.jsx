@@ -1,174 +1,355 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import styles from "./SpacesInMotion.module.css";
 
-/* ------------------------------------------------------------------ */
-/* EDIT HERE ONLY                                                     */
-/* href    : the reel's Instagram link (opens in a new tab)           */
-/* poster  : thumbnail image, e.g. "/reels/courtyard.jpg" (optional)  */
-/* preview : 3–4s silent mp4, e.g. "/reels/courtyard.mp4" (optional)  */
-/* ------------------------------------------------------------------ */
+function InstagramIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
 
-const INSTAGRAM_PROFILE = "https://www.instagram.com/insync_interiors/?hl=en";
+const INSTAGRAM_PROFILE = "https://www.instagram.com/insync_byancchal/";
 
 const REELS = [
-  { title: "Courtyard Residence", tag: "Walkthrough", href: INSTAGRAM_PROFILE, poster: null, preview: null },
-  { title: "Aurum Penthouse", tag: "Transformation", href: INSTAGRAM_PROFILE, poster: null, preview: null },
-  { title: "The Quiet Suite", tag: "Walkthrough", href: INSTAGRAM_PROFILE, poster: null, preview: null },
-  { title: "Linea Workspace", tag: "Behind the scenes", href: INSTAGRAM_PROFILE, poster: null, preview: null },
-  { title: "Sandstone Villa", tag: "Transformation", href: INSTAGRAM_PROFILE, poster: null, preview: null },
-  { title: "Ivory Boutique", tag: "Walkthrough", href: INSTAGRAM_PROFILE, poster: null, preview: null },
+  {
+    id: 1,
+    title: "Curved Salon Styling",
+    duration: "0:15",
+    poster: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 2,
+    title: "Tactile Materials & Veneers",
+    duration: "0:12",
+    poster: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 3,
+    title: "Architectural Drafting Session",
+    duration: "0:18",
+    poster: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 4,
+    title: "Lime Plaster & Daylight Arches",
+    duration: "0:14",
+    poster: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 5,
+    title: "Atelier Objects & Sculptural Décor",
+    duration: "0:16",
+    poster: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 6,
+    title: "Penthouse Horizon Reveal",
+    duration: "0:22",
+    poster: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 7,
+    title: "Private Atelier Joinery",
+    duration: "0:19",
+    poster: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
+  {
+    id: 8,
+    title: "Stone Ensuite Sanctuaries",
+    duration: "0:13",
+    poster: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=800&auto=format&fit=crop",
+    instagramUrl: "https://www.instagram.com/insync_byancchal/",
+  },
 ];
 
-const EASE = [0.16, 1, 0.3, 1];
+// Memoized Left Column to completely isolate heading & text from re-renders and shaking
+const LeftColumn = React.memo(function LeftColumn() {
+  return (
+    <div className={styles.leftCol}>
+      <div className={styles.eyebrowWrap}>
+        <span className={styles.eyebrow}>BEHIND THE SCENES</span>
+        <span className={styles.eyebrowLine} />
+      </div>
 
-function ReelTile({ reel }) {
-  const vid = useRef(null);
-  const tile = useRef(null);
+      <h2 id="spaces-in-motion-heading" className={styles.heading}>
+        <span className={styles.headingSpaces}>SPACES</span>
+        <span className={`montecarlo-regular italic lowercase font-normal text-[#C5A059] ${styles.headingInMotion}`}>
+          in motion
+        </span>
+      </h2>
 
-  const saveData = () =>
-    typeof navigator !== "undefined" && navigator.connection && navigator.connection.saveData;
+      <p className={styles.description}>
+        A glimpse into our design process, project updates and the little details that bring our spaces to life.
+      </p>
 
-  const play = () => {
-    if (saveData()) return;
-    vid.current?.play().catch(() => {});
+      <a
+        href={INSTAGRAM_PROFILE}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.ctaLink}
+        aria-label="Follow @insync_byancchal on Instagram (opens in new tab)"
+      >
+        <InstagramIcon className={styles.ctaIcon} />
+        <span>FOLLOW @INSYNC_BYANCCHAL</span>
+        <span className={styles.ctaArrow}>&rarr;</span>
+      </a>
+    </div>
+  );
+});
+
+function ReelCard({ reel, pageActive, index }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (typeof window !== "undefined" && !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -5.5;
+    const rotateY = ((x - centerX) / centerX) * 5.5;
+
+    setTilt({ x: rotateX, y: rotateY });
+    setGlare({
+      x: (x / rect.width) * 100,
+      y: (y / rect.height) * 100,
+      opacity: 0.45,
+    });
   };
 
-  const stop = () => {
-    const v = vid.current;
-    if (!v) return;
-    v.pause();
-    v.currentTime = 0;
+  const handleMouseEnter = () => {
+    if (typeof window !== "undefined" && !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
+    setIsHovered(true);
   };
 
-  // Touch screens have no hover: play the preview while the tile is centred
-  useEffect(() => {
-    if (!reel.preview || !tile.current) return;
-    if (window.matchMedia("(hover: hover)").matches) return;
-
-    const io = new IntersectionObserver(
-      ([e]) => (e.isIntersecting && e.intersectionRatio > 0.75 ? play() : stop()),
-      { threshold: [0, 0.75, 1] }
-    );
-    io.observe(tile.current);
-    return () => io.disconnect();
-  }, [reel.preview]);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0 });
+    setGlare((prev) => ({ ...prev, opacity: 0 }));
+  };
 
   return (
-    <a
-      ref={tile}
-      href={reel.href}
+    <motion.a
+      href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.reel}
-      onMouseEnter={play}
-      onMouseLeave={stop}
-      onFocus={play}
-      onBlur={stop}
-      aria-label={`${reel.title}, ${reel.tag}. Watch on Instagram (opens in a new tab)`}
+      className={styles.card}
+      title={`Watch ${reel.title} on Instagram`}
+      aria-label={`Watch ${reel.title} reel on Instagram (opens in new tab)`}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateY: isHovered ? tilt.y : 0,
+        rotateX: isHovered ? tilt.x : 0,
+        scale: isHovered ? 1.025 : (pageActive ? 1 : 0.96),
+        y: isHovered ? -8 : 0,
+        opacity: pageActive ? 1 : 0.7,
+      }}
+      transition={{
+        duration: isHovered ? 0.15 : 0.8,
+        delay: isHovered ? 0 : (pageActive ? index * 0.04 : 0),
+        ease: isHovered ? "easeOut" : [0.19, 1, 0.22, 1],
+      }}
     >
-      <div className={styles.frame}>
-        {reel.poster ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={reel.poster} alt="" loading="lazy" className={styles.poster} />
-        ) : (
-          <span className={styles.ph}>Reel thumbnail · 9:16</span>
-        )}
-        {reel.preview && (
-          <video
-            ref={vid}
-            src={reel.preview}
-            muted
-            loop
-            playsInline
-            preload="none"
-            className={styles.video}
-          />
-        )}
-        <span className={styles.play} aria-hidden="true">
-          <i />
-        </span>
-        <span className={styles.go} aria-hidden="true">
-          Watch on Instagram <ArrowUpRight size={14} />
-        </span>
+      {/* 3D Dynamic Cursor Glare */}
+      <div
+        className={styles.mouseGlare}
+        style={{
+          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255, 255, 255, 0.24) 0%, rgba(197, 160, 89, 0.12) 38%, transparent 70%)`,
+          opacity: glare.opacity,
+        }}
+      />
+
+      {/* Cinematic Golden Light Sweep when page becomes active */}
+      {pageActive && (
+        <motion.div
+          key={`shimmer-${reel.id}-${pageActive}`}
+          className={styles.shimmerSheen}
+          initial={{ x: "-100%" }}
+          animate={{ x: "200%" }}
+          transition={{
+            duration: 1.1,
+            delay: 0.2 + index * 0.05,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+        />
+      )}
+
+      {/* Poster Image */}
+      <motion.img
+        src={reel.poster}
+        alt={reel.title}
+        loading="lazy"
+        className={styles.cardImage}
+        animate={{
+          scale: isHovered ? 1.06 : 1,
+        }}
+        transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+      />
+      <div className={styles.cardOverlay} />
+
+      {/* Bottom Play Button & Duration */}
+      <div className={styles.cardMeta}>
+        <div className={styles.playButton}>
+          <svg viewBox="0 0 24 24" fill="currentColor" className={styles.playIcon}>
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+        <span className={styles.duration}>{reel.duration}</span>
       </div>
-      <p className={styles.tag}>{reel.tag}</p>
-      <h3 className={styles.name}>{reel.title}</h3>
-      {/* always visible on touch screens, where there is no hover */}
-      <span className={styles.watch}>Watch on Instagram ↗</span>
-    </a>
+    </motion.a>
   );
 }
 
 export default function SpacesInMotion() {
-  const rail = useRef(null);
-  const [pos, setPos] = useState({ p: 0, start: true, end: false });
+  const [page, setPage] = useState(0);
+  const touchStartX = React.useRef(0);
 
-  const onScroll = () => {
-    const el = rail.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setPos({
-      p: max > 0 ? el.scrollLeft / max : 0,
-      start: el.scrollLeft < 8,
-      end: el.scrollLeft > max - 8,
-    });
+  const togglePage = () => {
+    setPage((prev) => (prev === 0 ? 1 : 0));
   };
 
-  useEffect(() => {
-    onScroll();
-  }, []);
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-  const thumb = 22; // % width of the progress thumb
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 50 && page === 0) setPage(1);
+    else if (diff < -50 && page === 1) setPage(0);
+  };
+
+  const page1Reels = REELS.slice(0, 4);
+  const page2Reels = REELS.slice(4, 8);
 
   return (
-    <section className={styles.section} aria-labelledby="motion-title">
-      <div className={styles.rule}>
-        <span className={styles.eyebrow}>WALKTHROUGHS &amp; TRANSFORMATIONS</span>
-        <span className={styles.note}>Seen on Instagram</span>
-      </div>
+    <section className={styles.section} aria-labelledby="spaces-in-motion-heading">
+      <div className={styles.container}>
+        
+        {/* LEFT COLUMN: Editorial Text & Italian Calligraphic Script */}
+        <LeftColumn />
 
-      <motion.h2
-        id="motion-title"
-        className={styles.title}
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.9, ease: EASE }}
-      >
-        SPACES <span className={`${styles.script} montecarlo-regular`}>in motion</span>
-      </motion.h2>
-
-      <motion.div
-        className={styles.railWrap}
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-      >
-        <div className={styles.rail} ref={rail} onScroll={onScroll}>
-          {REELS.map((r) => (
-            <ReelTile key={r.title} reel={r} />
-          ))}
-        </div>
-      </motion.div>
-
-      <div className={styles.bar}>
-        <div className={styles.track} aria-hidden="true">
-          <span style={{ width: `${thumb}%`, left: `${pos.p * (100 - thumb)}%` }} />
-        </div>
-
-        <a
-          href={INSTAGRAM_PROFILE}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.ul}
+        {/* CENTER COLUMN: Continuous 3D Sliding Runway Track */}
+        <div
+          className={styles.carouselViewport}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          Follow on Instagram ↗
-        </a>
+          <motion.div
+            className={styles.sliderTrack}
+            animate={{
+              x: page === 0 ? "0%" : "-50%",
+            }}
+            transition={{
+              duration: 0.9,
+              ease: [0.19, 1, 0.22, 1], // silky luxury cubic-bezier
+            }}
+          >
+            {/* Page 1 (Reels 1–4) */}
+            <div className={`${styles.pageWrapper} ${styles.pageWrapperLeft}`}>
+              <div className={styles.pageGrid}>
+                {page1Reels.map((reel, index) => (
+                  <ReelCard
+                    key={reel.id}
+                    reel={reel}
+                    pageActive={page === 0}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Page 2 (Reels 5–8) */}
+            <div className={`${styles.pageWrapper} ${styles.pageWrapperRight}`}>
+              <div className={styles.pageGrid}>
+                {page2Reels.map((reel, index) => (
+                  <ReelCard
+                    key={reel.id}
+                    reel={reel}
+                    pageActive={page === 1}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* RIGHT COLUMN: Interactive Navigation Controls */}
+        <div className={styles.rightCol}>
+          <button
+            onClick={togglePage}
+            className={`${styles.navButton} ${page === 1 ? styles.navButtonActive : ""}`}
+            aria-label={page === 0 ? "View next 4 reels" : "View first 4 reels"}
+            title={page === 0 ? "Next reels" : "Back to first reels"}
+          >
+            <ArrowRight
+              size={18}
+              className={`${styles.arrowIcon} ${page === 1 ? styles.arrowIconPrev : ""}`}
+            />
+          </button>
+
+          {/* Clickable Quick-Jump Page Pills */}
+          <div className={styles.pagePills}>
+            <button
+              onClick={() => setPage(0)}
+              className={`${styles.pagePill} ${page === 0 ? styles.pagePillActive : ""}`}
+              aria-label="View first 4 reels"
+            >
+              01
+            </button>
+            <span className={styles.pagePillDivider}>/</span>
+            <button
+              onClick={() => setPage(1)}
+              className={`${styles.pagePill} ${page === 1 ? styles.pagePillActive : ""}`}
+              aria-label="View next 4 reels"
+            >
+              02
+            </button>
+          </div>
+
+          <div className={styles.scrollPrompt}>
+            <span className={styles.counter}>{page === 0 ? "01 / 02" : "02 / 02"}</span>
+            <span>{page === 0 ? "DISCOVER MORE" : "RETURN TO"}</span>
+            <span>{page === 0 ? "REELS" : "START"}</span>
+          </div>
+
+          <div className={styles.verticalDivider} />
+        </div>
+
       </div>
     </section>
   );

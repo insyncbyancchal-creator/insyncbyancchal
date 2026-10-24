@@ -1,5 +1,6 @@
 import "./globals.css";
 import Preloader from "@/components/Preloader/Preloader";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata = {
   title: "Insync by Ancchal | Luxury Architectural & Interior Design Atelier",
@@ -25,11 +26,26 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..600&family=MonteCarlo&family=Montserrat:ital,wght@0,300..700;1,300..500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..600&family=Italianno&family=MonteCarlo&family=Montserrat:ital,wght@0,300..700;1,300..500&display=swap"
           rel="stylesheet"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var p = window.location.pathname;
+                var isHome = p === '/' || p === '/insync-home';
+                var visited = sessionStorage.getItem('insync_visited') === '1';
+                if (visited && !isHome) {
+                  document.documentElement.classList.add('no-preloader');
+                }
+              } catch (e) {}
+            `,
+          }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#FBF9F6] text-[#1A1A1A]" suppressHydrationWarning>
+        <SmoothScroll />
         <Preloader />
         {children}
       </body>

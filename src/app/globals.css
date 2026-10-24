@@ -10,6 +10,8 @@
   --font-display: 'Syne', sans-serif;
   --font-calligraphy: 'MonteCarlo', cursive;
   --font-montecarlo: 'MonteCarlo', cursive;
+  --sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Bodoni Moda', Georgia, serif;
   
   --bg-alabaster: #FBF9F6;
   --bg-sand: #F3F0EA;
@@ -167,3 +169,59 @@ h4 .italic,
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
+
+/* Zero-flash anti-preload rule for non-home reloads */
+html.no-preloader [class*="Preloader_overlay"],
+html.no-preloader #insync-preloader-overlay {
+  display: none !important;
+}
+
+/* Lenis Smooth Scroll Engine Architecture */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Mobile & Touch Performance Acceleration */
+@media (hover: none) or (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  a, button, [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Tactile non-sticky tap feedback for mobile & tablet */
+  .editorial-card:active,
+  button:active,
+  [role="button"]:active {
+    transform: scale(0.985);
+    transition: transform 0.12s ease-out;
+  }
+}
+
+/* Hardware-accelerated transitions */
+.will-change-transform {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+

@@ -16,9 +16,7 @@ import styles from "./ProjectGallery.module.css";
 export default function ProjectGallery({ project }) {
   const [activeLightboxIdx, setActiveLightboxIdx] = useState(null);
   const [isLbPlaying, setIsLbPlaying] = useState(true);
-  const [lbProgress, setLbProgress] = useState(0);
   const lbTimerRef = useRef(null);
-  const lbProgressRef = useRef(0);
 
   // Extract gallery items from project or build fallback list
   const gallery = project?.gallery?.length
@@ -73,14 +71,10 @@ export default function ProjectGallery({ project }) {
   const openLightbox = (idx) => {
     setActiveLightboxIdx(idx);
     setIsLbPlaying(true);
-    lbProgressRef.current = 0;
-    setLbProgress(0);
   };
 
   const closeLightbox = () => {
     setActiveLightboxIdx(null);
-    lbProgressRef.current = 0;
-    setLbProgress(0);
   };
 
   const handleLbNext = useCallback(() => {
@@ -88,8 +82,6 @@ export default function ProjectGallery({ project }) {
       if (prev === null) return null;
       return prev < total - 1 ? prev + 1 : 0;
     });
-    lbProgressRef.current = 0;
-    setLbProgress(0);
   }, [total]);
 
   const handleLbPrev = useCallback(() => {
@@ -97,31 +89,38 @@ export default function ProjectGallery({ project }) {
       if (prev === null) return null;
       return prev > 0 ? prev - 1 : total - 1;
     });
-    lbProgressRef.current = 0;
-    setLbProgress(0);
   }, [total]);
 
-  // Automatic Autoplay for Fullscreen Lightbox
+  // Touch Swipe Navigation for Lightbox (Mobile & Tablet)
+  const lbTouchStartX = useRef(0);
+  const handleLbTouchStart = (e) => {
+    if (e.touches && e.touches[0]) {
+      lbTouchStartX.current = e.touches[0].clientX;
+    }
+  };
+  const handleLbTouchEnd = (e) => {
+    if (e.changedTouches && e.changedTouches[0]) {
+      const diff = lbTouchStartX.current - e.changedTouches[0].clientX;
+      if (diff > 45) {
+        handleLbNext(); // swipe left -> next image
+      } else if (diff < -45) {
+        handleLbPrev(); // swipe right -> previous image
+      }
+    }
+  };
+
+  // Automatic Autoplay for Fullscreen Lightbox (Brisk, increased speed)
   useEffect(() => {
     if (activeLightboxIdx === null || !isLbPlaying) {
       if (lbTimerRef.current) clearInterval(lbTimerRef.current);
       return;
     }
 
-    const intervalMs = 50;
-    const durationMs = 4500;
-    const increment = (intervalMs / durationMs) * 100;
+    const durationMs = 2200; // Increased speed for brisk auto slideshow
 
     lbTimerRef.current = setInterval(() => {
-      lbProgressRef.current += increment;
-      if (lbProgressRef.current >= 100) {
-        lbProgressRef.current = 0;
-        setLbProgress(0);
-        handleLbNext();
-      } else {
-        setLbProgress(lbProgressRef.current);
-      }
-    }, intervalMs);
+      handleLbNext();
+    }, durationMs);
 
     return () => {
       if (lbTimerRef.current) clearInterval(lbTimerRef.current);
@@ -187,19 +186,18 @@ export default function ProjectGallery({ project }) {
       </div>
 
       {/* -------------------------------------------------------------
-          Editorial Architectural Mosaic (Curtain Wipe Animation)
+          Editorial Architectural Mosaic (Hardware-Accelerated 60fps)
           ------------------------------------------------------------- */}
       <div className={styles.masonry} role="region" aria-label="Editorial photo mosaic">
         {gallery.map((item, index) => (
           <motion.div
             key={item.src + index}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.08 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "60px 0px" }}
             transition={{
-              duration: 0.65,
-              delay: (index % 4) * 0.07,
-              ease: [0.16, 1, 0.3, 1],
+              duration: 0.4,
+              ease: "easeOut",
             }}
             className={styles.mosaicCard}
             onClick={() => openLightbox(index)}
@@ -217,25 +215,25 @@ export default function ProjectGallery({ project }) {
               className={styles.mosaicFrame}
               style={{ aspectRatio: item.aspectRatio || "4 / 3" }}
             >
-              {/* Architectural Shutter Veil Uncurtains on Scroll */}
-              <motion.div
-                className={styles.shutterCurtain}
-                initial={{ y: "0%" }}
-                whileInView={{ y: "-102%" }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.85,
-                  delay: 0.12 + (index % 4) * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              />
-
               <img
                 src={item.src}
                 alt={item.alt || `${project.title} photo ${index + 1}`}
                 className={styles.mosaicImg}
-                loading={index < 6 ? "eager" : "lazy"}
+                loading={index < 4 ? "eager" : "lazy"}
                 decoding="async"
+              />
+
+              {/* Silky Architectural Shutter Curtain Wipe */}
+              <motion.div
+                className={styles.shutterCurtain}
+                initial={{ y: "0%" }}
+                whileInView={{ y: "-102%" }}
+                viewport={{ once: true, margin: "0px 0px -20px 0px" }}
+                transition={{
+                  duration: 0.72,
+                  delay: (index % 3) * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               />
 
               {/* Frosted Viewfinder Overlay on Hover */}
@@ -309,18 +307,15 @@ export default function ProjectGallery({ project }) {
                   </button>
                 </div>
               </div>
-
-              {/* Lightbox Autoplay Progress Bar */}
-              <div className={styles.lbProgressBarTrack} aria-hidden="true">
-                <div
-                  className={styles.lbProgressBarFill}
-                  style={{ width: `${lbProgress}%` }}
-                />
-              </div>
             </div>
 
-            {/* Center Image Stage with Next/Prev Buttons */}
-            <div className={styles.lbStage} onClick={(e) => e.stopPropagation()}>
+            {/* Center Image Stage with Next/Prev Buttons & Native Touch Swipe */}
+            <div
+              className={styles.lbStage}
+              onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleLbTouchStart}
+              onTouchEnd={handleLbTouchEnd}
+            >
               <button
                 type="button"
                 onClick={handleLbPrev}

@@ -22,29 +22,36 @@ export default function PortfolioExperience({ projects }) {
       {/* ---------------- Section Editorial Header below Hero Banner ---------------- */}
       <header className={styles.sectionHeader}>
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerEyebrow}
         >
           SELECTED COMMISSIONS &bull; 2022 &ndash; 2026
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerTitle}
         >
           CURATED SPACES <span className={`montecarlo-regular ${styles.headerScript}`}>and bespoke</span> LIVING
         </motion.h2>
-        <div className={styles.headerLine} />
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.headerLine}
+          style={{ transformOrigin: "center" }}
+        />
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerLede}
         >
           Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials.
@@ -60,14 +67,15 @@ export default function PortfolioExperience({ projects }) {
                 key={p.slug}
                 layout
                 initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px 0px" }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{
-                  duration: 0.55,
-                  delay: (index % 3) * 0.06,
+                  duration: 0.75,
+                  delay: (index % 3) * 0.08,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={styles.card}
+                className={`${styles.card} will-change-transform`}
               >
                 <Link
                   href={`/portfolio/${p.slug}`}
@@ -76,7 +84,11 @@ export default function PortfolioExperience({ projects }) {
                 >
                   {/* 1:1 Square Image Container with Ultra-Smooth Luxury Dissolve Hover & Whitish-Gold Blur */}
                   <div className={styles.imageBox}>
-                    <img
+                    <motion.img
+                      initial={{ scale: 1.06 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                       src={p.cover?.src}
                       alt={p.title}
                       className={styles.primaryImg}

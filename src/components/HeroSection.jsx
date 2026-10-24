@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function HeroSection() {
@@ -144,11 +144,33 @@ export default function HeroSection() {
     })
   }
 
+  // Touch Swipe Navigation for Mobile & Tablet
+  const touchStartX = useRef(0)
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches[0]) {
+      touchStartX.current = e.touches[0].clientX
+    }
+  }
+  const handleTouchEnd = (e) => {
+    if (e.changedTouches && e.changedTouches[0]) {
+      const diff = touchStartX.current - e.changedTouches[0].clientX
+      if (diff > 45) {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+      } else if (diff < -45) {
+        setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+      }
+    }
+  }
+
   const currentSlideObj = heroSlides[currentSlide]
   const isCurrentLoaded = Boolean(mediaLoaded[currentSlideObj.id])
 
   return (
-    <section className="relative h-screen w-full bg-white text-[#1A1A1A] overflow-hidden select-none">
+    <section
+      className="relative h-screen w-full bg-white text-[#1A1A1A] overflow-hidden select-none"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Stacked Full-Bleed Background Media for Seamless Cross-Fade */}
       <div className="absolute inset-0 z-0 bg-white">
         {heroSlides.map((slide, idx) => {
@@ -168,7 +190,7 @@ export default function HeroSection() {
                 opacity: { duration: 1.4, ease: [0.25, 1, 0.5, 1] },
                 scale: { duration: 7, ease: 'linear' },
               }}
-              className="absolute inset-0 pointer-events-none bg-white"
+              className="absolute inset-0 pointer-events-none bg-white will-change-transform transform-gpu"
             >
               {/* Pristine White Loading Placeholder - Zero Black Screen */}
               {!isLoaded && isActive && (
@@ -243,10 +265,10 @@ export default function HeroSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Eyebrow: Category · Location */}
             <div className="flex items-center gap-3 mb-2.5">
@@ -291,17 +313,21 @@ export default function HeroSection() {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`transition-all duration-300 rounded-none cursor-pointer ${
-                idx === currentSlide
-                  ? isCurrentLoaded
-                    ? 'w-7 sm:w-8 h-1.5 sm:h-2 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]'
-                    : 'w-7 sm:w-8 h-1.5 sm:h-2 bg-[#1A1A1A] shadow-[0_0_8px_rgba(0,0,0,0.2)]'
-                  : isCurrentLoaded
-                  ? 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/40 hover:bg-white/75'
-                  : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#1A1A1A]/25 hover:bg-[#1A1A1A]/50'
-              }`}
+              className={`p-2 -m-2 transition-all duration-300 rounded-none cursor-pointer active:scale-90 touch-manipulation`}
               aria-label={`Go to slide ${idx + 1}`}
-            />
+            >
+              <span
+                className={`block transition-all duration-300 rounded-none ${
+                  idx === currentSlide
+                    ? isCurrentLoaded
+                      ? 'w-7 sm:w-8 h-1.5 sm:h-2 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]'
+                      : 'w-7 sm:w-8 h-1.5 sm:h-2 bg-[#1A1A1A] shadow-[0_0_8px_rgba(0,0,0,0.2)]'
+                    : isCurrentLoaded
+                    ? 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/40 hover:bg-white/75'
+                    : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#1A1A1A]/25 hover:bg-[#1A1A1A]/50'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

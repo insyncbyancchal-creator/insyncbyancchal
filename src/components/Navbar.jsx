@@ -35,30 +35,28 @@ export default function Navbar() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const getScrollY = () => {
-      if (typeof window === 'undefined') return 0
-      return (
-        window.scrollY ||
-        window.pageYOffset ||
-        (document.documentElement && document.documentElement.scrollTop) ||
-        (document.body && document.body.scrollTop) ||
-        0
-      )
-    }
+    let ticking = false
+    let lastScrolled = false
 
     const handleScroll = () => {
-      const y = getScrollY()
-      // When at hero at the top (<= 30px): no nav.
-      // The moment the user scrolls down (> 30px): nav smoothly slides in and stays visible while browsing down.
-      setScrolled(y > 30)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY || window.pageYOffset || 0
+          const shouldScroll = y > 30
+          if (shouldScroll !== lastScrolled) {
+            lastScrolled = shouldScroll
+            setScrolled(shouldScroll)
+          }
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    document.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('scroll', handleScroll)
     }
   }, [pathname])
 
@@ -142,41 +140,39 @@ export default function Navbar() {
 
           {/* Right: Actions, WhatsApp & Inquire CTA */}
           <div className="flex items-center justify-end">
-            <div className="hidden sm:flex items-center space-x-2.5 shrink-0">
-              <div className="h-5 w-[1px] bg-[#C5A059]/30 mr-1" />
-
+            <div className="hidden sm:flex items-center space-x-2.5 sm:space-x-3 shrink-0">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/insync_interiors/?hl=en"
+                href="https://www.instagram.com/insync_byancchal/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/25 hover:border-[#C5A059] flex items-center justify-center transition-all group"
+                className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
                 title="Instagram Profile"
                 aria-label="Instagram Profile"
               >
-                <InstagramIcon className="w-3.5 h-3.5 text-[#C5A059] group-hover:scale-105 transition-transform" />
+                <InstagramIcon className="w-4 h-4 text-[#C5A059] group-hover:scale-110 transition-transform" />
               </a>
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/919888800000?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+                href="https://wa.me/919877417531?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#25D366] hover:bg-[#25D366]/10 border border-[#C5A059]/25 hover:border-[#25D366]/50 flex items-center justify-center transition-all group"
+                className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#25D366] transition-all group"
                 title="Chat on WhatsApp"
                 aria-label="Chat with Insync by Ancchal on WhatsApp"
               >
-                <WhatsAppIcon className="w-3.5 h-3.5 text-[#C5A059] group-hover:text-[#25D366] transition-colors" />
+                <WhatsAppIcon className="w-4 h-4 text-[#C5A059] group-hover:text-[#25D366] group-hover:scale-110 transition-all" />
               </a>
 
               {/* Email */}
               <a
                 href="mailto:contact@insyncinteriors.com"
-                className="w-8 h-8 rounded-none text-[#1A1A1A]/70 hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/25 hover:border-[#C5A059] flex items-center justify-center transition-all group"
+                className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
                 title="Email Insync by Ancchal"
                 aria-label="Email Insync by Ancchal"
               >
-                <Mail className="w-3.5 h-3.5 text-[#C5A059] group-hover:scale-105 transition-transform" />
+                <Mail className="w-4 h-4 text-[#C5A059] group-hover:scale-110 transition-transform" />
               </a>
 
               {/* INQUIRE CTA */}
@@ -239,7 +235,7 @@ export default function Navbar() {
 
             <div className="flex items-center space-x-4 pt-6 border-t border-[#C5A059]/20 justify-between">
               <a
-                href="https://www.instagram.com/insync_interiors/?hl=en"
+                href="https://www.instagram.com/insync_byancchal/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#C5A059]"
@@ -249,7 +245,7 @@ export default function Navbar() {
               </a>
 
               <a
-                href="https://wa.me/919888800000?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+                href="https://wa.me/919877417531?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#25D366]"

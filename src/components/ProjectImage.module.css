@@ -1,9 +1,0 @@
-.frame { position: relative; margin: 0; overflow: hidden; display: block; width: 100%; min-width: 0; background: #ebe6da; opacity: 0; transform: translateY(18px); transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1); }
-.frame[data-in] { opacity: 1; transform: none; }
-.fill { width: 100%; height: 100%; }
-.inner { position: absolute; inset: 0; transition: transform 1.6s cubic-bezier(.2,.8,.2,1); }
-.img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; }
-/* placeholder: flat, quiet, labelled */
-.ph { display: block; filter: saturate(.55) brightness(1.04); }
-.ph::after { content: attr(data-label); position: absolute; left: 1.1rem; bottom: .95rem; font-family: system-ui, sans-serif; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(40,36,28,.45); }
-@media (prefers-reduced-motion: reduce) { .frame { opacity: 1; transform: none; transition: none; } .inner { transition: none; } }

@@ -9,20 +9,21 @@ import styles from "./ContactExperience.module.css";
 /* EDIT THESE: single source of truth for studio details              */
 /* ------------------------------------------------------------------ */
 const STUDIO = {
-  name: "INSYNC BY ANCCHAL",
+  name: "INSYNC INTERIORS",
+  subName: "by Ancchal",
   addressLines: [
-    "SCF - 1, Third Floor,",
-    "I Block Market, Sarabha Nagar",
-    "(Opp. Nav Durga Mata Mandir),",
+    "INSYNC INTERIORS",
+    "SCF - 1, Third Floor, I Block Market,",
+    "Sarabha Nagar (Opp. Nav Durga Mata Mandir),",
     "Ludhiana – 141001",
   ],
-  mapQuery: "Insync by Ancchal, SCF 1, I Block Market, Sarabha Nagar, Ludhiana 141001",
+  mapQuery: "INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001",
   hours: "Monday – Saturday · 10:00 AM – 6:00 PM",
-  phone: "+91 98888 00000",
-  phoneHref: "+919888800000",
-  whatsapp: "919888800000",
+  phone: "+91 98774 17531",
+  phoneHref: "+919877417531",
+  whatsapp: "919877417531",
   email: "hello@insyncinteriors.com",
-  instagram: "https://www.instagram.com/insync_interiors/?hl=en",
+  instagram: "https://www.instagram.com/insync_byancchal/",
 };
 
 const PROJECT_TYPES = [
@@ -352,7 +353,13 @@ export default function ContactExperience() {
       <section className={styles.hero}>
         <div className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-8 lg:gap-12">
           {/* Left Hero Content: Greeting, Headline, Lede & Status Clock */}
-          <div className="flex-1 min-w-0 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className="flex-1 min-w-0 max-w-4xl"
+          >
             <p className={styles.eyebrow} aria-label="Contact">
               <span key={gi} className={styles.greet}>
                 {GREETINGS[gi]}
@@ -365,16 +372,22 @@ export default function ContactExperience() {
                 </span>
               </span>
             </h1>
-            <p className={`${styles.lede} ${styles.sans}`} data-reveal>
+            <p className={`${styles.lede} ${styles.sans}`}>
               Tell us about the space you imagine. We&rsquo;ll listen first, then design.
             </p>
             {time && (
               <p className={`${styles.clock} ${styles.sans}`}>Ludhiana · {time} IST</p>
             )}
-          </div>
+          </motion.div>
 
           {/* Right Hero Content: Elegant ENQUIRE NOW Button in the open space */}
-          <div className="flex flex-col items-start md:items-end justify-end pb-2 md:pr-4 lg:pr-8" data-reveal>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-start md:items-end justify-end pb-2 md:pr-4 lg:pr-8"
+          >
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
@@ -389,7 +402,7 @@ export default function ContactExperience() {
             <p className="mt-3 text-[14px] font-serif italic text-[#4A463F] tracking-[0.03em] text-left md:text-right">
               Begin your bespoke architectural commission
             </p>
-          </div>
+          </motion.div>
         </div>
 
         <span className={styles.scrollCue} aria-hidden="true" />
@@ -398,10 +411,15 @@ export default function ContactExperience() {
       {/* ---------- HORIZONTAL STUDIO DETAILS ---------- */}
       <section
         className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 pt-2 pb-16 sm:pb-24 text-[#1B1A17]"
-        data-reveal
       >
         {/* Top Header Row with Studio Title, Live Status Badge, and Hairline Rule */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#C5A059]/30">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#C5A059]/30"
+        >
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#C5A059] font-normal tracking-[0.06em]">
               {STUDIO.name}
@@ -422,13 +440,19 @@ export default function ContactExperience() {
               Architecture &bull; Interiors &bull; Insync Home
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* 3 Horizontal Columns Directly on Background (Seamless Editorial Luxury Layout) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-16 mt-10 sm:mt-12">
           
           {/* 1. VISIT */}
-          <div className="flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 35, x: -20 }}
+            whileInView={{ opacity: 1, y: 0, x: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
                 <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
@@ -463,10 +487,16 @@ export default function ContactExperience() {
                 {copied ? "Copied ✓" : "Copy address"}
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* 2. HOURS */}
-          <div className="flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
                 <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
@@ -495,10 +525,16 @@ export default function ContactExperience() {
                 Private architectural and design consultations by appointment.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* 3. REACH US */}
-          <div className="flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 35, x: 20 }}
+            whileInView={{ opacity: 1, y: 0, x: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
                 <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
@@ -543,7 +579,7 @@ export default function ContactExperience() {
                 Instagram ↗
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
@@ -772,16 +808,41 @@ export default function ContactExperience() {
 
       {/* ---------- MAP ---------- */}
       <section className={styles.mapSection}>
-        <div className={styles.mapHead} data-reveal>
-          <p className={styles.eyebrow}>Find the studio</p>
-          <h2>
-            Sarabha Nagar, <em>Ludhiana</em>
-          </h2>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 border-b border-[#C5A059]/25"
+        >
+          {/* Left: Eyebrow Tag + Gold Accent Line */}
+          <div className="flex flex-col items-start pb-1">
+            <span className="text-xs sm:text-[13px] font-sans uppercase tracking-[0.28em] text-[#C5A059] font-semibold block">
+              FIND THE ATELIER
+            </span>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="w-16 h-[1.5px] bg-[#C5A059] mt-2.5 origin-left"
+            />
+          </div>
 
-        <div
+          {/* Right: Atelier City Headline */}
+          <div className="flex flex-col sm:items-end text-left sm:text-right">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1A1A1A] font-light leading-tight">
+              SARABHA NAGAR, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059] text-[1.15em]">Ludhiana</span>
+            </h2>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           className={`${styles.mapFrame} ${mapLive ? styles.mapLive : ""}`}
-          data-reveal
           onMouseLeave={() => setMapLive(false)}
         >
           <iframe
@@ -802,13 +863,14 @@ export default function ContactExperience() {
             </button>
           )}
           <div className={`${styles.pin} ${styles.sans}`}>
-            <strong>Insync by Ancchal</strong>
-            <span>SCF-1, Third Floor, I Block Market</span>
+            <strong>INSYNC INTERIORS</strong>
+            <span>SCF - 1, Third Floor, I Block Market, Sarabha Nagar</span>
+            <span className="text-[11px] text-[#7A746B]">(Opp. Nav Durga Mata Mandir), Ludhiana 141001</span>
             <a href={directions} target="_blank" rel="noopener noreferrer">
               Directions ↗
             </a>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );
