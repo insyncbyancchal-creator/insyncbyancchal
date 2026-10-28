@@ -49,17 +49,24 @@ export default function HomeAboutSection() {
             viewport={{ once: true, margin: '-20px 0px' }}
             className="order-1 lg:order-1 lg:col-span-5 w-full flex flex-col items-center lg:items-start will-change-transform"
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-none">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[390px] xl:max-w-[410px] mx-auto lg:mx-0">
               {/* Champagne-Gold Hairline Architectural Frame */}
               <div className="relative rounded-sm overflow-hidden p-[1px] bg-gradient-to-b from-[#C5A059]/50 via-[#C5A059]/20 to-[#C5A059]/40 shadow-[0_18px_45px_-15px_rgba(27,26,23,0.12)]">
-                <div className="relative w-full h-[380px] sm:h-[420px] lg:h-[450px] rounded-sm overflow-hidden bg-[#F3F0EA]">
+                <div 
+                  className="relative w-full aspect-[2/3] rounded-sm overflow-hidden bg-[#F3F0EA]"
+                  style={{ aspectRatio: '2 / 3' }}
+                >
                   {/* Clean, Pure Photograph */}
                   <img
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop"
+                    src="/about/ancchal-home.jpeg"
                     alt="Ancchal, Founder & Principal Designer of Insync by Ancchal"
+                    onError={(e) => {
+                      e.currentTarget.src = "/about/ancchal-home.jpg";
+                    }}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover object-[50%_20%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]"
+                    className="w-full h-full object-cover object-[50%_80%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]"
+                    style={{ objectPosition: '50% 80%' }}
                   />
                 </div>
               </div>

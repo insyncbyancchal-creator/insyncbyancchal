@@ -28,6 +28,40 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Bulletproof configuration for PDF files when live on production / Vercel
+        source: '/:path*.pdf',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/pdf',
+          },
+          {
+            key: 'Content-Disposition',
+            value: 'inline',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Accept-Ranges',
+            value: 'bytes',
+          },
+        ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/urban-melange-dec-2025.pdf',
+        destination: '/about/urban-melange-dec-2025.pdf',
+      },
+      {
+        source: '/magazine.pdf',
+        destination: '/about/urban-melange-dec-2025.pdf',
+      },
     ];
   },
 };

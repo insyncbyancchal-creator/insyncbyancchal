@@ -17,19 +17,18 @@ const INTRO = {
 };
 
 const OWNER = {
-  photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop",
-  alt: "Portrait of Ancchal Sharma, Founder and Principal Designer of Insync Interiors",
-  focus: "50% 30%",
+  photo: "/about/ancchal-about.jpeg",
+  alt: "Portrait of Ancchal Sharma, Founder and Principal Designer of Insync",
+  focus: "50% 20%",
   name: "Ancchal",
   role: "Founder & Principal Designer",
   lead: null,
   paragraphs: [
-    "Ancchal Sharma, Founder and Principal Designer of Insync Interiors, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.",
-    "At Insync Interiors, every project begins with listening — understanding each client's lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by Urban Melange in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.",
+    "Ancchal Sharma, Founder and Principal Designer of Insync, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.",
+    "At Insync, every project begins with listening — understanding each client's lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by Urban Melange in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.",
   ],
   details: [
-    ["Studio", "Insync Interiors"],
-    ["Editorial", "Urban Melange (Dec 2025)"],
+    ["Studio", "Insync by Ancchal"],
     ["Based in", "Ludhiana, Punjab"],
     ["Practice", "Architecture · Interiors · Insync Home"],
   ],
@@ -90,6 +89,9 @@ export default function AboutExperience({ children }) {
               <motion.img
                 src={OWNER.photo}
                 alt={OWNER.alt}
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop";
+                }}
                 style={{ objectPosition: OWNER.focus }}
                 initial={{ scale: 1.06 }}
                 whileInView={{ scale: 1 }}
@@ -105,15 +107,46 @@ export default function AboutExperience({ children }) {
             <span className={styles.captionRole}>FOUNDER & PRINCIPAL DESIGNER</span>
           </div>
 
-          {/* Editorial Press Recognition Plaque */}
-          <div className={styles.pressBadge}>
-            <div className={styles.pressBadgeHeader}>
-              <span className={styles.pressDot} />
-              <span className={styles.pressEyebrow}>EDITORIAL FEATURE</span>
+          {/* Editorial Feature Spotlight Card */}
+          <div className={styles.pressCard}>
+            {/* Ambient Watermark Monogram */}
+            <span className={styles.pressWatermark} aria-hidden="true">UM</span>
+
+            {/* Header: Editorial Eyebrow + Edition Badge */}
+            <div className={styles.pressCardHeader}>
+              <div className={styles.pressHeaderLeft}>
+                <span className={styles.pressDot} />
+                <span className={styles.pressEyebrow}>EDITORIAL FEATURE</span>
+              </div>
+              <span className={styles.pressBadge}>DECEMBER 2025 · ISSUE 01</span>
             </div>
-            <div className={styles.pressBody}>
-              <span className={styles.pressMag}>Urban Melange</span>
-              <span className={styles.pressEdition}>December 2025 Edition &bull; Luxury Interiors Focus</span>
+
+            {/* Publication Title */}
+            <h3 className={styles.pressMag}>Urban M&eacute;lange</h3>
+
+            {/* Subtitle / Excerpt */}
+            <p className={styles.pressSubtitle}>
+              A curated journal of interiors, material and the people shaping considered spaces.
+            </p>
+
+            {/* Fine Gold Architectural Hairline */}
+            <div className={styles.pressDivider} />
+
+            {/* Action Row: Button + Note */}
+            <div className={styles.pressCardFooter}>
+              <a
+                href="/about/urban-melange-dec-2025.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                type="application/pdf"
+                className={styles.pressCardBtn}
+                title="Read Urban Melange Feature (Opens PDF)"
+                aria-label="Read Urban Melange Feature (Opens PDF in new tab)"
+              >
+                <span>READ MAGAZINE</span>
+                <span className={styles.pressCardBtnArrow} aria-hidden="true">&rarr;</span>
+              </a>
+              <span className={styles.pressCardNote}>Opens PDF</span>
             </div>
           </div>
         </motion.figure>
@@ -131,26 +164,18 @@ export default function AboutExperience({ children }) {
           {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
           <div className={styles.paras}>
             <p className={styles.firstPara}>
-              Ancchal Sharma, Founder and Principal Designer of Insync Interiors, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.
+              Ancchal Sharma, Founder and Principal Designer of Insync, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.
             </p>
             <p>
-              At Insync Interiors, every project begins with listening — understanding each client&apos;s lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by <strong className={styles.magHighlight}>Urban Melange</strong> in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.
+              At Insync, every project begins with listening — understanding each client&apos;s lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by <strong className={styles.magHighlight}>Urban Melange</strong> in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.
             </p>
           </div>
 
           <dl className={styles.details}>
             {OWNER.details.map(([k, v]) => (
-              <div key={k} className={k === "Editorial" ? styles.editorialRow : ""}>
+              <div key={k}>
                 <dt>{k}</dt>
-                <dd>
-                  {k === "Editorial" ? (
-                    <span className={styles.editorialHighlight}>
-                      <strong>Urban Melange</strong> (Dec 2025 Edition)
-                    </span>
-                  ) : (
-                    v
-                  )}
-                </dd>
+                <dd>{v}</dd>
               </div>
             ))}
           </dl>
