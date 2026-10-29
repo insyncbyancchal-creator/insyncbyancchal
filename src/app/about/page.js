@@ -6,6 +6,9 @@ import SpacesInMotion from "@/components/SpacesInMotion";
 import TestimonialSection from "@/components/TestimonialSection";
 import { getAboutPage, getTestimonials, getSiteSettings } from "@/sanity/lib/client";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "About | Insync by Ancchal",
   description: "The people, philosophy and design approach behind Insync by Ancchal, Ludhiana.",

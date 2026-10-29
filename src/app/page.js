@@ -8,6 +8,9 @@ import SimpleFooter from '@/components/SimpleFooter'
 import { getHomePage, getSiteSettings } from '@/sanity/lib/client'
 import { getProjects } from '@/lib/projects'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata = {
   title: 'Insync by Ancchal | Luxury Architectural & Interior Design Atelier',
   description:

@@ -4,6 +4,9 @@ import InsyncHomeClient from '@/components/InsyncHomeClient'
 import { getDecorProducts } from '@/lib/services'
 import { getSiteSettings } from '@/sanity/lib/client'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata = {
   title: 'Insync Home Collection | Bespoke Décor & Atelier Objects',
   description:

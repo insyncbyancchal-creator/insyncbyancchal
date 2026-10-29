@@ -56,7 +56,10 @@ function normalizeSanityProject(doc) {
       src: coverUrl || "/portfolio/anirudh/lobby-a.webp",
       alt: doc.title,
     },
-    concept: Array.isArray(doc.concept) && doc.concept.length > 0 ? doc.concept : [doc.summary].filter(Boolean),
+    concept:
+      Array.isArray(doc.concept) && doc.concept.length > 0
+        ? doc.concept
+        : [doc.summary || "A bespoke architectural study crafted with quiet luxury, proportion, and natural light."].filter(Boolean),
     materials: doc.materials || [],
     gallery,
     featured: Boolean(doc.featured),
@@ -101,7 +104,25 @@ export async function getProjects() {
       }`);
 
       if (docs && docs.length > 0) {
-        return docs.map(normalizeSanityProject);
+        const sanityList = docs.map(normalizeSanityProject).filter(Boolean);
+
+        // Normalize slugs and titles to avoid duplicates with fallback projects
+        const sanitySlugs = new Set(
+          sanityList.map((p) => (p.slug || "").toLowerCase().replace(/_/g, "-"))
+        );
+        const sanityTitles = new Set(
+          sanityList.map((p) => (p.title || "").toLowerCase().trim())
+        );
+
+        // Only keep fallback projects that haven't been created in Sanity yet
+        const remainingFallbacks = fallbackProjects.filter((fb) => {
+          const normSlug = (fb.slug || "").toLowerCase().replace(/_/g, "-");
+          const normTitle = (fb.title || "").toLowerCase().trim();
+          return !sanitySlugs.has(normSlug) && !sanityTitles.has(normTitle);
+        });
+
+        // Sanity projects take top priority, followed by any remaining fallback items
+        return [...sanityList, ...remainingFallbacks];
       }
     }
   } catch (err) {
@@ -112,13 +133,20 @@ export async function getProjects() {
 
 export async function getProject(slug) {
   const all = await getProjects();
-  const p = all.find((x) => x.slug === slug);
+  if (!slug) return null;
+  const target = decodeURIComponent(slug).toLowerCase().replace(/_/g, "-");
+  const p = all.find((x) => {
+    if (!x.slug) return false;
+    const s = x.slug.toLowerCase().replace(/_/g, "-");
+    return s === target || x.slug === slug;
+  });
   return p || null;
 }
 
 export async function getNeighbours(slug) {
   const all = await getProjects();
-  const filtered = all.filter((p) => p.slug !== slug);
+  const target = (slug || "").toLowerCase().replace(/_/g, "-");
+  const filtered = all.filter((p) => (p.slug || "").toLowerCase().replace(/_/g, "-") !== target);
   if (filtered.length === 0) return { next: null, others: [] };
 
   // Randomize other commissions automatically so every visit displays fresh commissions

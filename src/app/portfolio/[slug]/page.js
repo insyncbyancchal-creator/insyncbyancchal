@@ -5,6 +5,9 @@ import ProjectStory from "@/components/ProjectStory";
 import { getProjects, getProject, getNeighbours } from "@/lib/projects";
 import { getSiteSettings } from "@/sanity/lib/client";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const all = await getProjects();
   return all.map((p) => ({ slug: p.slug }));

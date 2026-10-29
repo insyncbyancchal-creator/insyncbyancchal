@@ -9,7 +9,7 @@ export default defineConfig({
   name: 'insync-atelier',
   title: 'Insync by Ancchal Studio CMS',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'demo-project-id',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '5g37myau',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 
   basePath: '/admin',
