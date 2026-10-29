@@ -15,7 +15,13 @@ export const testimonialType = defineType({
       name: 'roleTitle',
       title: 'Role / Designation / Estate',
       type: 'string',
-      placeholder: 'Owner, Royal Palm Villa',
+      placeholder: 'CONSULTANT & RESIDENCE OWNER',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location / City',
+      type: 'string',
+      placeholder: 'CIVIL LINES, LUDHIANA',
     }),
     defineField({
       name: 'quote',
@@ -29,17 +35,6 @@ export const testimonialType = defineType({
       title: 'Rating (1 to 5 stars)',
       type: 'number',
       initialValue: 5,
-    }),
-    defineField({
-      name: 'avatar',
-      title: 'Client Portrait / Avatar',
-      type: 'image',
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'projectName',
-      title: 'Associated Project Title',
-      type: 'string',
     }),
   ],
 })

@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import ContactHero from "@/components/ContactHero";
 import ContactExperience from "@/components/ContactExperience";
 import SimpleFooter from "@/components/SimpleFooter";
+import { getSiteSettings } from "@/sanity/lib/client";
 
 export const metadata = {
   title: "Contact | Insync by Ancchal",
@@ -9,13 +10,15 @@ export const metadata = {
     "Begin a conversation with Insync by Ancchal, Ludhiana. Visit our studio at Sarabha Nagar or send an enquiry.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const siteSettings = await getSiteSettings();
+
   return (
     <div className="bg-[#f7f4ee] min-h-screen">
-      <Navbar />
+      <Navbar siteSettings={siteSettings} />
       <ContactHero />
-      <ContactExperience />
-      <SimpleFooter />
+      <ContactExperience siteSettings={siteSettings} />
+      <SimpleFooter siteSettings={siteSettings} />
     </div>
   );
 }

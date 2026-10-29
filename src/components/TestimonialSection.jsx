@@ -47,31 +47,41 @@ const TESTIMONIALS = [
   },
 ]
 
-export default function TestimonialSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(1)
+export default function TestimonialSection({ items }) {
+  const testimonials = (Array.isArray(items) && items.length > 0)
+    ? items.map((item, idx) => ({
+        id: item._id || idx + 1,
+        name: item.clientName || item.name || 'Private Patron',
+        role: item.roleTitle || item.role || 'RESIDENCE OWNER',
+        location: item.location || '',
+        quote: item.quote || '',
+      }))
+    : TESTIMONIALS;
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   const nextTestimonial = () => {
-    setDirection(1)
-    setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length)
-  }
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
   const prevTestimonial = () => {
-    setDirection(-1)
-    setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
-  }
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
-  // Reliable, continuous 2.5-second automatic rotation loop
+  // Continuous automatic rotation loop
   useEffect(() => {
     const timer = setInterval(() => {
-      setDirection(1)
-      setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length)
-    }, 2500)
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 3500);
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
 
-  const current = TESTIMONIALS[currentIndex]
+  const current = testimonials[currentIndex] || testimonials[0];
 
   const slideVariants = {
     enter: (dir) => ({
@@ -190,7 +200,7 @@ export default function TestimonialSection() {
 
         {/* Minimal Rectangular Pagination Indicators */}
         <div className="flex items-center justify-center gap-2 mt-8 sm:mt-9">
-          {TESTIMONIALS.map((t, index) => {
+          {testimonials.map((t, index) => {
             const isActive = index === currentIndex
             return (
               <button

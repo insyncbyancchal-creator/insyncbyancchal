@@ -27,7 +27,40 @@ function InstagramIcon(props) {
   );
 }
 
-export default function SimpleFooter() {
+import { useState, useEffect } from 'react'
+
+export default function SimpleFooter({ siteSettings: initialSettings }) {
+  const [siteSettings, setSiteSettings] = useState(initialSettings || null)
+
+  useEffect(() => {
+    if (initialSettings) {
+      setSiteSettings(initialSettings)
+      return
+    }
+    let isCancelled = false
+    fetch('/api/site-settings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!isCancelled && data?.ok && data?.settings) {
+          setSiteSettings(data.settings)
+        }
+      })
+      .catch(() => {})
+    return () => {
+      isCancelled = true
+    }
+  }, [initialSettings])
+
+  // Computed dynamic URLs from Sanity Site Settings
+  const whatsappRaw = siteSettings?.whatsappNumber || '919877417531'
+  const whatsappDigits = whatsappRaw.replace(/\D/g, '') || '919877417531'
+  const whatsappUrl = `https://wa.me/${whatsappDigits}?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project`
+  const email = siteSettings?.contactEmail || 'contact@insyncinteriors.com'
+  const emailUrl = `mailto:${email}`
+  const instagramUrl = siteSettings?.instagramUrl || 'https://www.instagram.com/insync_byancchal/'
+  const inquireLabel = siteSettings?.enquireButtonText || 'INQUIRE'
+  const studioAddress = siteSettings?.studioAddress || 'INSYNC INTERIORS • SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001'
+
   return (
     <footer className="bg-[#FBF9F6] text-[#1A1A1A] py-8 sm:py-10 px-6 md:px-12 border-t border-[#1A1A1A]/10">
       <motion.div
@@ -55,7 +88,7 @@ export default function SimpleFooter() {
           {/* Social Links & Inquire Button matching Navbar */}
           <div className="flex items-center space-x-2.5 sm:space-x-3.5 shrink-0">
             <a
-              href="https://www.instagram.com/insync_byancchal/"
+              href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
@@ -66,7 +99,7 @@ export default function SimpleFooter() {
             </a>
 
             <a
-              href="https://wa.me/919877417531?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#25D366] transition-all group"
@@ -77,7 +110,7 @@ export default function SimpleFooter() {
             </a>
 
             <a
-              href="mailto:contact@insyncinteriors.com"
+              href={emailUrl}
               className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
               title="Email Insync by Ancchal"
               aria-label="Email Insync by Ancchal"
@@ -89,7 +122,7 @@ export default function SimpleFooter() {
               href="/contact"
               className="ml-2 px-5 py-2 rounded-none border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white text-[11px] sm:text-[11.5px] uppercase tracking-[0.24em] font-semibold transition-all inline-block"
             >
-              INQUIRE
+              {inquireLabel}
             </Link>
           </div>
         </div>
@@ -100,7 +133,7 @@ export default function SimpleFooter() {
 
           {/* Right side: Atelier location + credit aligned neatly with 1-line tight spacing */}
           <div className="flex flex-col sm:items-end text-left sm:text-right gap-1 font-sans text-[11px] sm:text-[11.5px]">
-            <span>INSYNC INTERIORS • SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001</span>
+            <span>{studioAddress}</span>
             <p>
               Design and Developed by{' '}
               <a

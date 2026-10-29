@@ -1,5 +1,96 @@
 import { groq } from 'next-sanity'
 
+// Query for home page atelier and founder photo
+export const HOME_PAGE_QUERY = groq`
+  *[_type == "homePage"][0] {
+    _id,
+    aboutSection {
+      founderPhoto {
+        asset-> {
+          _id,
+          url,
+          metadata {
+            dimensions {
+              width,
+              height,
+              aspectRatio
+            }
+          }
+        },
+        hotspot,
+        crop
+      },
+      founderPhotoAlt,
+      founderName,
+      founderRole
+    }
+  }
+`
+
+// Query for about page (founder photo, approach photo, and 4 reels)
+export const ABOUT_PAGE_QUERY = groq`
+  *[_type == "aboutPage"][0] {
+    _id,
+    founderSection {
+      founderPhoto {
+        asset-> {
+          _id,
+          url,
+          metadata {
+            dimensions {
+              width,
+              height,
+              aspectRatio
+            }
+          }
+        },
+        hotspot,
+        crop
+      },
+      founderPhotoAlt
+    },
+    approachSection {
+      approachPhoto {
+        asset-> {
+          _id,
+          url,
+          metadata {
+            dimensions {
+              width,
+              height,
+              aspectRatio
+            }
+          }
+        },
+        hotspot,
+        crop
+      },
+      approachPhotoAlt,
+      caption
+    },
+    reelsSection {
+      instagramProfileUrl,
+      reelsList[] {
+        _key,
+        title,
+        videoFile {
+          asset-> {
+            url
+          }
+        },
+        videoUrl,
+        poster {
+          asset-> {
+            url
+          }
+        },
+        duration,
+        instagramUrl
+      }
+    }
+  }
+`
+
 // Query for all projects
 export const ALL_PROJECTS_QUERY = groq`
   *[_type == "project"] | order(_createdAt desc) {
@@ -13,8 +104,7 @@ export const ALL_PROJECTS_QUERY = groq`
     year,
     area,
     featured,
-    summary,
-    beforeAfter
+    summary
   }
 `
 
@@ -43,7 +133,6 @@ export const SINGLE_PROJECT_QUERY = groq`
     category,
     mainImage,
     gallery,
-    beforeAfter,
     client,
     location,
     year,
@@ -74,10 +163,9 @@ export const TESTIMONIALS_QUERY = groq`
     _id,
     clientName,
     roleTitle,
+    location,
     quote,
-    rating,
-    avatar,
-    projectName
+    rating
   }
 `
 

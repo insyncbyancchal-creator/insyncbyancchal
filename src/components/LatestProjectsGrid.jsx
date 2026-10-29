@@ -6,9 +6,11 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/data/projects'
 
-export default function LatestProjectsGrid() {
-  // Show exactly 3 featured projects in a single curated row
-  const displayProjects = projects.slice(0, 3)
+export default function LatestProjectsGrid({ projects: customProjects }) {
+  // Use dynamically passed projects from Sanity or fallback
+  const list = customProjects && customProjects.length > 0 ? customProjects : projects;
+  const featuredOnly = list.filter((p) => p.featured);
+  const displayProjects = (featuredOnly.length >= 3 ? featuredOnly : list).slice(0, 3);
 
   return (
     <section

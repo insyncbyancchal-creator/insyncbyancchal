@@ -4,6 +4,21 @@ export const projectType = defineType({
   name: 'project',
   title: 'Interior Projects',
   type: 'document',
+  orderings: [
+    {
+      title: 'Manual Position (1st, 2nd, 3rd...)',
+      name: 'orderAsc',
+      by: [
+        { field: 'order', direction: 'asc' },
+        { field: '_createdAt', direction: 'desc' },
+      ],
+    },
+    {
+      title: 'Newest First',
+      name: 'createdAtDesc',
+      by: [{ field: '_createdAt', direction: 'desc' }],
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -12,8 +27,15 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'order',
+      title: 'Display Position / Order (1 for 1st place, 2 for 2nd...)',
+      description: 'Set 1 to place this project in the 1st position in the portfolio and homepage, 2 for 2nd, etc. Projects with smaller numbers appear first.',
+      type: 'number',
+      initialValue: 10,
+    }),
+    defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (URL link)',
       type: 'slug',
       options: {
         source: 'title',
@@ -22,23 +44,59 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'featured',
+      title: 'Feature on Homepage Hero Grid',
+      description: 'Turn ON to display this project in the curated 3 projects on the Home Page.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
       options: {
         list: [
-          { title: 'Residential Villa', value: 'residential' },
-          { title: 'Luxury Penthouse', value: 'penthouse' },
-          { title: 'Commercial Atelier', value: 'commercial' },
-          { title: 'Hospitality & Resort', value: 'hospitality' },
-          { title: 'Architectural Renovation', value: 'renovation' },
+          { title: 'Residential Villa', value: 'Residential' },
+          { title: 'Luxury Penthouse', value: 'Penthouse' },
+          { title: 'Commercial Atelier', value: 'Commercial' },
+          { title: 'Hospitality & Resort', value: 'Hospitality' },
+          { title: 'Architectural Renovation', value: 'Renovation' },
         ],
       },
-      validation: (Rule) => Rule.required(),
+      initialValue: 'Residential',
+    }),
+    defineField({
+      name: 'type',
+      title: 'Typology / Subtitle (e.g. Boutique Residence & BNB)',
+      type: 'string',
+      initialValue: 'Boutique Residence',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location (City & Country)',
+      type: 'string',
+      initialValue: 'LUDHIANA',
+    }),
+    defineField({
+      name: 'year',
+      title: 'Year Completed (e.g. 2025)',
+      type: 'string',
+      initialValue: '2025',
+    }),
+    defineField({
+      name: 'area',
+      title: 'Total Area (e.g. 8,500 sq ft)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'status',
+      title: 'Project Status',
+      type: 'string',
+      initialValue: 'Completed',
     }),
     defineField({
       name: 'mainImage',
-      title: 'Hero Cover Image',
+      title: 'Cover Image (Portfolio Grid & Page Hero)',
       type: 'image',
       options: {
         hotspot: true,
@@ -48,114 +106,92 @@ export const projectType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative Text',
-        }
+        },
       ],
-      validation: (Rule) => Rule.required(),
+      description: 'Upload cover photo. If left empty, the website uses the default high-res project image.',
+    }),
+    defineField({
+      name: 'hoverImage',
+      title: 'Hover Detail Image (Optional)',
+      description: 'Second image revealed smoothly when hovering on the project card in portfolio.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'tagline',
+      title: 'Tagline / Short Hook',
+      type: 'string',
+      description: 'e.g. A bespoke architectural sanctuary of quiet luxury and hospitality.',
+    }),
+    defineField({
+      name: 'summary',
+      title: 'Project Summary',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'concept',
+      title: 'Design Concept Paragraphs',
+      description: 'Add paragraphs explaining the design story, daylight, and spatial concept.',
+      type: 'array',
+      of: [{ type: 'text', rows: 3 }],
+    }),
+    defineField({
+      name: 'materials',
+      title: 'Materials Palette (e.g. Travertine stone, Fluted oak)',
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
     defineField({
       name: 'gallery',
-      title: 'Project Gallery (Add, Replace or Delete Images)',
+      title: 'Inside Project Gallery (Photos, Rooms, Details)',
+      description: 'Add, replace, reorder, or delete inside gallery images. You can drag and drop to rearrange them.',
       type: 'array',
       of: [
         {
           type: 'image',
           options: { hotspot: true },
           fields: [
-            { name: 'caption', type: 'string', title: 'Caption' },
-            { name: 'alt', type: 'string', title: 'Alt Text' }
-          ]
-        }
+            { name: 'caption', type: 'string', title: 'Caption / Room Name' },
+            { name: 'alt', type: 'string', title: 'Alt Text' },
+            {
+              name: 'aspectRatio',
+              type: 'string',
+              title: 'Aspect Ratio',
+              options: {
+                list: [
+                  { title: 'Landscape (16:10)', value: '16 / 10' },
+                  { title: 'Portrait (3:4)', value: '3 / 4' },
+                  { title: 'Wide (16:9)', value: '16 / 9' },
+                  { title: 'Square (1:1)', value: '1 / 1' },
+                ],
+              },
+              initialValue: '16 / 10',
+            },
+          ],
+        },
       ],
       options: {
         layout: 'grid',
       },
-    }),
-    defineField({
-      name: 'beforeAfter',
-      title: 'Before & After Transformation',
-      type: 'object',
-      fields: [
-        {
-          name: 'enable',
-          title: 'Enable Transformation Comparison',
-          type: 'boolean',
-        },
-        {
-          name: 'beforeImage',
-          title: 'Original / Before Image',
-          type: 'image',
-          options: { hotspot: true },
-        },
-        {
-          name: 'afterImage',
-          title: 'Completed Luxury Transformation Image',
-          type: 'image',
-          options: { hotspot: true },
-        },
-        {
-          name: 'labelBefore',
-          title: 'Before Label',
-          type: 'string',
-          initialValue: 'Original Space',
-        },
-        {
-          name: 'labelAfter',
-          title: 'After Label',
-          type: 'string',
-          initialValue: 'Atelier Design',
-        }
-      ],
-    }),
-    defineField({
-      name: 'client',
-      title: 'Client Name / Estate',
-      type: 'string',
-    }),
-    defineField({
-      name: 'location',
-      title: 'Location (City & Country)',
-      type: 'string',
-    }),
-    defineField({
-      name: 'year',
-      title: 'Year Completed',
-      type: 'string',
-    }),
-    defineField({
-      name: 'area',
-      title: 'Total Area (e.g. 5,200 sq ft)',
-      type: 'string',
-    }),
-    defineField({
-      name: 'featured',
-      title: 'Highlight on Homepage Hero Grid',
-      type: 'boolean',
-      initialValue: false,
-    }),
-    defineField({
-      name: 'summary',
-      title: 'Short Summary',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'description',
-      title: 'Full Design Concept & Details',
-      type: 'array',
-      of: [{ type: 'block' }],
-    }),
-    defineField({
-      name: 'highlights',
-      title: 'Key Design Features (Bullet points)',
-      type: 'array',
-      of: [{ type: 'string' }],
     }),
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'category',
+      order: 'order',
       media: 'mainImage',
+    },
+    prepare({ title, subtitle, order, media }) {
+      const displayTitle = title || 'Untitled Project'
+      return {
+        title: order !== undefined ? `#${order} — ${displayTitle}` : displayTitle,
+        subtitle: subtitle || 'Interior Project',
+        media,
+      }
     },
   },
 })

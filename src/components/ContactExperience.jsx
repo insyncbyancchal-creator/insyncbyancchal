@@ -158,10 +158,42 @@ function Chips({ options, value, onToggle }) {
 /* ------------------------------------------------------------------ */
 /* Main component                                                     */
 /* ------------------------------------------------------------------ */
-export default function ContactExperience() {
+export default function ContactExperience({ siteSettings }) {
   useReveal();
   const openStatus = useOpenStatus();
   const time = useISTClock();
+
+  const studio = useMemo(() => {
+    let addressLines = STUDIO.addressLines;
+    if (siteSettings?.studioAddress) {
+      const splitLines = siteSettings.studioAddress
+        .split('\n')
+        .map((s) => s.trim())
+        .filter(Boolean);
+      addressLines = splitLines.length > 0 ? splitLines : [siteSettings.studioAddress];
+    }
+
+    const phone = siteSettings?.contactPhone || STUDIO.phone;
+    const phoneHref = phone.replace(/[^\d+]/g, '');
+    const whatsapp = (siteSettings?.whatsappNumber || STUDIO.whatsapp).replace(/\D/g, '');
+
+    return {
+      name: siteSettings?.studioName || STUDIO.name,
+      subName: siteSettings?.subName || STUDIO.subName,
+      addressLines,
+      mapQuery: siteSettings?.mapQuery || siteSettings?.studioAddress || STUDIO.mapQuery,
+      hours: siteSettings?.studioHours || STUDIO.hours,
+      phone,
+      phoneHref,
+      whatsapp,
+      email: siteSettings?.contactEmail || STUDIO.email,
+      instagram: siteSettings?.instagramUrl || STUDIO.instagram,
+      contactHeroTitle: siteSettings?.contactHeroTitle || "LET’S BEGIN a quiet CONVERSATION.",
+      contactHeroLede: siteSettings?.contactHeroLede || "Tell us about the space you imagine. We’ll listen first, then design.",
+      enquireButtonText: siteSettings?.enquireButtonText || "ENQUIRE NOW",
+      enquireButtonSubtitle: siteSettings?.enquireButtonSubtitle || "Begin your bespoke architectural commission",
+    };
+  }, [siteSettings]);
 
   const [gi, setGi] = useState(0);
   useEffect(() => {
@@ -246,20 +278,38 @@ export default function ContactExperience() {
     company: "", // honeypot
   });
 
-  const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
-  const toggleType = (t) =>
+  const set = (k, v) => {
+    setErrorMsg("");
+    setData((d) => ({ ...d, [k]: v }));
+  };
+  const toggleType = (t) => {
+    setErrorMsg("");
     set(
       "types",
       data.types.includes(t) ? data.types.filter((x) => x !== t) : [...data.types, t]
     );
+  };
 
   const validate = () => {
-    if (step === 0 && data.name.trim().length < 2) return "Please tell us your name.";
-    if (step === 1 && data.types.length === 0) return "Pick at least one service.";
+    if (step === 0) {
+      if (data.name.trim().length < 2) return "Please enter your full name.";
+    }
+    if (step === 1) {
+      if (data.types.length === 0) return "Please select at least one discipline or service.";
+    }
+    if (step === 2) {
+      if (!data.location.trim()) return "Please enter the city or location of the project.";
+      if (!data.budget) return "Please choose your approximate budget.";
+      if (!data.timeline) return "Please choose your desired timeline.";
+    }
+    if (step === 3) {
+      if (!data.message.trim()) return "Please share a few words about your project or vision.";
+    }
     if (step === 4) {
-      if (!/^\S+@\S+\.\S+$/.test(data.email)) return "Please enter a valid email.";
-      if (data.phone && data.phone.replace(/\D/g, "").length < 8)
-        return "That phone number looks short.";
+      if (!/^\S+@\S+\.\S+$/.test(data.email)) return "Please enter a valid email address.";
+      if (!data.phone.trim() || data.phone.replace(/\D/g, "").length < 8)
+        return "Please enter your phone or WhatsApp number.";
+      if (!data.slot) return "Please choose your preferred time / method to reach you.";
     }
     return "";
   };
@@ -286,13 +336,14 @@ export default function ContactExperience() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, elapsed: Date.now() - startedAt.current }),
+        body: JSON.stringify({ ...data, elapsed: Date.now() - (startedAt.current || Date.now()) }),
       });
-      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Failed");
+      const resData = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(resData.error || "Failed to submit enquiry");
       setState("done");
     } catch (e) {
       setState("error");
-      setErrorMsg("Something went wrong. Please try again or WhatsApp us directly.");
+      setErrorMsg(e.message || "Something went wrong. Please try again or WhatsApp us directly.");
     }
   };
 
@@ -326,18 +377,18 @@ export default function ContactExperience() {
 
   const copyAddress = async () => {
     try {
-      await navigator.clipboard.writeText(`${STUDIO.name}, ${STUDIO.addressLines.join(" ")}`);
+      await navigator.clipboard.writeText(`${studio.name}, ${studio.addressLines.join(" ")}`);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {}
   };
 
   const mapSrc = useMemo(
-    () => `https://maps.google.com/maps?q=${encodeURIComponent(STUDIO.mapQuery)}&z=16&output=embed`,
-    []
+    () => `https://maps.google.com/maps?q=${encodeURIComponent(studio.mapQuery)}&z=16&output=embed`,
+    [studio.mapQuery]
   );
 
-  const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(STUDIO.mapQuery)}`;
+  const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(studio.mapQuery)}`;
   const progress = state === "done" ? 100 : ((step + 1) / STEPS.length) * 100;
   const cur = STEPS[step];
 
@@ -368,12 +419,20 @@ export default function ContactExperience() {
             <h1 className={styles.title}>
               <span className={styles.line}>
                 <span style={{ "--d": "0s" }}>
-                  LET’S BEGIN <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">a quiet</span> CONVERSATION.
+                  {studio.contactHeroTitle.includes("a quiet") ? (
+                    <>
+                      {studio.contactHeroTitle.split("a quiet")[0]}
+                      <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">a quiet</span>
+                      {studio.contactHeroTitle.split("a quiet")[1]}
+                    </>
+                  ) : (
+                    studio.contactHeroTitle
+                  )}
                 </span>
               </span>
             </h1>
             <p className={`${styles.lede} ${styles.sans}`}>
-              Tell us about the space you imagine. We&rsquo;ll listen first, then design.
+              {studio.contactHeroLede}
             </p>
             {time && (
               <p className={`${styles.clock} ${styles.sans}`}>Ludhiana · {time} IST</p>
@@ -395,12 +454,12 @@ export default function ContactExperience() {
               aria-label="Open project enquiry form"
             >
               <span className="text-[11px] sm:text-xs font-sans uppercase tracking-[0.28em] font-semibold transition-colors duration-300">
-                ENQUIRE NOW
+                {studio.enquireButtonText}
               </span>
               <ArrowUpRight className="w-4 h-4 text-[#C5A059] group-hover:text-[#1A1A1A] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </button>
             <p className="mt-3 text-[14px] font-serif italic text-[#4A463F] tracking-[0.03em] text-left md:text-right">
-              Begin your bespoke architectural commission
+              {studio.enquireButtonSubtitle}
             </p>
           </motion.div>
         </div>
@@ -422,7 +481,7 @@ export default function ContactExperience() {
         >
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#C5A059] font-normal tracking-[0.06em]">
-              {STUDIO.name}
+              {studio.name}
             </h2>
             {openStatus && (
               <p className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.2em] text-[#555048] font-medium mt-2">
@@ -464,7 +523,7 @@ export default function ContactExperience() {
                 VISIT
               </h3>
               <address className="not-italic text-[15px] text-[#3E3A34] leading-[1.85] font-normal font-sans">
-                {STUDIO.addressLines.map((l) => (
+                {studio.addressLines.map((l) => (
                   <span key={l} className="block">{l}</span>
                 ))}
               </address>
@@ -547,13 +606,13 @@ export default function ContactExperience() {
               </h3>
               <div className="space-y-2 text-[15px] text-[#3E3A34] font-sans">
                 <p>
-                  <a href={`tel:${STUDIO.phoneHref}`} className="hover:text-[#C5A059] transition-colors">
-                    {STUDIO.phone}
+                  <a href={`tel:${studio.phoneHref}`} className="hover:text-[#C5A059] transition-colors">
+                    {studio.phone}
                   </a>
                 </p>
                 <p>
-                  <a href={`mailto:${STUDIO.email}`} className="hover:text-[#C5A059] transition-colors">
-                    {STUDIO.email}
+                  <a href={`mailto:${studio.email}`} className="hover:text-[#C5A059] transition-colors">
+                    {studio.email}
                   </a>
                 </p>
               </div>
@@ -561,7 +620,7 @@ export default function ContactExperience() {
 
             <div className="flex items-center gap-5 pt-5 mt-5 border-t border-[#C5A059]/15 text-xs font-sans uppercase tracking-[0.2em] font-semibold">
               <a
-                href={`https://wa.me/${STUDIO.whatsapp}?text=${encodeURIComponent(
+                href={`https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(
                   "Hello Insync, I'd like to discuss a project."
                 )}`}
                 target="_blank"
@@ -571,7 +630,7 @@ export default function ContactExperience() {
                 WhatsApp ↗
               </a>
               <a
-                href={STUDIO.instagram}
+                href={studio.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
@@ -655,6 +714,18 @@ export default function ContactExperience() {
                           setIsModalOpen(false);
                           setState("idle");
                           setStep(0);
+                          setData({
+                            name: "",
+                            types: [],
+                            location: "",
+                            budget: "",
+                            timeline: "",
+                            message: "",
+                            email: "",
+                            phone: "",
+                            slot: "",
+                            company: "",
+                          });
                         }}
                         className="px-8 py-3 bg-[#1A1A1A] text-white rounded-none text-xs uppercase tracking-[0.24em] font-semibold hover:bg-[#C5A059] hover:text-[#1A1A1A] border border-[#C5A059]/50 transition-colors cursor-pointer"
                       >
@@ -679,7 +750,7 @@ export default function ContactExperience() {
                         <input
                           autoFocus
                           className={`${styles.field} ${styles.big}`}
-                          placeholder="Full name"
+                          placeholder="Full name *"
                           value={data.name}
                           onChange={(e) => set("name", e.target.value)}
                           autoComplete="name"
@@ -692,17 +763,17 @@ export default function ContactExperience() {
                         <div className={styles.stack}>
                           <input
                             className={styles.field}
-                            placeholder="City / location of the project"
+                            placeholder="City / location of the project *"
                             value={data.location}
                             onChange={(e) => set("location", e.target.value)}
                           />
-                          <p className={`${styles.label} ${styles.sans}`}>Approximate budget</p>
+                          <p className={`${styles.label} ${styles.sans}`}>Approximate budget *</p>
                           <Chips
                             options={BUDGETS}
                             value={data.budget}
                             onToggle={(o) => set("budget", data.budget === o ? "" : o)}
                           />
-                          <p className={`${styles.label} ${styles.sans}`}>Timeline</p>
+                          <p className={`${styles.label} ${styles.sans}`}>Timeline *</p>
                           <Chips
                             options={TIMELINES}
                             value={data.timeline}
@@ -716,7 +787,7 @@ export default function ContactExperience() {
                           autoFocus
                           rows={4}
                           className={`${styles.field} ${styles.area}`}
-                          placeholder="A calm, warm 3BHK with lots of natural wood…"
+                          placeholder="Describe your space or project vision (e.g. A calm, warm 3BHK with natural travertine...) *"
                           value={data.message}
                           onChange={(e) => set("message", e.target.value)}
                           maxLength={2000}
@@ -729,7 +800,7 @@ export default function ContactExperience() {
                             autoFocus
                             type="email"
                             className={styles.field}
-                            placeholder="Email address"
+                            placeholder="Email address *"
                             value={data.email}
                             onChange={(e) => set("email", e.target.value)}
                             autoComplete="email"
@@ -737,12 +808,12 @@ export default function ContactExperience() {
                           <input
                             type="tel"
                             className={styles.field}
-                            placeholder="Phone (optional)"
+                            placeholder="Phone / WhatsApp number *"
                             value={data.phone}
                             onChange={(e) => set("phone", e.target.value)}
                             autoComplete="tel"
                           />
-                          <p className={`${styles.label} ${styles.sans}`}>Best time to reach you</p>
+                          <p className={`${styles.label} ${styles.sans}`}>Best time to reach you *</p>
                           <Chips
                             options={CALL_SLOTS}
                             value={data.slot}
@@ -863,9 +934,9 @@ export default function ContactExperience() {
             </button>
           )}
           <div className={`${styles.pin} ${styles.sans}`}>
-            <strong>INSYNC INTERIORS</strong>
-            <span>SCF - 1, Third Floor, I Block Market, Sarabha Nagar</span>
-            <span className="text-[11px] text-[#7A746B]">(Opp. Nav Durga Mata Mandir), Ludhiana 141001</span>
+            <strong>{studio.name}</strong>
+            <span>{studio.addressLines[1] || studio.addressLines[0]}</span>
+            <span className="text-[11px] text-[#7A746B]">{studio.addressLines.slice(2).join(", ") || studio.addressLines[0]}</span>
             <a href={directions} target="_blank" rel="noopener noreferrer">
               Directions ↗
             </a>

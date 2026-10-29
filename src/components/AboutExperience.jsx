@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./AboutExperience.module.css";
+import { urlForImage } from "@/sanity/lib/image";
 
 /* =====================================================================
    EDIT THE CONTENT HERE. Nothing below this block needs touching.
@@ -50,9 +51,37 @@ const MANIFESTO = {
     "Luxury architectural interior with serene natural light, fluted oak and organic travertine",
 };
 
-/* ===================================================================== */
+export default function AboutExperience({ data, children }) {
+  // 1. Dynamic Founder Photo from Sanity
+  const sanityFounderImage = data?.founderSection?.founderPhoto;
+  const sanityFounderUrl = sanityFounderImage ? urlForImage(sanityFounderImage)?.url() : null;
+  const founderDimensions = sanityFounderImage?.asset?.metadata?.dimensions;
+  let dynamicFounderAspectRatio = "4 / 4.7";
+  if (founderDimensions?.width && founderDimensions?.height) {
+    dynamicFounderAspectRatio = `${founderDimensions.width} / ${founderDimensions.height}`;
+  }
+  let dynamicFounderObjectPosition = OWNER.focus || "50% 20%";
+  if (sanityFounderImage?.hotspot) {
+    const x = Math.round(sanityFounderImage.hotspot.x * 100);
+    const y = Math.round(sanityFounderImage.hotspot.y * 100);
+    dynamicFounderObjectPosition = `${x}% ${y}%`;
+  }
+  const founderPhotoSrc = sanityFounderUrl || OWNER.photo;
+  const founderPhotoAlt = data?.founderSection?.founderPhotoAlt || OWNER.alt;
 
-export default function AboutExperience({ children }) {
+  // 2. Dynamic Approach Photo from Sanity
+  const sanityApproachImage = data?.approachSection?.approachPhoto;
+  const sanityApproachUrl = sanityApproachImage ? urlForImage(sanityApproachImage)?.url() : null;
+  let dynamicApproachObjectPosition = "center";
+  if (sanityApproachImage?.hotspot) {
+    const x = Math.round(sanityApproachImage.hotspot.x * 100);
+    const y = Math.round(sanityApproachImage.hotspot.y * 100);
+    dynamicApproachObjectPosition = `${x}% ${y}%`;
+  }
+  const approachPhotoSrc = sanityApproachUrl || MANIFESTO.image;
+  const approachPhotoAlt = data?.approachSection?.approachPhotoAlt || MANIFESTO.imageAlt;
+  const approachCaption = data?.approachSection?.caption || "STUDIO PHILOSOPHY IN PRACTICE";
+
   return (
     <main className={styles.root}>
       {/* ---------- INTRO ---------- */}
@@ -84,22 +113,28 @@ export default function AboutExperience({ children }) {
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className={`${styles.portrait} will-change-transform`}
         >
-          <span className={styles.frame}>
-            {OWNER.photo ? (
+          <span 
+            className={styles.frame}
+            style={{ 
+              aspectRatio: dynamicFounderAspectRatio,
+              maxHeight: "520px"
+            }}
+          >
+            {founderPhotoSrc ? (
               <motion.img
-                src={OWNER.photo}
-                alt={OWNER.alt}
+                src={founderPhotoSrc}
+                alt={founderPhotoAlt}
                 onError={(e) => {
-                  e.currentTarget.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=75&w=800&auto=format&fit=crop";
+                  e.currentTarget.src = "/about/ancchal-about.jpeg";
                 }}
-                style={{ objectPosition: OWNER.focus }}
+                style={{ objectPosition: dynamicFounderObjectPosition }}
                 initial={{ scale: 1.06 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
               />
             ) : (
-              <span className={`${styles.ph} ${styles.sans}`} role="img" aria-label={OWNER.alt}>Portrait</span>
+              <span className={`${styles.ph} ${styles.sans}`} role="img" aria-label={founderPhotoAlt}>Portrait</span>
             )}
           </span>
           <div className={`${styles.portraitCaption} ${styles.sans}`}>
@@ -225,8 +260,9 @@ export default function AboutExperience({ children }) {
               <div className={styles.mImageFrame}>
                 <div className={styles.mImageInner}>
                   <motion.img
-                    src={MANIFESTO.image}
-                    alt={MANIFESTO.imageAlt}
+                    src={approachPhotoSrc}
+                    alt={approachPhotoAlt}
+                    style={{ objectPosition: dynamicApproachObjectPosition }}
                     loading="lazy"
                     decoding="async"
                     initial={{ scale: 1.08 }}
@@ -237,7 +273,7 @@ export default function AboutExperience({ children }) {
                 </div>
               </div>
               <div className={`${styles.mImageCaption} ${styles.sans}`}>
-                <span>STUDIO PHILOSOPHY IN PRACTICE</span>
+                <span>{approachCaption}</span>
                 <span>LIGHT · TEXTURE · RESTRAINT</span>
               </div>
             </motion.div>

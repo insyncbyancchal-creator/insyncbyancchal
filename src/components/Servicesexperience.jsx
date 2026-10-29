@@ -3,105 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
+import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
+import { DEFAULT_SERVICES, DEFAULT_PRODUCTS } from "@/lib/services";
 import styles from "./Servicesexperience.module.css";
-
-/* ------------------------------------------------------------------
-   EDIT HERE: the five services.
-   - img: replace null with a path from /public, e.g. "/services/interior.jpg"
-          (portrait, about 4:5, at least 1400px tall, under 400 KB).
-          Until then, a soft gradient placeholder is shown.
-   - tone: the placeholder gradient colours.
-   - Keep the titles in sync with PROJECT_TYPES in the contact form.
-------------------------------------------------------------------- */
-const SERVICES = [
-  {
-    no: "01",
-    title: "Architectural Design",
-    line: "Spaces conceived from the ground up, where structure, light and proportion are resolved before a single finish is chosen.",
-    tags: ["Concept", "Planning", "Elevations"],
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1000&auto=format&fit=crop",
-    tone: ["#e9e3d5", "#cdc2a9"],
-  },
-  {
-    no: "02",
-    title: "Interior Design",
-    line: "Rooms composed with restraint: layered materials, considered light, and furniture that truly belongs.",
-    tags: ["Space planning", "Materials", "Lighting"],
-    img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1000&auto=format&fit=crop",
-    tone: ["#dccdb4", "#a98f68"],
-  },
-  {
-    no: "03",
-    title: "Procurement",
-    line: "Furniture, fittings and finishes sourced and negotiated on your behalf, to the standard we would specify for ourselves.",
-    tags: ["Sourcing", "Vendors", "Quality checks"],
-    img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1000&auto=format&fit=crop",
-    tone: ["#e4dac2", "#b99a5b"],
-  },
-  {
-    no: "04",
-    title: "Delivery & Installation",
-    line: "Every piece delivered, placed and finished by our own team, so the room you approved is the room you receive.",
-    tags: ["Logistics", "Installation", "Styling"],
-    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1000&auto=format&fit=crop",
-    tone: ["#cfc8ba", "#8f8878"],
-  },
-  {
-    no: "05",
-    title: "Insync Home",
-    line: "A collection of home décor made to be customised, to your dimensions, finishes and taste.",
-    tags: ["Décor", "Made to order", "Customisable"],
-    img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=75&w=1000&auto=format&fit=crop",
-    tone: ["#efe4cb", "#c4a56a"],
-    shop: true,
-  },
-];
-
-/* ------------------------------------------------------------------
-   Insync Home: Bespoke Objects Catalog & Customizer
-------------------------------------------------------------------- */
-const BESPOKE_PRODUCTS = [
-  {
-    id: "plinth",
-    no: "01",
-    name: "Monolithic Travertine Plinth",
-    category: "Stone Furniture",
-    desc: "Hand-carved Italian travertine with distinctive geological veining and honed bevels.",
-    img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=650&auto=format&fit=crop",
-    badge: "Bespoke Stone",
-    options: "Travertine · Marble · Onyx",
-  },
-  {
-    id: "lighting",
-    no: "02",
-    name: "Alabaster & Brass Pendant",
-    category: "Architectural Lighting",
-    desc: "Solid Spanish alabaster sphere with hand-brushed brass emitting ambient luminescence.",
-    img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=650&auto=format&fit=crop",
-    badge: "Made to Order",
-    options: "Alabaster · Fluted Glass",
-  },
-  {
-    id: "chair",
-    no: "03",
-    name: "Solstice Bouclé Lounge Chair",
-    category: "Bespoke Seating",
-    desc: "Sculptural low-slung curves in tactile French bouclé over a kiln-dried hardwood frame.",
-    img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=75&w=650&auto=format&fit=crop",
-    badge: "Atelier Crafted",
-    options: "Bouclé · Linen · Leather",
-  },
-  {
-    id: "mirror",
-    no: "04",
-    name: "Monumental Arched Atelier Mirror",
-    category: "Architectural Accents",
-    desc: "Hand-rolled iron frame with deep architectural reveal and beveled crystal glass.",
-    img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=650&auto=format&fit=crop",
-    badge: "Custom Dimensions",
-    options: "Aged Bronze · Brass · Steel",
-  },
-];
 
 const enquire = (title, note) =>
   `/contact?service=${encodeURIComponent(title)}${note ? `&note=${encodeURIComponent(note)}` : ""}`;
@@ -147,7 +51,7 @@ function useParallax(refs) {
       refs.current.forEach((el, i) => {
         if (!el) return;
         const r = el.getBoundingClientRect();
-        if (r.bottom < -100 || r.top > vh + 100) return; // Skip off-screen images to avoid layout thrashing
+        if (r.bottom < -100 || r.top > vh + 100) return;
         const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh));
         const prev = lastP.get(i);
         if (prev === undefined || Math.abs(p - prev) > 0.015) {
@@ -170,13 +74,33 @@ function useParallax(refs) {
   }, [refs]);
 }
 
-const bg = (s) =>
-  s.img ? `url("${s.img}"), linear-gradient(150deg, ${s.tone[0]}, ${s.tone[1]})` : `linear-gradient(150deg, ${s.tone[0]}, ${s.tone[1]})`;
+/* ------------------------------------------------------------------ */
+/*  Insync Home: Curated Pieces Showcase (Dynamic from Sanity)        */
+/* ------------------------------------------------------------------ */
+function HomeShowcase({ products, homeData }) {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-/* ------------------------------------------------------------------ */
-/*  Insync Home: Curated Pieces Showcase                               */
-/* ------------------------------------------------------------------ */
-function HomeShowcase() {
+  // Filter out any deleted or nameless items so NO EMPTY CARD can ever render
+  const allProducts = (products && products.length > 0 ? products : DEFAULT_PRODUCTS).filter(
+    (p) => p && p.name
+  );
+
+  // 4 + 4 = 8 products displayed initially, expand to reveal all
+  const displayProducts = isExpanded ? allProducts : allProducts.slice(0, 8);
+  const hasMore = !isExpanded && allProducts.length > 8;
+
+  const handleDiscoverMore = () => {
+    setIsExpanded(true);
+  };
+
+  const handleShowLess = () => {
+    setIsExpanded(false);
+    const el = document.getElementById("insync-home");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section className={styles.homeSection} id="insync-home">
       {/* Header */}
@@ -187,9 +111,15 @@ function HomeShowcase() {
         transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
         className={styles.homeHeader}
       >
-        <p className={styles.eyebrow}>INSYNC HOME</p>
+        <p className={styles.eyebrow}>{homeData?.eyebrow || "INSYNC HOME"}</p>
         <h2 className={styles.homeTitle}>
-          CURATED OBJECTS, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">made for your</span> SPACE.
+          {homeData?.title ? (
+            homeData.title
+          ) : (
+            <>
+              CURATED OBJECTS, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">made for your</span> SPACE.
+            </>
+          )}
         </h2>
         <motion.div
           initial={{ scaleX: 0 }}
@@ -199,85 +129,157 @@ function HomeShowcase() {
           className="w-16 h-[1.5px] bg-[#C5A059] mx-auto my-5 origin-center"
         />
         <p className={`${styles.homeLede} ${styles.sans}`}>
-          Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.
+          {homeData?.lede ||
+            "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes."}
         </p>
       </motion.div>
 
       {/* Grid of Décor Product Cards */}
       <div className={styles.homeGrid}>
-        {BESPOKE_PRODUCTS.map((prod, idx) => (
-          <motion.article
-            key={prod.id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{
-              duration: 0.85,
-              delay: (idx % 2) * 0.12,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className={styles.homeCard}
+        <AnimatePresence mode="popLayout">
+          {displayProducts.map((prod, idx) => (
+            <motion.article
+              key={prod.id || prod._id || idx}
+              layout
+              initial={{ opacity: 0, y: 35, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{
+                duration: 0.55,
+                delay: (idx % 4) * 0.08,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={styles.homeCard}
+            >
+              <div className={styles.cardThumb}>
+                <motion.img
+                  initial={{ scale: 1.08 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                  src={prod.img}
+                  alt={prod.name}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ objectPosition: prod.imageFocus || "50% 50%" }}
+                />
+                {prod.badge && <span className={`${styles.cardBadge} ${styles.sans}`}>{prod.badge}</span>}
+              </div>
+
+              <div className={`${styles.cardMeta} ${styles.sans}`}>
+                <span className={styles.cardNo}>{prod.no}</span>
+                <span className={styles.cardCategory}>{prod.category}</span>
+              </div>
+
+              <h3 className={styles.cardTitle}>{prod.name}</h3>
+
+              <p className={`${styles.cardDesc} ${styles.sans}`}>{prod.desc}</p>
+
+              <div className={`${styles.cardFooter} ${styles.sans}`}>
+                <span className={styles.cardCustomTag}>{prod.options}</span>
+                <Link
+                  href={enquire("Insync Home", `Enquiry for ${prod.name}`)}
+                  className={styles.cardLink}
+                  aria-label={`Enquire about ${prod.name}`}
+                >
+                  <span>Enquire</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </motion.article>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Discover More Action Button */}
+      {hasMore ? (
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 sm:mt-16 text-center"
+        >
+          <button
+            onClick={handleDiscoverMore}
+            className="group relative inline-flex items-center gap-3.5 px-10 py-4 border border-[#C5A059] bg-transparent text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-none text-[11px] sm:text-[11.5px] uppercase tracking-[0.26em] font-semibold cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] hover:-translate-y-0.5 active:scale-98"
+            aria-label="Discover all remaining curated pieces"
           >
-            <div className={styles.cardThumb}>
-              <motion.img
-                initial={{ scale: 1.08 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                src={prod.img}
-                alt={prod.name}
-                loading="lazy"
-                decoding="async"
-              />
-              {prod.badge && <span className={`${styles.cardBadge} ${styles.sans}`}>{prod.badge}</span>}
-            </div>
-
-            <div className={`${styles.cardMeta} ${styles.sans}`}>
-              <span className={styles.cardNo}>{prod.no}</span>
-              <span className={styles.cardCategory}>{prod.category}</span>
-            </div>
-
-            <h3 className={styles.cardTitle}>{prod.name}</h3>
-
-            <p className={`${styles.cardDesc} ${styles.sans}`}>{prod.desc}</p>
-
-            <div className={`${styles.cardFooter} ${styles.sans}`}>
-              <span className={styles.cardCustomTag}>{prod.options}</span>
-              <Link
-                href={enquire("Insync Home", `Enquiry for ${prod.name}`)}
-                className={styles.cardLink}
-                aria-label={`Enquire about ${prod.name}`}
+            <span>DISCOVER MORE PIECES</span>
+            <ArrowDown className="w-4 h-4 text-[#C5A059] group-hover:text-white transition-transform duration-300 group-hover:translate-y-1" />
+          </button>
+          <p className="mt-3.5 text-[11px] font-sans uppercase tracking-[0.2em] text-[#8C857B]">
+            Showing 8 of {allProducts.length} curated objects &bull; Click to reveal all
+          </p>
+        </motion.div>
+      ) : (
+        allProducts.length > 8 && (
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 sm:mt-16 text-center space-y-4"
+          >
+            <p className="text-[11.5px] font-sans uppercase tracking-[0.24em] text-[#8C857B] font-medium">
+              SHOWING ALL {allProducts.length} BESPOKE COMMISSIONS
+            </p>
+            <div className="flex justify-center items-center gap-4 flex-wrap">
+              <button
+                onClick={handleShowLess}
+                className="group inline-flex items-center gap-2.5 px-7 py-3 border border-[#C5A059]/40 bg-white/70 text-[#1A1A1A] hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300 text-[10.5px] uppercase tracking-[0.22em] font-medium cursor-pointer shadow-xs"
               >
-                <span>Enquire</span>
-                <span aria-hidden="true">→</span>
+                <span>SHOW LESS</span>
+                <ArrowUp className="w-3.5 h-3.5 text-[#C5A059] transition-transform duration-300 group-hover:-translate-y-0.5" />
+              </button>
+              <Link
+                href="/contact?service=Insync%20Home&note=Custom%20Object%20Commission"
+                className="group inline-flex items-center gap-3 px-8 py-3.5 border border-[#C5A059] bg-[#1A1A1A] text-[#FBF9F6] hover:bg-[#C5A059] hover:text-[#1A1A1A] transition-all duration-300 text-[10.5px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold cursor-pointer shadow-xs active:scale-98"
+              >
+                <span>COMMISSION A BESPOKE PIECE</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] group-hover:text-[#1A1A1A] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
-          </motion.article>
-        ))}
-      </div>
+          </motion.div>
+        )
+      )}
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Page                                                               */
+/*  Main Services Experience Component                                 */
 /* ------------------------------------------------------------------ */
-export default function ServicesExperience() {
+export default function ServicesExperience({ data, initialProducts }) {
   useReveal();
   const [active, setActive] = useState(0);
   const panelRef = useRef(null);
   const mRefs = useRef([]);
   useParallax(mRefs);
 
-  // Preload all 5 service images so image transitions are instantaneous with zero delay
+  // Dynamic disciplines from Sanity or default (zero stock dummy photos)
+  const services =
+    data?.disciplines && data.disciplines.length > 0 ? data.disciplines : DEFAULT_SERVICES;
+
+  const heroEyebrow = data?.heroEyebrow || "OUR PRACTICE";
+  const heroTitle = data?.heroTitle || "FIVE DISCIPLINES, one quiet STUDIO.";
+  const heroLede =
+    data?.heroLede ||
+    "From the first sketch to the final cushion, everything under one roof, and one standard.";
+
+  const homeData = {
+    eyebrow: data?.homeEyebrow,
+    title: data?.homeTitle,
+    lede: data?.homeLede,
+  };
+
+  // Preload real discipline photos when provided
   useEffect(() => {
-    SERVICES.forEach((s) => {
+    services.forEach((s) => {
       if (s.img && typeof window !== "undefined") {
         const img = new window.Image();
         img.src = s.img;
       }
     });
-  }, []);
+  }, [services]);
 
   const go = (i) => {
     if (i === active) return;
@@ -300,6 +302,8 @@ export default function ServicesExperience() {
     el.style.setProperty("--ty", "0px");
   };
 
+  const currentService = services[active] || services[0] || {};
+
   return (
     <MotionConfig reducedMotion="never">
       <main
@@ -317,11 +321,17 @@ export default function ServicesExperience() {
           transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           className={styles.hero}
         >
-          <p className={styles.eyebrow}>OUR PRACTICE</p>
+          <p className={styles.eyebrow}>{heroEyebrow}</p>
           <h1 className={styles.title}>
             <span className={styles.line}>
               <span>
-                FIVE DISCIPLINES, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one quiet</span> STUDIO.
+                {heroTitle.includes("one quiet") ? (
+                  <>
+                    FIVE DISCIPLINES, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one quiet</span> STUDIO.
+                  </>
+                ) : (
+                  heroTitle
+                )}
               </span>
             </span>
           </h1>
@@ -332,12 +342,10 @@ export default function ServicesExperience() {
             transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="w-20 h-[1.5px] bg-[#C5A059] mt-5 origin-left"
           />
-          <p className={`${styles.lede} ${styles.sans}`}>
-            From the first sketch to the final cushion, everything under one roof, and one standard.
-          </p>
+          <p className={`${styles.lede} ${styles.sans}`}>{heroLede}</p>
         </motion.section>
 
-        {/* ---------- THE INDEX ---------- */}
+        {/* ---------- THE 5 DISCIPLINES INDEX ---------- */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -347,9 +355,9 @@ export default function ServicesExperience() {
           aria-label="Our services"
         >
           <ol className={styles.list}>
-            {SERVICES.map((s, i) => (
+            {services.map((s, i) => (
               <motion.li
-                key={s.title}
+                key={s.title || i}
                 initial={{ opacity: 0, x: -25 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -360,7 +368,29 @@ export default function ServicesExperience() {
               >
                 {/* stacked image: tablet & mobile only */}
                 <div className={styles.mImg} ref={(el) => (mRefs.current[i] = el)}>
-                  <span className={styles.mImgInner} style={{ backgroundImage: bg(s) }} />
+                  {s.img ? (
+                    <span
+                      className={styles.mImgInner}
+                      style={{
+                        backgroundImage: `url("${s.img}")`,
+                        backgroundPosition: s.imageFocus || "center",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      className="w-full h-full flex flex-col items-center justify-center p-6 text-center"
+                      style={{
+                        background: `linear-gradient(150deg, ${s.tone?.[0] || "#e9e3d5"}, ${s.tone?.[1] || "#cdc2a9"})`,
+                      }}
+                    >
+                      <span className="font-serif text-[32px] text-[#C5A059]/40 mb-1 font-light">
+                        {s.no}
+                      </span>
+                      <span className="font-sans text-[10px] uppercase tracking-[0.24em] text-[#7A746B] font-semibold">
+                        {s.title}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <button
@@ -383,11 +413,13 @@ export default function ServicesExperience() {
                 <div className={styles.rowBody}>
                   <div>
                     <p className={`${styles.desc} ${styles.sans}`}>{s.line}</p>
-                    <ul className={`${styles.tags} ${styles.sans}`}>
-                      {s.tags.map((t) => (
-                        <li key={t}>{t}</li>
-                      ))}
-                    </ul>
+                    {Array.isArray(s.tags) && s.tags.length > 0 && (
+                      <ul className={`${styles.tags} ${styles.sans}`}>
+                        {s.tags.map((t) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    )}
                     <div className={`${styles.links} ${styles.sans}`}>
                       <Link href={enquire(s.title)}>Enquire →</Link>
                       {s.shop && <a href="#insync-home">Customise a piece ↓</a>}
@@ -423,19 +455,36 @@ export default function ServicesExperience() {
                     animate={{ y: "0%", scale: 1 }}
                     transition={{ duration: 1.02, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    {SERVICES[active].img ? (
+                    {currentService.img ? (
                       <img
-                        src={SERVICES[active].img}
-                        alt={SERVICES[active].title}
+                        src={currentService.img}
+                        alt={currentService.title}
                         className={styles.slideImg}
+                        style={{ objectPosition: currentService.imageFocus || "50% 50%" }}
                       />
                     ) : (
                       <div
                         className={styles.slideImg}
                         style={{
-                          background: `linear-gradient(150deg, ${SERVICES[active].tone[0]}, ${SERVICES[active].tone[1]})`,
+                          background: `linear-gradient(150deg, ${currentService.tone?.[0] || "#e9e3d5"}, ${currentService.tone?.[1] || "#cdc2a9"})`,
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "2rem",
+                          textAlign: "center",
                         }}
-                      />
+                      >
+                        <span className="font-serif text-[46px] text-[#C5A059]/40 mb-2 font-light">
+                          {currentService.no}
+                        </span>
+                        <span className="font-sans text-[11px] uppercase tracking-[0.24em] text-[#7A746B] font-semibold">
+                          {currentService.title}
+                        </span>
+                        <span className="mt-4 text-[9.5px] font-sans tracking-[0.2em] uppercase text-[#C5A059] border border-[#C5A059]/40 px-3 py-1">
+                          Insync Discipline
+                        </span>
+                      </div>
                     )}
                   </motion.div>
                 </motion.div>
@@ -450,16 +499,16 @@ export default function ServicesExperience() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <b>{SERVICES[active].no}</b>
-                  <span>{SERVICES[active].title}</span>
+                  <b>{currentService.no}</b>
+                  <span>{currentService.title}</span>
                 </motion.div>
               </AnimatePresence>
             </div>
           </motion.div>
         </motion.section>
 
-        {/* ---------- INSYNC HOME ---------- */}
-        <HomeShowcase />
+        {/* ---------- INSYNC HOME (Dynamic products from Sanity) ---------- */}
+        <HomeShowcase products={initialProducts} homeData={homeData} />
 
         {/* ---------- CLOSING ---------- */}
         <motion.section

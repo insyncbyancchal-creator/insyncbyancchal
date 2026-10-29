@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import SimpleFooter from "@/components/SimpleFooter";
 import ProjectStory from "@/components/ProjectStory";
 import { getProjects, getProject, getNeighbours } from "@/lib/projects";
+import { getSiteSettings } from "@/sanity/lib/client";
 
 export async function generateStaticParams() {
   const all = await getProjects();
@@ -22,14 +23,17 @@ export async function generateMetadata({ params }) {
 
 export default async function ProjectPage({ params }) {
   const { slug } = await params;
-  const project = await getProject(slug);
+  const [project, siteSettings] = await Promise.all([
+    getProject(slug),
+    getSiteSettings(),
+  ]);
   if (!project) notFound();
   const { next, others } = await getNeighbours(slug);
   return (
     <div className="bg-[#F5F2EB] min-h-screen text-[#1B1A17] selection:bg-[#C5A059] selection:text-[#1B1A17]">
-      <Navbar />
+      <Navbar siteSettings={siteSettings} />
       <ProjectStory project={project} next={next} others={others} />
-      <SimpleFooter />
+      <SimpleFooter siteSettings={siteSettings} />
     </div>
   );
 }

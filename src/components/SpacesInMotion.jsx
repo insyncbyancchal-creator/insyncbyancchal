@@ -63,7 +63,9 @@ const REELS = [
 ];
 
 // Memoized Left Column to completely isolate heading & text from re-renders and shaking
-const LeftColumn = React.memo(function LeftColumn() {
+const LeftColumn = React.memo(function LeftColumn({ profileUrl }) {
+  const targetUrl = profileUrl || INSTAGRAM_PROFILE;
+
   return (
     <div className={styles.leftCol}>
       <div className={styles.eyebrowWrap}>
@@ -83,7 +85,7 @@ const LeftColumn = React.memo(function LeftColumn() {
       </p>
 
       <a
-        href={INSTAGRAM_PROFILE}
+        href={targetUrl}
         target="_blank"
         rel="noopener noreferrer"
         className={styles.ctaLink}
@@ -185,9 +187,25 @@ function ReelCard({
   );
 }
 
-export default function SpacesInMotion() {
+export default function SpacesInMotion({ data }) {
   const [activeSeqIndex, setActiveSeqIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const instagramProfileUrl = data?.instagramProfileUrl || INSTAGRAM_PROFILE;
+
+  // Resolve dynamic reels from Sanity or fall back to curated local authentic reels
+  const displayReels = (data?.reelsList && data.reelsList.length > 0)
+    ? data.reelsList.map((item, idx) => ({
+        id: item._key || idx + 1,
+        title: item.title || REELS[idx]?.title || `Reel 0${idx + 1}`,
+        duration: item.duration || '0:05',
+        poster: item.poster?.asset?.url || REELS[idx]?.poster,
+        video: item.videoFile?.asset?.url || item.videoUrl || REELS[idx]?.video,
+        instagramUrl: item.instagramUrl || REELS[idx]?.instagramUrl,
+      }))
+    : REELS;
+
+  const reelsCount = displayReels.length || 1;
 
   // When user hovers any video, that video plays and sequence stops.
   // When no video is hovered, the current sequential video plays.
@@ -196,7 +214,7 @@ export default function SpacesInMotion() {
   // Advance sequence when video ends naturally
   const handleVideoEnded = (endedIndex) => {
     if (hoveredIndex === null && endedIndex === activeSeqIndex) {
-      setActiveSeqIndex((prev) => (prev + 1) % REELS.length);
+      setActiveSeqIndex((prev) => (prev + 1) % reelsCount);
     }
   };
 
@@ -205,22 +223,22 @@ export default function SpacesInMotion() {
     if (hoveredIndex !== null) return;
 
     const timer = setTimeout(() => {
-      setActiveSeqIndex((prev) => (prev + 1) % REELS.length);
+      setActiveSeqIndex((prev) => (prev + 1) % reelsCount);
     }, 6000);
 
     return () => clearTimeout(timer);
-  }, [activeSeqIndex, hoveredIndex]);
+  }, [activeSeqIndex, hoveredIndex, reelsCount]);
 
   return (
     <section className={styles.section} aria-labelledby="spaces-in-motion-heading">
       <div className={styles.container}>
         {/* LEFT COLUMN: Editorial Text & Italian Calligraphic Script */}
-        <LeftColumn />
+        <LeftColumn profileUrl={instagramProfileUrl} />
 
         {/* 4 REELS GRID: 3D Luxury Motion Runway */}
         <div className={styles.reelsViewport}>
           <div className={styles.reelsGrid}>
-            {REELS.map((reel, index) => (
+            {displayReels.map((reel, index) => (
               <ReelCard
                 key={reel.id}
                 reel={reel}
@@ -231,7 +249,7 @@ export default function SpacesInMotion() {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => {
                   setHoveredIndex(null);
-                  setActiveSeqIndex((index + 1) % REELS.length);
+                  setActiveSeqIndex((index + 1) % reelsCount);
                 }}
               />
             ))}

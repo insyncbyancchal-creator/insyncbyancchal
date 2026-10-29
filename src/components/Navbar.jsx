@@ -29,10 +29,30 @@ function InstagramIcon(props) {
   )
 }
 
-export default function Navbar() {
+export default function Navbar({ siteSettings: initialSettings }) {
+  const [siteSettings, setSiteSettings] = useState(initialSettings || null)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    if (initialSettings) {
+      setSiteSettings(initialSettings)
+      return
+    }
+    let isCancelled = false
+    fetch('/api/site-settings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!isCancelled && data?.ok && data?.settings) {
+          setSiteSettings(data.settings)
+        }
+      })
+      .catch(() => {})
+    return () => {
+      isCancelled = true
+    }
+  }, [initialSettings])
 
   useEffect(() => {
     let ticking = false
@@ -72,6 +92,15 @@ export default function Navbar() {
   const currentPath = (pathname || '').replace(/\/$/, '') || '/'
   const hasHeroSection = ['/', '/about', '/portfolio', '/services', '/contact'].includes(currentPath)
   const isVisible = (!hasHeroSection || scrolled) || mobileOpen
+
+  // Computed dynamic URLs from Sanity Site Settings
+  const whatsappRaw = siteSettings?.whatsappNumber || '919877417531'
+  const whatsappDigits = whatsappRaw.replace(/\D/g, '') || '919877417531'
+  const whatsappUrl = `https://wa.me/${whatsappDigits}?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project`
+  const email = siteSettings?.contactEmail || 'contact@insyncinteriors.com'
+  const emailUrl = `mailto:${email}`
+  const instagramUrl = siteSettings?.instagramUrl || 'https://www.instagram.com/insync_byancchal/'
+  const inquireLabel = siteSettings?.enquireButtonText || 'INQUIRE'
 
   return (
     <>
@@ -143,7 +172,7 @@ export default function Navbar() {
             <div className="hidden sm:flex items-center space-x-2.5 sm:space-x-3 shrink-0">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/insync_byancchal/"
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
@@ -155,7 +184,7 @@ export default function Navbar() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/919877417531?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#25D366] transition-all group"
@@ -167,7 +196,7 @@ export default function Navbar() {
 
               {/* Email */}
               <a
-                href="mailto:contact@insyncinteriors.com"
+                href={emailUrl}
                 className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
                 title="Email Insync by Ancchal"
                 aria-label="Email Insync by Ancchal"
@@ -180,7 +209,7 @@ export default function Navbar() {
                 href="/contact"
                 className="ml-2 px-5 py-2 rounded-none border-[1.5px] border-[#C5A059] text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white text-[11px] sm:text-[11.5px] uppercase tracking-[0.24em] font-semibold transition-all duration-300 shadow-xs active:scale-98 inline-block"
               >
-                INQUIRE
+                {inquireLabel}
               </Link>
             </div>
 
@@ -235,7 +264,7 @@ export default function Navbar() {
 
             <div className="flex items-center space-x-4 pt-6 border-t border-[#C5A059]/20 justify-between">
               <a
-                href="https://www.instagram.com/insync_byancchal/"
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#C5A059]"
@@ -245,7 +274,7 @@ export default function Navbar() {
               </a>
 
               <a
-                href="https://wa.me/919877417531?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#25D366]"
@@ -255,7 +284,7 @@ export default function Navbar() {
               </a>
 
               <a
-                href="mailto:contact@insyncinteriors.com"
+                href={emailUrl}
                 className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#1A1A1A]/80 hover:text-[#C5A059]"
               >
                 <Mail className="w-4 h-4 text-[#C5A059]" />

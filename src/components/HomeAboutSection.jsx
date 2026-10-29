@@ -4,6 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { urlForImage } from '@/sanity/lib/image'
 
 const PRINCIPLES = [
   {
@@ -23,7 +24,31 @@ const PRINCIPLES = [
   },
 ]
 
-export default function HomeAboutSection() {
+export default function HomeAboutSection({ data }) {
+  // If an image is uploaded in Sanity, compute URL, dynamic aspect ratio, and hotspot focal point
+  const sanityImage = data?.founderPhoto;
+  const sanityImageUrl = sanityImage ? urlForImage(sanityImage)?.url() : null;
+
+  // Frame automatically adapts to the aspect ratio of the uploaded image
+  const dimensions = sanityImage?.asset?.metadata?.dimensions;
+  let dynamicAspectRatio = '2 / 3';
+  if (dimensions?.width && dimensions?.height) {
+    dynamicAspectRatio = `${dimensions.width} / ${dimensions.height}`;
+  }
+
+  // Hotspot focal point from Sanity backend
+  let dynamicObjectPosition = '50% 80%';
+  if (sanityImage?.hotspot) {
+    const x = Math.round(sanityImage.hotspot.x * 100);
+    const y = Math.round(sanityImage.hotspot.y * 100);
+    dynamicObjectPosition = `${x}% ${y}%`;
+  }
+
+  const photoSrc = sanityImageUrl || '/about/ancchal-home.jpeg';
+  const photoAlt = data?.founderPhotoAlt || 'Ancchal, Founder & Principal Designer of Insync by Ancchal';
+  const founderName = data?.founderName || 'Ancchal';
+  const founderRole = data?.founderRole || 'FOUNDER & PRINCIPAL DESIGNER';
+
   return (
     <section
       id="about-atelier"
@@ -53,20 +78,23 @@ export default function HomeAboutSection() {
               {/* Champagne-Gold Hairline Architectural Frame */}
               <div className="relative rounded-sm overflow-hidden p-[1px] bg-gradient-to-b from-[#C5A059]/50 via-[#C5A059]/20 to-[#C5A059]/40 shadow-[0_18px_45px_-15px_rgba(27,26,23,0.12)]">
                 <div 
-                  className="relative w-full aspect-[2/3] rounded-sm overflow-hidden bg-[#F3F0EA]"
-                  style={{ aspectRatio: '2 / 3' }}
+                  className="relative w-full rounded-sm overflow-hidden bg-[#F3F0EA]"
+                  style={{ 
+                    aspectRatio: dynamicAspectRatio,
+                    maxHeight: '640px' 
+                  }}
                 >
                   {/* Clean, Pure Photograph */}
                   <img
-                    src="/about/ancchal-home.jpeg"
-                    alt="Ancchal, Founder & Principal Designer of Insync by Ancchal"
+                    src={photoSrc}
+                    alt={photoAlt}
                     onError={(e) => {
                       e.currentTarget.src = "/about/ancchal-home.jpg";
                     }}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover object-[50%_80%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]"
-                    style={{ objectPosition: '50% 80%' }}
+                    className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]"
+                    style={{ objectPosition: dynamicObjectPosition }}
                   />
                 </div>
               </div>
@@ -74,10 +102,10 @@ export default function HomeAboutSection() {
               {/* Minimalist Studio Attribution Below Frame */}
               <div className="mt-3.5 flex items-center justify-between px-1">
                 <span className="font-serif text-[15px] sm:text-base text-[#1A1A1A] tracking-wide">
-                  Ancchal
+                  {founderName}
                 </span>
                 <span className="text-[11.5px] sm:text-[12px] font-sans uppercase tracking-[0.2em] text-[#C5A059] font-semibold">
-                  FOUNDER & PRINCIPAL DESIGNER
+                  {founderRole}
                 </span>
               </div>
             </div>

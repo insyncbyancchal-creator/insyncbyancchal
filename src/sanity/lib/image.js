@@ -1,7 +1,7 @@
-import imageUrlBuilder from '@sanity/image-url'
+import { createImageUrlBuilder } from '@sanity/image-url'
 import { dataset, projectId } from './env'
 
-const imageBuilder = imageUrlBuilder({
+const imageBuilder = createImageUrlBuilder({
   projectId: projectId || 'demo-project-id',
   dataset: dataset || 'production',
 })

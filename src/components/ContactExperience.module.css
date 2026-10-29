@@ -282,7 +282,23 @@
   }
 }
 
-.err { color: #b4432a; font-size: 11px; letter-spacing: .05em; min-height: 1.2rem; margin: .8rem 0 0; }
+.err {
+  color: #c93b27;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  min-height: 1.4rem;
+  margin: .9rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: errShake 0.35s ease;
+}
+@keyframes errShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
 .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
 
 /* Buttons matching Portfolio EXPLORE PROJECT button: text-[10px] uppercase tracking-[0.25em] font-medium */

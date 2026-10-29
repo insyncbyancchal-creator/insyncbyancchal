@@ -22,13 +22,6 @@ export const MOCK_PROJECTS = [
       { url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop', caption: 'Master Suite Sanctuary with Floor-to-Ceiling Glass' },
       { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1600&auto=format&fit=crop', caption: 'Freestanding Stone Soak Tub overlooking Skyline' }
     ],
-    beforeAfter: {
-      enable: true,
-      beforeImage: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop',
-      afterImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop',
-      labelBefore: 'Original Space Structure',
-      labelAfter: 'Aura Atelier Penthouse'
-    },
     client: 'Private Tech Executive',
     location: 'Manhattan, New York',
     year: '2024',
@@ -53,13 +46,6 @@ export const MOCK_PROJECTS = [
       { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop', caption: 'Organic Minimalist Dining Room with Fluted Wood' },
       { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1600&auto=format&fit=crop', caption: 'Outdoor Infinity Pool Terrace & Lounge' }
     ],
-    beforeAfter: {
-      enable: true,
-      beforeImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop',
-      afterImage: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1600&auto=format&fit=crop',
-      labelBefore: 'Dated 1990s Mediterranean Interior',
-      labelAfter: 'Sculptural Modernist Haven'
-    },
     client: 'The Sterling Family',
     location: 'Côte d’Azur, France',
     year: '2023',
@@ -83,9 +69,6 @@ export const MOCK_PROJECTS = [
       { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop', caption: 'Private Consultation Salon' },
       { url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1600&auto=format&fit=crop', caption: 'Executive Boardroom with Linear Brass Chandelier' }
     ],
-    beforeAfter: {
-      enable: false,
-    },
     client: 'Haute Couture Group',
     location: 'Paris, France',
     year: '2024',
@@ -130,34 +113,65 @@ export const MOCK_SERVICES = [
 export const MOCK_TESTIMONIALS = [
   {
     _id: 'test-1',
-    clientName: 'Vikramjit Singh Grewal',
-    roleTitle: 'Owner, The Skylight Villa',
-    location: 'Sarabha Nagar, Ludhiana',
-    quote: 'Insync Interiors brought a quiet, museum-level discipline to our family residence. Ancchal understood from day one that we wanted timeless stillness, natural travertine, and daylight that changes gracefully through the day.',
+    clientName: 'Mansi Poddar',
+    roleTitle: 'CONSULTANT & RESIDENCE OWNER',
+    location: 'CIVIL LINES, LUDHIANA',
+    quote: 'Ancchal and her team are people I trust 100% with any space. She sets the bar so high that when I envision an interior, I cannot think beyond her. Intuitive and deeply attentive, she brings forth the client’s true personality through spatial stillness and soulful materials.',
     rating: 5,
-    projectName: 'The Skylight Villa'
   },
   {
     _id: 'test-2',
-    clientName: 'Harpreet & Amanat Dhillon',
-    roleTitle: 'Villa Patrons',
-    location: 'Model Town, Jalandhar',
-    quote: 'Working with Insync was flawless. They understood our architectural vision effortlessly and delivered an estate that brings calm and elegance every single day.',
+    clientName: 'Vikramjit Singh Grewal',
+    roleTitle: 'ESTATE OWNER & INDUSTRIALIST',
+    location: 'SARABHA NAGAR, LUDHIANA',
+    quote: 'Insync by Ancchal brought a quiet, museum-level discipline to our family residence. Ancchal understood from day one that we didn’t seek loud opulence—we wanted timeless stillness, natural travertine, and daylight that changes gracefully through the day.',
     rating: 5,
-    projectName: 'Model Town Villa'
-  }
+  },
+  {
+    _id: 'test-3',
+    clientName: 'Dr. Meera & Rajesh Malhotra',
+    roleTitle: 'SURGICAL SPECIALISTS & WELLNESS PATRONS',
+    location: 'SECTOR 9, CHANDIGARH',
+    quote: 'Walking into our residence after demanding days feels like entering a retreat. The acoustic quiet, the hand-waxed joinery, and the seamless connection to the courtyard reflect an understanding of human well-being that goes far beyond conventional decoration.',
+    rating: 5,
+  },
+  {
+    _id: 'test-4',
+    clientName: 'Harpreet & Amanat Dhillon',
+    roleTitle: 'VILLA OWNER & ENTREPRENEUR',
+    location: 'MODEL TOWN, JALANDHAR',
+    quote: 'Every guest who enters our villa is immediately struck by the restraint. Insync showed us that true luxury is about what you choose not to put into a room. The craftsmanship is flawless, down to the millimeter of every bronze reveal and customized marble island.',
+    rating: 5,
+  },
+  {
+    _id: 'test-5',
+    clientName: 'Sunaina Ahluwalia',
+    roleTitle: 'HERITAGE & ART COLLECTOR',
+    location: 'RANJIT AVENUE, AMRITSAR',
+    quote: 'As someone who lives surrounded by art, I needed an architect who respected light above all else. Insync conceived our space as a living gallery—calm, tactile, and deeply personal. It is the rare studio that listens with extraordinary patience.',
+    rating: 5,
+  },
 ];
 
 export const MOCK_SITE_SETTINGS = {
-  studioName: 'INSYNC INTERIORS | Architectural & Interior Atelier',
+  studioName: 'INSYNC INTERIORS',
+  subName: 'by Ancchal',
+  contactHeroTitle: 'LET’S BEGIN a quiet CONVERSATION.',
+  contactHeroLede: 'Tell us about the space you imagine. We’ll listen first, then design.',
+  enquireButtonText: 'ENQUIRE NOW',
+  enquireButtonSubtitle: 'Begin your bespoke architectural commission',
   heroHeadline: 'Curating Quiet Spaces & Soulful Architectural Residences',
   heroSubtitle: 'A bespoke interior architecture studio based in Ludhiana, Punjab crafting timeless residential estates and curated spaces.',
-  contactEmail: 'contact@insyncinteriors.in',
-  contactPhone: '+91 98889 00000',
-  studioAddress: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar, Ludhiana 141001',
+  contactEmail: 'hello@insyncinteriors.com',
+  contactPhone: '+91 98774 17531',
+  whatsappNumber: '919877417531',
+  studioAddress: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
+  studioHours: 'Monday – Saturday · 10:00 AM – 6:00 PM',
+  mapQuery: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
+  instagramUrl: 'https://www.instagram.com/insync_byancchal/',
   yearsExperience: 8,
   completedProjects: 65,
-  awardsCount: 12
+  awardsCount: 12,
 };
 
 // Safe fetch wrapper that queries Sanity CMS and falls back gracefully
@@ -165,7 +179,7 @@ export async function getProjects() {
   try {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project"] | order(_createdAt desc) {
-        _id, title, "slug": slug.current, category, mainImage, gallery, beforeAfter, client, location, year, area, featured, summary, highlights
+        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights
       }`);
       if (data && data.length > 0) return data;
     }
@@ -179,7 +193,7 @@ export async function getProjectBySlug(slug) {
   try {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project" && slug.current == $slug][0] {
-        _id, title, "slug": slug.current, category, mainImage, gallery, beforeAfter, client, location, year, area, featured, summary, highlights, description
+        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights, description
       }`, { slug });
       if (data) return data;
     }
@@ -223,4 +237,109 @@ export async function getSiteSettings() {
     console.warn('Sanity settings fallback');
   }
   return MOCK_SITE_SETTINGS;
+}
+
+export async function getHomePage() {
+  try {
+    if (projectId && projectId !== 'demo-project-id') {
+      const data = await sanityClient.fetch(`*[_type == "homePage"][0] {
+        _id,
+        aboutSection {
+          founderPhoto {
+            asset-> {
+              _id,
+              url,
+              metadata {
+                dimensions {
+                  width,
+                  height,
+                  aspectRatio
+                }
+              }
+            },
+            hotspot,
+            crop
+          },
+          founderPhotoAlt,
+          founderName,
+          founderRole
+        }
+      }`);
+      if (data) return data;
+    }
+  } catch (err) {
+    console.warn('Sanity homePage fallback:', err.message);
+  }
+  return null;
+}
+
+export async function getAboutPage() {
+  try {
+    if (projectId && projectId !== 'demo-project-id') {
+      const data = await sanityClient.fetch(`*[_type == "aboutPage"][0] {
+        _id,
+        founderSection {
+          founderPhoto {
+            asset-> {
+              _id,
+              url,
+              metadata {
+                dimensions {
+                  width,
+                  height,
+                  aspectRatio
+                }
+              }
+            },
+            hotspot,
+            crop
+          },
+          founderPhotoAlt
+        },
+        approachSection {
+          approachPhoto {
+            asset-> {
+              _id,
+              url,
+              metadata {
+                dimensions {
+                  width,
+                  height,
+                  aspectRatio
+                }
+              }
+            },
+            hotspot,
+            crop
+          },
+          approachPhotoAlt,
+          caption
+        },
+        reelsSection {
+          instagramProfileUrl,
+          reelsList[] {
+            _key,
+            title,
+            videoFile {
+              asset-> {
+                url
+              }
+            },
+            videoUrl,
+            poster {
+              asset-> {
+                url
+              }
+            },
+            duration,
+            instagramUrl
+          }
+        }
+      }`);
+      if (data) return data;
+    }
+  } catch (err) {
+    console.warn('Sanity aboutPage fallback:', err.message);
+  }
+  return null;
 }
