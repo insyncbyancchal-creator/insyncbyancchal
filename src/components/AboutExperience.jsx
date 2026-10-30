@@ -167,7 +167,7 @@ export default function AboutExperience({ data, children }) {
             {/* Fine Gold Architectural Hairline */}
             <div className={styles.pressDivider} />
 
-            {/* Action Row: Button + Note */}
+            {/* Action Row: Read Magazine Button */}
             <div className={styles.pressCardFooter}>
               <a
                 href="/about/urban-melange-dec-2025.pdf"
@@ -175,13 +175,12 @@ export default function AboutExperience({ data, children }) {
                 rel="noopener noreferrer"
                 type="application/pdf"
                 className={styles.pressCardBtn}
-                title="Read Urban Melange Feature (Opens PDF)"
-                aria-label="Read Urban Melange Feature (Opens PDF in new tab)"
+                title="Read Urban Melange Feature"
+                aria-label="Read Urban Melange Feature"
               >
                 <span>READ MAGAZINE</span>
                 <span className={styles.pressCardBtnArrow} aria-hidden="true">&rarr;</span>
               </a>
-              <span className={styles.pressCardNote}>Opens PDF</span>
             </div>
           </div>
         </motion.figure>
