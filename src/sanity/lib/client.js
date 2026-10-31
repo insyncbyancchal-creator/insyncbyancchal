@@ -15,13 +15,8 @@ export const MOCK_PROJECTS = [
     title: 'The Solstice Penthouse',
     slug: 'the-solstice-penthouse',
     category: 'penthouse',
-    mainImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop',
-    gallery: [
-      { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop', caption: 'Panoramic Living Pavilion with Calacatta Marble' },
-      { url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1600&auto=format&fit=crop', caption: 'Bespoke Italian Oak Kitchen & Bar' },
-      { url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop', caption: 'Master Suite Sanctuary with Floor-to-Ceiling Glass' },
-      { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1600&auto=format&fit=crop', caption: 'Freestanding Stone Soak Tub overlooking Skyline' }
-    ],
+    mainImage: null,
+    gallery: [],
     client: 'Private Tech Executive',
     location: 'Manhattan, New York',
     year: '2024',
@@ -40,12 +35,8 @@ export const MOCK_PROJECTS = [
     title: 'Villa Riviera Estates',
     slug: 'villa-riviera-estates',
     category: 'residential',
-    mainImage: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1600&auto=format&fit=crop',
-    gallery: [
-      { url: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1600&auto=format&fit=crop', caption: 'Double-Height Grand Foyer & Helical Stairway' },
-      { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop', caption: 'Organic Minimalist Dining Room with Fluted Wood' },
-      { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1600&auto=format&fit=crop', caption: 'Outdoor Infinity Pool Terrace & Lounge' }
-    ],
+    mainImage: null,
+    gallery: [],
     client: 'The Sterling Family',
     location: 'Côte d’Azur, France',
     year: '2023',
@@ -64,11 +55,8 @@ export const MOCK_PROJECTS = [
     title: 'Maison Noir Atelier',
     slug: 'maison-noir-atelier',
     category: 'commercial',
-    mainImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop',
-    gallery: [
-      { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop', caption: 'Private Consultation Salon' },
-      { url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1600&auto=format&fit=crop', caption: 'Executive Boardroom with Linear Brass Chandelier' }
-    ],
+    mainImage: null,
+    gallery: [],
     client: 'Haute Couture Group',
     location: 'Paris, France',
     year: '2024',

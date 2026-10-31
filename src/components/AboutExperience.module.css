@@ -30,17 +30,6 @@
   color: var(--gold);
 }
 
-.root [data-reveal] {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.root [data-reveal][data-in] {
-  opacity: 1;
-  transform: none;
-}
-
 .eyebrow {
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
@@ -535,17 +524,6 @@
   letter-spacing: 0.01em;
 }
 
-.editorialRow {
-  background: rgba(197, 160, 89, 0.05);
-  padding-inline: 0.65rem !important;
-  border-left: 2.5px solid #C5A059;
-}
-
-.editorialHighlight strong {
-  color: #11100D;
-  font-weight: 700;
-}
-
 /* ---------------- MANIFESTO / OUR APPROACH (WARM CREAM PALETTE) ---------------- */
 .manifesto {
   background: #F3EFE6;
@@ -680,55 +658,6 @@
   color: var(--gold);
 }
 
-.principles {
-  list-style: none;
-  margin: clamp(3.2rem, 7vh, 5rem) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--gap);
-}
-
-.principles li {
-  border-top: 1px solid rgba(197, 160, 89, 0.35);
-  padding-top: 1.25rem;
-  transition: border-color 0.4s ease, opacity 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .principles li:hover {
-    border-top-color: var(--gold);
-  }
-}
-
-.pNo {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  color: #9A7B39;
-  margin-bottom: 0.85rem;
-}
-
-.principles h3 {
-  font-family: 'Bodoni Moda', serif;
-  font-weight: 500;
-  font-size: 1.35rem;
-  margin: 0 0 0.55rem;
-  color: #11100D;
-}
-
-.principles p {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14.5px;
-  line-height: 1.72;
-  font-weight: 400;
-  color: #26231E;
-  max-width: 18rem;
-}
-
 /* ---------------- CLOSING CTA ---------------- */
 .cta {
   text-align: center;
@@ -860,21 +789,11 @@
   .bio {
     grid-column: 1 / -1;
   }
-  .principles {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 2.2rem;
-  }
 }
 
 @media (max-width: 540px) {
   .portrait {
     max-width: 300px;
-  }
-  .principles {
-    grid-template-columns: 1fr;
-  }
-  .principles p {
-    max-width: none;
   }
 }
 
@@ -883,14 +802,7 @@
     animation: none !important;
     transition: none !important;
   }
-  .root [data-reveal] {
-    opacity: 1;
-    transform: none;
-  }
   .line > span {
     transform: none;
-  }
-  .statement span {
-    opacity: 1;
   }
 }

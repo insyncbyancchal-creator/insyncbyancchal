@@ -93,13 +93,20 @@ export default function Navbar({ siteSettings: initialSettings }) {
   const hasHeroSection = ['/', '/about', '/portfolio', '/services', '/contact'].includes(currentPath)
   const isVisible = (!hasHeroSection || scrolled) || mobileOpen
 
-  // Computed dynamic URLs from Sanity Site Settings
-  const whatsappRaw = siteSettings?.whatsappNumber || '919877417531'
-  const whatsappDigits = whatsappRaw.replace(/\D/g, '') || '919877417531'
-  const whatsappUrl = `https://wa.me/${whatsappDigits}?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project`
-  const email = siteSettings?.contactEmail || 'contact@insyncinteriors.com'
-  const emailUrl = `mailto:${email}`
-  const instagramUrl = siteSettings?.instagramUrl || 'https://www.instagram.com/insync_byancchal/'
+  // Computed dynamic URLs from Sanity Site Settings (flexible format parser)
+  const rawWa = (siteSettings?.whatsappNumber || '919877417531').trim()
+  const whatsappUrl = rawWa.startsWith('http')
+    ? rawWa
+    : `https://wa.me/${rawWa.replace(/\D/g, '') || '919877417531'}?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project`
+
+  const rawEmail = (siteSettings?.contactEmail || 'hello@insyncinteriors.com').trim()
+  const emailUrl = rawEmail.startsWith('mailto:') ? rawEmail : `mailto:${rawEmail}`
+
+  const rawInsta = (siteSettings?.instagramUrl || 'https://www.instagram.com/insync_byancchal/').trim()
+  const instagramUrl = rawInsta.startsWith('http')
+    ? rawInsta
+    : `https://www.instagram.com/${rawInsta.replace(/^@/, '')}/`
+
   const inquireLabel = siteSettings?.enquireButtonText || 'INQUIRE'
 
   return (

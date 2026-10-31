@@ -1,767 +1,619 @@
 /* =====================================================================
    INSYNC PORTFOLIO: Master Projects Catalog
+   All visual assets are uploaded dynamically from Sanity CMS backend.
    ===================================================================== */
 
 export const projects = [
   {
-    slug: "anirudh-estate",
-    title: "The Anirudh Estate",
-    location: "LUDHIANA",
-    type: "Boutique Residence & BNB",
-    category: "Residential",
-    year: "2025",
-    area: "8,500 sq ft",
-    status: "Completed",
-    description:
-      "A bespoke hospitality and residential retreat blending sculpted architectural lighting, fluted oak millwork, organic stone masonry, and tailored bedroom sanctuaries.",
-    tagline: "A bespoke architectural sanctuary of quiet luxury and hospitality.",
-    cover: {
-      src: "/portfolio/anirudh/lobby-a.webp",
-      hoverSrc: "/portfolio/anirudh/lobby-d.webp",
-      alt: "The Anirudh Estate, Ludhiana",
+    "slug": "anirudh-estate",
+    "title": "The Anirudh Estate",
+    "location": "LUDHIANA",
+    "type": "Boutique Residence & BNB",
+    "category": "Residential",
+    "year": "2025",
+    "area": "8,500 sq ft",
+    "status": "Completed",
+    "description": "A bespoke hospitality and residential retreat blending sculpted architectural lighting, fluted oak millwork, organic stone masonry, and tailored bedroom sanctuaries.",
+    "tagline": "A bespoke architectural sanctuary of quiet luxury and hospitality.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Anirudh Estate, Ludhiana"
     },
-    hero: {
-      src: "/portfolio/anirudh/lobby-a.webp",
-      alt: "The Anirudh Estate Grand Reception Lounge",
+    "hero": {
+      "src": null,
+      "alt": "The Anirudh Estate Grand Reception Lounge"
     },
-    concept: [
+    "concept": [
       "Conceived as an intimate architectural sanctuary, The Anirudh Estate balances expansive communal reception volumes with deeply restorative private bedroom suites.",
-      "Every detail — from tactile wood fluting and calibrated warm ambient lighting to hand-finished stone surfaces — was custom designed by Insync by Ancchal to evoke calm, clarity, and enduring warmth.",
+      "Every detail — from tactile wood fluting and calibrated warm ambient lighting to hand-finished stone surfaces — was custom designed by Insync by Ancchal to evoke calm, clarity, and enduring warmth."
     ],
-    materials: ["Travertine stone", "Fluted oak", "Champagne brass", "Tactile bouclé", "Belgian linen"],
-    chapters: [
-      {
-        title: "Reception & Grand Lobby",
-        text: "Monolithic stone volumes and warm illumination welcome guests into an atmosphere of quiet hospitality.",
-        images: [
-          { src: "/portfolio/anirudh/lobby-a.webp", alt: "Grand Lobby Lounge" },
-          { src: "/portfolio/anirudh/lobby-d.webp", alt: "Lobby Seating Detail" },
-        ],
-      },
-      {
-        title: "The Dining Salon",
-        text: "A gathering space composed with architectural restraint and refined materiality.",
-        images: [
-          { src: "/portfolio/anirudh/dining-b.webp", alt: "Formal Dining Pavilion" },
-        ],
-      },
-      {
-        title: "The Bedroom Suites",
-        text: "Private sanctuaries defined by soft indirect glow, fluted headboards, and tailored textiles.",
-        images: [
-          { src: "/portfolio/anirudh/bedroom-1-a.webp", alt: "Primary Bedroom Suite" },
-          { src: "/portfolio/anirudh/bedroom-2-b.webp", alt: "Guest Suite" },
-        ],
-      },
+    "materials": [
+      "Travertine stone",
+      "Fluted oak",
+      "Champagne brass",
+      "Tactile bouclé",
+      "Belgian linen"
     ],
-    gallery: [
-      { src: "/portfolio/anirudh/lobby-a.webp", alt: "Grand Lobby Lounge & Architectural Staircase", caption: "Grand Lobby Lounge", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/lobby-d.webp", alt: "Lobby Seating & Ambient Light", caption: "Lobby Living Volume", aspectRatio: "4 / 3" },
-      { src: "/portfolio/anirudh/dining-b.webp", alt: "Formal Dining Pavilion", caption: "The Dining Salon", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/lobby-f.webp", alt: "Atelier Sculpture & Joinery Detail", caption: "Foyer Transition Detail", aspectRatio: "3 / 4" },
-      { src: "/portfolio/anirudh/bedroom-1-a.webp", alt: "Primary Suite Bedstead & Wall Paneling", caption: "Primary Bedroom Suite", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/bedroom-1-c.webp", alt: "Primary Suite Study & Millwork", caption: "Bespoke Study Corner", aspectRatio: "3 / 4" },
-      { src: "/portfolio/anirudh/bedroom-2-b.webp", alt: "Guest Suite with Fluted Oak", caption: "Guest Bedroom Sanctuary", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/bedroom-2-f.webp", alt: "Guest Suite Dressing & Texture", caption: "Suite Joinery & Texture", aspectRatio: "3 / 4" },
-      { src: "/portfolio/anirudh/anirudh-bnb-3.webp", alt: "Private Salon Lounge", caption: "Private Salon Lounge", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/anirudh-bnb-5.webp", alt: "Architectural Lighting & Corridor", caption: "Illuminated Gallery Corridor", aspectRatio: "3 / 4" },
-      { src: "/portfolio/anirudh/anirudh-bnb-6.webp", alt: "Curated Living Space", caption: "Curated Living Pavilion", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/anirudh-bnb-8.webp", alt: "Custom Dressing & Millwork", caption: "Dressing Wardrobe Detail", aspectRatio: "3 / 4" },
-      { src: "/portfolio/anirudh/anirudh-bnb-9.webp", alt: "Ensuite Stone Finish", caption: "Ensuite Bath & Stone", aspectRatio: "16 / 10" },
-      { src: "/portfolio/anirudh/anirudh-bnb-10.webp", alt: "Courtyard & Evening Ambiance", caption: "Evening Ambiance", aspectRatio: "4 / 3" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-solstice-penthouse",
-    title: "The Solstice Penthouse",
-    location: "GURUGRAM",
-    type: "Penthouse Residence",
-    category: "Residential",
-    year: "2024",
-    area: "6,400 sq ft",
-    status: "Completed",
-    description:
-      "A glass-encased sky sanctuary combining minimal lines, brushed champagne brass accents, and raw monolithic travertine architecture.",
-    tagline: "A glass-encased sky sanctuary combining minimal lines.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Solstice Penthouse, Gurugram",
+    "slug": "the-solstice-penthouse",
+    "title": "The Solstice Penthouse",
+    "location": "GURUGRAM",
+    "type": "Penthouse Residence",
+    "category": "Residential",
+    "year": "2024",
+    "area": "6,400 sq ft",
+    "status": "Completed",
+    "description": "A glass-encased sky sanctuary combining minimal lines, brushed champagne brass accents, and raw monolithic travertine architecture.",
+    "tagline": "A glass-encased sky sanctuary combining minimal lines.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Solstice Penthouse, Gurugram"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Solstice Penthouse Living Hall",
+    "hero": {
+      "src": null,
+      "alt": "The Solstice Penthouse Living Hall"
     },
-    concept: [
+    "concept": [
       "Custom suspended bronze fireplace, full-height bookmatched Calacatta marble wall reveals, and 360-degree panoramic skyline views.",
-      "Conceived to merge seamlessly with its sky vista, interior volumes remain low-contrast, tactile and warm, framing the city lights below.",
+      "Conceived to merge seamlessly with its sky vista, interior volumes remain low-contrast, tactile and warm, framing the city lights below."
     ],
-    materials: ["Smoked glass", "Calacatta marble", "Antiqued bronze", "Heavy bouclé"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Grand skyline living space" }] },
-      { title: "Fireplace Salon", text: "Floor-to-ceiling glass is framed, not hidden.", images: [{ src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Penthouse terrace" }] },
+    "materials": [
+      "Smoked glass",
+      "Calacatta marble",
+      "Antiqued bronze",
+      "Heavy bouclé"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Grand skyline living salon", caption: "Skyline Living Salon", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Penthouse terrace lounge", caption: "Terrace Lounge", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Fireplace salon with bronze reveal", caption: "Fireplace Salon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height glass atrium", caption: "Double-Height Atrium", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Minimal marble kitchen island", caption: "Calacatta Kitchen Island", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Curved bouclé seating lounge", caption: "Bouclé Seating Corner", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Bronze hardware and travertine grain", caption: "Material Joinery Detail", aspectRatio: "1 / 1" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Dining salon with sculptural fixture", caption: "Dining Salon", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Monolithic marble ensuite bathtub", caption: "Skyline Primary Bath", aspectRatio: "9 / 14" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Master suite with sheer drapery", caption: "Primary Suite", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Smoked glass bar reveal", caption: "Fluted Bronze Bar", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Dusk skyline through architectural glazing", caption: "Dusk Gallery Vista", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Private sky study and library", caption: "Mezzanine Study", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Outdoor sky fire pit terrace", caption: "Private Sky Deck", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Bookmatched Calacatta wall reveal", caption: "Bookmatched Marble Hall", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "skylight-residence",
-    title: "Skylight Residence",
-    location: "LUDHIANA",
-    type: "Bespoke Villa",
-    category: "Residential",
-    year: "2024",
-    area: "7,200 sq ft",
-    status: "Completed",
-    description:
-      "A bespoke 7,200 sq. ft. architectural villa with double-height travertine walls, fluted oak millwork, and monolithic proportions.",
-    tagline: "Double-height travertine volumes bathed in natural light.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop",
-      alt: "Skylight Residence, Ludhiana",
+    "slug": "skylight-residence",
+    "title": "Skylight Residence",
+    "location": "LUDHIANA",
+    "type": "Bespoke Villa",
+    "category": "Residential",
+    "year": "2024",
+    "area": "7,200 sq ft",
+    "status": "Completed",
+    "description": "A bespoke 7,200 sq. ft. architectural villa with double-height travertine walls, fluted oak millwork, and monolithic proportions.",
+    "tagline": "Double-height travertine volumes bathed in natural light.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Skylight Residence, Ludhiana"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
-      alt: "Skylight Residence Foyer",
+    "hero": {
+      "src": null,
+      "alt": "Skylight Residence Foyer"
     },
-    concept: [
+    "concept": [
       "Features a grand architectural chandelier suite, custom brass inlays, Italian Statuario marble floors, and motorized bronze window louvers.",
-      "A home built around natural light, where generous proportions are balanced by organic materials.",
+      "A home built around natural light, where generous proportions are balanced by organic materials."
     ],
-    materials: ["Honed travertine", "Natural oak", "Brushed brass", "Belgian linen"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height living volume" }] },
+    "materials": [
+      "Honed travertine",
+      "Natural oak",
+      "Brushed brass",
+      "Belgian linen"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height travertine foyer", caption: "Grand Travertine Foyer", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop", alt: "Living room with brass inlays", caption: "Living Volume", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Fluted oak millwork library", caption: "Fluted Oak Library", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Formal dining space with marble table", caption: "Statuario Dining Room", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Sunlit morning breakfast salon", caption: "Morning Breakfast Salon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Floating oak and glass staircase", caption: "Architectural Staircase", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Travertine and brass architectural joint", caption: "Stone & Brass Detail", aspectRatio: "1 / 1" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Cascading chandelier through atrium", caption: "Atrium Chandelier Suite", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Primary suite with upholstered velvet wall", caption: "Primary Suite", aspectRatio: "9 / 14" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Freestanding stone bathtub with skylight", caption: "Skylit Ensuite", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Wine gallery with reeded glass", caption: "Bespoke Wine Gallery", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Family lounge in Belgian linen", caption: "Family Pavilion", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Louvered garden terrace vista", caption: "Veranda Transition", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Grand salon illumination at dusk", caption: "Evening Travertine Volume", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Outdoor garden veranda", caption: "Exterior Veranda", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "oasis-wellness-sanctuary",
-    title: "Oasis Wellness Sanctuary",
-    location: "CHANDIGARH",
-    type: "Wellness Estate",
-    category: "Hospitality",
-    year: "2024",
-    area: "8,500 sq ft",
-    status: "Completed",
-    description:
-      "Harmonizing natural daylight, indoor reflecting pools, and hand-troweled Venetian plaster walls across an open-concept estate.",
-    tagline: "Natural daylight, indoor reflecting pools, and plaster finishes.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop",
-      alt: "Oasis Wellness Sanctuary, Chandigarh",
+    "slug": "oasis-wellness-sanctuary",
+    "title": "Oasis Wellness Sanctuary",
+    "location": "CHANDIGARH",
+    "type": "Wellness Estate",
+    "category": "Hospitality",
+    "year": "2024",
+    "area": "8,500 sq ft",
+    "status": "Completed",
+    "description": "Harmonizing natural daylight, indoor reflecting pools, and hand-troweled Venetian plaster walls across an open-concept estate.",
+    "tagline": "Natural daylight, indoor reflecting pools, and plaster finishes.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Oasis Wellness Sanctuary, Chandigarh"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
-      alt: "Oasis Sanctuary Courtyard",
+    "hero": {
+      "src": null,
+      "alt": "Oasis Sanctuary Courtyard"
     },
-    concept: [
-      "Centered around a private zen courtyard with monolithic water features, acoustic wood slat ceiling baffles, and integrated circadian rhythm lighting.",
+    "concept": [
+      "Centered around a private zen courtyard with monolithic water features, acoustic wood slat ceiling baffles, and integrated circadian rhythm lighting."
     ],
-    materials: ["Venetian plaster", "Slotted acoustic oak", "Basalt stone", "Raw silk"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Reflecting pool" }] },
+    "materials": [
+      "Venetian plaster",
+      "Slotted acoustic oak",
+      "Basalt stone",
+      "Raw silk"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Private courtyard reflecting pool", caption: "Reflecting Pool Courtyard", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop", alt: "Acoustic wood slat ceiling and daybed", caption: "Zen Daybed Pavilion", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Venetian plaster living hall", caption: "Plaster Living Hall", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Open sanctuary living volume", caption: "Sanctuary Volume", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Sunken meditation lounge", caption: "Meditation Lounge", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Basalt stone rain bath", caption: "Basalt Spa Bath", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Hand-troweled Venetian plaster texture", caption: "Plaster Craft Detail", aspectRatio: "1 / 1" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Tea ceremony platform", caption: "Tea Ceremony Pavilion", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Minimalist clay plaster bedroom", caption: "Rest Chamber", aspectRatio: "9 / 14" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Skylit bamboo corridor", caption: "Light Shaft Gallery", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Custom stone vanity with brass spout", caption: "Stone Powder Suite", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Candlelit courtyard at twilight", caption: "Twilight Reflection", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Rammed earth water fountain", caption: "Water Feature Niche", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Outdoor wellness deck", caption: "Open-Air Deck", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Quiet reading alcove with linen cushions", caption: "Meditation Alcove", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "celica-home",
-    title: "Celica Home",
-    location: "KOLKATA",
-    type: "Duplex Residence",
-    category: "Residential",
-    year: "2024",
-    area: "5,000 sq ft",
-    description:
-      "A serene 5,000 sq. ft. duplex designed for light, calm, and connection with warm curved plaster and organic textiles.",
-    tagline: "Warm curved plaster and organic textiles in a serene duplex.",
-    status: "Completed",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
-      alt: "Celica Home, Kolkata",
+    "slug": "celica-home",
+    "title": "Celica Home",
+    "location": "KOLKATA",
+    "type": "Duplex Residence",
+    "category": "Residential",
+    "year": "2024",
+    "area": "5,000 sq ft",
+    "status": "Completed",
+    "description": "A serene 5,000 sq. ft. duplex designed for light, calm, and connection with warm curved plaster and organic textiles.",
+    "tagline": "Warm curved plaster and organic textiles in a serene duplex.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Celica Home, Kolkata"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop",
-      alt: "Celica Home curved living hall",
+    "hero": {
+      "src": null,
+      "alt": "Celica Home curved living hall"
     },
-    concept: [
-      "Custom hand-plastered terracotta wall reliefs, low-profile boucle modular seating, bespoke travertine coffee tables, and floor-to-ceiling recessed architectural glazing.",
+    "concept": [
+      "Custom hand-plastered terracotta wall reliefs, low-profile boucle modular seating, bespoke travertine coffee tables, and floor-to-ceiling recessed architectural glazing."
     ],
-    materials: ["Clay plaster", "Travertine", "Bouclé", "Natural teak"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Living lounge" }] },
+    "materials": [
+      "Clay plaster",
+      "Travertine",
+      "Bouclé",
+      "Natural teak"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Curved plaster living hall", caption: "Curved Living Hall", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Terracotta relief and modular seating", caption: "Terracotta Lounge", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Monolithic travertine dining table", caption: "Bespoke Travertine Table", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Arched entryway in burnished plaster", caption: "Arched Entryway", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Mezzanine study with built-in desks", caption: "Mezzanine Study", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Master bedroom in warm terracotta tones", caption: "Master Chamber", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Handmade terracotta relief tile detail", caption: "Terracotta Relief Detail", aspectRatio: "1 / 1" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Curved plaster stair detail", caption: "Sculptural Stair Arc", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Ensuite bath with arched mirror", caption: "Arched Vanity Suite", aspectRatio: "9 / 14" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Kitchen in fluted teak and terracotta", caption: "Fluted Teak Kitchen", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Recessed arch reading niche", caption: "Arch Book Nook", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop", alt: "Morning sun through natural linen", caption: "Morning Light Frame", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Ceramic vessels on stone plinth", caption: "Artisanal Vessels", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Terrace garden view", caption: "Courtyard Link", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Textured plaster reveal", caption: "Tactile Surface Study", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "villa-riviera-estates",
-    title: "Villa Riviera Estates",
-    location: "GOA",
-    type: "Coastal Architecture",
-    category: "Hospitality",
-    year: "2023",
-    area: "7,800 sq ft",
-    status: "Completed",
-    description:
-      "Double-height grand foyer, curved boucle furniture, and seamless indoor-outdoor tropical terrace transitions.",
-    tagline: "Seamless indoor-outdoor coastal architecture and teak verandas.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
-      alt: "Villa Riviera Estates, Goa",
+    "slug": "villa-riviera-estates",
+    "title": "Villa Riviera Estates",
+    "location": "GOA",
+    "type": "Coastal Architecture",
+    "category": "Hospitality",
+    "year": "2023",
+    "area": "7,800 sq ft",
+    "status": "Completed",
+    "description": "Double-height grand foyer, curved boucle furniture, and seamless indoor-outdoor tropical terrace transitions.",
+    "tagline": "Seamless indoor-outdoor coastal architecture and teak verandas.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Villa Riviera Estates, Goa"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop",
-      alt: "Villa Riviera Estates pool terrace",
+    "hero": {
+      "src": null,
+      "alt": "Villa Riviera Estates pool terrace"
     },
-    concept: [
-      "Coastal contemporary architecture featuring hand-carved stone pillars, teak louvers, and bespoke linen upholstery for tropical stillness.",
+    "concept": [
+      "Coastal contemporary architecture featuring hand-carved stone pillars, teak louvers, and bespoke linen upholstery for tropical stillness."
     ],
-    materials: ["Laterite stone", "Weathered teak", "Cast bronze", "Belgian linen"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop", alt: "Tropical terrace" }] },
+    "materials": [
+      "Laterite stone",
+      "Weathered teak",
+      "Cast bronze",
+      "Belgian linen"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=75&w=1200&auto=format&fit=crop", alt: "Open-air pavilion to infinity pool", caption: "Poolside Pavilion", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Double-height laterite stone foyer", caption: "Grand Laterite Foyer", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Teak-louvered veranda with daybed", caption: "Teak Veranda Lounge", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Dining terrace under timber pergola", caption: "Alfresco Dining Pergola", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Primary suite with garden doors", caption: "Coastal Primary Suite", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Outdoor stone soaking tub", caption: "Tropical Garden Bath", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Weathered teak joinery detail", caption: "Teak Craft Joinery", aspectRatio: "1 / 1" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Open kitchen with teak shelving", caption: "Open Pavilion Kitchen", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Shaded poolside cabana", caption: "Poolside Cabana", aspectRatio: "9 / 14" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Sunlit courtyard with frangipani tree", caption: "Frangipani Courtyard", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Sunset lounge with wicker chairs", caption: "Sunset Lounge", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Illuminated veranda at dusk", caption: "Dusk Tropical Horizon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Veranda overlooking private bay", caption: "Bay Vista Veranda", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Pavilion opening to reflecting pool", caption: "Reflecting Waters", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Laterite stone texture", caption: "Laterite Material Study", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "courtyard-residence",
-    title: "The Courtyard Residence",
-    location: "LUDHIANA",
-    type: "Residential Villa",
-    category: "Residential",
-    year: "2025",
-    area: "6,200 sq ft",
-    status: "Completed",
-    description:
-      "A family residence built around a contemplative inner courtyard, where each living volume borrows generous daylight from the central open sky.",
-    tagline: "A home organised around light.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Courtyard Residence, Ludhiana",
+    "slug": "courtyard-residence",
+    "title": "The Courtyard Residence",
+    "location": "LUDHIANA",
+    "type": "Residential Villa",
+    "category": "Residential",
+    "year": "2025",
+    "area": "6,200 sq ft",
+    "status": "Completed",
+    "description": "A family residence built around a contemplative inner courtyard, where each living volume borrows generous daylight from the central open sky.",
+    "tagline": "A home organised around light.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Courtyard Residence, Ludhiana"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
-      alt: "Courtyard residence living volume",
+    "hero": {
+      "src": null,
+      "alt": "Courtyard residence living volume"
     },
-    concept: [
-      "Honed Roman travertine, fluted oak millwork and layered tactile textiles maintain spatial calm, allowing natural illumination to define the mood.",
+    "concept": [
+      "Honed Roman travertine, fluted oak millwork and layered tactile textiles maintain spatial calm, allowing natural illumination to define the mood."
     ],
-    materials: ["Honed travertine", "Natural oak", "Brushed brass", "Belgian linen"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Courtyard living" }] },
+    "materials": [
+      "Honed travertine",
+      "Natural oak",
+      "Brushed brass",
+      "Belgian linen"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Mid-century living hall with stone fireplace", caption: "Stone Hearth Living Hall", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Striped armchair and smoked glass table", caption: "Cocktail Lounge", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Dining room overlooking courtyard treetops", caption: "Courtyard Dining", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height timber beam ceiling", caption: "Exposed Timber Beams", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Green velvet sofa against stone pillar", caption: "Stone Pillar Corner", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Sun-drenched living room with sheer curtains", caption: "Sun-Drenched Salon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Striped lamp on brushed bronze side table", caption: "Atelier Lighting Detail", aspectRatio: "1 / 1" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Timber framed courtyard garden windows", caption: "Garden Glazing", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Velvet seating corner against raw stone wall", caption: "Masonry Velvet Nook", aspectRatio: "9 / 14" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Chrome armchair under warm filtered sunlight", caption: "Lounge Conversation", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Conversation lounge with glass table", caption: "Mid-Century Salon", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop", alt: "Built-in reading bench with monographs", caption: "Courtyard Library Bench", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Kitchen in warm walnut millwork", caption: "Walnut Kitchen", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Courtyard sliding glass pocket doors", caption: "Courtyard Threshold", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Bedroom with textured linen and timber headboard", caption: "Courtyard Bedroom", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-amber-pavilion",
-    title: "The Amber Pavilion",
-    location: "DELHI NCR",
-    type: "Glasshouse Villa",
-    category: "Commercial",
-    year: "2024",
-    area: "8,200 sq ft",
-    status: "Completed",
-    description:
-      "A glass-encased garden pavilion where structural bronze frameworks and fluted Jura limestone celebrate the ambient golden hours.",
-    tagline: "Structural bronze frameworks and fluted limestone in Delhi NCR.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Amber Pavilion, Delhi NCR",
+    "slug": "the-amber-pavilion",
+    "title": "The Amber Pavilion",
+    "location": "DELHI NCR",
+    "type": "Glasshouse Villa",
+    "category": "Commercial",
+    "year": "2024",
+    "area": "8,200 sq ft",
+    "status": "Completed",
+    "description": "A glass-encased garden pavilion where structural bronze frameworks and fluted Jura limestone celebrate the ambient golden hours.",
+    "tagline": "Structural bronze frameworks and fluted limestone in Delhi NCR.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Amber Pavilion, Delhi NCR"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Amber Pavilion Grand Hall",
+    "hero": {
+      "src": null,
+      "alt": "The Amber Pavilion Grand Hall"
     },
-    concept: [
-      "Designed as a continuous visual flow between interior salon volumes and sunken garden courts, anchored by brushed champagne bronze accents.",
+    "concept": [
+      "Designed as a continuous visual flow between interior salon volumes and sunken garden courts, anchored by brushed champagne bronze accents."
     ],
-    materials: ["Jura limestone", "Brushed bronze", "Fluted smoked glass", "Raw Belgian bouclé"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Pavilion salon" }] },
+    "materials": [
+      "Jura limestone",
+      "Brushed bronze",
+      "Fluted smoked glass",
+      "Raw Belgian bouclé"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Amber Pavilion grand hall", caption: "Grand Pavilion Hall", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=75&w=1200&auto=format&fit=crop", alt: "Sunken garden court vista", caption: "Garden Court Transition", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Bronze hearth detail", caption: "Bronze Fireplace Niche", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Kitchen gallery", caption: "Minimalist Kitchen", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lounge seating", caption: "Pavilion Lounge", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Stone craftsmanship detail", caption: "Joinery Craft", aspectRatio: "1 / 1" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "villa-monolith",
-    title: "Villa Monolith",
-    location: "KASAULI HILLS",
-    type: "Hillside Estate",
-    category: "Residential",
-    year: "2025",
-    area: "9,500 sq ft",
-    status: "Completed",
-    description:
-      "Cast concrete, hand-quarried local quartzite, and panoramic glass terraces stepping gently across an alpine pine ridge.",
-    tagline: "Cast concrete and alpine quartzite cascading down pine hillsides.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
-      alt: "Villa Monolith, Kasauli Hills",
+    "slug": "villa-monolith",
+    "title": "Villa Monolith",
+    "location": "KASAULI HILLS",
+    "type": "Hillside Estate",
+    "category": "Residential",
+    "year": "2025",
+    "area": "9,500 sq ft",
+    "status": "Completed",
+    "description": "Cast concrete, hand-quarried local quartzite, and panoramic glass terraces stepping gently across an alpine pine ridge.",
+    "tagline": "Cast concrete and alpine quartzite cascading down pine hillsides.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Villa Monolith, Kasauli Hills"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop",
-      alt: "Villa Monolith Exterior Terraces",
+    "hero": {
+      "src": null,
+      "alt": "Villa Monolith Exterior Terraces"
     },
-    concept: [
-      "Anchored into the mountain rockface, every space frames misty valley horizons while enveloping occupants in warm, acoustic cedar woodwork.",
+    "concept": [
+      "Anchored into the mountain rockface, every space frames misty valley horizons while enveloping occupants in warm, acoustic cedar woodwork."
     ],
-    materials: ["Local quartzite", "Board-formed concrete", "Smoked oak", "Cashmere upholstery"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Hillside panorama" }] },
+    "materials": [
+      "Local quartzite",
+      "Board-formed concrete",
+      "Smoked oak",
+      "Cashmere upholstery"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=75&w=1200&auto=format&fit=crop", alt: "Mountain terrace salon", caption: "Alpine Horizon Terrace", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Cantilevered deck", caption: "Cantilevered Sky Deck", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Great room fireplace", caption: "Monolithic Fire Hearth", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Ridge suite bedroom", caption: "Alpine Primary Suite", aspectRatio: "4 / 3" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Stone bath overlooking pine trees", caption: "Valley Bath Suite", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-statuario-manor",
-    title: "The Statuario Manor",
-    location: "LUDHIANA",
-    type: "Classical Modern Villa",
-    category: "Residential",
-    year: "2024",
-    area: "11,000 sq ft",
-    status: "Completed",
-    description:
-      "A grand 11,000 sq. ft. private estate pairing classical European symmetry with modern architectural lightness and bookmatched Italian marble.",
-    tagline: "Classical symmetry and modern lightness in Ludhiana.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Statuario Manor, Ludhiana",
+    "slug": "the-statuario-manor",
+    "title": "The Statuario Manor",
+    "location": "LUDHIANA",
+    "type": "Classical Modern Villa",
+    "category": "Residential",
+    "year": "2024",
+    "area": "11,000 sq ft",
+    "status": "Completed",
+    "description": "A grand 11,000 sq. ft. private estate pairing classical European symmetry with modern architectural lightness and bookmatched Italian marble.",
+    "tagline": "Classical symmetry and modern lightness in Ludhiana.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Statuario Manor, Ludhiana"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Statuario Manor Atrium",
+    "hero": {
+      "src": null,
+      "alt": "The Statuario Manor Atrium"
     },
-    concept: [
-      "Conceived around a double-height rotunda that filters gentle northern daylight across fluted colonnades and custom champagne gold hardware.",
+    "concept": [
+      "Conceived around a double-height rotunda that filters gentle northern daylight across fluted colonnades and custom champagne gold hardware."
     ],
-    materials: ["Statuario marble", "Champagne gold brass", "European walnut", "Mulberry silk"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Statuario atrium" }] },
+    "materials": [
+      "Statuario marble",
+      "Champagne gold brass",
+      "European walnut",
+      "Mulberry silk"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Grand salon", caption: "Grand Salon Volume", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Marble gallery", caption: "Statuario Gallery", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Formal banquet dining", caption: "Banquet Hall", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Private study and salon", caption: "Manor Study", aspectRatio: "4 / 3" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "lumina-house",
-    title: "Lumina House",
-    location: "AMRITSAR",
-    type: "Modern Courtyard Villa",
-    category: "Commercial",
-    year: "2023",
-    area: "6,800 sq ft",
-    status: "Completed",
-    description:
-      "Perforated brick screens and internal water rills create microclimates of calm, casting shifting sunlit choreographies throughout the day.",
-    tagline: "Perforated brick screens and internal water rills in Amritsar.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop",
-      alt: "Lumina House, Amritsar",
+    "slug": "lumina-house",
+    "title": "Lumina House",
+    "location": "AMRITSAR",
+    "type": "Modern Courtyard Villa",
+    "category": "Commercial",
+    "year": "2023",
+    "area": "6,800 sq ft",
+    "status": "Completed",
+    "description": "Perforated brick screens and internal water rills create microclimates of calm, casting shifting sunlit choreographies throughout the day.",
+    "tagline": "Perforated brick screens and internal water rills in Amritsar.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Lumina House, Amritsar"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
-      alt: "Lumina House Central Court",
+    "hero": {
+      "src": null,
+      "alt": "Lumina House Central Court"
     },
-    concept: [
-      "A tribute to regional heritage reimagined through raw minimalism, featuring clay brick lattices and honed sandstone floors.",
+    "concept": [
+      "A tribute to regional heritage reimagined through raw minimalism, featuring clay brick lattices and honed sandstone floors."
     ],
-    materials: ["Handmade terracotta brick", "Honed sandstone", "Acoustic oak slats", "Raw linen"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lumina courtyard" }] },
+    "materials": [
+      "Handmade terracotta brick",
+      "Honed sandstone",
+      "Acoustic oak slats",
+      "Raw linen"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lumina courtyard living", caption: "Lattice Light Court", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Sandstone dining salon", caption: "Sandstone Dining", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Sculptural stair transition", caption: "Stair Architecture", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "atelier-botanica",
-    title: "Atelier Botanica",
-    location: "CHANDIGARH",
-    type: "Biophilic Penthouse",
-    category: "Commercial",
-    year: "2024",
-    area: "5,600 sq ft",
-    status: "Completed",
-    description:
-      "A biophilic rooftop sanctuary combining suspended botanical gardens, cast travertine monoliths, and seamless indoor-outdoor living.",
-    tagline: "Suspended botanical gardens and cast travertine in Chandigarh.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop",
-      alt: "Atelier Botanica, Chandigarh",
+    "slug": "atelier-botanica",
+    "title": "Atelier Botanica",
+    "location": "CHANDIGARH",
+    "type": "Biophilic Penthouse",
+    "category": "Commercial",
+    "year": "2024",
+    "area": "5,600 sq ft",
+    "status": "Completed",
+    "description": "A biophilic rooftop sanctuary combining suspended botanical gardens, cast travertine monoliths, and seamless indoor-outdoor living.",
+    "tagline": "Suspended botanical gardens and cast travertine in Chandigarh.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Atelier Botanica, Chandigarh"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
-      alt: "Atelier Botanica Green Terrace",
+    "hero": {
+      "src": null,
+      "alt": "Atelier Botanica Green Terrace"
     },
-    concept: [
-      "Integrating living flora directly into architecture, creating acoustic peace and clean visual stillness high above the city.",
+    "concept": [
+      "Integrating living flora directly into architecture, creating acoustic peace and clean visual stillness high above the city."
     ],
-    materials: ["Travertine stone", "Reclaimed teak", "Cast bronze", "Organic boucle"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Botanica salon" }] },
+    "materials": [
+      "Travertine stone",
+      "Reclaimed teak",
+      "Cast bronze",
+      "Organic boucle"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Botanica living hall", caption: "Botanical Salon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Terrazzo garden bathroom", caption: "Garden Ensuite", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Sky terrace deck", caption: "Rooftop Sky Garden", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-serenade-residence",
-    title: "The Serenade Residence",
-    location: "MOHALI",
-    type: "Atelier Residence",
-    category: "Residential",
-    year: "2025",
-    area: "7,400 sq ft",
-    status: "Completed",
-    description:
-      "A serene architectural residence exploring curved micro-cement surfaces, fluted timber joinery, and soft subterranean natural light shafts.",
-    tagline: "Curved micro-cement surfaces and fluted timber joinery in Mohali.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Serenade Residence, Mohali",
+    "slug": "the-serenade-residence",
+    "title": "The Serenade Residence",
+    "location": "MOHALI",
+    "type": "Atelier Residence",
+    "category": "Residential",
+    "year": "2025",
+    "area": "7,400 sq ft",
+    "status": "Completed",
+    "description": "A serene architectural residence exploring curved micro-cement surfaces, fluted timber joinery, and soft subterranean natural light shafts.",
+    "tagline": "Curved micro-cement surfaces and fluted timber joinery in Mohali.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Serenade Residence, Mohali"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Serenade Residence Living Suite",
+    "hero": {
+      "src": null,
+      "alt": "The Serenade Residence Living Suite"
     },
-    concept: [
-      "Sculptural plaster sweeps eliminate rigid corners, creating an enveloping, gentle acoustic ambiance ideal for contemporary family life.",
+    "concept": [
+      "Sculptural plaster sweeps eliminate rigid corners, creating an enveloping, gentle acoustic ambiance ideal for contemporary family life."
     ],
-    materials: ["Micro-cement", "Fluted walnut", "Aged brass", "Heavy linen drapes"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Serenade salon" }] },
+    "materials": [
+      "Micro-cement",
+      "Fluted walnut",
+      "Aged brass",
+      "Heavy linen drapes"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Sculptural living space", caption: "Curved Plaster Salon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height mezzanine", caption: "Mezzanine Atrium", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Evening lighting scheme", caption: "Ambient Evening Vista", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-zenith-sky-mansion",
-    title: "The Zenith Sky Mansion",
-    location: "MUMBAI",
-    type: "Sky Mansion",
-    category: "Residential",
-    year: "2024",
-    area: "10,200 sq ft",
-    status: "Completed",
-    description:
-      "A private high-rise duplex featuring cantilevered infinity lap pools, bookmatched Patagonia quartz, and panoramic Arabian Sea views.",
-    tagline: "Cantilevered infinity lap pools and Patagonia quartz over the Arabian Sea.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Zenith Sky Mansion, Mumbai",
+    "slug": "the-zenith-sky-mansion",
+    "title": "The Zenith Sky Mansion",
+    "location": "MUMBAI",
+    "type": "Sky Mansion",
+    "category": "Residential",
+    "year": "2024",
+    "area": "10,200 sq ft",
+    "status": "Completed",
+    "description": "A private high-rise duplex featuring cantilevered infinity lap pools, bookmatched Patagonia quartz, and panoramic Arabian Sea views.",
+    "tagline": "Cantilevered infinity lap pools and Patagonia quartz over the Arabian Sea.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Zenith Sky Mansion, Mumbai"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Zenith Sky Mansion Terrace",
+    "hero": {
+      "src": null,
+      "alt": "The Zenith Sky Mansion Terrace"
     },
-    concept: [
-      "Perched high above the coastline, fluid interior open spaces are defined by floating travertine partitions and floor-to-ceiling sea glazing.",
+    "concept": [
+      "Perched high above the coastline, fluid interior open spaces are defined by floating travertine partitions and floor-to-ceiling sea glazing."
     ],
-    materials: ["Patagonia quartzite", "Brushed titanium brass", "Acoustic smoked oak", "Raw silk"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Skyline salon" }] },
+    "materials": [
+      "Patagonia quartzite",
+      "Brushed titanium brass",
+      "Acoustic smoked oak",
+      "Raw silk"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=75&w=1200&auto=format&fit=crop", alt: "Sky salon", caption: "Sea Vista Salon", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Double-height living volume", caption: "Double-Height Atrium", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Patagonia marble bar", caption: "Bespoke Marble Bar", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "villa-solarium",
-    title: "Villa Solarium",
-    location: "JAIPUR",
-    type: "Heritage Atelier Villa",
-    category: "Residential",
-    year: "2025",
-    area: "8,900 sq ft",
-    status: "Completed",
-    description:
-      "Hand-chiselled Dholpur sandstone porticos, internal reflecting lily ponds, and contemporary minimal arches celebrating Rajasthani light.",
-    tagline: "Dholpur sandstone porticos and internal lily ponds in Jaipur.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop",
-      alt: "Villa Solarium, Jaipur",
+    "slug": "villa-solarium",
+    "title": "Villa Solarium",
+    "location": "JAIPUR",
+    "type": "Heritage Atelier Villa",
+    "category": "Residential",
+    "year": "2025",
+    "area": "8,900 sq ft",
+    "status": "Completed",
+    "description": "Hand-chiselled Dholpur sandstone porticos, internal reflecting lily ponds, and contemporary minimal arches celebrating Rajasthani light.",
+    "tagline": "Dholpur sandstone porticos and internal lily ponds in Jaipur.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Villa Solarium, Jaipur"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop",
-      alt: "Villa Solarium Courtyard",
+    "hero": {
+      "src": null,
+      "alt": "Villa Solarium Courtyard"
     },
-    concept: [
-      "Traditional microclimatic courtyards reinterpreted with modern architectural purity, casting delicate patterned shadow choreographies throughout the day.",
+    "concept": [
+      "Traditional microclimatic courtyards reinterpreted with modern architectural purity, casting delicate patterned shadow choreographies throughout the day."
     ],
-    materials: ["Dholpur sandstone", "Antiqued brass inlays", "Lime wash plaster", "Custom woven dhurries"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Sandstone courtyard" }] },
+    "materials": [
+      "Dholpur sandstone",
+      "Antiqued brass inlays",
+      "Lime wash plaster",
+      "Custom woven dhurries"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=75&w=1200&auto=format&fit=crop", alt: "Courtyard salon", caption: "Reflecting Court", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Arched portico", caption: "Stone Portico Arch", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Living lounge", caption: "Solarium Lounge", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-arcadia-residence",
-    title: "The Arcadia Residence",
-    location: "LUDHIANA",
-    type: "Minimalist Villa",
-    category: "Residential",
-    year: "2024",
-    area: "7,500 sq ft",
-    status: "Completed",
-    description:
-      "Sculptural fluted concrete volumes, integrated central skylights, and low-slung Italian bouclé seating looking out to private bamboo courts.",
-    tagline: "Sculptural fluted concrete and private bamboo courtyards in Ludhiana.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Arcadia Residence, Ludhiana",
+    "slug": "the-arcadia-residence",
+    "title": "The Arcadia Residence",
+    "location": "LUDHIANA",
+    "type": "Minimalist Villa",
+    "category": "Residential",
+    "year": "2024",
+    "area": "7,500 sq ft",
+    "status": "Completed",
+    "description": "Sculptural fluted concrete volumes, integrated central skylights, and low-slung Italian bouclé seating looking out to private bamboo courts.",
+    "tagline": "Sculptural fluted concrete and private bamboo courtyards in Ludhiana.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Arcadia Residence, Ludhiana"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Arcadia Residence Living Pavilion",
+    "hero": {
+      "src": null,
+      "alt": "The Arcadia Residence Living Pavilion"
     },
-    concept: [
-      "Organized around a monolithic central skylight that bathes honed concrete walls in gentle daylight, framing minimalist garden greenery.",
+    "concept": [
+      "Organized around a monolithic central skylight that bathes honed concrete walls in gentle daylight, framing minimalist garden greenery."
     ],
-    materials: ["Fluted concrete", "Smoked glass", "Monolithic travertine", "Belgian bouclé"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Arcadia living" }] },
+    "materials": [
+      "Fluted concrete",
+      "Smoked glass",
+      "Monolithic travertine",
+      "Belgian bouclé"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=75&w=1200&auto=format&fit=crop", alt: "Arcadia dining", caption: "Minimal Dining Volume", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=75&w=1200&auto=format&fit=crop", alt: "Lounge corner", caption: "Bouclé Lounge Nook", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=75&w=1200&auto=format&fit=crop", alt: "Bamboo court vista", caption: "Bamboo Court Vista", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-emerald-pavilion",
-    title: "The Emerald Pavilion",
-    location: "DEHRADUN",
-    type: "Forest Retreat",
-    category: "Hospitality",
-    year: "2025",
-    area: "6,600 sq ft",
-    status: "Completed",
-    description:
-      "Tucked inside sal tree canopies, featuring floor-to-ceiling glass pavilions, warm walnut timber joinery, and natural stone hearths.",
-    tagline: "Floor-to-ceiling glass pavilions tucked inside sal tree canopies.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Emerald Pavilion, Dehradun",
+    "slug": "the-emerald-pavilion",
+    "title": "The Emerald Pavilion",
+    "location": "DEHRADUN",
+    "type": "Forest Retreat",
+    "category": "Hospitality",
+    "year": "2025",
+    "area": "6,600 sq ft",
+    "status": "Completed",
+    "description": "Tucked inside sal tree canopies, featuring floor-to-ceiling glass pavilions, warm walnut timber joinery, and natural stone hearths.",
+    "tagline": "Floor-to-ceiling glass pavilions tucked inside sal tree canopies.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Emerald Pavilion, Dehradun"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Emerald Pavilion Forest Deck",
+    "hero": {
+      "src": null,
+      "alt": "The Emerald Pavilion Forest Deck"
     },
-    concept: [
-      "A glass sanctuary suspended amid dense forest foliage, combining deep forest hues with warm organic timber and glowing stone fireplaces.",
+    "concept": [
+      "A glass sanctuary suspended amid dense forest foliage, combining deep forest hues with warm organic timber and glowing stone fireplaces."
     ],
-    materials: ["River quartzite", "Natural walnut", "Aged bronze", "Woolen felt drapery"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Forest deck" }] },
+    "materials": [
+      "River quartzite",
+      "Natural walnut",
+      "Aged bronze",
+      "Woolen felt drapery"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=75&w=1200&auto=format&fit=crop", alt: "Forest deck lounge", caption: "Canopy Deck", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1200&auto=format&fit=crop", alt: "Great room", caption: "Forest Pavilion Hall", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=75&w=1200&auto=format&fit=crop", alt: "Fireplace corner", caption: "Walnut Hearth", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "palazzo-di-luce",
-    title: "Palazzo Di Luce",
-    location: "CHANDIGARH",
-    type: "Contemporary Classical Atelier",
-    category: "Commercial",
-    year: "2023",
-    area: "9,800 sq ft",
-    status: "Completed",
-    description:
-      "A modern homage to northern Italian villas featuring arched colonnades, Roman travertine terraces, and custom bronze fixtures.",
-    tagline: "Arched colonnades and Roman travertine terraces in Chandigarh.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop",
-      alt: "Palazzo Di Luce, Chandigarh",
+    "slug": "palazzo-di-luce",
+    "title": "Palazzo Di Luce",
+    "location": "CHANDIGARH",
+    "type": "Contemporary Classical Atelier",
+    "category": "Commercial",
+    "year": "2023",
+    "area": "9,800 sq ft",
+    "status": "Completed",
+    "description": "A modern homage to northern Italian villas featuring arched colonnades, Roman travertine terraces, and custom bronze fixtures.",
+    "tagline": "Arched colonnades and Roman travertine terraces in Chandigarh.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "Palazzo Di Luce, Chandigarh"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop",
-      alt: "Palazzo Di Luce Grand Colonnade",
+    "hero": {
+      "src": null,
+      "alt": "Palazzo Di Luce Grand Colonnade"
     },
-    concept: [
-      "Rigorous neoclassical proportions meet clean contemporary lines, creating timeless grandeur softened by natural filtered light.",
+    "concept": [
+      "Rigorous neoclassical proportions meet clean contemporary lines, creating timeless grandeur softened by natural filtered light."
     ],
-    materials: ["Roman travertine", "Champagne brass", "Fluted teak", "Cashmere upholstery"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Grand colonnade" }] },
+    "materials": [
+      "Roman travertine",
+      "Champagne brass",
+      "Fluted teak",
+      "Cashmere upholstery"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=75&w=1200&auto=format&fit=crop", alt: "Grand colonnade", caption: "Travertine Colonnade", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=75&w=1200&auto=format&fit=crop", alt: "Salone di Luce", caption: "Salone Di Luce", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=75&w=1200&auto=format&fit=crop", alt: "Formal dining", caption: "Bespoke Dining Suite", aspectRatio: "16 / 10" },
-    ],
+    "chapters": [],
+    "gallery": []
   },
   {
-    slug: "the-haven-penthouse",
-    title: "The Haven Penthouse",
-    location: "GURUGRAM",
-    type: "Duplex Penthouse",
-    category: "Hospitality",
-    year: "2025",
-    area: "6,900 sq ft",
-    status: "Completed",
-    description:
-      "Double-height glazing framing evening city skylines, sculptural spiral plaster stairs, and monolithic marble kitchen islands.",
-    tagline: "Sculptural spiral plaster stairs and double-height glazing in Gurugram.",
-    cover: {
-      src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop",
-      hoverSrc: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Haven Penthouse, Gurugram",
+    "slug": "the-haven-penthouse",
+    "title": "The Haven Penthouse",
+    "location": "GURUGRAM",
+    "type": "Duplex Penthouse",
+    "category": "Hospitality",
+    "year": "2025",
+    "area": "6,900 sq ft",
+    "status": "Completed",
+    "description": "Double-height glazing framing evening city skylines, sculptural spiral plaster stairs, and monolithic marble kitchen islands.",
+    "tagline": "Sculptural spiral plaster stairs and double-height glazing in Gurugram.",
+    "cover": {
+      "src": null,
+      "hoverSrc": null,
+      "alt": "The Haven Penthouse, Gurugram"
     },
-    hero: {
-      src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop",
-      alt: "The Haven Penthouse Great Room",
+    "hero": {
+      "src": null,
+      "alt": "The Haven Penthouse Great Room"
     },
-    concept: [
-      "A private urban aerie offering tranquil sanctuary from city momentum, unified by sculptural plaster surfaces and midnight marble plinths.",
+    "concept": [
+      "A private urban aerie offering tranquil sanctuary from city momentum, unified by sculptural plaster surfaces and midnight marble plinths."
     ],
-    materials: ["Nero Marquina marble", "Venetian clay plaster", "Champagne gold trim", "Raw linen"],
-    chapters: [
-      { images: [{ src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Skyline penthouse" }] },
+    "materials": [
+      "Nero Marquina marble",
+      "Venetian clay plaster",
+      "Champagne gold trim",
+      "Raw linen"
     ],
-    gallery: [
-      { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=75&w=1200&auto=format&fit=crop", alt: "Skyline master bedroom", caption: "Skyline Suite", aspectRatio: "16 / 10" },
-      { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=75&w=1200&auto=format&fit=crop", alt: "Sculptural staircase", caption: "Spiral Plaster Stair", aspectRatio: "3 / 4" },
-      { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=75&w=1200&auto=format&fit=crop", alt: "Great room evening view", caption: "Evening Skyline Salon", aspectRatio: "16 / 10" },
-    ],
-  },
+    "chapters": [],
+    "gallery": []
+  }
 ];

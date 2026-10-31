@@ -47,13 +47,13 @@ function normalizeSanityProject(doc) {
     description: doc.summary || "",
     tagline: doc.tagline || doc.summary || "",
     cover: {
-      src: coverUrl || "/portfolio/anirudh/lobby-a.webp",
-      hoverSrc: hoverUrl || coverUrl,
+      src: coverUrl || null,
+      hoverSrc: hoverUrl || coverUrl || null,
       alt: doc.mainImage?.alt || doc.title,
       focus: coverFocus,
     },
     hero: {
-      src: coverUrl || "/portfolio/anirudh/lobby-a.webp",
+      src: coverUrl || null,
       alt: doc.title,
     },
     concept:

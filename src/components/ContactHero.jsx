@@ -30,18 +30,18 @@ export default function ContactHero() {
         </div>
       )}
 
-      {/* 100% Natural Background Photo - Smoothly fades in once loaded with slow ambient zoom */}
+      {/* 100% Natural Background Photo - Hardware accelerated CSS transition */}
       <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
-        <motion.img
+        <img
           ref={imgRef}
           src="/contact/contact-hero.jpg"
           onLoad={() => setIsLoaded(true)}
-          initial={{ scale: 1.08 }}
-          animate={{ scale: isLoaded ? 1 : 1.08 }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
           alt="Insync by Ancchal Atelier Contact"
-          className={`w-full h-full object-cover object-center bg-white transition-opacity duration-700 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          className={`w-full h-full object-cover object-center bg-white transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}
         />
         {/* Subtle cinematic gradient overlay for flawless high contrast */}

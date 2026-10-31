@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./AboutExperience.module.css";
@@ -24,10 +23,6 @@ const OWNER = {
   name: "Ancchal",
   role: "Founder & Principal Designer",
   lead: null,
-  paragraphs: [
-    "Ancchal Sharma, Founder and Principal Designer of Insync, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.",
-    "At Insync, every project begins with listening — understanding each client's lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by Urban Melange in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.",
-  ],
   details: [
     ["Studio", "Insync by Ancchal"],
     ["Based in", "Ludhiana, Punjab"],
@@ -121,17 +116,16 @@ export default function AboutExperience({ data, children }) {
             }}
           >
             {founderPhotoSrc ? (
-              <motion.img
+              <img
                 src={founderPhotoSrc}
                 alt={founderPhotoAlt}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.currentTarget.src = "/about/ancchal-about.jpeg";
                 }}
                 style={{ objectPosition: dynamicFounderObjectPosition }}
-                initial={{ scale: 1.06 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 will-change-transform"
               />
             ) : (
               <span className={`${styles.ph} ${styles.sans}`} role="img" aria-label={founderPhotoAlt}>Portrait</span>
@@ -258,16 +252,13 @@ export default function AboutExperience({ data, children }) {
             >
               <div className={styles.mImageFrame}>
                 <div className={styles.mImageInner}>
-                  <motion.img
+                  <img
                     src={approachPhotoSrc}
                     alt={approachPhotoAlt}
                     style={{ objectPosition: dynamicApproachObjectPosition }}
                     loading="lazy"
                     decoding="async"
-                    initial={{ scale: 1.08 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 will-change-transform"
                   />
                 </div>
               </div>

@@ -4,11 +4,8 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { projects } from '@/data/projects'
-
-export default function LatestProjectsGrid({ projects: customProjects }) {
-  // Use dynamically passed projects from Sanity or fallback
-  const list = customProjects && customProjects.length > 0 ? customProjects : projects;
+export default function LatestProjectsGrid({ projects = [] }) {
+  const list = projects && projects.length > 0 ? projects : [];
   const featuredOnly = list.filter((p) => p.featured);
   const displayProjects = (featuredOnly.length >= 3 ? featuredOnly : list).slice(0, 3);
 
@@ -71,17 +68,22 @@ export default function LatestProjectsGrid({ projects: customProjects }) {
                 >
                   {/* Image Container with Inner Hairline Hover Frame */}
                   <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full overflow-hidden bg-[#EAE6DE] rounded-xs shadow-[0_12px_30px_-15px_rgba(27,26,23,0.08)]">
-                    {/* Primary Architectural Photograph with Smooth Unfurl Scale */}
-                    <motion.img
-                      src={project.cover.src}
-                      alt={project.cover.alt || project.title}
-                      loading="lazy"
-                      initial={{ scale: 1.1 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                    />
+                    {/* Primary Architectural Photograph or Luxury Curation Placeholder */}
+                    {project.cover?.src ? (
+                      <img
+                        src={project.cover.src}
+                        alt={project.cover.alt || project.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 will-change-transform"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#FAF7F2] to-[#EDE6D8] border border-dashed border-[#C5A059]/40">
+                        <span className="font-serif text-xl sm:text-2xl text-[#C5A059] opacity-70 font-light mb-1">INSYNC</span>
+                        <div className="w-6 h-[1px] bg-[#C5A059]/60 mb-2" />
+                        <span className="font-sans text-[9px] uppercase tracking-[0.24em] text-[#6E6860] font-semibold">PHOTOGRAPHY IN CURATION</span>
+                      </div>
+                    )}
 
                     {/* Dark Vignette Overlay on Hover */}
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />

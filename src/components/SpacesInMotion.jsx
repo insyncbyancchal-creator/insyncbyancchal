@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import styles from "./SpacesInMotion.module.css";
 
@@ -99,11 +99,12 @@ const LeftColumn = React.memo(function LeftColumn({ profileUrl }) {
   );
 });
 
-function ReelCard({
+const ReelCard = React.memo(function ReelCard({
   reel,
   index,
   isPlaying,
   isHovered,
+  sectionInView,
   onEnded,
   onMouseEnter,
   onMouseLeave,
@@ -118,7 +119,7 @@ function ReelCard({
     video.defaultMuted = true;
     video.muted = true;
 
-    if (isPlaying) {
+    if (isPlaying && sectionInView) {
       const p = video.play();
       if (p !== undefined) {
         p.catch(() => {});
@@ -129,18 +130,18 @@ function ReelCard({
         video.currentTime = 0;
       } catch (e) {}
     }
-  }, [isPlaying, reel.video, hasVideoError]);
+  }, [isPlaying, sectionInView, reel.video, hasVideoError]);
 
   return (
     <motion.a
       href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.card}
+      className={`${styles.card} will-change-transform`}
       title={`Watch ${reel.title} on Instagram`}
       aria-label={`Watch ${reel.title} reel on Instagram (opens in new tab)`}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={() => onMouseEnter(index)}
+      onMouseLeave={() => onMouseLeave(index)}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -150,7 +151,7 @@ function ReelCard({
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {/* Video or Poster Image */}
+      {/* Video or Poster Image - Only preloads when section is visible or playing */}
       {reel.video && !hasVideoError ? (
         <video
           ref={videoRef}
@@ -159,8 +160,8 @@ function ReelCard({
           muted
           playsInline
           loop={isHovered}
-          preload="auto"
-          onEnded={onEnded}
+          preload={isPlaying && sectionInView ? "auto" : "none"}
+          onEnded={() => onEnded(index)}
           onError={() => setHasVideoError(true)}
           className={styles.cardVideo}
         />
@@ -169,6 +170,7 @@ function ReelCard({
           src={reel.poster}
           alt={reel.title}
           loading="lazy"
+          decoding="async"
           className={styles.cardImage}
         />
       )}
@@ -185,13 +187,34 @@ function ReelCard({
       </div>
     </motion.a>
   );
-}
+});
 
 export default function SpacesInMotion({ data }) {
   const [activeSeqIndex, setActiveSeqIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [sectionInView, setSectionInView] = useState(false);
+  const sectionRef = useRef(null);
 
   const instagramProfileUrl = data?.instagramProfileUrl || INSTAGRAM_PROFILE;
+
+  // Observe when section is in viewport to avoid idle background video decoding
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setSectionInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setSectionInView(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Resolve dynamic reels from Sanity or fall back to curated local authentic reels
   const displayReels = (data?.reelsList && data.reelsList.length > 0)
@@ -208,29 +231,40 @@ export default function SpacesInMotion({ data }) {
   const reelsCount = displayReels.length || 1;
 
   // When user hovers any video, that video plays and sequence stops.
-  // When no video is hovered, the current sequential video plays.
   const activePlayingIndex = hoveredIndex !== null ? hoveredIndex : activeSeqIndex;
 
   // Advance sequence when video ends naturally
-  const handleVideoEnded = (endedIndex) => {
-    if (hoveredIndex === null && endedIndex === activeSeqIndex) {
-      setActiveSeqIndex((prev) => (prev + 1) % reelsCount);
-    }
-  };
+  const handleVideoEnded = useCallback((endedIndex) => {
+    setActiveSeqIndex((prev) => {
+      if (endedIndex === prev) {
+        return (prev + 1) % reelsCount;
+      }
+      return prev;
+    });
+  }, [reelsCount]);
+
+  const handleMouseEnter = useCallback((index) => {
+    setHoveredIndex(index);
+  }, []);
+
+  const handleMouseLeave = useCallback((index) => {
+    setHoveredIndex(null);
+    setActiveSeqIndex((index + 1) % reelsCount);
+  }, [reelsCount]);
 
   // Safety fallback: if video ended event is delayed or missed, advance automatically after 6s
   useEffect(() => {
-    if (hoveredIndex !== null) return;
+    if (hoveredIndex !== null || !sectionInView) return;
 
     const timer = setTimeout(() => {
       setActiveSeqIndex((prev) => (prev + 1) % reelsCount);
     }, 6000);
 
     return () => clearTimeout(timer);
-  }, [activeSeqIndex, hoveredIndex, reelsCount]);
+  }, [activeSeqIndex, hoveredIndex, reelsCount, sectionInView]);
 
   return (
-    <section className={styles.section} aria-labelledby="spaces-in-motion-heading">
+    <section ref={sectionRef} className={styles.section} aria-labelledby="spaces-in-motion-heading">
       <div className={styles.container}>
         {/* LEFT COLUMN: Editorial Text & Italian Calligraphic Script */}
         <LeftColumn profileUrl={instagramProfileUrl} />
@@ -245,12 +279,10 @@ export default function SpacesInMotion({ data }) {
                 index={index}
                 isPlaying={activePlayingIndex === index}
                 isHovered={hoveredIndex === index}
-                onEnded={() => handleVideoEnded(index)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => {
-                  setHoveredIndex(null);
-                  setActiveSeqIndex((index + 1) % reelsCount);
-                }}
+                sectionInView={sectionInView}
+                onEnded={handleVideoEnded}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               />
             ))}
           </div>

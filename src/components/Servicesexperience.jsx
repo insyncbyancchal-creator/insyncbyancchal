@@ -152,17 +152,22 @@ function HomeShowcase({ products, homeData }) {
               className={styles.homeCard}
             >
               <div className={styles.cardThumb}>
-                <motion.img
-                  initial={{ scale: 1.08 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                  src={prod.img}
-                  alt={prod.name}
-                  loading="lazy"
-                  decoding="async"
-                  style={{ objectPosition: prod.imageFocus || "50% 50%" }}
-                />
+                {prod.img ? (
+                  <img
+                    src={prod.img}
+                    alt={prod.name}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ objectPosition: prod.imageFocus || "50% 50%" }}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 will-change-transform"
+                  />
+                ) : (
+                  <div className={styles.thumbPlaceholder}>
+                    <span className={styles.placeholderBrand}>INSYNC</span>
+                    <div className={styles.placeholderDivider} />
+                    <span className={styles.placeholderText}>OBJECT ARCHIVE</span>
+                  </div>
+                )}
                 {prod.badge && <span className={`${styles.cardBadge} ${styles.sans}`}>{prod.badge}</span>}
               </div>
 

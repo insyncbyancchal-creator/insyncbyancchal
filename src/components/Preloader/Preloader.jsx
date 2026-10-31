@@ -74,9 +74,9 @@ function buildMarkup() {
 
 export default function Preloader({
   onDone,
-  holdAfterIntroMs = 700,
-  letterStart = 1.7,
-  letterStagger = 0.11,
+  holdAfterIntroMs = 300,
+  letterStart = 0.9,
+  letterStagger = 0.08,
 } = {}) {
   const pathname = usePathname();
   const overlayRef = useRef(null);
@@ -94,8 +94,6 @@ export default function Preloader({
   useIsoLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
-    // If component was already mounted, subsequent route transitions are client-side.
-    // Client-side navigation should never trigger the preloader.
     if (hasMountedRef.current) {
       return;
     }
@@ -144,7 +142,7 @@ export default function Preloader({
 
     function buildIntro(onComplete) {
       const tl = gsap.timeline({ onComplete });
-      const draw = (node, dir, at, dur = 0.95) => {
+      const draw = (node, dir, at, dur = 0.65) => {
         if (!node) return;
         return tl.fromTo(
           node,
@@ -154,53 +152,53 @@ export default function Preloader({
         );
       };
 
-      // 0.05 - 1.5  construction guides and the frame draw on, like lines on a plan
-      draw(el('.gd[data-k="cap"]'), GUIDES.cap[4], 0.05, 1.1);
-      draw(el('.gd[data-k="base"]'), GUIDES.base[4], 0.05, 1.1);
-      draw(el('.fl[data-k="v1"]'), FRAME.v1[4], 0.15);
-      draw(el('.fl[data-k="h1"]'), FRAME.h1[4], 0.3);
-      draw(el('.fl[data-k="v2"]'), FRAME.v2[4], 0.45);
-      draw(el('.fl[data-k="h2"]'), FRAME.h2[4], 0.6);
+      // Construction guides and frame draw on briskly
+      draw(el('.gd[data-k="cap"]'), GUIDES.cap[4], 0.05, 0.7);
+      draw(el('.gd[data-k="base"]'), GUIDES.base[4], 0.05, 0.7);
+      draw(el('.fl[data-k="v1"]'), FRAME.v1[4], 0.1);
+      draw(el('.fl[data-k="h1"]'), FRAME.h1[4], 0.2);
+      draw(el('.fl[data-k="v2"]'), FRAME.v2[4], 0.3);
+      draw(el('.fl[data-k="h2"]'), FRAME.h2[4], 0.4);
 
-      // 1.15 - 2.0  the i fills from the baseline up
+      // The 'i' fills from baseline up
       tl.fromTo(
         el("#stem"),
         { attr: { y: STEM.y + STEM.h, height: 0 } },
-        { attr: { y: STEM.y, height: STEM.h }, duration: 0.75, ease: "power3.inOut" },
-        1.15
+        { attr: { y: STEM.y, height: STEM.h }, duration: 0.5, ease: "power3.inOut" },
+        0.55
       ).fromTo(
         el("#dot"),
         { attr: { y: DOT.y + DOT.h, height: 0 } },
-        { attr: { y: DOT.y, height: DOT.h }, duration: 0.5, ease: "power3.inOut" },
-        1.5
+        { attr: { y: DOT.y, height: DOT.h }, duration: 0.35, ease: "power3.inOut" },
+        0.75
       );
 
-      // 1.55 - 3.3  a faint 3x3 grid appears behind each letter while it rises out of the baseline, then fades
+      // 3x3 grids and rising letters
       LETTERS.forEach(([id], i) => {
         const t0 = letterStart + i * letterStagger;
         tl.fromTo(
           el(`.grid[data-k="${id}"]`),
           { opacity: 0 },
-          { opacity: 1, duration: 0.3, ease: "power1.out" },
-          t0 - 0.15
+          { opacity: 1, duration: 0.2, ease: "power1.out" },
+          t0 - 0.1
         )
           .to(
             el(`.grid[data-k="${id}"]`),
-            { opacity: 0, duration: 0.45, ease: "power1.in" },
-            t0 + 0.75
+            { opacity: 0, duration: 0.3, ease: "power1.in" },
+            t0 + 0.5
           )
           .fromTo(
             el(`.rise[data-k="${id}"]`),
             { y: 190 },
-            { y: 0, duration: 0.9, ease: "power4.out" },
+            { y: 0, duration: 0.65, ease: "power4.out" },
             t0
           );
       });
 
-      // 2.7 - 3.4  guides fade, "by Ancchal" fades up
-      tl.to(all(".gd"), { opacity: 0, duration: 0.5, ease: "power1.in" }, 2.7)
-        .fromTo(el("#by"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 2.75)
-        .to({}, { duration: 0 }, 3.4);
+      // Guides fade, "by Ancchal" reveals
+      tl.to(all(".gd"), { opacity: 0, duration: 0.35, ease: "power1.in" }, 1.6)
+        .fromTo(el("#by"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 1.65)
+        .to({}, { duration: 0 }, 2.0);
       return tl;
     }
 
@@ -230,10 +228,10 @@ export default function Preloader({
 
       exitTl = gsap.timeline({ onComplete: finish });
       exitTl
-        .to([el("#letters"), el("#by"), el("#ifill")], { opacity: 0, y: -8, duration: 0.5, ease: "power2.in" }, 0)
-        .to(all('.fl[data-k^="v"]'), { attr: { y1: -3000, y2: 3000 }, duration: 0.9, ease: "power3.in" }, 0.1)
-        .to(all('.fl[data-k^="h"]'), { attr: { x1: -3000, x2: 3000 }, duration: 0.9, ease: "power3.in" }, 0.1)
-        .to(overlay, { yPercent: -100, duration: 1.0, ease: "expo.inOut" }, 0.55);
+        .to([el("#letters"), el("#by"), el("#ifill")], { opacity: 0, y: -8, duration: 0.35, ease: "power2.in" }, 0)
+        .to(all('.fl[data-k^="v"]'), { attr: { y1: -3000, y2: 3000 }, duration: 0.7, ease: "power3.in" }, 0.06)
+        .to(all('.fl[data-k^="h"]'), { attr: { x1: -3000, x2: 3000 }, duration: 0.7, ease: "power3.in" }, 0.06)
+        .to(overlay, { yPercent: -100, duration: 0.75, ease: "expo.inOut" }, 0.35);
     }
 
     const pageReady = () =>

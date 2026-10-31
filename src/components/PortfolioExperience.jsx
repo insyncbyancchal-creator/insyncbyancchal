@@ -84,25 +84,32 @@ export default function PortfolioExperience({ projects }) {
                 >
                   {/* 1:1 Square Image Container with Ultra-Smooth Luxury Dissolve Hover & Whitish-Gold Blur */}
                   <div className={styles.imageBox}>
-                    <motion.img
-                      initial={{ scale: 1.06 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                      src={p.cover?.src}
-                      alt={p.title}
-                      className={styles.primaryImg}
-                      loading={index < 3 ? "eager" : "lazy"}
-                      decoding="async"
-                    />
-                    {p.cover?.hoverSrc && (
-                      <img
-                        src={p.cover?.hoverSrc}
-                        alt={`${p.title} interior detail`}
-                        className={styles.hoverImg}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                    {p.cover?.src ? (
+                      <>
+                        <img
+                          src={p.cover.src}
+                          alt={p.title}
+                          className={`${styles.primaryImg} will-change-transform`}
+                          loading={index < 3 ? "eager" : "lazy"}
+                          decoding="async"
+                        />
+                        {p.cover?.hoverSrc && (
+                          <img
+                            src={p.cover.hoverSrc}
+                            alt={`${p.title} interior detail`}
+                            className={`${styles.hoverImg} will-change-transform`}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <div className={styles.placeholderBox}>
+                        <span className={styles.placeholderMonogram}>INSYNC</span>
+                        <div className={styles.placeholderLine} />
+                        <span className={styles.placeholderStatus}>PHOTOGRAPHY IN CURATION</span>
+                        <span className={styles.placeholderNote}>Archival Visuals Pending Upload</span>
+                      </div>
                     )}
 
                     {/* Whitish-Golden Frosted Glass Blur Overlay with View Project */}

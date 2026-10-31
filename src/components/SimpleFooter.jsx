@@ -51,13 +51,20 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
     }
   }, [initialSettings])
 
-  // Computed dynamic URLs from Sanity Site Settings
-  const whatsappRaw = siteSettings?.whatsappNumber || '919877417531'
-  const whatsappDigits = whatsappRaw.replace(/\D/g, '') || '919877417531'
-  const whatsappUrl = `https://wa.me/${whatsappDigits}?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project`
-  const email = siteSettings?.contactEmail || 'contact@insyncinteriors.com'
-  const emailUrl = `mailto:${email}`
-  const instagramUrl = siteSettings?.instagramUrl || 'https://www.instagram.com/insync_byancchal/'
+  // Computed dynamic URLs from Sanity Site Settings (flexible format parser)
+  const rawWa = (siteSettings?.whatsappNumber || '919877417531').trim()
+  const whatsappUrl = rawWa.startsWith('http')
+    ? rawWa
+    : `https://wa.me/${rawWa.replace(/\D/g, '') || '919877417531'}?text=Hello%20Insync%20by%20Ancchal%2C%20I%20would%20like%20to%20enquire%20about%20a%20project`
+
+  const rawEmail = (siteSettings?.contactEmail || 'hello@insyncinteriors.com').trim()
+  const emailUrl = rawEmail.startsWith('mailto:') ? rawEmail : `mailto:${rawEmail}`
+
+  const rawInsta = (siteSettings?.instagramUrl || 'https://www.instagram.com/insync_byancchal/').trim()
+  const instagramUrl = rawInsta.startsWith('http')
+    ? rawInsta
+    : `https://www.instagram.com/${rawInsta.replace(/^@/, '')}/`
+
   const inquireLabel = siteSettings?.enquireButtonText || 'INQUIRE'
   const studioAddress = siteSettings?.studioAddress || 'INSYNC INTERIORS • SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001'
 

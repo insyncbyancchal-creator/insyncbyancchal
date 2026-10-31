@@ -1,8 +1,31 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+const SLIDE_VARIANTS = {
+  enter: (dir) => ({
+    opacity: 0,
+    y: dir > 0 ? 10 : -10,
+  }),
+  center: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (dir) => ({
+    opacity: 0,
+    y: dir > 0 ? -10 : 10,
+    transition: {
+      duration: 0.35,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
 
 const TESTIMONIALS = [
   {
@@ -60,51 +83,31 @@ export default function TestimonialSection({ items }) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const nextTestimonial = () => {
+  const nextTestimonial = useCallback(() => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const prevTestimonial = () => {
+  const prevTestimonial = useCallback(() => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  // Continuous automatic rotation loop
+  // Continuous rotation with hover pause
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 3500);
+    }, 5500);
 
     return () => clearInterval(timer);
-  }, [testimonials.length]);
+  }, [testimonials.length, isPaused]);
 
   const current = testimonials[currentIndex] || testimonials[0];
-
-  const slideVariants = {
-    enter: (dir) => ({
-      opacity: 0,
-      y: dir > 0 ? 10 : -10,
-    }),
-    center: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.45,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-    exit: (dir) => ({
-      opacity: 0,
-      y: dir > 0 ? -10 : 10,
-      transition: {
-        duration: 0.35,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    }),
-  }
 
   return (
     <section
@@ -147,6 +150,8 @@ export default function TestimonialSection({ items }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.95, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           className="relative max-w-4xl mx-auto flex items-center justify-between gap-4 sm:gap-6 min-h-[220px] sm:min-h-[200px]"
         >
           {/* Previous Arrow Button */}
@@ -164,11 +169,11 @@ export default function TestimonialSection({ items }) {
               <motion.div
                 key={current.id}
                 custom={direction}
-                variants={slideVariants}
+                variants={SLIDE_VARIANTS}
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="space-y-4 sm:space-y-5"
+                className="space-y-4 sm:space-y-5 will-change-[opacity,transform]"
               >
                 {/* Quote Text */}
                 <p className="font-serif italic text-[16px] sm:text-[17.5px] md:text-[18.5px] text-[#2C2A26] leading-[1.68] font-light max-w-xl mx-auto min-h-[90px] sm:min-h-[80px] flex items-center justify-center">

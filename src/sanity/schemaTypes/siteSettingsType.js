@@ -2,9 +2,44 @@ import { defineField, defineType } from 'sanity'
 
 export const siteSettingsType = defineType({
   name: 'siteSettings',
-  title: 'Global Site Settings & Studio Contact',
+  title: 'Navbar & Global Site Settings',
   type: 'document',
   fields: [
+    // ==============================================================
+    // ⭐ 1. NAVBAR & SOCIAL APPS (WHATSAPP, MAIL, INSTAGRAM)
+    // ==============================================================
+    defineField({
+      name: 'whatsappNumber',
+      title: '⭐ 1. WhatsApp Number / Link (Navbar & Floating Chat)',
+      description: 'Used for the WhatsApp icon in the top Navbar and floating chat button. Enter phone number with country code (e.g. 919877417531 or +91 98774 17531) or full wa.me link.',
+      type: 'string',
+      initialValue: '919877417531',
+    }),
+    defineField({
+      name: 'contactEmail',
+      title: '⭐ 2. Email Address (Navbar Mail Icon)',
+      description: 'Used for the Mail envelope icon in the Navbar and site footer. When clicked, it opens an email to this address (e.g. hello@insyncinteriors.com).',
+      type: 'string',
+      initialValue: 'hello@insyncinteriors.com',
+    }),
+    defineField({
+      name: 'instagramUrl',
+      title: '⭐ 3. Instagram Profile URL (Navbar Instagram Icon)',
+      description: 'Used for the Instagram camera icon in the Navbar and footer (e.g. https://www.instagram.com/insync_byancchal/).',
+      type: 'url',
+      initialValue: 'https://www.instagram.com/insync_byancchal/',
+    }),
+    defineField({
+      name: 'enquireButtonText',
+      title: '⭐ 4. Navbar Inquire Button Label',
+      description: 'Text displayed inside the main gold button in the Navbar (e.g. INQUIRE or ENQUIRE NOW).',
+      type: 'string',
+      initialValue: 'INQUIRE',
+    }),
+
+    // ==============================================================
+    // 2. STUDIO IDENTITY
+    // ==============================================================
     defineField({
       name: 'studioName',
       title: 'Studio Name',
@@ -18,7 +53,9 @@ export const siteSettingsType = defineType({
       initialValue: 'by Ancchal',
     }),
 
-    // --- CONTACT HERO & ENQUIRE BUTTON ---
+    // ==============================================================
+    // 3. CONTACT PAGE & ATELIER DETAILS
+    // ==============================================================
     defineField({
       name: 'contactHeroTitle',
       title: 'Contact Hero Headline',
@@ -35,21 +72,12 @@ export const siteSettingsType = defineType({
       initialValue: 'Tell us about the space you imagine. We’ll listen first, then design.',
     }),
     defineField({
-      name: 'enquireButtonText',
-      title: 'Enquire Button Label',
-      description: 'Text displayed inside the main button (e.g. ENQUIRE NOW)',
-      type: 'string',
-      initialValue: 'ENQUIRE NOW',
-    }),
-    defineField({
       name: 'enquireButtonSubtitle',
-      title: 'Enquire Button Subtitle',
-      description: 'Italic text below the Enquire Now button',
+      title: 'Enquire Button Subtitle (Contact Page)',
+      description: 'Italic text below the Enquire button on the contact hero',
       type: 'string',
       initialValue: 'Begin your bespoke architectural commission',
     }),
-
-    // --- CONTACT & ATELIER DETAILS ---
     defineField({
       name: 'studioAddress',
       title: 'Studio Physical Address',
@@ -66,20 +94,6 @@ export const siteSettingsType = defineType({
       initialValue: '+91 98774 17531',
     }),
     defineField({
-      name: 'whatsappNumber',
-      title: 'WhatsApp Number (Digits Only with Country Code)',
-      description: 'e.g. 919877417531 (used for direct WhatsApp chat links)',
-      type: 'string',
-      initialValue: '919877417531',
-    }),
-    defineField({
-      name: 'contactEmail',
-      title: 'Studio Contact Email',
-      description: 'e.g. hello@insyncinteriors.com',
-      type: 'string',
-      initialValue: 'hello@insyncinteriors.com',
-    }),
-    defineField({
       name: 'studioHours',
       title: 'Studio Operating Hours',
       description: 'e.g. Monday – Saturday · 10:00 AM – 6:00 PM',
@@ -93,21 +107,15 @@ export const siteSettingsType = defineType({
       type: 'string',
       initialValue: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
     }),
-
-    // --- SOCIAL LINKS ---
-    defineField({
-      name: 'instagramUrl',
-      title: 'Instagram Profile URL',
-      type: 'url',
-      initialValue: 'https://www.instagram.com/insync_byancchal/',
-    }),
     defineField({
       name: 'pinterestUrl',
       title: 'Pinterest Profile Link',
       type: 'url',
     }),
 
-    // --- HERO & STATS ---
+    // ==============================================================
+    // 4. HERO & STATS
+    // ==============================================================
     defineField({
       name: 'heroHeadline',
       title: 'Homepage Hero Headline',

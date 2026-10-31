@@ -57,21 +57,21 @@ export default function InsyncHomeClient({ products = [] }) {
               <div className="space-y-4">
                 <div className="aspect-[16/11] rounded-xl overflow-hidden bg-[#1A1A1A] relative">
                   {imageSrc ? (
-                    <motion.img
+                    <img
                       src={imageSrc}
                       alt={product.name}
                       loading="lazy"
                       decoding="async"
                       style={{ objectPosition: product.imageFocus || '50% 50%' }}
-                      initial={{ scale: 1.08 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-[#E5DFD5] text-[#8C857B] text-xs font-sans uppercase tracking-widest">
-                      Atelier Custom Piece
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#FAF7F2] to-[#EDE6D8] border border-dashed border-[#C5A059]/40 p-4 text-center select-none">
+                      <span className="font-serif text-lg text-[#C5A059] opacity-75 font-light mb-1">INSYNC</span>
+                      <div className="w-6 h-[1px] bg-[#C5A059]/60 mb-1.5" />
+                      <span className="text-[8.5px] uppercase tracking-[0.24em] text-[#6E6860] font-semibold font-sans">
+                        OBJECT ARCHIVE
+                      </span>
                     </div>
                   )}
                   <div className="absolute top-3.5 left-3.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">

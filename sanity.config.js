@@ -20,6 +20,19 @@ export default defineConfig({
         S.list()
           .title('Insync Content')
           .items([
+            // 0. Navbar & Social Links (Mail, WhatsApp, Insta)
+            S.listItem()
+              .title('⭐ Navbar Links (Mail, WhatsApp, Insta)')
+              .id('navbarLinksItem')
+              .child(
+                S.document()
+                  .schemaType('siteSettings')
+                  .documentId('siteSettings')
+                  .title('Navbar & Social Links (Mail, WhatsApp, Instagram)')
+              ),
+
+            S.divider(),
+
             // 1. Home Page
             S.listItem()
               .title('1. Home Page')

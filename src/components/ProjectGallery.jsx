@@ -18,49 +18,26 @@ export default function ProjectGallery({ project }) {
   const [isLbPlaying, setIsLbPlaying] = useState(true);
   const lbTimerRef = useRef(null);
 
-  // Extract gallery items from project or build fallback list
-  const gallery = project?.gallery?.length
-    ? project.gallery
-    : [
-        ...(project?.hero
-          ? [
-              {
-                src: project.hero.src,
-                alt: project.hero.alt || project.title,
-                caption: "Hero Architectural Study",
-                aspectRatio: "16 / 10",
-              },
-            ]
-          : []),
-        ...(project?.cover
-          ? [
-              {
-                src: project.cover.src,
-                alt: project.cover.alt || project.title,
-                caption: "Primary Exterior Elevation",
-                aspectRatio: "3 / 4",
-              },
-            ]
-          : []),
-        ...(project?.cover?.hoverSrc
-          ? [
-              {
-                src: project.cover.hoverSrc,
-                alt: `${project.title} detail`,
-                caption: "Interior Material Detail",
-                aspectRatio: "16 / 10",
-              },
-            ]
-          : []),
-        ...(project?.chapters?.flatMap((c) =>
-          c.images?.map((img) => ({
-            src: img.src,
-            alt: img.alt || c.title || project.title,
-            caption: img.caption || c.title,
-            aspectRatio: img.ar || "16 / 10",
-          })) || []
-        ) || []),
-      ];
+  // Extract gallery items from project (real Sanity images take priority)
+  const baseGallery = Array.isArray(project?.gallery)
+    ? project.gallery.filter((g) => Boolean(g?.src))
+    : [];
+
+  // If main cover exists and is not already in baseGallery, include it at the start
+  const hasCoverInGallery = baseGallery.some((g) => g.src === project?.cover?.src);
+  const coverItem =
+    project?.cover?.src && !hasCoverInGallery
+      ? [
+          {
+            src: project.cover.src,
+            alt: project.cover.alt || project.title,
+            caption: "Primary Elevation",
+            aspectRatio: "16 / 10",
+          },
+        ]
+      : [];
+
+  const gallery = [...coverItem, ...baseGallery];
 
   const total = gallery.length;
   const hasItems = total > 0;
@@ -155,7 +132,22 @@ export default function ProjectGallery({ project }) {
     };
   }, [activeLightboxIdx]);
 
-  if (!hasItems) return null;
+  if (!hasItems) {
+    return (
+      <div className="py-16 px-6 max-w-2xl mx-auto my-12 text-center border border-dashed border-[#C5A059]/40 bg-[#FAF7F2] rounded-none">
+        <span className="font-serif text-2xl text-[#C5A059] block mb-2 font-light tracking-wide">
+          INSYNC
+        </span>
+        <div className="w-8 h-[1px] bg-[#C5A059] mx-auto mb-3" />
+        <p className="text-[11px] font-sans uppercase tracking-[0.24em] text-[#1A1A1A] font-semibold mb-1.5">
+          PHOTOGRAPHY IN CURATION
+        </p>
+        <p className="text-[12.5px] text-[#6E6860] font-light leading-relaxed">
+          The high-resolution architectural captures for this commission are currently being prepared for the portfolio exhibition.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.galleryRoot}>
