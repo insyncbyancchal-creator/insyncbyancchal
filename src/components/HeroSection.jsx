@@ -108,6 +108,21 @@ export default function HeroSection() {
     setMediaLoaded((prev) => (prev[id] ? prev : { ...prev, [id]: true }))
   }, [])
 
+  // Preload detection for cached or fast-loading images
+  useEffect(() => {
+    heroSlides.forEach((slide) => {
+      if (slide.image) {
+        const testImg = new Image()
+        testImg.src = slide.image
+        if (testImg.complete && testImg.naturalWidth > 0) {
+          markLoaded(slide.id)
+        } else {
+          testImg.onload = () => markLoaded(slide.id)
+        }
+      }
+    })
+  }, [markLoaded])
+
   // Slide rotation timer
   useEffect(() => {
     const timer = setInterval(() => {
@@ -160,7 +175,6 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 bg-white">
         {heroSlides.map((slide, idx) => {
           const isActive = idx === currentSlide
-          const isNext = (currentSlide + 1) % heroSlides.length === idx
           const isLoaded = Boolean(mediaLoaded[slide.id])
           const isVideo = slide.type === 'video' && !videoFailed[slide.id]
 
@@ -189,15 +203,14 @@ export default function HeroSection() {
                 </div>
               )}
 
-              {/* Video Slide - Lazy loaded to save initial bandwidth */}
               {isVideo ? (
                 <video
                   src={slide.video}
-                  autoPlay={isActive}
+                  autoPlay
                   loop
                   muted
                   playsInline
-                  preload={isActive ? 'auto' : isNext ? 'metadata' : 'none'}
+                  preload="auto"
                   onLoadedData={() => markLoaded(slide.id)}
                   onCanPlay={() => markLoaded(slide.id)}
                   onError={() => {
@@ -209,9 +222,14 @@ export default function HeroSection() {
                 />
               ) : null}
 
-              {/* Image Slide - High priority for first slide LCP, lazy for others */}
-              {(!isVideo || videoFailed[slide.id]) ? (
+              {/* Image element (used directly for image slides or as fallback if video is unplayable) */}
+              {(!isVideo || videoFailed[slide.id] || slide.image) ? (
                 <img
+                  ref={(el) => {
+                    if (el && el.complete && el.naturalWidth > 0) {
+                      markLoaded(slide.id)
+                    }
+                  }}
                   src={
                     videoFailed[slide.id]
                       ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo_1.avif'
@@ -224,8 +242,8 @@ export default function HeroSection() {
                   onLoad={() => markLoaded(slide.id)}
                   onError={() => handleImageFallback(slide.id, slide.fallbackCandidates)}
                   className={`w-full h-full object-cover bg-white filter brightness-[1.02] contrast-[1.03] saturate-[1.05] transition-opacity duration-700 ${
-                    isLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
+                    isVideo && !videoFailed[slide.id] ? 'absolute inset-0 -z-10' : ''
+                  } ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
                 />
               ) : null}
             </motion.div>
