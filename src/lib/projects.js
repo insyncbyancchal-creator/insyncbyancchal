@@ -1,17 +1,17 @@
 // Master Data Access Layer for Insync Portfolio Projects
-// Connects dynamically to Sanity CMS with manual ordering, inside gallery, and graceful fallback.
+// Connects dynamically to Sanity CMS with manual ordering, inside gallery, and clean backend-only data.
 import { sanityClient } from "@/sanity/lib/client";
 import { projectId } from "@/sanity/lib/env";
 import { urlForImage } from "@/sanity/lib/image";
-import { projects as fallbackProjects } from "@/data/projects";
 
 // Helper to normalize a Sanity project document so all pages receive clean, compatible structures
 function normalizeSanityProject(doc) {
   if (!doc) return null;
 
-  // Resolve main cover image
-  const coverUrl = doc.mainImage?.asset?.url || (doc.mainImage ? urlForImage(doc.mainImage)?.url() : null);
-  const hoverUrl = doc.hoverImage?.asset?.url || (doc.hoverImage ? urlForImage(doc.hoverImage)?.url() : null) || (doc.gallery?.[0]?.asset?.url || (doc.gallery?.[0]?.asset ? urlForImage(doc.gallery[0])?.url() : null));
+  // Resolve main cover image, with fallback to first gallery photo if mainImage wasn't uploaded
+  const galleryFirstUrl = doc.gallery?.[0]?.asset?.url || (doc.gallery?.[0]?.asset ? urlForImage(doc.gallery[0])?.url() : null);
+  const coverUrl = doc.mainImage?.asset?.url || (doc.mainImage ? urlForImage(doc.mainImage)?.url() : null) || galleryFirstUrl;
+  const hoverUrl = doc.hoverImage?.asset?.url || (doc.hoverImage ? urlForImage(doc.hoverImage)?.url() : null) || galleryFirstUrl || coverUrl;
 
   // Resolve inside gallery photos
   const gallery = (doc.gallery || [])
@@ -26,7 +26,6 @@ function normalizeSanityProject(doc) {
       };
     })
     .filter(Boolean);
-
 
   // Cover focus
   const coverFocus = doc.mainImage?.hotspot
@@ -103,32 +102,15 @@ export async function getProjects() {
         }
       }`);
 
-      if (docs && docs.length > 0) {
-        const sanityList = docs.map(normalizeSanityProject).filter(Boolean);
-
-        // Normalize slugs and titles to avoid duplicates with fallback projects
-        const sanitySlugs = new Set(
-          sanityList.map((p) => (p.slug || "").toLowerCase().replace(/_/g, "-"))
-        );
-        const sanityTitles = new Set(
-          sanityList.map((p) => (p.title || "").toLowerCase().trim())
-        );
-
-        // Only keep fallback projects that haven't been created in Sanity yet
-        const remainingFallbacks = fallbackProjects.filter((fb) => {
-          const normSlug = (fb.slug || "").toLowerCase().replace(/_/g, "-");
-          const normTitle = (fb.title || "").toLowerCase().trim();
-          return !sanitySlugs.has(normSlug) && !sanityTitles.has(normTitle);
-        });
-
-        // Sanity projects take top priority, followed by any remaining fallback items
-        return [...sanityList, ...remainingFallbacks];
+      if (Array.isArray(docs)) {
+        // Return ONLY the real projects created in Sanity backend — zero mock or fallback boxes
+        return docs.map(normalizeSanityProject).filter(Boolean);
       }
     }
   } catch (err) {
-    console.warn("Sanity getProjects error, using fallback catalog:", err.message);
+    console.warn("Sanity getProjects error:", err.message);
   }
-  return fallbackProjects;
+  return [];
 }
 
 export async function getProject(slug) {

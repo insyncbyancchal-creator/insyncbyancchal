@@ -169,12 +169,12 @@ export async function getProjects() {
       const data = await sanityClient.fetch(`*[_type == "project"] | order(_createdAt desc) {
         _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights
       }`);
-      if (data && data.length > 0) return data;
+      if (Array.isArray(data)) return data;
     }
   } catch (err) {
     console.warn('Sanity query fallback:', err.message);
   }
-  return MOCK_PROJECTS;
+  return [];
 }
 
 export async function getProjectBySlug(slug) {
@@ -188,7 +188,7 @@ export async function getProjectBySlug(slug) {
   } catch (err) {
     console.warn('Sanity single project fallback:', err.message);
   }
-  return MOCK_PROJECTS.find(p => p.slug === slug) || MOCK_PROJECTS[0];
+  return null;
 }
 
 export async function getServices() {
