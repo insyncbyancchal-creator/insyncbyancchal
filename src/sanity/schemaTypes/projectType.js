@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { AspectRatioSelector } from '../components/AspectRatioSelector'
 
 export const projectType = defineType({
   name: 'project',
@@ -153,23 +154,47 @@ export const projectType = defineType({
         {
           type: 'image',
           options: { hotspot: true },
+          preview: {
+            select: {
+              title: 'caption',
+              subtitle: 'aspectRatio',
+              media: 'asset',
+            },
+            prepare({ title, subtitle, media }) {
+              const ratioMap = {
+                '16 / 10': 'Landscape (16:10)',
+                '3 / 4': 'Portrait (3:4)',
+                '16 / 9': 'Wide (16:9)',
+                '1 / 1': 'Square (1:1)',
+              }
+              const ratioLabel = ratioMap[subtitle] || subtitle || 'Landscape (16:10)'
+              return {
+                title: title || 'Gallery Photograph',
+                subtitle: `Aspect Ratio: ${ratioLabel}`,
+                media,
+              }
+            },
+          },
           fields: [
-            { name: 'caption', type: 'string', title: 'Caption / Room Name' },
-            { name: 'alt', type: 'string', title: 'Alt Text' },
-            {
+            defineField({
+              name: 'caption',
+              type: 'string',
+              title: 'Caption / Room Name',
+            }),
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+            }),
+            defineField({
               name: 'aspectRatio',
               type: 'string',
-              title: 'Aspect Ratio',
-              options: {
-                list: [
-                  { title: 'Landscape (16:10)', value: '16 / 10' },
-                  { title: 'Portrait (3:4)', value: '3 / 4' },
-                  { title: 'Wide (16:9)', value: '16 / 9' },
-                  { title: 'Square (1:1)', value: '1 / 1' },
-                ],
+              title: 'Aspect Ratio & Framing',
+              components: {
+                input: AspectRatioSelector,
               },
               initialValue: '16 / 10',
-            },
+            }),
           ],
         },
       ],
