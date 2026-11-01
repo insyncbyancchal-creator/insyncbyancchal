@@ -651,6 +651,9 @@ export default function ContactExperience({ siteSettings }) {
             role="dialog"
             aria-modal="true"
             aria-label="Project Consultation Form"
+            data-lenis-prevent="true"
+            onWheel={(e) => e.stopPropagation()}
+            style={{ overscrollBehavior: "contain" }}
           >
             {/* Blurred Backdrop */}
             <motion.div
@@ -670,6 +673,8 @@ export default function ContactExperience({ siteSettings }) {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-[580px] bg-white rounded-2xl sm:rounded-3xl border border-[#C5A059]/35 shadow-[0_25px_70px_rgba(0,0,0,0.4),0_0_0_1px_rgba(197,160,89,0.2)] overflow-hidden my-auto z-10"
               onClick={(e) => e.stopPropagation()}
+              data-lenis-prevent="true"
+              onWheel={(e) => e.stopPropagation()}
             >
               {/* Top Hairline Progress Bar */}
               <div className={styles.progress} aria-hidden="true">
@@ -695,7 +700,12 @@ export default function ContactExperience({ siteSettings }) {
               </div>
 
               {/* Modal Form Body */}
-              <div className="p-6 sm:p-8 md:p-9 max-h-[80vh] overflow-y-auto">
+              <div
+                className="p-6 sm:p-8 md:p-9 max-h-[80vh] overflow-y-auto"
+                data-lenis-prevent="true"
+                onWheel={(e) => e.stopPropagation()}
+                style={{ overscrollBehavior: "contain" }}
+              >
                 {state === "done" ? (
                   <div className={styles.done}>
                     <svg viewBox="0 0 52 52" className={styles.tick} aria-hidden="true">

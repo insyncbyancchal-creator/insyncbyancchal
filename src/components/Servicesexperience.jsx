@@ -79,23 +79,11 @@ function useParallax(refs) {
 /* ------------------------------------------------------------------ */
 function HomeShowcase({ products, homeData }) {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("ALL");
 
   // Filter out any deleted or nameless items so NO EMPTY CARD can ever render
   const allProducts = (products && products.length > 0 ? products : DEFAULT_PRODUCTS).filter(
     (p) => p && p.name
   );
-
-  // Derive unique categories from active products
-  const categories = [
-    "ALL",
-    ...Array.from(new Set(allProducts.map((p) => p.category).filter(Boolean))),
-  ];
-
-  const filteredProducts =
-    activeCategory === "ALL"
-      ? allProducts
-      : allProducts.filter((p) => p.category === activeCategory);
 
   // Close modal on Escape key and prevent background scroll
   useEffect(() => {
@@ -224,7 +212,7 @@ function HomeShowcase({ products, homeData }) {
         </motion.div>
       </div>
 
-      {/* Full-Screen Gallery Modal */}
+      {/* Full-Screen Gallery Modal with Native Mouse Wheel Scrolling */}
       <AnimatePresence>
         {isGalleryOpen && (
           <motion.div
@@ -233,6 +221,8 @@ function HomeShowcase({ products, homeData }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className={styles.modalBackdrop}
+            data-lenis-prevent="true"
+            onWheel={(e) => e.stopPropagation()}
             onClick={(e) => {
               if (e.target === e.currentTarget) setIsGalleryOpen(false);
             }}
@@ -246,6 +236,8 @@ function HomeShowcase({ products, homeData }) {
               exit={{ opacity: 0, scale: 0.96, y: 20 }}
               transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
               className={styles.modalSheet}
+              data-lenis-prevent="true"
+              onWheel={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
               <div className={styles.modalHeader}>
@@ -267,28 +259,15 @@ function HomeShowcase({ products, homeData }) {
                 </button>
               </div>
 
-              {/* Modal Body with Filter Bar and Products Grid */}
-              <div className={styles.modalBody}>
-                {categories.length > 2 && (
-                  <div className={styles.filterBar}>
-                    {categories.map((cat) => (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => setActiveCategory(cat)}
-                        className={`${styles.filterPill} ${
-                          activeCategory === cat ? styles.filterPillActive : ""
-                        }`}
-                      >
-                        {cat}
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {/* Cards have ONLY product name, NO description */}
+              {/* Modal Body: Direct Product Grid & Footer Enquiry at Last */}
+              <div
+                className={styles.modalBody}
+                data-lenis-prevent="true"
+                onWheel={(e) => e.stopPropagation()}
+              >
+                {/* Cards have ONLY image and product name (No description, No card enquire link) */}
                 <div className={styles.galleryGrid}>
-                  {filteredProducts.map((prod, idx) => (
+                  {allProducts.map((prod, idx) => (
                     <article
                       key={prod.id || prod._id || idx}
                       className={styles.galleryCard}
@@ -309,28 +288,34 @@ function HomeShowcase({ products, homeData }) {
                             <span className={styles.placeholderText}>OBJECT ARCHIVE</span>
                           </div>
                         )}
-                        {prod.badge && (
-                          <span className={styles.featureBadge} style={{ top: 10, left: 10 }}>
-                            {prod.badge}
-                          </span>
-                        )}
                       </div>
 
-                      {/* Product Name ONLY - No Description */}
+                      {/* Product Name ONLY */}
                       <h3 className={styles.galleryCardName}>{prod.name}</h3>
-
-                      <div className={styles.galleryCardAction}>
-                        <Link
-                          href={enquire("Insync Home", `Enquiry for ${prod.name}`)}
-                          className={styles.galleryEnquireLink}
-                          onClick={() => setIsGalleryOpen(false)}
-                        >
-                          <span>ENQUIRE</span>
-                          <span aria-hidden="true">→</span>
-                        </Link>
-                      </div>
                     </article>
                   ))}
+                </div>
+
+                {/* Atelier Enquiry Section Placed at Last */}
+                <div className={styles.galleryFooterCta}>
+                  <div className={styles.galleryFooterInner}>
+                    <p className={styles.galleryFooterEyebrow}>BESPOKE ATELIER COMMISSIONS</p>
+                    <h4 className={styles.galleryFooterHeading}>
+                      COMMISSION A <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">custom piece</span>
+                    </h4>
+                    <div className={styles.galleryFooterDivider} />
+                    <p className={`${styles.galleryFooterText} ${styles.sans}`}>
+                      Every object in the Insync Home collection is crafted to order. Calibrate dimensions, natural stone selection, metals, and artisan finishes to your space.
+                    </p>
+                    <Link
+                      href="/contact?service=Insync%20Home&note=Custom%20Object%20Commission"
+                      className={styles.galleryFooterBtn}
+                      onClick={() => setIsGalleryOpen(false)}
+                    >
+                      <span>ENQUIRE NOW</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#C5A059]" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

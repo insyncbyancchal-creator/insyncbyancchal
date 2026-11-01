@@ -91,17 +91,10 @@ export default function InsyncHomeClient({ products = [] }) {
                 </div>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-[#C5A059]/20 flex items-center justify-between">
+              <div className="pt-4 mt-4 border-t border-[#C5A059]/20 flex items-center justify-between">
                 <span className="text-[11px] font-sans tracking-wide text-[#8C857B]">
                   {product.options || 'Bespoke Dimensions & Finishes'}
                 </span>
-                <Link
-                  href={`/contact?service=Insync%20Home&note=${encodeURIComponent(`Enquiry for ${product.name}`)}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold hover:text-[#1A1A1A] transition-colors"
-                >
-                  <span>Enquire</span>
-                  <ArrowUpRight size={13} />
-                </Link>
               </div>
             </motion.article>
           )

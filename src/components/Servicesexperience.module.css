@@ -499,53 +499,14 @@
   padding: 2rem clamp(1.25rem, 3vw, 2.5rem);
   overflow-y: auto;
   flex: 1;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Category Filter Bar */
-.filterBar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
-}
-
-.filterPill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.45rem 1rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 500;
-  border: 1px solid rgba(197, 160, 89, 0.25);
-  background: transparent;
-  color: #555048;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-}
-
-.filterPillActive {
-  background: #1A1A1A;
-  color: #FAF8F4;
-  border-color: #1A1A1A;
-  font-weight: 600;
-}
-
-.filterPill:not(.filterPillActive):hover {
-  border-color: var(--gold);
-  color: var(--ink);
-  background: rgba(197, 160, 89, 0.1);
-}
-
-/* Product Gallery Grid: Minimalist, Name Only, No Description */
+/* Product Gallery Grid: Minimalist, Name Only, No Description, No Card Enquire */
 .galleryGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: clamp(1.25rem, 2.2vw, 2rem);
 }
 
@@ -554,9 +515,10 @@
   border: 1px solid rgba(197, 160, 89, 0.24);
   border-radius: 4px;
   overflow: hidden;
-  padding: 0.85rem;
+  padding: 0.85rem 0.85rem 1.15rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 16px rgba(27, 26, 23, 0.04);
 }
@@ -632,7 +594,7 @@
   font-weight: 400;
   color: #1A1A1A;
   letter-spacing: 0.02em;
-  margin: 1rem 0 0.5rem;
+  margin: 1.1rem 0 0;
   text-align: center;
   transition: color 0.25s ease;
 }
@@ -641,32 +603,86 @@
   color: var(--gold);
 }
 
-.galleryCardAction {
-  margin-top: auto;
-  padding-top: 0.65rem;
-  border-top: 1px solid rgba(197, 160, 89, 0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Dedicated Atelier Enquiry Banner at the end of the gallery */
+.galleryFooterCta {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(197, 160, 89, 0.25);
 }
 
-.galleryEnquireLink {
+.galleryFooterInner {
+  background: #F4EFE6;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 4px;
+  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.galleryFooterEyebrow {
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: all 0.25s ease;
+  margin-bottom: 0.75rem;
 }
 
-.galleryCard:hover .galleryEnquireLink {
+.galleryFooterHeading {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+  font-weight: 400;
   color: #1A1A1A;
-  transform: translateX(2px);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.galleryFooterDivider {
+  width: 50px;
+  height: 1.5px;
+  background: var(--gold);
+  margin: 1.25rem auto;
+}
+
+.galleryFooterText {
+  color: #555048;
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  line-height: 1.7;
+  max-width: 32rem;
+  margin: 0 auto 1.85rem;
+}
+
+.galleryFooterBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #1A1A1A;
+  color: #FAF8F4;
+  border: 1.5px solid var(--gold);
+  padding: 0.95rem 2.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(27, 26, 23, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.galleryFooterBtn:hover {
+  background: var(--gold);
+  color: #1A1A1A;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(197, 160, 89, 0.35);
+}
+
+.galleryFooterBtn:active {
+  transform: scale(0.985);
 }
 
 /* button matching portfolio EXPLORE PROJECT */

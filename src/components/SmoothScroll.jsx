@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 export default function SmoothScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -11,7 +14,7 @@ export default function SmoothScroll() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
-    // Initialize Lenis with tailored luxury easing curve (Silky desktop wheel + 120Hz native touch compositor)
+    // Initialize Lenis with tailored luxury easing curve
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -22,6 +25,17 @@ export default function SmoothScroll() {
       syncTouch: false,
       touchMultiplier: 1.0,
       infinite: false,
+      // CRITICAL: Prevent Lenis from intercepting mouse wheel on modals and scrollable elements
+      prevent: (node) => {
+        if (!node || typeof node.closest !== "function") return false;
+        return (
+          node.hasAttribute?.("data-lenis-prevent") ||
+          Boolean(node.closest("[data-lenis-prevent]")) ||
+          Boolean(node.closest('[role="dialog"]')) ||
+          Boolean(node.closest(".overflow-y-auto")) ||
+          Boolean(node.closest('[class*="modal"]'))
+        );
+      },
     });
 
     let rafId;
@@ -55,6 +69,18 @@ export default function SmoothScroll() {
       delete window.lenis;
     };
   }, []);
+
+  // On route change, reset overflow, resume Lenis, and recalculate dimensions
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      if (window.lenis) {
+        window.lenis.start();
+        window.lenis.resize();
+      }
+    }
+  }, [pathname]);
 
   return null;
 }
