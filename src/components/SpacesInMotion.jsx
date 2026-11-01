@@ -32,7 +32,6 @@ const REELS = [
     id: 1,
     title: "Curved Salon Styling",
     duration: "0:05",
-    poster: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
     video: "/reels/reel-1.mp4",
     instagramUrl: "https://www.instagram.com/reel/Dc8Qo9qJyoS/",
   },
@@ -40,7 +39,6 @@ const REELS = [
     id: 2,
     title: "Tactile Materials & Veneers",
     duration: "0:05",
-    poster: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
     video: "/reels/reel-2.mp4",
     instagramUrl: "https://www.instagram.com/reel/DdocUyopyOO/",
   },
@@ -48,7 +46,6 @@ const REELS = [
     id: 3,
     title: "Architectural Drafting Session",
     duration: "0:05",
-    poster: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
     video: "/reels/reel-3.mp4",
     instagramUrl: "https://www.instagram.com/reel/DbvdoeVJrBg/",
   },
@@ -56,7 +53,6 @@ const REELS = [
     id: 4,
     title: "Lime Plaster & Daylight Arches",
     duration: "0:05",
-    poster: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
     video: "/reels/reel-4.mp4",
     instagramUrl: "https://www.instagram.com/reel/Db_IR76pRt1/",
   },
@@ -151,21 +147,20 @@ const ReelCard = React.memo(function ReelCard({
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {/* Video or Poster Image - Only preloads when section is visible or playing */}
+      {/* Real video first frame displays naturally without any placeholder image */}
       {reel.video && !hasVideoError ? (
         <video
           ref={videoRef}
           src={reel.video}
-          poster={reel.poster}
           muted
           playsInline
           loop={isHovered}
-          preload={isPlaying && sectionInView ? "auto" : "none"}
+          preload="auto"
           onEnded={() => onEnded(index)}
           onError={() => setHasVideoError(true)}
           className={styles.cardVideo}
         />
-      ) : (
+      ) : reel.poster ? (
         <img
           src={reel.poster}
           alt={reel.title}
@@ -173,6 +168,8 @@ const ReelCard = React.memo(function ReelCard({
           decoding="async"
           className={styles.cardImage}
         />
+      ) : (
+        <div className="w-full h-full bg-[#1A1A1A]" />
       )}
       <div className={styles.cardOverlay} />
 
