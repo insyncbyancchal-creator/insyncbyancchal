@@ -37,6 +37,7 @@ export default function HeroSection() {
       description:
         'Suspended bronze fireplace reveals, full-height bookmatched Calacatta marble, and private sunset terraces overlooking the skyline.',
       video: '/hero/video_2.mp4',
+      image: '/hero/photo_1.avif',
       fallbackCandidates: ['/hero/photo_1.avif', '/hero/photo_3.jpg'],
     },
     {
@@ -72,6 +73,7 @@ export default function HeroSection() {
       description:
         'Serene five thousand square foot duplex conceived with warm hand-troweled clay reliefs, tactile boucle seating, and natural linen textures.',
       video: '/hero/video_4.mp4',
+      image: '/hero/photo_3.jpg',
       fallbackCandidates: ['/hero/photo_3.jpg', '/hero/photo_5.jpg'],
     },
     {
@@ -103,6 +105,7 @@ export default function HeroSection() {
     return map
   })
   const [videoFailed, setVideoFailed] = useState({})
+  const videoRefs = useRef({})
 
   const markLoaded = useCallback((id) => {
     setMediaLoaded((prev) => (prev[id] ? prev : { ...prev, [id]: true }))
@@ -122,6 +125,35 @@ export default function HeroSection() {
       }
     })
   }, [markLoaded])
+
+  // Active slide video playback control with robust autoplay support
+  useEffect(() => {
+    heroSlides.forEach((slide, idx) => {
+      const vid = videoRefs.current[slide.id]
+      if (!vid) return
+
+      vid.defaultMuted = true
+      vid.muted = true
+
+      if (idx === currentSlide) {
+        if (vid.readyState >= 1) {
+          markLoaded(slide.id)
+        }
+        const playPromise = vid.play()
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => markLoaded(slide.id))
+            .catch(() => {
+              // Ensure muted is re-applied and retry if browser restricted
+              vid.muted = true
+              vid.play().then(() => markLoaded(slide.id)).catch(() => {})
+            })
+        }
+      } else {
+        vid.pause()
+      }
+    })
+  }, [currentSlide, markLoaded])
 
   // Slide rotation timer
   useEffect(() => {
@@ -195,14 +227,36 @@ export default function HeroSection() {
 
               {isVideo ? (
                 <video
+                  ref={(el) => {
+                    if (el) {
+                      videoRefs.current[slide.id] = el
+                      el.defaultMuted = true
+                      el.muted = true
+                      if (el.readyState >= 1) {
+                        markLoaded(slide.id)
+                      }
+                      if (isActive && el.paused) {
+                        const p = el.play()
+                        if (p !== undefined) {
+                          p.then(() => markLoaded(slide.id)).catch(() => {})
+                        }
+                      }
+                    }
+                  }}
                   src={slide.video}
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
+                  poster={slide.image}
+                  onLoadedMetadata={() => markLoaded(slide.id)}
                   onLoadedData={() => markLoaded(slide.id)}
                   onCanPlay={() => markLoaded(slide.id)}
+                  onCanPlayThrough={() => markLoaded(slide.id)}
+                  onPlay={() => markLoaded(slide.id)}
+                  onPlaying={() => markLoaded(slide.id)}
+                  onTimeUpdate={() => markLoaded(slide.id)}
                   onError={() => {
                     setVideoFailed((prev) => ({ ...prev, [slide.id]: true }))
                   }}
@@ -212,7 +266,7 @@ export default function HeroSection() {
                 />
               ) : null}
 
-              {/* Image element (used directly for image slides or as fallback if video is unplayable) */}
+              {/* Image element (used directly for image slides or as fallback/instant-poster under video) */}
               {(!isVideo || videoFailed[slide.id] || slide.image) ? (
                 <img
                   ref={(el) => {
