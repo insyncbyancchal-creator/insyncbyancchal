@@ -121,27 +121,37 @@ export const servicesPageType = defineType({
       ],
     }),
     defineField({
+      name: 'homeImage',
+      title: 'Insync Home Feature Photograph (Right-Side Showcase Image)',
+      description: 'Upload the showcase image shown on the right side of the Insync Home section. Drag the hotspot circle to target the focal point perfectly across all screens.',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Accessibility & SEO description of the feature image.',
+        },
+      ],
+    }),
+    defineField({
       name: 'homeEyebrow',
-      title: 'Insync Home Eyebrow',
+      title: 'Insync Home Eyebrow (e.g. INSYNC HOME)',
       type: 'string',
+      initialValue: 'INSYNC HOME',
     }),
     defineField({
       name: 'homeTitle',
-      title: 'Insync Home Section Title',
+      title: 'Insync Home Section Heading',
       type: 'string',
+      initialValue: 'CURATED OBJECTS, made for your SPACE.',
     }),
     defineField({
       name: 'homeLede',
-      title: 'Insync Home Description',
+      title: 'Insync Home Description Narrative',
       type: 'text',
       rows: 2,
-    }),
-    defineField({
-      name: 'homeImage',
-      title: 'Insync Home Feature Image (Right Side Showcase)',
-      description: 'Upload a feature photograph of an Insync Home bespoke object or curated setting for the right side of the section.',
-      type: 'image',
-      options: { hotspot: true },
     }),
   ],
   preview: {

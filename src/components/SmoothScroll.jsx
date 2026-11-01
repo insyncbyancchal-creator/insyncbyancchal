@@ -6,9 +6,20 @@ import Lenis from "lenis";
 
 export default function SmoothScroll() {
   const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin") || pathname?.startsWith("/studio");
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || isAdmin) {
+      if (typeof window !== "undefined" && window.lenis) {
+        window.lenis.destroy();
+        delete window.lenis;
+      }
+      document.documentElement.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
+      document.body.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      return;
+    }
 
     // Detect if visitor prefers reduced motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -33,7 +44,9 @@ export default function SmoothScroll() {
           Boolean(node.closest("[data-lenis-prevent]")) ||
           Boolean(node.closest('[role="dialog"]')) ||
           Boolean(node.closest(".overflow-y-auto")) ||
-          Boolean(node.closest('[class*="modal"]'))
+          Boolean(node.closest('[class*="modal"]')) ||
+          Boolean(node.closest('[data-portal]')) ||
+          Boolean(node.closest('[id*="sanity"]'))
         );
       },
     });
@@ -68,19 +81,26 @@ export default function SmoothScroll() {
       lenis.destroy();
       delete window.lenis;
     };
-  }, []);
+  }, [isAdmin]);
 
   // On route change, reset overflow, resume Lenis, and recalculate dimensions
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
-      if (window.lenis) {
+      if (isAdmin) {
+        if (window.lenis) {
+          window.lenis.destroy();
+          delete window.lenis;
+        }
+        document.documentElement.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
+        document.body.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
+      } else if (window.lenis) {
         window.lenis.start();
         window.lenis.resize();
       }
     }
-  }, [pathname]);
+  }, [pathname, isAdmin]);
 
   return null;
 }

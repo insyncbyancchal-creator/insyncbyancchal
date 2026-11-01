@@ -105,6 +105,15 @@ export default function Preloader({
     } catch {}
 
     const cur = pathname || window.location.pathname || "";
+    if (cur.startsWith("/admin") || cur.startsWith("/studio")) {
+      document.documentElement.classList.remove("js-preload", "no-preloader");
+      document.body.classList.add("is-loaded");
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      setDone(true);
+      return;
+    }
+
     const isHome = cur === "/" || cur === "/insync-home";
 
     const isFirstVisit = !visited;

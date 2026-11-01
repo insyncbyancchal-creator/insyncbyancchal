@@ -74,11 +74,26 @@ export default defineConfig({
                   .title('Services Page & 5 Disciplines')
               ),
 
-            // 5. Insync Home Products
+            // 5. Insync Home Products (Gallery Cards)
             S.listItem()
-              .title('5. Insync Home Products')
+              .title('5. 🛋️ Insync Home Products (Gallery Cards)')
               .schemaType('decorProduct')
-              .child(S.documentTypeList('decorProduct').title('Insync Home Products')),
+              .child(
+                S.documentTypeList('decorProduct')
+                  .title('Insync Home Products (Upload Photos & Manage Pieces)')
+                  .defaultOrdering([{ field: 'order', direction: 'asc' }])
+              ),
+
+            // 5b. Insync Home Feature Showcase Image (Right-Side Photo)
+            S.listItem()
+              .title('⭐ Insync Home Feature Image (Showcase Photo)')
+              .id('insyncHomeFeatureImageItem')
+              .child(
+                S.document()
+                  .schemaType('servicesPage')
+                  .documentId('servicesPage')
+                  .title('Insync Home Right-Side Showcase Image & Text')
+              ),
 
             // 6. Inquiries & Leads
             S.listItem()
