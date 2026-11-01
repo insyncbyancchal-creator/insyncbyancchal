@@ -136,6 +136,13 @@ export const servicesPageType = defineType({
       type: 'text',
       rows: 2,
     }),
+    defineField({
+      name: 'homeImage',
+      title: 'Insync Home Feature Image (Right Side Showcase)',
+      description: 'Upload a feature photograph of an Insync Home bespoke object or curated setting for the right side of the section.',
+      type: 'image',
+      options: { hotspot: true },
+    }),
   ],
   preview: {
     prepare() {

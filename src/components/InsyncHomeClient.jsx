@@ -88,11 +88,6 @@ export default function InsyncHomeClient({ products = [] }) {
                   <h3 className="font-serif text-2xl text-[#1A1A1A] font-normal leading-snug group-hover:text-[#C5A059] transition-colors duration-300">
                     {product.name}
                   </h3>
-                  {description && (
-                    <p className="text-[13.5px] text-[#66625C] leading-relaxed font-sans mt-2">
-                      {description}
-                    </p>
-                  )}
                 </div>
               </div>
 

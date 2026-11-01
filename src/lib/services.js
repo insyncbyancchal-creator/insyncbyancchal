@@ -272,7 +272,11 @@ export async function getServicesPageData() {
         },
         homeEyebrow,
         homeTitle,
-        homeLede
+        homeLede,
+        homeImage {
+          asset-> { url, metadata { dimensions } },
+          hotspot
+        }
       }`);
 
       if (doc) {
@@ -299,6 +303,11 @@ export async function getServicesPageData() {
           });
         }
 
+        const homeImageUrl = doc.homeImage?.asset?.url || (doc.homeImage ? urlForImage(doc.homeImage)?.url() : null);
+        const homeFocus = doc.homeImage?.hotspot
+          ? `${Math.round(doc.homeImage.hotspot.x * 100)}% ${Math.round(doc.homeImage.hotspot.y * 100)}%`
+          : "50% 50%";
+
         return {
           heroEyebrow: doc.heroEyebrow || "OUR PRACTICE",
           heroTitle: doc.heroTitle || "FIVE DISCIPLINES, one quiet STUDIO.",
@@ -307,6 +316,8 @@ export async function getServicesPageData() {
           homeEyebrow: doc.homeEyebrow || "INSYNC HOME",
           homeTitle: doc.homeTitle || "CURATED OBJECTS, made for your SPACE.",
           homeLede: doc.homeLede || "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.",
+          homeImage: homeImageUrl || null,
+          homeImageFocus: homeFocus,
         };
       }
     }
@@ -322,6 +333,8 @@ export async function getServicesPageData() {
     homeEyebrow: "INSYNC HOME",
     homeTitle: "CURATED OBJECTS, made for your SPACE.",
     homeLede: "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.",
+    homeImage: null,
+    homeImageFocus: "50% 50%",
   };
 }
 

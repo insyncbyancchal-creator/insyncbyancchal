@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
-import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUp, ArrowUpRight, X } from "lucide-react";
 import { DEFAULT_SERVICES, DEFAULT_PRODUCTS } from "@/lib/services";
 import styles from "./Servicesexperience.module.css";
 
@@ -78,174 +78,265 @@ function useParallax(refs) {
 /*  Insync Home: Curated Pieces Showcase (Dynamic from Sanity)        */
 /* ------------------------------------------------------------------ */
 function HomeShowcase({ products, homeData }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("ALL");
 
   // Filter out any deleted or nameless items so NO EMPTY CARD can ever render
   const allProducts = (products && products.length > 0 ? products : DEFAULT_PRODUCTS).filter(
     (p) => p && p.name
   );
 
-  // 4 + 4 = 8 products displayed initially, expand to reveal all
-  const displayProducts = isExpanded ? allProducts : allProducts.slice(0, 8);
-  const hasMore = !isExpanded && allProducts.length > 8;
+  // Derive unique categories from active products
+  const categories = [
+    "ALL",
+    ...Array.from(new Set(allProducts.map((p) => p.category).filter(Boolean))),
+  ];
 
-  const handleDiscoverMore = () => {
-    setIsExpanded(true);
-  };
+  const filteredProducts =
+    activeCategory === "ALL"
+      ? allProducts
+      : allProducts.filter((p) => p.category === activeCategory);
 
-  const handleShowLess = () => {
-    setIsExpanded(false);
-    const el = document.getElementById("insync-home");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  // Close modal on Escape key and prevent background scroll
+  useEffect(() => {
+    if (!isGalleryOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") setIsGalleryOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isGalleryOpen]);
+
+  // Main showcase photo: Sanity uploaded homeImage or first product or fallback
+  const featurePhoto =
+    homeData?.homeImage ||
+    allProducts[0]?.img ||
+    "/hero/photo_3.jpg";
+  const featureFocus =
+    homeData?.homeImageFocus ||
+    allProducts[0]?.imageFocus ||
+    "50% 50%";
 
   return (
     <section className={styles.homeSection} id="insync-home">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 35 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-        className={styles.homeHeader}
-      >
-        <p className={styles.eyebrow}>{homeData?.eyebrow || "INSYNC HOME"}</p>
-        <h2 className={styles.homeTitle}>
-          {homeData?.title ? (
-            homeData.title
-          ) : (
-            <>
-              CURATED OBJECTS, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">made for your</span> SPACE.
-            </>
-          )}
-        </h2>
+      <div className={styles.homeContainer}>
+        {/* Left Column: Curated Objects Story & Atelier Hallmarks */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-16 h-[1.5px] bg-[#C5A059] mx-auto my-5 origin-center"
-        />
-        <p className={`${styles.homeLede} ${styles.sans}`}>
-          {homeData?.lede ||
-            "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes."}
-        </p>
-      </motion.div>
+          initial={{ opacity: 0, x: -35 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.homeTextCol}
+        >
+          <p className={styles.eyebrow}>{homeData?.eyebrow || "INSYNC HOME"}</p>
+          <h2 className={styles.homeTitle}>
+            {homeData?.title ? (
+              homeData.title
+            ) : (
+              <>
+                CURATED OBJECTS,{" "}
+                <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">
+                  made for your
+                </span>{" "}
+                SPACE.
+              </>
+            )}
+          </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.goldDivider}
+          />
+          <p className={`${styles.homeLede} ${styles.sans}`}>
+            {homeData?.lede ||
+              "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes."}
+          </p>
 
-      {/* Grid of Décor Product Cards */}
-      <div className={styles.homeGrid}>
-        <AnimatePresence mode="popLayout">
-          {displayProducts.map((prod, idx) => (
-            <motion.article
-              key={prod.id || prod._id || idx}
-              layout
-              initial={{ opacity: 0, y: 35, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{
-                duration: 0.55,
-                delay: (idx % 4) * 0.08,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className={styles.homeCard}
+          <div className={styles.homePillars}>
+            <div className={styles.pillarItem}>
+              <span className={styles.pillarNo}>01</span>
+              <span className={styles.pillarTitle}>Bespoke Sizing</span>
+              <span className={styles.pillarDesc}>
+                Proportions calibrated to your architectural layout.
+              </span>
+            </div>
+            <div className={styles.pillarItem}>
+              <span className={styles.pillarNo}>02</span>
+              <span className={styles.pillarTitle}>Artisan Finishes</span>
+              <span className={styles.pillarDesc}>
+                Honed stone, lost-wax bronze, and tactile bouclé.
+              </span>
+            </div>
+            <div className={styles.pillarItem}>
+              <span className={styles.pillarNo}>03</span>
+              <span className={styles.pillarTitle}>Made to Order</span>
+              <span className={styles.pillarDesc}>
+                Individually handcrafted in limited atelier capsules.
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right Column: Showcase Photograph & Action Button */}
+        <motion.div
+          initial={{ opacity: 0, x: 35 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.homeFeatureCol}
+        >
+          <div className={styles.featureCard}>
+            <div className={styles.featureImgFrame}>
+              <img
+                src={featurePhoto}
+                alt="Insync Home Atelier Collection"
+                loading="lazy"
+                decoding="async"
+                style={{ objectPosition: featureFocus }}
+                className={styles.featureImg}
+              />
+              <span className={styles.featureBadge}>INSYNC HOME ATELIER</span>
+            </div>
+          </div>
+
+          <div className={styles.exploreActionBox}>
+            <button
+              type="button"
+              onClick={() => setIsGalleryOpen(true)}
+              className={styles.exploreBtn}
+              aria-haspopup="dialog"
+              aria-label="Explore more products from Insync Home collection"
             >
-              <div className={styles.cardThumb}>
-                {prod.img ? (
-                  <img
-                    src={prod.img}
-                    alt={prod.name}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ objectPosition: prod.imageFocus || "50% 50%" }}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 will-change-transform"
-                  />
-                ) : (
-                  <div className={styles.thumbPlaceholder}>
-                    <span className={styles.placeholderBrand}>INSYNC</span>
-                    <div className={styles.placeholderDivider} />
-                    <span className={styles.placeholderText}>OBJECT ARCHIVE</span>
-                  </div>
-                )}
-                {prod.badge && <span className={`${styles.cardBadge} ${styles.sans}`}>{prod.badge}</span>}
-              </div>
-
-              <div className={`${styles.cardMeta} ${styles.sans}`}>
-                <span className={styles.cardNo}>{prod.no}</span>
-                <span className={styles.cardCategory}>{prod.category}</span>
-              </div>
-
-              <h3 className={styles.cardTitle}>{prod.name}</h3>
-
-              <p className={`${styles.cardDesc} ${styles.sans}`}>{prod.desc}</p>
-
-              <div className={`${styles.cardFooter} ${styles.sans}`}>
-                <span className={styles.cardCustomTag}>{prod.options}</span>
-                <Link
-                  href={enquire("Insync Home", `Enquiry for ${prod.name}`)}
-                  className={styles.cardLink}
-                  aria-label={`Enquire about ${prod.name}`}
-                >
-                  <span>Enquire</span>
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </motion.article>
-          ))}
-        </AnimatePresence>
+              <span>EXPLORE MORE PRODUCTS</span>
+              <ArrowUpRight className="w-4 h-4 text-[#C5A059]" />
+            </button>
+            <span className={styles.exploreHint}>
+              Click to view all {allProducts.length} curated objects &amp; custom commissions
+            </span>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Discover More Action Button */}
-      {hasMore ? (
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 sm:mt-16 text-center"
-        >
-          <button
-            onClick={handleDiscoverMore}
-            className="group relative inline-flex items-center gap-3.5 px-10 py-4 border border-[#C5A059] bg-transparent text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-none text-[11px] sm:text-[11.5px] uppercase tracking-[0.26em] font-semibold cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] hover:-translate-y-0.5 active:scale-98"
-            aria-label="Discover all remaining curated pieces"
-          >
-            <span>DISCOVER MORE PIECES</span>
-            <ArrowDown className="w-4 h-4 text-[#C5A059] group-hover:text-white transition-transform duration-300 group-hover:translate-y-1" />
-          </button>
-          <p className="mt-3.5 text-[11px] font-sans uppercase tracking-[0.2em] text-[#8C857B]">
-            Showing 8 of {allProducts.length} curated objects &bull; Click to reveal all
-          </p>
-        </motion.div>
-      ) : (
-        allProducts.length > 8 && (
+      {/* Full-Screen Gallery Modal */}
+      <AnimatePresence>
+        {isGalleryOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mt-12 sm:mt-16 text-center space-y-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.modalBackdrop}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setIsGalleryOpen(false);
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Insync Home Curated Objects Gallery"
           >
-            <p className="text-[11.5px] font-sans uppercase tracking-[0.24em] text-[#8C857B] font-medium">
-              SHOWING ALL {allProducts.length} BESPOKE COMMISSIONS
-            </p>
-            <div className="flex justify-center items-center gap-4 flex-wrap">
-              <button
-                onClick={handleShowLess}
-                className="group inline-flex items-center gap-2.5 px-7 py-3 border border-[#C5A059]/40 bg-white/70 text-[#1A1A1A] hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300 text-[10.5px] uppercase tracking-[0.22em] font-medium cursor-pointer shadow-xs"
-              >
-                <span>SHOW LESS</span>
-                <ArrowUp className="w-3.5 h-3.5 text-[#C5A059] transition-transform duration-300 group-hover:-translate-y-0.5" />
-              </button>
-              <Link
-                href="/contact?service=Insync%20Home&note=Custom%20Object%20Commission"
-                className="group inline-flex items-center gap-3 px-8 py-3.5 border border-[#C5A059] bg-[#1A1A1A] text-[#FBF9F6] hover:bg-[#C5A059] hover:text-[#1A1A1A] transition-all duration-300 text-[10.5px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold cursor-pointer shadow-xs active:scale-98"
-              >
-                <span>COMMISSION A BESPOKE PIECE</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] group-hover:text-[#1A1A1A] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 25 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 20 }}
+              transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+              className={styles.modalSheet}
+            >
+              {/* Modal Header */}
+              <div className={styles.modalHeader}>
+                <div className={styles.modalTitleBlock}>
+                  <div>
+                    <span className={styles.modalEyebrow}>INSYNC HOME ARCHIVE</span>
+                    <h3 className={styles.modalHeading}>
+                      Curated Objects &amp; Custom Accents
+                    </h3>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsGalleryOpen(false)}
+                  className={styles.modalCloseBtn}
+                  aria-label="Close gallery modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Body with Filter Bar and Products Grid */}
+              <div className={styles.modalBody}>
+                {categories.length > 2 && (
+                  <div className={styles.filterBar}>
+                    {categories.map((cat) => (
+                      <button
+                        key={cat}
+                        type="button"
+                        onClick={() => setActiveCategory(cat)}
+                        className={`${styles.filterPill} ${
+                          activeCategory === cat ? styles.filterPillActive : ""
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Cards have ONLY product name, NO description */}
+                <div className={styles.galleryGrid}>
+                  {filteredProducts.map((prod, idx) => (
+                    <article
+                      key={prod.id || prod._id || idx}
+                      className={styles.galleryCard}
+                    >
+                      <div className={styles.galleryThumb}>
+                        {prod.img ? (
+                          <img
+                            src={prod.img}
+                            alt={prod.name}
+                            loading="lazy"
+                            decoding="async"
+                            style={{ objectPosition: prod.imageFocus || "50% 50%" }}
+                          />
+                        ) : (
+                          <div className={styles.thumbPlaceholder}>
+                            <span className={styles.placeholderBrand}>INSYNC</span>
+                            <div className={styles.placeholderDivider} />
+                            <span className={styles.placeholderText}>OBJECT ARCHIVE</span>
+                          </div>
+                        )}
+                        {prod.badge && (
+                          <span className={styles.featureBadge} style={{ top: 10, left: 10 }}>
+                            {prod.badge}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Product Name ONLY - No Description */}
+                      <h3 className={styles.galleryCardName}>{prod.name}</h3>
+
+                      <div className={styles.galleryCardAction}>
+                        <Link
+                          href={enquire("Insync Home", `Enquiry for ${prod.name}`)}
+                          className={styles.galleryEnquireLink}
+                          onClick={() => setIsGalleryOpen(false)}
+                        >
+                          <span>ENQUIRE</span>
+                          <span aria-hidden="true">→</span>
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-        )
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -274,6 +365,8 @@ export default function ServicesExperience({ data, initialProducts }) {
     eyebrow: data?.homeEyebrow,
     title: data?.homeTitle,
     lede: data?.homeLede,
+    homeImage: data?.homeImage,
+    homeImageFocus: data?.homeImageFocus,
   };
 
   // Preload real discipline photos when provided
