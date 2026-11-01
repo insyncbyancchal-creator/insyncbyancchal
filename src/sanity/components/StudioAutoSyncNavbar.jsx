@@ -110,6 +110,63 @@ export function StudioAutoSyncNavbar(props) {
             await client.createIfNotExists(r)
           }
         }
+
+        // 4. Auto-initialize servicesPage singleton if not existing to prevent 'Cannot create published document'
+        const servicesPageDoc = await client.fetch('*[_type == "servicesPage" && (_id == "servicesPage" || _id == "drafts.servicesPage")][0]._id')
+        if (!servicesPageDoc && !isCancelled) {
+          await client.createIfNotExists({
+            _id: 'servicesPage',
+            _type: 'servicesPage',
+            heroEyebrow: 'OUR PRACTICE',
+            heroTitle: 'FIVE DISCIPLINES, one quiet STUDIO.',
+            heroLede: 'From the first sketch to the final cushion, everything under one roof, and one standard.',
+            disciplines: [
+              {
+                _key: 'disc-1',
+                no: '01',
+                title: 'Architectural Design',
+                line: 'Spaces conceived from the ground up, where structure, light and proportion are resolved before a single finish is chosen.',
+                tags: ['Concept', 'Planning', 'Elevations'],
+                shop: false,
+              },
+              {
+                _key: 'disc-2',
+                no: '02',
+                title: 'Interior Design',
+                line: 'Rooms composed with restraint: layered materials, considered light, and furniture that truly belongs.',
+                tags: ['Space planning', 'Materials', 'Lighting'],
+                shop: false,
+              },
+              {
+                _key: 'disc-3',
+                no: '03',
+                title: 'Procurement',
+                line: 'Furniture, fittings and finishes sourced and negotiated on your behalf, to the standard we would specify for ourselves.',
+                tags: ['Sourcing', 'Vendors', 'Quality checks'],
+                shop: false,
+              },
+              {
+                _key: 'disc-4',
+                no: '04',
+                title: 'Delivery & Installation',
+                line: 'Every piece delivered, placed and finished by our own team, so the room you approved is the room you receive.',
+                tags: ['Logistics', 'Installation', 'Styling'],
+                shop: false,
+              },
+              {
+                _key: 'disc-5',
+                no: '05',
+                title: 'Insync Home',
+                line: 'A collection of home décor made to be customised, to your dimensions, finishes and taste.',
+                tags: ['Décor', 'Made to order', 'Customisable'],
+                shop: true,
+              },
+            ],
+            homeEyebrow: 'INSYNC HOME',
+            homeTitle: 'CURATED OBJECTS, made for your SPACE.',
+            homeLede: 'Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.',
+          })
+        }
       } catch (err) {
         console.warn('Sanity auto-sync check:', err.message)
       }
