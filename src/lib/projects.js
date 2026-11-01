@@ -4,22 +4,43 @@ import { sanityClient } from "@/sanity/lib/client";
 import { projectId } from "@/sanity/lib/env";
 import { urlForImage } from "@/sanity/lib/image";
 
+// Helper to inject Sanity CDN crop, resize and WebP conversion params
+function optimizeSanityUrl(url, width = 800, height = 800, quality = 80) {
+  if (!url || typeof url !== 'string') return url;
+  if (url.includes('cdn.sanity.io/images/')) {
+    const base = url.split('?')[0];
+    const params = new URLSearchParams();
+    if (width) params.set('w', String(width));
+    if (height) params.set('h', String(height));
+    params.set('fit', 'crop');
+    params.set('auto', 'format');
+    params.set('q', String(quality));
+    return `${base}?${params.toString()}`;
+  }
+  return url;
+}
+
 // Helper to normalize a Sanity project document so all pages receive clean, compatible structures
 function normalizeSanityProject(doc) {
   if (!doc) return null;
 
   // Resolve main cover image, with fallback to first gallery photo if mainImage wasn't uploaded
-  const galleryFirstUrl = doc.gallery?.[0]?.asset?.url || (doc.gallery?.[0]?.asset ? urlForImage(doc.gallery[0])?.url() : null);
-  const coverUrl = doc.mainImage?.asset?.url || (doc.mainImage ? urlForImage(doc.mainImage)?.url() : null) || galleryFirstUrl;
-  const hoverUrl = doc.hoverImage?.asset?.url || (doc.hoverImage ? urlForImage(doc.hoverImage)?.url() : null) || galleryFirstUrl || coverUrl;
+  const rawGalleryFirst = doc.gallery?.[0]?.asset?.url || (doc.gallery?.[0]?.asset ? urlForImage(doc.gallery[0])?.url() : null);
+  const rawCover = doc.mainImage?.asset?.url || (doc.mainImage ? urlForImage(doc.mainImage)?.url() : null) || rawGalleryFirst;
+  const rawHover = doc.hoverImage?.asset?.url || (doc.hoverImage ? urlForImage(doc.hoverImage)?.url() : null) || rawGalleryFirst || rawCover;
 
-  // Resolve inside gallery photos
+  // Ultra-fast CDN sized images for portfolio cards
+  const coverUrl = optimizeSanityUrl(rawCover, 800, 800, 80);
+  const hoverUrl = optimizeSanityUrl(rawHover, 800, 800, 80);
+  const heroUrl = optimizeSanityUrl(rawCover, 1920, 1080, 85);
+
+  // Resolve inside gallery photos with optimal 1600px width limit
   const gallery = (doc.gallery || [])
     .map((img, i) => {
-      const src = img.asset?.url || (img.asset ? urlForImage(img)?.url() : null);
-      if (!src) return null;
+      const rawSrc = img.asset?.url || (img.asset ? urlForImage(img)?.url() : null);
+      if (!rawSrc) return null;
       return {
-        src,
+        src: optimizeSanityUrl(rawSrc, 1600, null, 82),
         alt: img.alt || doc.title || `Gallery photo ${i + 1}`,
         caption: img.caption || "",
         aspectRatio: img.aspectRatio || "16 / 10",
@@ -52,7 +73,7 @@ function normalizeSanityProject(doc) {
       focus: coverFocus,
     },
     hero: {
-      src: coverUrl || null,
+      src: heroUrl || coverUrl || null,
       alt: doc.title,
     },
     concept:

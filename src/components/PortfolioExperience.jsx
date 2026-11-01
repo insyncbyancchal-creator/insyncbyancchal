@@ -59,23 +59,24 @@ export default function PortfolioExperience({ projects }) {
       </header>
 
       {/* ---------------- 3-Column Square Project Gallery Matching Reference ---------------- */}
+      {/* ---------------- 3-Column Square Project Gallery Matching Reference ---------------- */}
       <section className={styles.container} aria-label="Selected Projects">
         <div className={styles.galleryGrid}>
-          <AnimatePresence mode="popLayout">
-            {displayProjects.map((p, index) => (
+          {displayProjects.map((p, index) => {
+            const hasDistinctHover = Boolean(p.cover?.hoverSrc && p.cover.hoverSrc !== p.cover.src);
+
+            return (
               <motion.article
                 key={p.slug}
-                layout
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px 0px" }}
-                exit={{ opacity: 0, scale: 0.96 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{
-                  duration: 0.75,
-                  delay: (index % 3) * 0.08,
+                  duration: 0.5,
+                  delay: (index % 3) * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`${styles.card} will-change-transform`}
+                className={styles.card}
               >
                 <Link
                   href={`/portfolio/${p.slug}`}
@@ -89,17 +90,21 @@ export default function PortfolioExperience({ projects }) {
                         <img
                           src={p.cover.src}
                           alt={p.title}
-                          className={`${styles.primaryImg} will-change-transform`}
-                          loading={index < 3 ? "eager" : "lazy"}
+                          className={styles.primaryImg}
+                          loading={index < 6 ? "eager" : "lazy"}
                           decoding="async"
+                          width={800}
+                          height={800}
                         />
-                        {p.cover?.hoverSrc && (
+                        {hasDistinctHover && (
                           <img
                             src={p.cover.hoverSrc}
                             alt={`${p.title} interior detail`}
-                            className={`${styles.hoverImg} will-change-transform`}
+                            className={styles.hoverImg}
                             loading="lazy"
                             decoding="async"
+                            width={800}
+                            height={800}
                           />
                         )}
                       </>
@@ -132,8 +137,8 @@ export default function PortfolioExperience({ projects }) {
                   </div>
                 </Link>
               </motion.article>
-            ))}
-          </AnimatePresence>
+            );
+          })}
         </div>
 
         {/* Discover More Action Button */}
