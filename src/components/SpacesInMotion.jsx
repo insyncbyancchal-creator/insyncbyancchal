@@ -213,19 +213,24 @@ export default function SpacesInMotion({ data }) {
     return () => observer.disconnect();
   }, []);
 
-  // Resolve dynamic reels from Sanity or fall back to curated local authentic reels
-  const displayReels = (data?.reelsList && data.reelsList.length > 0)
-    ? data.reelsList.map((item, idx) => ({
-        id: item._key || idx + 1,
-        title: item.title || REELS[idx]?.title || `Reel 0${idx + 1}`,
-        duration: item.duration || '0:05',
-        poster: item.poster?.asset?.url || REELS[idx]?.poster,
-        video: item.videoFile?.asset?.url || item.videoUrl || REELS[idx]?.video,
-        instagramUrl: item.instagramUrl || REELS[idx]?.instagramUrl,
-      }))
-    : REELS;
+  // Guarantee all 4 reels are ALWAYS displayed:
+  // If Sanity provides dynamic reel items with videos, use them; otherwise seamlessly fill with authentic local studio reels
+  const displayReels = REELS.map((fallbackReel, idx) => {
+    const item = data?.reelsList?.[idx];
+    if (item && (item.videoFile?.asset?.url || item.videoUrl || item.poster?.asset?.url)) {
+      return {
+        id: item._key || fallbackReel.id,
+        title: item.title || fallbackReel.title,
+        duration: item.duration || fallbackReel.duration,
+        poster: item.poster?.asset?.url || null,
+        video: item.videoFile?.asset?.url || item.videoUrl || fallbackReel.video,
+        instagramUrl: item.instagramUrl || fallbackReel.instagramUrl,
+      };
+    }
+    return fallbackReel;
+  });
 
-  const reelsCount = displayReels.length || 1;
+  const reelsCount = 4;
 
   // When user hovers any video, that video plays and sequence stops.
   const activePlayingIndex = hoveredIndex !== null ? hoveredIndex : activeSeqIndex;
