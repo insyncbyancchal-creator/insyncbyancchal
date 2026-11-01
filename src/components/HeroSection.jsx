@@ -192,16 +192,6 @@ export default function HeroSection() {
               }}
               className="absolute inset-0 pointer-events-none bg-white will-change-transform transform-gpu"
             >
-              {/* Pristine White Loading Placeholder - Zero Black Screen */}
-              {!isLoaded && isActive && (
-                <div className="absolute inset-0 z-[2] bg-white flex flex-col items-center justify-center pointer-events-none">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
-                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:150ms]" />
-                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:300ms]" />
-                  </div>
-                </div>
-              )}
 
               {isVideo ? (
                 <video

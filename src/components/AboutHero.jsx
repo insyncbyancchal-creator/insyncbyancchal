@@ -19,18 +19,7 @@ export default function AboutHero() {
       aria-label="About Hero"
       className="relative w-full h-[78vh] sm:h-[85vh] lg:h-[90vh] bg-white overflow-hidden select-none flex items-center justify-center"
     >
-      {/* Pristine White Loading Placeholder - Zero Black Screen */}
-      {!isLoaded && (
-        <div className="absolute inset-0 z-[5] bg-white flex flex-col items-center justify-center pointer-events-none">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
-            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:150ms]" />
-            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse [animation-delay:300ms]" />
-          </div>
-        </div>
-      )}
-
-      {/* 100% Natural Background Photo with Cinematic Ambient Scale */}
+      {/* 100% Natural Background Photo with Clean White Base */}
       <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
         <img
           ref={imgRef}
@@ -40,12 +29,16 @@ export default function AboutHero() {
           loading="eager"
           decoding="async"
           fetchPriority="high"
-          className={`w-full h-full object-cover object-center bg-white transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
-            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          className={`w-full h-full object-cover object-center bg-white transition-opacity duration-500 ease-out ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
-        {/* Subtle Dark Vignette for Text Legibility */}
-        <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+        {/* Subtle Dark Vignette for Text Legibility only active when image loads */}
+        <div
+          className={`absolute inset-0 bg-black/35 pointer-events-none transition-opacity duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
       </div>
 
       {/* Centerpiece Hero Title: Architectural Brand Typography with Golden Accents */}
@@ -57,7 +50,13 @@ export default function AboutHero() {
           className="flex flex-col items-center gap-3 sm:gap-4"
         >
           {/* Eyebrow */}
-          <span className="text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.32em] text-[#E5BA69] font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          <span
+            className={`text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.32em] font-medium transition-colors duration-500 ${
+              isLoaded
+                ? 'text-[#E5BA69] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]'
+                : 'text-[#8C6D37]'
+            }`}
+          >
             ATELIER PHILOSOPHY
           </span>
 
@@ -67,7 +66,7 @@ export default function AboutHero() {
 
             {/* Clean Architectural Brand Typography: ABOUT */}
             <h1
-              className={`font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.22em] uppercase font-light transition-colors duration-700 ${
+              className={`font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.22em] uppercase font-light transition-colors duration-500 ${
                 isLoaded
                   ? 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]'
                   : 'text-[#1A1A1A]'
@@ -81,7 +80,13 @@ export default function AboutHero() {
           </div>
 
           {/* Subtitle */}
-          <p className="text-[12.5px] sm:text-[14px] font-serif tracking-[0.16em] text-white/90 uppercase font-light drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] max-w-md">
+          <p
+            className={`text-[12.5px] sm:text-[14px] font-serif tracking-[0.16em] uppercase font-light max-w-md transition-colors duration-500 ${
+              isLoaded
+                ? 'text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]'
+                : 'text-[#555048]'
+            }`}
+          >
             IN PURSUIT OF QUIET HARMONY
           </p>
         </motion.div>
