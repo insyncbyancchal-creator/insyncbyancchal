@@ -97,6 +97,7 @@ export default function SmoothScroll() {
         document.body.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
       } else if (window.lenis) {
         window.lenis.start();
+        window.lenis.scrollTo(0, { immediate: true });
         window.lenis.resize();
       }
     }

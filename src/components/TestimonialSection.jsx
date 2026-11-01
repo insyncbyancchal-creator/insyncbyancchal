@@ -156,9 +156,10 @@ export default function TestimonialSection({ items }) {
         >
           {/* Previous Arrow Button */}
           <button
+            type="button"
             onClick={prevTestimonial}
             aria-label="Previous Testimonial"
-            className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-none border border-[#C5A059]/40 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group"
+            className="shrink-0 w-10 h-10 rounded-none border border-[#C5A059]/40 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group touch-manipulation min-w-[40px] min-h-[40px]"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -195,32 +196,38 @@ export default function TestimonialSection({ items }) {
 
           {/* Next Arrow Button */}
           <button
+            type="button"
             onClick={nextTestimonial}
             aria-label="Next Testimonial"
-            className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-none border border-[#C5A059]/40 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group"
+            className="shrink-0 w-10 h-10 rounded-none border border-[#C5A059]/40 bg-[#F7F4EE] text-[#C5A059] hover:bg-[#C5A059] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs active:scale-95 z-20 group touch-manipulation min-w-[40px] min-h-[40px]"
           >
             <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </motion.div>
 
         {/* Minimal Rectangular Pagination Indicators */}
-        <div className="flex items-center justify-center gap-2 mt-8 sm:mt-9">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 mt-8 sm:mt-9">
           {testimonials.map((t, index) => {
             const isActive = index === currentIndex
             return (
               <button
                 key={t.id}
+                type="button"
                 onClick={() => {
                   setDirection(index > currentIndex ? 1 : -1)
                   setCurrentIndex(index)
                 }}
                 aria-label={`Jump to testimonial ${index + 1}`}
-                className={`transition-all duration-300 rounded-none cursor-pointer ${
-                  isActive
-                    ? 'w-5 h-1 bg-[#C5A059]'
-                    : 'w-2 h-1 bg-[#DDD6C6] hover:bg-[#C5A059]/60'
-                }`}
-              />
+                className="p-3 -m-1.5 flex items-center justify-center cursor-pointer touch-manipulation group"
+              >
+                <span
+                  className={`block transition-all duration-300 rounded-none ${
+                    isActive
+                      ? 'w-6 h-1.5 bg-[#C5A059]'
+                      : 'w-2.5 h-1.5 bg-[#DDD6C6] group-hover:bg-[#C5A059]/60'
+                  }`}
+                />
+              </button>
             )
           })}
         </div>

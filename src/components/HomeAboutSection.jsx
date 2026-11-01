@@ -191,7 +191,7 @@ export default function HomeAboutSection({ data }) {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="group relative inline-flex items-center gap-3 px-7 py-3 bg-[#1A1A1A] text-[#F7F5F0] rounded-none border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_14px_rgba(27,26,23,0.1)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] active:scale-98 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C5A059]"
+                className="group relative inline-flex items-center gap-3 px-7 py-3 bg-[#1A1A1A] text-[#F7F5F0] rounded-none border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] hover:-translate-y-0.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_14px_rgba(27,26,23,0.1)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] active:scale-98 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C5A059] touch-manipulation min-h-[44px]"
                 aria-label="Know more about Insync by Ancchal atelier"
               >
                 <span className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.26em] font-semibold transition-colors duration-300 group-hover:text-[#1A1A1A]">

@@ -84,12 +84,12 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
           </Link>
 
           {/* Quick Nav Links (matching Navbar sequence) */}
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-[12.5px] sm:text-[13px] tracking-[0.18em] uppercase text-[#555048] font-medium">
-            <Link href="/" className="hover:text-[#1A1A1A] transition-colors">Home</Link>
-            <Link href="/about" className="hover:text-[#1A1A1A] transition-colors">About</Link>
-            <Link href="/portfolio" className="hover:text-[#1A1A1A] transition-colors">Portfolio</Link>
-            <Link href="/services" className="hover:text-[#1A1A1A] transition-colors">Services</Link>
-            <Link href="/contact" className="hover:text-[#1A1A1A] transition-colors">Contact</Link>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-8 text-[12px] sm:text-[13px] tracking-[0.18em] uppercase text-[#555048] font-medium">
+            <Link href="/" className="hover:text-[#1A1A1A] transition-colors py-1.5 touch-manipulation">Home</Link>
+            <Link href="/about" className="hover:text-[#1A1A1A] transition-colors py-1.5 touch-manipulation">About</Link>
+            <Link href="/portfolio" className="hover:text-[#1A1A1A] transition-colors py-1.5 touch-manipulation">Portfolio</Link>
+            <Link href="/services" className="hover:text-[#1A1A1A] transition-colors py-1.5 touch-manipulation">Services</Link>
+            <Link href="/contact" className="hover:text-[#1A1A1A] transition-colors py-1.5 touch-manipulation">Contact</Link>
           </div>
 
           {/* Social Links & Inquire Button matching Navbar */}
@@ -98,7 +98,7 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
+              className="w-9 h-9 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group touch-manipulation active:scale-95"
               title="Instagram Profile"
               aria-label="Instagram Profile"
             >
@@ -109,7 +109,7 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#25D366] transition-all group"
+              className="w-9 h-9 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#25D366] transition-all group touch-manipulation active:scale-95"
               title="Chat on WhatsApp"
               aria-label="Chat with Insync by Ancchal on WhatsApp"
             >
@@ -118,7 +118,7 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
 
             <a
               href={emailUrl}
-              className="w-8 h-8 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group"
+              className="w-9 h-9 flex items-center justify-center text-[#1A1A1A]/70 hover:text-[#C5A059] transition-all group touch-manipulation active:scale-95"
               title="Email Insync by Ancchal"
               aria-label="Email Insync by Ancchal"
             >
@@ -127,7 +127,7 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
 
             <Link
               href="/contact"
-              className="ml-2 px-5 py-2 rounded-none border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white text-[11px] sm:text-[11.5px] uppercase tracking-[0.24em] font-semibold transition-all inline-block"
+              className="ml-2 px-5 py-2.5 rounded-none border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-white text-[11px] sm:text-[11.5px] uppercase tracking-[0.24em] font-semibold transition-all inline-flex items-center justify-center touch-manipulation cursor-pointer active:scale-95"
             >
               {inquireLabel}
             </Link>

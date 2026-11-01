@@ -117,9 +117,10 @@
 .desc { max-width: 34rem; color: #3E3A34; font-weight: 400; font-size: clamp(14.5px, 1.1vw, 15.5px); line-height: 1.75; margin: 1rem 0 1.25rem; }
 .tags { list-style: none; margin: 0 0 1.4rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
 .tags li { font-size: 11.5px; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; color: var(--ink); border: 1px solid rgba(197, 160, 89, 0.35); padding: .4rem .85rem; border-radius: 0; }
-.links { display: flex; gap: 1.8rem; padding-bottom: .4rem; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; }
-.links a { color: var(--gold); text-decoration: none; padding-bottom: 3px; background-image: linear-gradient(var(--gold), var(--gold)); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .4s, color .3s; }
+.links { display: flex; gap: 1.8rem; padding-bottom: .4rem; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; align-items: center; }
+.links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--gold); text-decoration: none; padding-bottom: 3px; background-image: linear-gradient(var(--gold), var(--gold)); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .4s, color .3s, transform .15s ease; touch-action: manipulation; }
 .links a:hover { color: var(--ink); background-size: 0 1px; background-position: 100% 100%; }
+.links a:active { transform: scale(0.97); }
 
 .row:hover .rowTitle,
 .on .rowTitle { color: var(--ink); transform: translateX(8px); }
@@ -484,20 +485,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border: 1px solid rgba(197, 160, 89, 0.35);
   background: transparent;
   color: #1A1A1A;
   cursor: pointer;
   font-size: 1.3rem;
   transition: all 0.25s ease;
+  touch-action: manipulation;
 }
 
 .modalCloseBtn:hover {
   background: #1A1A1A;
   color: #FAF8F4;
   border-color: #1A1A1A;
+}
+
+.modalCloseBtn:active {
+  transform: scale(0.94);
 }
 
 .modalBody {
@@ -739,7 +747,7 @@
   .on .rowTitle { transform: none; }
   .no { color: var(--gold); flex-basis: 1.8rem; }
   .arrow { display: none; }
-  .rowHead { flex-wrap: wrap; row-gap: .6rem; cursor: default; }
+  .rowHead { flex-wrap: wrap; row-gap: .6rem; cursor: pointer; touch-action: manipulation; min-height: 44px; }
   .rowBody { grid-template-rows: 1fr; opacity: 1; }
   .rowBody > div { padding-left: 0; }
   .homeStage { grid-template-columns: 1fr; }

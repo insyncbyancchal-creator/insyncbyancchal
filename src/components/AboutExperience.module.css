@@ -686,11 +686,13 @@
   overflow: hidden;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   background: var(--ink);
   color: #FFFFFF;
   border: 1px solid var(--ink);
   padding: 0.75rem 1.75rem;
+  min-height: 44px;
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   letter-spacing: 0.25em;
@@ -700,6 +702,8 @@
   border-radius: 0;
   box-shadow: 0 4px 14px rgba(27, 26, 23, 0.12);
   transition: transform 0.25s ease-out, background 0.4s, border-color 0.4s;
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 .btn::before {
@@ -749,11 +753,16 @@
   color: var(--ink);
   text-decoration: none;
   padding-bottom: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   background-image: linear-gradient(var(--gold), var(--gold));
   background-size: 100% 1px;
   background-position: 0 100%;
   background-repeat: no-repeat;
   transition: background-size 0.4s, color 0.3s;
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -794,6 +803,14 @@
 @media (max-width: 540px) {
   .portrait {
     max-width: 300px;
+  }
+  .details div {
+    grid-template-columns: minmax(0, 6.8rem) minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+  .pressCardBtn {
+    min-height: 44px;
+    touch-action: manipulation;
   }
 }
 

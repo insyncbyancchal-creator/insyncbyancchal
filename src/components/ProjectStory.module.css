@@ -69,6 +69,13 @@
   .moreGrid { grid-template-columns: 1fr 1fr; }
   .moreGrid li:nth-child(3) { display: none; }
 }
+@media (max-width: 560px) {
+  .moreGrid { grid-template-columns: 1fr; }
+  .moreGrid li:nth-child(3) { display: block; }
+  .facts div { grid-template-columns: 6.5rem 1fr; gap: 0.8rem; }
+  .all { min-height: 44px; display: inline-flex; align-items: center; touch-action: manipulation; }
+  .back { min-height: 44px; display: inline-flex; align-items: center; touch-action: manipulation; }
+}
 @media (prefers-reduced-motion: reduce) {
   .root, .root * { animation: none !important; transition: none !important; }
   .root [data-reveal] { opacity: 1; transform: none; }

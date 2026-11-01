@@ -50,14 +50,14 @@ export default function PortfolioHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8"
+          className="flex items-center justify-center gap-3 sm:gap-6 md:gap-8"
         >
           {/* Left Golden Line */}
-          <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059]" />
+          <div className="w-6 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shrink" />
 
           {/* Clean Architectural Brand Typography: PORTFOLIO */}
           <h1
-            className={`font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.24em] uppercase font-light transition-colors duration-500 ${
+            className={`font-serif text-2xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.2em] sm:tracking-[0.24em] uppercase font-light transition-colors duration-500 ${
               isLoaded
                 ? 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]'
                 : 'text-[#1A1A1A]'
@@ -67,7 +67,7 @@ export default function PortfolioHero() {
           </h1>
 
           {/* Right Golden Line */}
-          <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059]" />
+          <div className="w-6 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shrink" />
         </motion.div>
 
         <motion.p

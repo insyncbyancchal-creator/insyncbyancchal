@@ -60,13 +60,13 @@ export default function AboutHero() {
             ATELIER PHILOSOPHY
           </span>
 
-          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
+          <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-8">
             {/* Left Golden Line */}
-            <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+            <div className="w-6 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shrink shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
 
             {/* Clean Architectural Brand Typography: ABOUT */}
             <h1
-              className={`font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.22em] uppercase font-light transition-colors duration-500 ${
+              className={`font-serif text-2xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.2em] sm:tracking-[0.22em] uppercase font-light transition-colors duration-500 ${
                 isLoaded
                   ? 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]'
                   : 'text-[#1A1A1A]'
@@ -76,7 +76,7 @@ export default function AboutHero() {
             </h1>
 
             {/* Right Golden Line */}
-            <div className="w-10 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+            <div className="w-6 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shrink shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
           </div>
 
           {/* Subtitle */}

@@ -150,8 +150,9 @@ export default function PortfolioExperience({ projects }) {
             className="mt-14 sm:mt-18 text-center"
           >
             <button
+              type="button"
               onClick={handleDiscoverMore}
-              className="group relative inline-flex items-center gap-3.5 px-10 py-4 border border-[#C5A059] bg-transparent text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-none text-[11px] sm:text-[11.5px] uppercase tracking-[0.26em] font-semibold cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] hover:-translate-y-0.5 active:scale-98"
+              className="group relative inline-flex items-center justify-center gap-3.5 px-8 sm:px-10 py-3.5 sm:py-4 border border-[#C5A059] bg-transparent text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-none text-[11px] sm:text-[11.5px] uppercase tracking-[0.26em] font-semibold cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.35)] hover:-translate-y-0.5 active:scale-98 touch-manipulation min-h-[48px]"
               aria-label="Discover all remaining architectural projects"
             >
               <span>DISCOVER MORE</span>
@@ -172,7 +173,7 @@ export default function PortfolioExperience({ projects }) {
               <div className="flex justify-center">
                 <Link
                   href="/contact"
-                  className="group relative inline-flex items-center gap-3 px-8 py-3.5 border border-[#C5A059] bg-[#1A1A1A] text-[#FBF9F6] hover:bg-[#C5A059] hover:text-[#1A1A1A] transition-all duration-300 rounded-none text-[10.5px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold cursor-pointer shadow-xs active:scale-98"
+                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 border border-[#C5A059] bg-[#1A1A1A] text-[#FBF9F6] hover:bg-[#C5A059] hover:text-[#1A1A1A] transition-all duration-300 rounded-none text-[10.5px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold cursor-pointer shadow-xs active:scale-98 touch-manipulation min-h-[46px]"
                 >
                   <span>COMMISSION AN ATELIER PROJECT</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] group-hover:text-[#1A1A1A] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

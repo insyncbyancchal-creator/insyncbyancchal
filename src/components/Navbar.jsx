@@ -222,8 +222,9 @@ export default function Navbar({ siteSettings: initialSettings }) {
 
             {/* Mobile Hamburger Button */}
             <button
+              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-[#1A1A1A] hover:text-[#C5A059] p-2 transition-colors rounded-none"
+              className="md:hidden text-[#1A1A1A] hover:text-[#C5A059] p-2.5 -mr-1 transition-colors rounded-none touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer active:scale-95"
               aria-label="Toggle Navigation"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -236,19 +237,20 @@ export default function Navbar({ siteSettings: initialSettings }) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-[58px] inset-x-0 z-40 w-full rounded-none bg-[#FBF9F6]/98 backdrop-blur-2xl text-[#1A1A1A] p-8 border-b-[1.5px] border-[#C5A059] shadow-2xl space-y-6 md:hidden"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed top-[54px] sm:top-[58px] inset-x-0 z-[59] w-full max-h-[calc(100dvh-54px)] overflow-y-auto rounded-none bg-[#FBF9F6]/98 backdrop-blur-2xl text-[#1A1A1A] p-6 sm:p-8 border-b-[1.5px] border-[#C5A059] shadow-2xl space-y-5 md:hidden"
           >
             {/* Mobile Drawer Brand Logo Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#C5A059]/20">
-              <Link href="/" onClick={() => setMobileOpen(false)} aria-label="Insync by Ancchal">
-                <BrandLogo className="h-8 w-auto" />
+            <div className="flex items-center justify-between pb-3.5 border-b border-[#C5A059]/20">
+              <Link href="/" onClick={() => setMobileOpen(false)} aria-label="Insync by Ancchal" className="touch-manipulation">
+                <BrandLogo className="h-7 sm:h-8 w-auto" />
               </Link>
             </div>
 
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-2.5">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href
                 return (
@@ -257,7 +259,7 @@ export default function Navbar({ siteSettings: initialSettings }) {
                     href={link.href}
                     suppressHydrationWarning
                     onClick={() => setMobileOpen(false)}
-                    className={`font-serif text-2xl px-4 py-2.5 rounded-none transition-all ${
+                    className={`font-serif text-2xl px-4 py-3 rounded-none transition-all flex items-center min-h-[48px] touch-manipulation cursor-pointer active:scale-[0.98] ${
                       isActive
                         ? 'text-[#C5A059] bg-[#C5A059]/10 border border-[#C5A059]/40'
                         : 'text-[#1A1A1A] hover:text-[#C5A059]'
@@ -269,12 +271,23 @@ export default function Navbar({ siteSettings: initialSettings }) {
               })}
             </div>
 
-            <div className="flex items-center space-x-4 pt-6 border-t border-[#C5A059]/20 justify-between">
+            {/* Mobile Primary Inquire Button */}
+            <div className="pt-2">
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="w-full text-center py-3.5 px-6 border-[1.5px] border-[#C5A059] bg-[#C5A059] text-white hover:bg-[#9A7B39] text-xs uppercase tracking-[0.24em] font-semibold transition-all duration-200 active:scale-[0.98] block touch-manipulation cursor-pointer shadow-sm"
+              >
+                {inquireLabel}
+              </Link>
+            </div>
+
+            <div className="flex items-center space-x-3 pt-5 border-t border-[#C5A059]/20 justify-between">
               <a
                 href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#C5A059]"
+                className="flex items-center space-x-1.5 py-2 px-1 text-xs uppercase tracking-widest text-[#C5A059] touch-manipulation"
               >
                 <InstagramIcon className="w-4 h-4" />
                 <span>Instagram</span>
@@ -284,7 +297,7 @@ export default function Navbar({ siteSettings: initialSettings }) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#25D366]"
+                className="flex items-center space-x-1.5 py-2 px-1 text-xs uppercase tracking-widest text-[#25D366] touch-manipulation"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                 <span>WhatsApp</span>
@@ -292,7 +305,7 @@ export default function Navbar({ siteSettings: initialSettings }) {
 
               <a
                 href={emailUrl}
-                className="flex items-center space-x-1.5 text-xs uppercase tracking-widest text-[#1A1A1A]/80 hover:text-[#C5A059]"
+                className="flex items-center space-x-1.5 py-2 px-1 text-xs uppercase tracking-widest text-[#1A1A1A]/80 hover:text-[#C5A059] touch-manipulation"
               >
                 <Mail className="w-4 h-4 text-[#C5A059]" />
                 <span>Email</span>

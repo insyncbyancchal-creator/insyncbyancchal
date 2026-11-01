@@ -248,12 +248,17 @@
   text-transform: uppercase;
   font-weight: 500;
   padding: .6rem 1.15rem;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(197, 160, 89, 0.35);
   background: transparent;
   color: var(--ink);
   cursor: pointer;
   border-radius: 0;
   transition: all .3s cubic-bezier(.2,.7,.2,1);
+  touch-action: manipulation;
 }
 @media (hover: hover) and (pointer: fine) {
   .chip:hover {
@@ -314,6 +319,10 @@
   cursor: pointer;
   transition: color .3s, opacity .3s;
   padding: .5rem 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
 }
 .back:hover:not(:disabled) { color: var(--ink); }
 .back:disabled { opacity: 0; pointer-events: none; }
@@ -323,11 +332,13 @@
   overflow: hidden;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: .75rem;
   background: var(--ink);
   color: #FFFFFF;
   border: 1px solid var(--ink);
   padding: .75rem 1.75rem;
+  min-height: 46px;
   font: inherit;
   font-size: 10px;
   letter-spacing: .25em;
@@ -337,6 +348,7 @@
   border-radius: 0;
   box-shadow: 0 4px 14px rgba(27, 26, 23, 0.12);
   transition: transform .25s ease-out, background .4s, border-color .4s;
+  touch-action: manipulation;
 }
 .next::before {
   content: "";

@@ -167,7 +167,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative h-screen w-full bg-white text-[#1A1A1A] overflow-hidden select-none"
+      className="relative h-screen min-h-[100dvh] w-full bg-white text-[#1A1A1A] overflow-hidden select-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -259,7 +259,7 @@ export default function HeroSection() {
       />
 
       {/* Bottom-Left Anchored Architectural Content Block */}
-      <div className="absolute bottom-10 sm:bottom-14 md:bottom-16 left-6 sm:left-12 lg:left-16 z-10 max-w-3xl text-left">
+      <div className="absolute bottom-8 sm:bottom-14 md:bottom-16 left-5 sm:left-12 lg:left-16 right-5 sm:right-auto z-10 max-w-3xl text-left">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -269,9 +269,9 @@ export default function HeroSection() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Eyebrow: Category · Location */}
-            <div className="flex items-center gap-3 mb-2.5">
+            <div className="flex items-center gap-3 mb-2 sm:mb-2.5">
               <p
-                className={`text-[12.5px] sm:text-[13px] font-sans uppercase tracking-[0.2em] font-semibold transition-colors duration-500 ${
+                className={`text-[12px] sm:text-[13px] font-sans uppercase tracking-[0.2em] font-semibold transition-colors duration-500 ${
                   isCurrentLoaded
                     ? 'text-[#E5BA69] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]'
                     : 'text-[#C5A059]'
@@ -283,7 +283,7 @@ export default function HeroSection() {
 
             {/* Main Headline - Styled with Bodoni Moda & MonteCarlo Italian Cursive */}
             <h1
-              className={`text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] font-serif font-light tracking-[0.05em] sm:tracking-[0.06em] leading-[1.22] mb-3 sm:mb-4 transition-colors duration-500 ${
+              className={`text-xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] font-serif font-light tracking-[0.04em] sm:tracking-[0.06em] leading-[1.2] sm:leading-[1.22] mb-2.5 sm:mb-4 transition-colors duration-500 ${
                 isCurrentLoaded
                   ? 'text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]'
                   : 'text-[#1A1A1A]'
@@ -294,7 +294,7 @@ export default function HeroSection() {
 
             {/* Description Paragraph */}
             <p
-              className={`text-[15px] sm:text-[16px] font-normal leading-[1.75] max-w-xl mb-5 sm:mb-7 transition-colors duration-500 ${
+              className={`text-[13.5px] sm:text-[16px] font-normal leading-[1.65] sm:leading-[1.75] max-w-xl mb-4 sm:mb-7 transition-colors duration-500 ${
                 isCurrentLoaded
                   ? 'text-white/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]'
                   : 'text-[#555048]'
@@ -306,12 +306,12 @@ export default function HeroSection() {
         </AnimatePresence>
 
         {/* Carousel Pagination Indicators */}
-        <div className="flex items-center gap-2 pt-1" aria-label="Slide indicators">
+        <div className="flex items-center gap-1.5 sm:gap-2 pt-1" aria-label="Slide indicators">
           {heroSlides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`p-2 -m-2 transition-all duration-300 rounded-none cursor-pointer active:scale-90 touch-manipulation`}
+              className={`p-3 -m-3 min-w-[36px] min-h-[36px] flex items-center justify-center transition-all duration-300 rounded-none cursor-pointer active:scale-90 touch-manipulation`}
               aria-label={`Go to slide ${idx + 1}`}
             >
               <span

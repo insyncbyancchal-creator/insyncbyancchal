@@ -28,6 +28,13 @@
   --border-gold: rgba(197, 160, 89, 0.3);
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+}
+
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -43,6 +50,7 @@ html.lenis, html.lenis body {
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 body {
@@ -50,6 +58,9 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -208,12 +219,22 @@ html.lenis body {
 }
 
 /* Mobile & Touch Performance Acceleration */
+button,
+[role="button"] {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+a {
+  touch-action: manipulation;
+}
+
 @media (hover: none) or (pointer: coarse) {
   * {
     -webkit-tap-highlight-color: transparent !important;
   }
 
-  a, button, [role="button"] {
+  a, button, [role="button"], input, select, textarea {
     touch-action: manipulation;
   }
 
@@ -221,8 +242,8 @@ html.lenis body {
   .editorial-card:active,
   button:active,
   [role="button"]:active {
-    transform: scale(0.985);
-    transition: transform 0.12s ease-out;
+    transform: scale(0.982);
+    transition: transform 0.1s ease-out;
   }
 }
 

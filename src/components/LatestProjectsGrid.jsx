@@ -121,7 +121,7 @@ export default function LatestProjectsGrid({ projects = [] }) {
         >
           <Link
             href="/portfolio"
-            className="group relative inline-flex items-center gap-3.5 px-9 py-4 border border-[#C5A059] bg-transparent text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-none text-[11px] sm:text-[11.5px] uppercase tracking-[0.26em] font-semibold cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.12)] hover:shadow-[0_8px_24px_rgba(197,160,89,0.3)] hover:-translate-y-0.5 active:scale-98"
+            className="group relative inline-flex items-center justify-center gap-3.5 px-8 sm:px-9 py-3.5 sm:py-4 border border-[#C5A059] bg-transparent text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-none text-[11px] sm:text-[11.5px] uppercase tracking-[0.26em] font-semibold cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.12)] hover:shadow-[0_8px_24px_rgba(197,160,89,0.3)] hover:-translate-y-0.5 active:scale-98 touch-manipulation min-h-[48px]"
           >
             <span>VIEW ALL PROJECTS</span>
             <ArrowUpRight className="w-4 h-4 text-[#C5A059] group-hover:text-white transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
