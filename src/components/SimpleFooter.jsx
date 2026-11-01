@@ -144,14 +144,18 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
             <p>
               Design and Developed by{' '}
               <a
-                href="#"
+                href="https://dikshabhatt.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#555048] hover:text-[#C5A059] hover:underline underline-offset-4 transition-colors font-medium"
               >
                 Diksha Bhatt
               </a>{' '}
               and{' '}
               <a
-                href="#"
+                href="https://sachinparihar.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#555048] hover:text-[#C5A059] hover:underline underline-offset-4 transition-colors font-medium"
               >
                 Sachin Parihar
