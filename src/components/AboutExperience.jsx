@@ -34,9 +34,9 @@ const MANIFESTO = {
   eyebrow: "Our approach",
   title: "Luxury, in its quietest form.",
   paragraphs: [
-    "We believe that true sophistication lies not in excess, but in intention. In the interplay of light and shadow, the honesty of materials, and the quiet balance between form and function, we find the essence of thoughtful design.",
-    "At Insync, every space begins with an understanding of its character, its purpose, and the people who inhabit it. We approach each detail with restraint and precision, allowing proportion, texture, and materiality to shape an experience that feels effortless yet deeply considered.",
-    "We look beyond fleeting trends, creating interiors that hold their relevance through time — spaces that reflect individuality without demanding attention, and express luxury through a sense of calm, clarity, and completeness.",
+    "Great design begins from the inside out, establishing how a space must serve daily living before layering in aesthetics that elevate the experience without compromising practical comfort.",
+    "Insync approaches every project through deep personalization, treating clients as collaborative partners to build environments that authentically reflect who they are. Unbound by short-lived trends, our work is guided by enduring design principles across diverse aesthetic styles.",
+    "We believe in finding absolute harmony between visual richness and practical living, ensuring every material, finish, and detail is thoughtfully considered in relation to the whole. Through purposeful spatial restraint and intentional balance, our compositions allow architectural details to breathe, delivering cohesive, low-maintenance transformations that hold their beauty and relevance for years to come.",
   ],
   quote:
     "Because the most exceptional spaces are not defined by what they display, but by what they make you feel.",
@@ -192,10 +192,10 @@ export default function AboutExperience({ data, children }) {
           {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
           <div className={styles.paras}>
             <p className={styles.firstPara}>
-              Ancchal Sharma, Founder and Principal Designer of Insync, believes that true luxury lies in the harmony of aesthetics, functionality, and timeless elegance. Driven by a deep-rooted passion for art, architecture, and design, she creates thoughtfully curated spaces that reflect individuality, refined detailing, and a profound understanding of how people live. Her approach combines artistic expression with a considered sense of proportion, materiality, and balance, ensuring every space feels distinctive yet effortlessly sophisticated.
+              Ancchal Sharma’s journey into interior architecture began with a lifelong passion for art, colour, and historic design. Her childhood interests in painting and decorating spaces evolved into a deeper appreciation of how thoughtfully designed environments influence everyday life and emotional well-being. Guided by creative passion, she founded Insync Interiors to create bespoke spaces defined by luxury, timeless elegance, and personal expression.
             </p>
             <p>
-              At Insync, every project begins with listening — understanding each client&apos;s lifestyle, aspirations, and vision to create spaces that feel deeply personal rather than simply designed. Recognised by <strong className={styles.magHighlight}>Urban Melange</strong> in its December 2025 edition for her perspective on luxury interiors, Ancchal continues to shape environments where understated elegance meets modern living, and where every detail serves a purpose.
+              With an eye for refined craftsmanship, spatial harmony, and rich detailing, Ancchal brings tailored sophistication to diverse design aesthetics. Her philosophy centres on understanding each client&apos;s lifestyle, building relationships rooted in trust, and creating spaces that feel both elevated and effortless. Her work has also been featured in <strong className={styles.magHighlight}>Urban M&eacute;lange Magazine</strong>.
             </p>
           </div>
 

@@ -152,13 +152,16 @@ export default function HomeAboutSection({ data }) {
             {/* 2. Gold Architectural Hairline Divider */}
             <div className="w-14 h-[1.5px] bg-[#C5A059]" />
 
-            {/* 3. Two Descriptive Paragraphs */}
+            {/* 3. Descriptive Editorial Narrative */}
             <div className="space-y-3 text-[#4A4742] text-[14px] sm:text-[15px] leading-[1.72] font-normal">
               <p>
-                We believe true luxury is never loud or decorative; it is the quiet art of spatial stillness, calibrated daylight, and honest materials. Conceived from the ground up, our work strips away the superfluous until only pure proportion, tactile beauty, and emotional serenity remain.
+                Insync is a luxury design studio built on the principle of total alignment, seamlessly blending aesthetics, functionality, and human emotion. Specializing in bespoke residential and commercial interiors, the studio prioritizes personalization over passing trends.
               </p>
               <p className="text-[#55524C]">
-                Every residence we author is treated as an intimate living portrait of its patron—seamlessly harmonizing raw travertine stone, fluted oak millwork, hand-troweled lime plasters, and bespoke Italian furnishings into spaces that feel grounding the moment you enter, and better every day you stay.
+                Each project begins with an understanding of the client&apos;s lifestyle, taste, and budget, translating individual identity into thoughtfully crafted spaces. Combining rich detailing with low-maintenance, timeless design, Insync creates interiors that balance grandeur with practicality, while expanding its presence nationally and internationally under its ethos:{' '}
+                <strong className="font-bold text-[#1A1A1A]">
+                  &ldquo;Design globally, rooted in luxury and always in sync.&rdquo;
+                </strong>
               </p>
             </div>
 
