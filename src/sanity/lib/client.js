@@ -162,13 +162,15 @@ export const MOCK_SITE_SETTINGS = {
   awardsCount: 12,
 };
 
+const FETCH_OPTIONS = { next: { revalidate: 60 } };
+
 // Safe fetch wrapper that queries Sanity CMS and falls back gracefully
 export async function getProjects() {
   try {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project"] | order(_createdAt desc) {
         _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights
-      }`);
+      }`, {}, FETCH_OPTIONS);
       if (Array.isArray(data)) return data;
     }
   } catch (err) {
@@ -182,7 +184,7 @@ export async function getProjectBySlug(slug) {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project" && slug.current == $slug][0] {
         _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights, description
-      }`, { slug });
+      }`, { slug }, FETCH_OPTIONS);
       if (data) return data;
     }
   } catch (err) {
@@ -194,7 +196,7 @@ export async function getProjectBySlug(slug) {
 export async function getServices() {
   try {
     if (projectId && projectId !== 'demo-project-id') {
-      const data = await sanityClient.fetch(`*[_type == "service"] | order(order asc)`);
+      const data = await sanityClient.fetch(`*[_type == "service"] | order(order asc)`, {}, FETCH_OPTIONS);
       if (data && data.length > 0) return data;
     }
   } catch (err) {
@@ -206,7 +208,7 @@ export async function getServices() {
 export async function getTestimonials() {
   try {
     if (projectId && projectId !== 'demo-project-id') {
-      const data = await sanityClient.fetch(`*[_type == "testimonial"]`);
+      const data = await sanityClient.fetch(`*[_type == "testimonial"]`, {}, FETCH_OPTIONS);
       if (data && data.length > 0) return data;
     }
   } catch (err) {
@@ -218,7 +220,7 @@ export async function getTestimonials() {
 export async function getSiteSettings() {
   try {
     if (projectId && projectId !== 'demo-project-id') {
-      const data = await sanityClient.fetch(`*[_type == "siteSettings"][0]`);
+      const data = await sanityClient.fetch(`*[_type == "siteSettings"][0]`, {}, FETCH_OPTIONS);
       if (data) return data;
     }
   } catch (err) {
@@ -252,7 +254,7 @@ export async function getHomePage() {
           founderName,
           founderRole
         }
-      }`);
+      }`, {}, FETCH_OPTIONS);
       if (data) return data;
     }
   } catch (err) {
@@ -323,7 +325,7 @@ export async function getAboutPage() {
             instagramUrl
           }
         }
-      }`);
+      }`, {}, FETCH_OPTIONS);
       if (data) return data;
     }
   } catch (err) {

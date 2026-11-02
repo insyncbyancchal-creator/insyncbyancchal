@@ -155,7 +155,7 @@ const ReelCard = React.memo(function ReelCard({
           muted
           playsInline
           loop={isHovered}
-          preload="auto"
+          preload="metadata"
           onEnded={() => onEnded(index)}
           onError={() => setHasVideoError(true)}
           className={styles.cardVideo}

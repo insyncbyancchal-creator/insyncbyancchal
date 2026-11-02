@@ -245,10 +245,14 @@ export default function Preloader({
 
     const pageReady = () =>
       new Promise((res) => {
-        if (typeof document === "undefined" || document.readyState === "complete") {
+        if (typeof document === "undefined" || document.readyState === "complete" || document.readyState === "interactive") {
           res();
         } else {
-          window.addEventListener("load", () => res(), { once: true });
+          const fallbackTimer = setTimeout(res, 600);
+          window.addEventListener("load", () => {
+            clearTimeout(fallbackTimer);
+            res();
+          }, { once: true });
         }
       });
 

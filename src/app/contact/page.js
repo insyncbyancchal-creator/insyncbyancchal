@@ -4,8 +4,7 @@ import ContactExperience from "@/components/ContactExperience";
 import SimpleFooter from "@/components/SimpleFooter";
 import { getSiteSettings } from "@/sanity/lib/client";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 export const metadata = {
   title: "Contact | Insync by Ancchal",

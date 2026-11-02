@@ -155,13 +155,13 @@ export default function HeroSection() {
     })
   }, [currentSlide, markLoaded])
 
-  // Slide rotation timer
+  // Slide rotation timer - resets smoothly on slide transition or manual interaction
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
     }, 7000)
     return () => clearInterval(timer)
-  }, [heroSlides.length])
+  }, [currentSlide, heroSlides.length])
 
   const handleImageFallback = (slideId, candidates = []) => {
     setImgSrcs((prev) => {
