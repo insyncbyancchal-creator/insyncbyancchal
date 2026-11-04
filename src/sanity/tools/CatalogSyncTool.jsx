@@ -195,10 +195,6 @@ export function CatalogSyncTool() {
         studioHours: 'Monday – Saturday · 10:00 AM – 6:00 PM',
         mapQuery: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
         instagramUrl: 'https://www.instagram.com/insync_byancchal/',
-        heroHeadline: 'Sculpting Timeless Architectural Spaces & Bespoke Interiors',
-        heroSubtitle: 'A bespoke interior architecture studio based in Ludhiana, Punjab crafting timeless residential estates and curated spaces.',
-        yearsExperience: 8,
-        completedProjects: 65,
       })
 
       setStatusMsg('All items & Studio Contact Settings successfully initialized in Sanity!')

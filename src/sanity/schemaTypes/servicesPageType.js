@@ -2,117 +2,42 @@ import { defineField, defineType } from 'sanity'
 
 export const servicesPageType = defineType({
   name: 'servicesPage',
-  title: 'Services Page & 5 Disciplines',
+  title: 'Services & 5 Disciplines Photos',
   type: 'document',
-  initialValue: () => ({
-    heroEyebrow: 'OUR PRACTICE',
-    heroTitle: 'FIVE DISCIPLINES, one quiet STUDIO.',
-    heroLede: 'From the first sketch to the final cushion, everything under one roof, and one standard.',
-    disciplines: [
-      {
-        _key: 'disc-1',
-        no: '01',
-        title: 'Architectural Design',
-        line: 'Spaces conceived from the ground up, where structure, light and proportion are resolved before a single finish is chosen.',
-        tags: ['Concept', 'Planning', 'Elevations'],
-        shop: false,
-      },
-      {
-        _key: 'disc-2',
-        no: '02',
-        title: 'Interior Design',
-        line: 'Rooms composed with restraint: layered materials, considered light, and furniture that truly belongs.',
-        tags: ['Space planning', 'Materials', 'Lighting'],
-        shop: false,
-      },
-      {
-        _key: 'disc-3',
-        no: '03',
-        title: 'Procurement',
-        line: 'Furniture, fittings and finishes sourced and negotiated on your behalf, to the standard we would specify for ourselves.',
-        tags: ['Sourcing', 'Vendors', 'Quality checks'],
-        shop: false,
-      },
-      {
-        _key: 'disc-4',
-        no: '04',
-        title: 'Delivery & Installation',
-        line: 'Every piece delivered, placed and finished by our own team, so the room you approved is the room you receive.',
-        tags: ['Logistics', 'Installation', 'Styling'],
-        shop: false,
-      },
-      {
-        _key: 'disc-5',
-        no: '05',
-        title: 'Insync Home',
-        line: 'A collection of home décor made to be customised, to your dimensions, finishes and taste.',
-        tags: ['Décor', 'Made to order', 'Customisable'],
-        shop: true,
-      },
-    ],
-    homeEyebrow: 'INSYNC HOME',
-    homeTitle: 'CURATED OBJECTS, made for your SPACE.',
-    homeLede: 'Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.',
-  }),
   fields: [
     defineField({
-      name: 'heroEyebrow',
-      title: 'Hero Eyebrow (e.g. OUR PRACTICE)',
-      type: 'string',
-    }),
-    defineField({
-      name: 'heroTitle',
-      title: 'Hero Main Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'heroLede',
-      title: 'Hero Lede Paragraph',
-      type: 'text',
-      rows: 2,
-    }),
-    defineField({
       name: 'disciplines',
-      title: 'The 5 Studio Disciplines',
-      description: 'Upload your own photo for each discipline. Hotspot will automatically crop and adjust the frame to look stunning.',
+      title: 'The 5 Studio Disciplines (Photos)',
+      description: 'Upload your showcase photo for each of the 5 disciplines. Click Hotspot on each image to frame the focal point.',
       type: 'array',
       of: [
         {
           type: 'object',
           name: 'disciplineItem',
           fields: [
-            { name: 'no', title: 'Number (e.g. 01, 02)', type: 'string' },
-            { name: 'title', title: 'Discipline Title', type: 'string' },
-            { name: 'line', title: 'Description Line', type: 'text', rows: 2 },
-            {
-              name: 'tags',
-              title: 'Deliverable Tags',
-              type: 'array',
-              of: [{ type: 'string' }],
-            },
-            {
+            defineField({
+              name: 'title',
+              title: 'Discipline',
+              type: 'string',
+              readOnly: true,
+            }),
+            defineField({
               name: 'image',
-              title: 'Showcase Photo (Replaceable with Auto-Adjustment)',
+              title: 'Showcase Photo',
               type: 'image',
               options: { hotspot: true },
-              description: 'Upload your real discipline photo. Use hotspot to focus on the key detail.',
-            },
-            {
-              name: 'shop',
-              title: 'Show "Shop & Customise" Action Link',
-              type: 'boolean',
-              initialValue: false,
-            },
+              description: 'Upload your photo for this discipline. Click Hotspot to pick the focal point.',
+            }),
           ],
           preview: {
             select: {
               title: 'title',
-              subtitle: 'no',
               media: 'image',
             },
-            prepare({ title, subtitle, media }) {
+            prepare({ title, media }) {
               return {
-                title: `${subtitle ? subtitle + ' — ' : ''}${title || 'Discipline'}`,
+                title: title || 'Discipline',
+                subtitle: media ? 'Photo Uploaded ✓' : 'Default Studio Visual',
                 media,
               }
             },
@@ -135,30 +60,12 @@ export const servicesPageType = defineType({
         },
       ],
     }),
-    defineField({
-      name: 'homeEyebrow',
-      title: 'Insync Home Eyebrow (e.g. INSYNC HOME)',
-      type: 'string',
-      initialValue: 'INSYNC HOME',
-    }),
-    defineField({
-      name: 'homeTitle',
-      title: 'Insync Home Section Heading',
-      type: 'string',
-      initialValue: 'CURATED OBJECTS, made for your SPACE.',
-    }),
-    defineField({
-      name: 'homeLede',
-      title: 'Insync Home Description Narrative',
-      type: 'text',
-      rows: 2,
-    }),
   ],
   preview: {
     prepare() {
       return {
-        title: 'Services Page & 5 Disciplines',
-        subtitle: 'Manage 5 studio discipline photos & texts',
+        title: 'Services & 5 Disciplines',
+        subtitle: 'Upload photos for 5 studio disciplines & Insync Home showcase',
       }
     },
   },

@@ -24,7 +24,7 @@ export const decorProductType = defineType({
     defineField({
       name: 'name',
       title: 'Product Name',
-      description: 'The title of the object (e.g. Monolithic Travertine Plinth, Solstice Bouclé Lounge Chair).',
+      description: 'The title of the piece (e.g. Monolithic Travertine Plinth, Solstice Bouclé Lounge Chair).',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -33,7 +33,7 @@ export const decorProductType = defineType({
       title: 'Product Image',
       type: 'image',
       options: { hotspot: true },
-      description: 'Upload high-resolution product photo. Enable hotspot to frame the focal point perfectly across all devices.',
+      description: 'Upload high-resolution product photo. Click Hotspot to frame the focal point perfectly.',
       validation: (Rule) => Rule.required(),
       fields: [
         {
@@ -50,7 +50,7 @@ export const decorProductType = defineType({
       type: 'string',
       components: { input: DecorCardPreviewSelector },
       initialValue: 'auto',
-      description: 'Select how this piece frames on the website. See the live interactive preview below update in real time.',
+      description: 'Select how this piece frames in the gallery. See the live interactive preview below update in real time.',
     }),
     defineField({
       name: 'order',
@@ -59,71 +59,20 @@ export const decorProductType = defineType({
       type: 'number',
       initialValue: 10,
     }),
-    defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Stone Furniture', value: 'Stone Furniture' },
-          { title: 'Architectural Lighting', value: 'Architectural Lighting' },
-          { title: 'Bespoke Seating', value: 'Bespoke Seating' },
-          { title: 'Architectural Accents', value: 'Architectural Accents' },
-          { title: 'Storage & Joinery', value: 'Storage & Joinery' },
-          { title: 'Textiles & Rugs', value: 'Textiles & Rugs' },
-          { title: 'Objects & Decor', value: 'Objects & Decor' },
-        ],
-      },
-      initialValue: 'Stone Furniture',
-    }),
-    defineField({
-      name: 'desc',
-      title: 'Short Description',
-      type: 'text',
-      rows: 2,
-    }),
-    defineField({
-      name: 'no',
-      title: 'Number Code (e.g. 01, 02)',
-      type: 'string',
-      initialValue: '01',
-    }),
-    defineField({
-      name: 'badge',
-      title: 'Card Badge (e.g. Bespoke Stone, Made to Order, Atelier Crafted)',
-      type: 'string',
-      initialValue: 'Bespoke Stone',
-    }),
-    defineField({
-      name: 'options',
-      title: 'Custom Material Options (e.g. Travertine · Marble · Onyx)',
-      type: 'string',
-      initialValue: 'Travertine · Marble · Onyx',
-    }),
-    defineField({
-      name: 'additionalImages',
-      title: 'Additional Detail Photos (Optional)',
-      description: 'Upload any extra angles or material close-ups.',
-      type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
-      options: { layout: 'grid' },
-    }),
   ],
   preview: {
     select: {
       name: 'name',
-      no: 'no',
       order: 'order',
-      category: 'category',
       aspectRatio: 'aspectRatio',
       media: 'image',
     },
-    prepare({ name, no, order, category, aspectRatio, media }) {
+    prepare({ name, order, aspectRatio, media }) {
       const displayName = name || 'Untitled Product'
       const ratioTag = aspectRatio && aspectRatio !== 'auto' ? ` · ${aspectRatio}` : ''
       return {
         title: order !== undefined ? `#${order} — ${displayName}` : displayName,
-        subtitle: `${no ? no + ' · ' : ''}${category || 'Product'}${ratioTag}`,
+        subtitle: `Insync Home Product${ratioTag}`,
         media,
       }
     },

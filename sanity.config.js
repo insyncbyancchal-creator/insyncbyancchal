@@ -20,19 +20,6 @@ export default defineConfig({
         S.list()
           .title('Insync Content')
           .items([
-            // 0. Navbar & Social Links (Mail, WhatsApp, Insta)
-            S.listItem()
-              .title('⭐ Navbar Links (Mail, WhatsApp, Insta)')
-              .id('navbarLinksItem')
-              .child(
-                S.document()
-                  .schemaType('siteSettings')
-                  .documentId('siteSettings')
-                  .title('Navbar & Social Links (Mail, WhatsApp, Instagram)')
-              ),
-
-            S.divider(),
-
             // 1. Home Page
             S.listItem()
               .title('1. Home Page')
@@ -71,33 +58,24 @@ export default defineConfig({
                 S.document()
                   .schemaType('servicesPage')
                   .documentId('servicesPage')
-                  .title('Services Page & 5 Disciplines')
+                  .title('Services Page & 5 Disciplines Photos')
               ),
 
             // 5. Insync Home Products (Gallery Cards)
             S.listItem()
-              .title('5. 🛋️ Insync Home Products (Gallery Cards)')
+              .title('5. Insync Home Products')
               .schemaType('decorProduct')
               .child(
                 S.documentTypeList('decorProduct')
-                  .title('Insync Home Products (Upload Photos & Manage Pieces)')
+                  .title('Insync Home Products (Photos, Sizing & Order)')
                   .defaultOrdering([{ field: 'order', direction: 'asc' }])
               ),
 
-            // 5b. Insync Home Feature Showcase Image (Right-Side Photo)
-            S.listItem()
-              .title('⭐ Insync Home Feature Image (Showcase Photo)')
-              .id('insyncHomeFeatureImageItem')
-              .child(
-                S.document()
-                  .schemaType('servicesPage')
-                  .documentId('servicesPage')
-                  .title('Insync Home Right-Side Showcase Image & Text')
-              ),
+            S.divider(),
 
-            // 6. Inquiries & Leads
+            // 6. Client Inquiries & Leads
             S.listItem()
-              .title('6. Inquiries & Leads')
+              .title('6. Client Inquiries & Leads')
               .schemaType('contactSubmission')
               .child(
                 S.documentTypeList('contactSubmission')
@@ -105,23 +83,21 @@ export default defineConfig({
                   .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
               ),
 
-            S.divider(),
-
             // 7. Client Reviews
             S.listItem()
               .title('7. Client Reviews')
               .schemaType('testimonial')
               .child(S.documentTypeList('testimonial').title('Client Reviews')),
 
-            // 8. Studio Contact & Site Settings
+            // 8. Studio Contact & Social Links
             S.listItem()
-              .title('8. Studio Contact & Site Settings')
+              .title('8. Studio Contact & Social Links')
               .id('siteSettingsItem')
               .child(
                 S.document()
                   .schemaType('siteSettings')
                   .documentId('siteSettings')
-                  .title('Studio Contact & Site Settings')
+                  .title('Studio Contact & Social Links (WhatsApp, Email, Instagram)')
               ),
           ]),
     }),

@@ -107,38 +107,5 @@ export const siteSettingsType = defineType({
       type: 'string',
       initialValue: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
     }),
-    defineField({
-      name: 'pinterestUrl',
-      title: 'Pinterest Profile Link',
-      type: 'url',
-    }),
-
-    // ==============================================================
-    // 4. HERO & STATS
-    // ==============================================================
-    defineField({
-      name: 'heroHeadline',
-      title: 'Homepage Hero Headline',
-      type: 'string',
-      initialValue: 'Sculpting Timeless Architectural Spaces & Bespoke Interiors',
-    }),
-    defineField({
-      name: 'heroSubtitle',
-      title: 'Hero Subtitle',
-      type: 'text',
-      rows: 2,
-    }),
-    defineField({
-      name: 'yearsExperience',
-      title: 'Years of Atelier Excellence',
-      type: 'number',
-      initialValue: 8,
-    }),
-    defineField({
-      name: 'completedProjects',
-      title: 'Completed Projects Count',
-      type: 'number',
-      initialValue: 65,
-    }),
   ],
 })
