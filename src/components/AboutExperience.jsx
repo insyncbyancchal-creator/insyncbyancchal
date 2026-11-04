@@ -34,9 +34,9 @@ const MANIFESTO = {
   eyebrow: "Our approach",
   title: "Luxury, in its quietest form.",
   paragraphs: [
-    "Great design begins from the inside out, establishing how a space must serve daily living before layering in aesthetics that elevate the experience without compromising practical comfort.",
-    "Insync approaches every project through deep personalization, treating clients as collaborative partners to build environments that authentically reflect who they are. Unbound by short-lived trends, our work is guided by enduring design principles across diverse aesthetic styles.",
-    "We believe in finding absolute harmony between visual richness and practical living, ensuring every material, finish, and detail is thoughtfully considered in relation to the whole. Through purposeful spatial restraint and intentional balance, our compositions allow architectural details to breathe, delivering cohesive, low-maintenance transformations that hold their beauty and relevance for years to come.",
+    "Great design begins with understanding how a space serves everyday living, balancing functionality with thoughtful aesthetics.",
+    "At Insync, every project is deeply personalized, shaped through client collaboration and guided by timeless design principles rather than fleeting trends.",
+    "We bring together visual richness and practical comfort through carefully considered materials, finishes, and details, creating cohesive, low-maintenance spaces that remain beautiful and relevant for years to come.",
   ],
   quote:
     "Because the most exceptional spaces are not defined by what they display, but by what they make you feel.",
