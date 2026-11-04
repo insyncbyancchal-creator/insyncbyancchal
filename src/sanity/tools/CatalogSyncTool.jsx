@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
 import { useClient } from 'sanity'
 import { projects as defaultProjects } from '../../data/projects'
 import { DEFAULT_SERVICES, DEFAULT_PRODUCTS } from '../../lib/services'
@@ -13,7 +14,7 @@ export function CatalogSyncTool() {
   const [errorMsg, setErrorMsg] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const checkStatus = async () => {
+  const checkStatus = useCallback(async () => {
     try {
       const [projCount, prodCount, servicesDoc, inqCount] = await Promise.all([
         client.fetch('count(*[_type == "project"])'),
@@ -39,11 +40,20 @@ export function CatalogSyncTool() {
     } catch (err) {
       console.warn('Error checking Sanity catalog counts:', err)
     }
-  }
+  }, [client])
 
   useEffect(() => {
-    checkStatus()
-  }, [])
+    let active = true
+    client
+      .fetch('count(*[_type == "project"])')
+      .then(() => {
+        if (active) checkStatus()
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [client, checkStatus])
 
   const handleSyncInquiries = async () => {
     setLoading(true)
@@ -365,7 +375,7 @@ export function CatalogSyncTool() {
           </button>
 
           {stats.projects > 0 && (
-            <a
+            <Link
               href="/admin/structure"
               style={{
                 padding: '13px 20px',
@@ -382,7 +392,7 @@ export function CatalogSyncTool() {
               }}
             >
               Go to Structure View →
-            </a>
+            </Link>
           )}
         </div>
       </div>

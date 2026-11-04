@@ -19,26 +19,27 @@ export default function ProjectGallery({ project }) {
   const lbTimerRef = useRef(null);
 
   // Extract gallery items from project (real Sanity images take priority)
-  const baseGallery = Array.isArray(project?.gallery)
-    ? project.gallery.filter((g) => Boolean(g?.src))
-    : [];
-
-  // If main cover exists and is not already in baseGallery, include it at the start
-  const hasCoverInGallery = baseGallery.some((g) => g.src === project?.cover?.src);
-  const coverItem =
-    project?.cover?.src && !hasCoverInGallery
-      ? [
-          {
-            src: project.cover.src,
-            alt: project.cover.alt || project.title,
-            caption: "Primary Elevation",
-            aspectRatio: "16 / 10",
-            focus: project.cover.focus || "50% 50%",
-          },
-        ]
+  const gallery = useMemo(() => {
+    const baseGallery = Array.isArray(project?.gallery)
+      ? project.gallery.filter((g) => Boolean(g?.src))
       : [];
 
-  const gallery = [...coverItem, ...baseGallery];
+    const hasCoverInGallery = baseGallery.some((g) => g.src === project?.cover?.src);
+    const coverItem =
+      project?.cover?.src && !hasCoverInGallery
+        ? [
+            {
+              src: project.cover.src,
+              alt: project.cover.alt || project.title,
+              caption: "Primary Elevation",
+              aspectRatio: "16 / 10",
+              focus: project.cover.focus || "50% 50%",
+            },
+          ]
+        : [];
+
+    return [...coverItem, ...baseGallery];
+  }, [project]);
 
   const total = gallery.length;
   const hasItems = total > 0;

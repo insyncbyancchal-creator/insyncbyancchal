@@ -43,7 +43,7 @@ export default function PortfolioExperience({ projects }) {
     if (Array.isArray(projects)) {
       const idx = projects.findIndex((p) => p.slug === targetSlug);
       if (idx >= 6) {
-        setIsExpanded(true);
+        setTimeout(() => setIsExpanded(true), 0);
       }
     }
 

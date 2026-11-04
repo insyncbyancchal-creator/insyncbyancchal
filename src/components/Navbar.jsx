@@ -36,10 +36,7 @@ export default function Navbar({ siteSettings: initialSettings }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (initialSettings) {
-      setSiteSettings(initialSettings)
-      return
-    }
+    if (initialSettings) return
     let isCancelled = false
     fetch('/api/site-settings')
       .then((res) => res.json())

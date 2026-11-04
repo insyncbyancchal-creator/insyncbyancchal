@@ -82,7 +82,9 @@ export default function Preloader({
   const overlayRef = useRef(null);
   const svgRef = useRef(null);
   const onDoneRef = useRef(onDone);
-  onDoneRef.current = onDone;
+  useEffect(() => {
+    onDoneRef.current = onDone;
+  }, [onDone]);
   const [done, setDone] = useState(false);
   const hasMountedRef = useRef(false);
 

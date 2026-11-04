@@ -210,6 +210,18 @@ export default function ContactExperience({ siteSettings }) {
   const [copied, setCopied] = useState(false);
   const [mapLive, setMapLive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data, setData] = useState({
+    name: "",
+    types: [],
+    location: "",
+    budget: "",
+    timeline: "",
+    message: "",
+    email: "",
+    phone: "",
+    slot: "",
+    company: "", // honeypot
+  });
 
   const startedAt = useRef(null);
   const cardRef = useRef(null);
@@ -224,20 +236,23 @@ export default function ContactExperience({ siteSettings }) {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       if (params.get("enquire") || params.get("service") || params.get("open")) {
-        setIsModalOpen(true);
-        if (params.get("service")) {
-          const serv = params.get("service");
-          setData((d) => ({
-            ...d,
-            types: d.types.includes(serv) ? d.types : [...d.types, serv],
-          }));
-        }
-        if (params.get("note")) {
-          setData((d) => ({
-            ...d,
-            message: params.get("note"),
-          }));
-        }
+        const timer = setTimeout(() => {
+          setIsModalOpen(true);
+          if (params.get("service")) {
+            const serv = params.get("service");
+            setData((d) => ({
+              ...d,
+              types: d.types.includes(serv) ? d.types : [...d.types, serv],
+            }));
+          }
+          if (params.get("note")) {
+            setData((d) => ({
+              ...d,
+              message: params.get("note"),
+            }));
+          }
+        }, 0);
+        return () => clearTimeout(timer);
       }
     }
   }, []);
@@ -264,19 +279,6 @@ export default function ContactExperience({ siteSettings }) {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isModalOpen]);
-
-  const [data, setData] = useState({
-    name: "",
-    types: [],
-    location: "",
-    budget: "",
-    timeline: "",
-    message: "",
-    email: "",
-    phone: "",
-    slot: "",
-    company: "", // honeypot
-  });
 
   const set = (k, v) => {
     setErrorMsg("");

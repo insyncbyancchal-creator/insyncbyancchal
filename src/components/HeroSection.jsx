@@ -3,94 +3,95 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const heroSlides = [
+  {
+    id: 1,
+    type: 'image',
+    category: 'Grand Dining Salon',
+    rawTitle: 'Classical Elegance and Radiant Crystal Splendor',
+    title: (
+      <>
+        CLASSICAL ELEGANCE{' '}
+        <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and radiant</span>{' '}
+        CRYSTAL SPLENDOR
+      </>
+    ),
+    description:
+      'Monochrome checkered marble paving, cascading crystal chandeliers, and fluted architectural colonnades composed for elevated entertaining.',
+    image: '/hero/photo%20(3).avif?v=5',
+    fallbackCandidates: ['/hero/photo (3).avif'],
+  },
+  {
+    id: 2,
+    type: 'image',
+    category: 'Master Sanctuary Suite',
+    rawTitle: 'Serene Sanctuary and Tailored Spatial Comfort',
+    title: (
+      <>
+        SERENE SANCTUARY{' '}
+        <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and tailored</span>{' '}
+        SPATIAL COMFORT
+      </>
+    ),
+    description:
+      'Four-poster canopy bed architecture, coffered ceiling reliefs, and layered tactile fabrics composed for deeply restful living.',
+    image: '/hero/photo%20(1).avif?v=5',
+    fallbackCandidates: ['/hero/photo (1).avif'],
+  },
+  {
+    id: 3,
+    type: 'image',
+    category: 'Bespoke Architectural Villa',
+    rawTitle: 'Contemporary Residence Bathed in Twilight Radiance',
+    title: (
+      <>
+        CONTEMPORARY RESIDENCE{' '}
+        <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">bathed in</span>{' '}
+        TWILIGHT RADIANCE
+      </>
+    ),
+    description:
+      'Crisp geometric massing, warm amber interior illumination, and sweeping manicured lawns composed in seamless modern balance.',
+    image: '/hero/photo%20(2).avif?v=5',
+    fallbackCandidates: ['/hero/photo (2).avif'],
+  },
+  {
+    id: 4,
+    type: 'image',
+    category: 'Palatial Manor Colonnade',
+    rawTitle: 'Neoclassical Proportion and Enduring Architectural Scale',
+    title: (
+      <>
+        NEOCLASSICAL PROPORTION{' '}
+        <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and enduring</span>{' '}
+        ARCHITECTURAL SCALE
+      </>
+    ),
+    description:
+      'Monumental multi-bay porticos, rhythmic perimeter uplighting, and sweeping landscaped grounds crafted with timeless architectural poise.',
+    image: '/hero/photo%20(4).avif?v=5',
+    fallbackCandidates: ['/hero/photo (4).avif'],
+  },
+  {
+    id: 5,
+    type: 'image',
+    category: 'Private Speakeasy Lounge',
+    rawTitle: 'Bespoke Timber Craftsmanship and Warm Amber Conviviality',
+    title: (
+      <>
+        BESPOKE CRAFTSMANSHIP{' '}
+        <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and warm</span>{' '}
+        AMBER CONVIVIALITY
+      </>
+    ),
+    description:
+      'Handcrafted fluted timber millwork, warm backlit bottle displays, and patinated leather seating conceived for slow evening leisure.',
+    image: '/hero/photo%20(5).avif?v=5',
+    fallbackCandidates: ['/hero/photo (5).avif'],
+  },
+]
+
 export default function HeroSection() {
-  const heroSlides = [
-    {
-      id: 1,
-      type: 'image',
-      category: 'Grand Dining Salon',
-      rawTitle: 'Classical Elegance and Radiant Crystal Splendor',
-      title: (
-        <>
-          CLASSICAL ELEGANCE{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and radiant</span>{' '}
-          CRYSTAL SPLENDOR
-        </>
-      ),
-      description:
-        'Monochrome checkered marble paving, cascading crystal chandeliers, and fluted architectural colonnades composed for elevated entertaining.',
-      image: '/hero/photo%20(3).avif?v=5',
-      fallbackCandidates: ['/hero/photo (3).avif'],
-    },
-    {
-      id: 2,
-      type: 'image',
-      category: 'Master Sanctuary Suite',
-      rawTitle: 'Serene Sanctuary and Tailored Spatial Comfort',
-      title: (
-        <>
-          SERENE SANCTUARY{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and tailored</span>{' '}
-          SPATIAL COMFORT
-        </>
-      ),
-      description:
-        'Four-poster canopy bed architecture, coffered ceiling reliefs, and layered tactile fabrics composed for deeply restful living.',
-      image: '/hero/photo%20(1).avif?v=5',
-      fallbackCandidates: ['/hero/photo (1).avif'],
-    },
-    {
-      id: 3,
-      type: 'image',
-      category: 'Bespoke Architectural Villa',
-      rawTitle: 'Contemporary Residence Bathed in Twilight Radiance',
-      title: (
-        <>
-          CONTEMPORARY RESIDENCE{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">bathed in</span>{' '}
-          TWILIGHT RADIANCE
-        </>
-      ),
-      description:
-        'Crisp geometric massing, warm amber interior illumination, and sweeping manicured lawns composed in seamless modern balance.',
-      image: '/hero/photo%20(2).avif?v=5',
-      fallbackCandidates: ['/hero/photo (2).avif'],
-    },
-    {
-      id: 4,
-      type: 'image',
-      category: 'Palatial Manor Colonnade',
-      rawTitle: 'Neoclassical Proportion and Enduring Architectural Scale',
-      title: (
-        <>
-          NEOCLASSICAL PROPORTION{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and enduring</span>{' '}
-          ARCHITECTURAL SCALE
-        </>
-      ),
-      description:
-        'Monumental multi-bay porticos, rhythmic perimeter uplighting, and sweeping landscaped grounds crafted with timeless architectural poise.',
-      image: '/hero/photo%20(4).avif?v=5',
-      fallbackCandidates: ['/hero/photo (4).avif'],
-    },
-    {
-      id: 5,
-      type: 'image',
-      category: 'Private Speakeasy Lounge',
-      rawTitle: 'Bespoke Timber Craftsmanship and Warm Amber Conviviality',
-      title: (
-        <>
-          BESPOKE CRAFTSMANSHIP{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and warm</span>{' '}
-          AMBER CONVIVIALITY
-        </>
-      ),
-      description:
-        'Handcrafted fluted timber millwork, warm backlit bottle displays, and patinated leather seating conceived for slow evening leisure.',
-      image: '/hero/photo%20(5).avif?v=5',
-      fallbackCandidates: ['/hero/photo (5).avif'],
-    },
-  ]
 
   const [currentSlide, setCurrentSlide] = useState(0)
   const [mediaLoaded, setMediaLoaded] = useState({})
@@ -158,7 +159,7 @@ export default function HeroSection() {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
     }, 7000)
     return () => clearInterval(timer)
-  }, [currentSlide, heroSlides.length])
+  }, [currentSlide])
 
   const handleImageFallback = (slideId, candidates = []) => {
     setImgSrcs((prev) => {

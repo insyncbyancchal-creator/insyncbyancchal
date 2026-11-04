@@ -33,10 +33,7 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
   const [siteSettings, setSiteSettings] = useState(initialSettings || null)
 
   useEffect(() => {
-    if (initialSettings) {
-      setSiteSettings(initialSettings)
-      return
-    }
+    if (initialSettings) return
     let isCancelled = false
     fetch('/api/site-settings')
       .then((res) => res.json())

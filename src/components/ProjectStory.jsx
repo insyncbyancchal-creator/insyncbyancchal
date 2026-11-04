@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import ProjectGallery from "./ProjectGallery";
 import styles from "./ProjectStory.module.css";
@@ -56,6 +57,7 @@ export default function ProjectStory({ project, next, others }) {
     ["Status", p.status || "Completed"],
   ].filter(([, v]) => v);
 
+  const router = useRouter();
   const more = [next, ...(others || [])].filter(Boolean).slice(0, 3);
 
   return (
@@ -79,8 +81,8 @@ export default function ProjectStory({ project, next, others }) {
             const targetUrl = `${source}#project-${p.slug}`;
             if (typeof window !== "undefined" && window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
               window.history.back();
-            } else if (typeof window !== "undefined") {
-              window.location.href = targetUrl;
+            } else {
+              router.push(targetUrl);
             }
           }}
           className={`${styles.back} ${styles.sans}`}

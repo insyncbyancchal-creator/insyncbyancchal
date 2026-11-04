@@ -89,7 +89,7 @@ export default function HomeAboutSection({ data }) {
                     src={photoSrc}
                     alt={photoAlt}
                     onError={(e) => {
-                      e.currentTarget.src = "/about/ancchal-home.jpg";
+                      e.currentTarget.src = "/about/ancchal-home.jpeg";
                     }}
                     loading="lazy"
                     decoding="async"

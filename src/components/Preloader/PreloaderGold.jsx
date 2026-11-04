@@ -68,7 +68,7 @@ export default function PreloaderGold({
     try {
       if (sessionStorage.getItem("insync-seen") === "1") {
         document.body.classList.add("is-loaded");
-        setDone(true);
+        setTimeout(() => setDone(true), 0);
       }
     } catch {}
   }, [skipIfSeenThisSession]);
