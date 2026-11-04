@@ -17,7 +17,7 @@ export default function InsyncHomeClient({ products = [] }) {
         className="space-y-4 text-center max-w-4xl mx-auto px-6 mb-16 sm:mb-20"
       >
         <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#C5A059] font-semibold block">
-          ATELIER OBJECTS &amp; BESPOKE DÉCOR
+          ATELIER OBJECTS &amp; CURATED DÉCOR
         </span>
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#1A1A1A] font-light tracking-[0.04em]">
           INSYNC <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">home collection</span>
@@ -30,7 +30,7 @@ export default function InsyncHomeClient({ products = [] }) {
           className="w-16 h-[1.5px] bg-[#C5A059] mx-auto my-5 origin-center"
         />
         <p className="text-[14.5px] sm:text-[15.5px] text-[#555048] font-sans font-light leading-relaxed max-w-2xl mx-auto">
-          A curated capsule of custom furniture and artisan décor crafted to order in our partner workshops. Every object can be calibrated in materiality, dimensions, and finishes.
+          A curated collection of artisan décor and sculptural furniture objects selected by our studio. Finished pieces, ready to acquire and bring timeless character to your space.
         </p>
       </motion.div>
 
@@ -111,10 +111,10 @@ export default function InsyncHomeClient({ products = [] }) {
       >
         <div className="p-8 sm:p-12 rounded-3xl bg-[#ECE7DC] border border-[#C5A059]/30 relative overflow-hidden">
           <span className="text-[10.5px] font-sans uppercase tracking-[0.28em] text-[#C5A059] font-semibold block mb-2">
-            BESPOKE COMMISSIONS
+            ATELIER ACQUISITIONS
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#1A1A1A] font-light">
-            CUSTOMIZE WITH <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">our atelier</span>
+            ACQUIRE FROM <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">our collection</span>
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -124,13 +124,13 @@ export default function InsyncHomeClient({ products = [] }) {
             className="w-14 h-[1.5px] bg-[#C5A059] mx-auto my-4 origin-center"
           />
           <p className="text-[14px] text-[#555048] font-sans max-w-xl mx-auto mb-8">
-            Have specific stone, textile, or metalwork dimensions in mind? Our team crafts pieces precisely tailored to your interior architecture.
+            Interested in acquiring an available piece or scheduling a private viewing at our studio? Reach out to our atelier team.
           </p>
           <Link
             href="/contact?service=Insync%20Home"
             className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#1A1A1A] text-[#FBF9F6] border border-[#C5A059] hover:bg-[#C5A059] hover:text-[#1A1A1A] transition-all duration-300 text-[11px] font-sans uppercase tracking-[0.26em] font-semibold shadow-sm active:scale-98"
           >
-            <span>DISCUSS A CUSTOM PIECE</span>
+            <span>ENQUIRE TO ACQUIRE</span>
             <ArrowUpRight size={14} className="text-[#C5A059]" />
           </Link>
         </div>

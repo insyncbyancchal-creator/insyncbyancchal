@@ -55,8 +55,8 @@ export const DEFAULT_SERVICES = [
   {
     no: "05",
     title: "Insync Home",
-    line: "A collection of home décor made to be customised, to your dimensions, finishes and taste.",
-    tags: ["Décor", "Made to order", "Customisable"],
+    line: "A curated collection of sculptural décor and collectible atelier objects, ready to acquire for discerning spaces.",
+    tags: ["Décor", "Atelier Objects", "Curated Pieces"],
     img: null,
     tone: ["#efe4cb", "#c4a56a"],
     shop: true,
@@ -329,8 +329,10 @@ export async function getServicesPageData() {
           heroLede: doc.heroLede || "From the first sketch to the final cushion, everything under one roof, and one standard.",
           disciplines,
           homeEyebrow: doc.homeEyebrow || "INSYNC HOME",
-          homeTitle: doc.homeTitle || "CURATED OBJECTS, made for your SPACE.",
-          homeLede: doc.homeLede || "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.",
+          homeTitle: doc.homeTitle || "CURATED OBJECTS, ready for your SPACE.",
+          homeLede: doc.homeLede && !doc.homeLede.includes("customizable") && !doc.homeLede.includes("crafted to order")
+            ? doc.homeLede
+            : "A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.",
           homeImage: optimizeSanityUrl(homeImageUrl, 1400, null, 85),
           homeImageFocus: homeFocus,
         };
@@ -346,8 +348,8 @@ export async function getServicesPageData() {
     heroLede: "From the first sketch to the final cushion, everything under one roof, and one standard.",
     disciplines: DEFAULT_SERVICES,
     homeEyebrow: "INSYNC HOME",
-    homeTitle: "CURATED OBJECTS, made for your SPACE.",
-    homeLede: "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.",
+    homeTitle: "CURATED OBJECTS, ready for your SPACE.",
+    homeLede: "A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.",
     homeImage: null,
     homeImageFocus: "50% 50%",
   };

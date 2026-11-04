@@ -157,14 +157,14 @@ export function StudioAutoSyncNavbar(props) {
                 _key: 'disc-5',
                 no: '05',
                 title: 'Insync Home',
-                line: 'A collection of home décor made to be customised, to your dimensions, finishes and taste.',
-                tags: ['Décor', 'Made to order', 'Customisable'],
+                line: 'A curated collection of sculptural décor and collectible atelier objects, ready to acquire for discerning spaces.',
+                tags: ['Décor', 'Atelier Objects', 'Curated Pieces'],
                 shop: true,
               },
             ],
             homeEyebrow: 'INSYNC HOME',
-            homeTitle: 'CURATED OBJECTS, made for your SPACE.',
-            homeLede: 'Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.',
+            homeTitle: 'CURATED OBJECTS, ready for your SPACE.',
+            homeLede: 'A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.',
           })
         }
         // 5. Elevate any casual placeholder decor product names to luxury editorial names

@@ -7,9 +7,9 @@ import { getSiteSettings } from '@/sanity/lib/client'
 export const revalidate = 60
 
 export const metadata = {
-  title: 'Insync Home Collection | Bespoke Décor & Atelier Objects',
+  title: 'Insync Home Collection | Curated Décor & Atelier Objects',
   description:
-    'A curated capsule of custom furniture and artisan décor crafted to order by Insync by Ancchal, Ludhiana.',
+    'A curated collection of artisan décor and sculptural furniture objects selected by Insync by Ancchal, Ludhiana.',
 }
 
 export default async function InsyncHomePage() {

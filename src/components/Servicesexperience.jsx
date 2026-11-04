@@ -170,15 +170,15 @@ function HomeShowcase({ products, homeData }) {
           />
           <p className={`${styles.homeLede} ${styles.sans}`}>
             {homeData?.lede ||
-              "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes."}
+              "A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home."}
           </p>
 
           <div className={styles.homePillars}>
             <div className={styles.pillarItem}>
               <span className={styles.pillarNo}>01</span>
-              <span className={styles.pillarTitle}>Bespoke Sizing</span>
+              <span className={styles.pillarTitle}>Curated Form</span>
               <span className={styles.pillarDesc}>
-                Proportions calibrated to your architectural layout.
+                Handpicked objects crafted with architectural proportion.
               </span>
             </div>
             <div className={styles.pillarItem}>
@@ -190,9 +190,9 @@ function HomeShowcase({ products, homeData }) {
             </div>
             <div className={styles.pillarItem}>
               <span className={styles.pillarNo}>03</span>
-              <span className={styles.pillarTitle}>Made to Order</span>
+              <span className={styles.pillarTitle}>Ready to Acquire</span>
               <span className={styles.pillarDesc}>
-                Individually handcrafted in limited atelier capsules.
+                Available finished pieces crafted in limited atelier capsules.
               </span>
             </div>
           </div>
@@ -232,7 +232,7 @@ function HomeShowcase({ products, homeData }) {
               <ArrowUpRight className="w-4 h-4 text-[#C5A059]" />
             </button>
             <span className={styles.exploreHint}>
-              Click to view all {allProducts.length} curated objects &amp; custom commissions
+              Click to view all {allProducts.length} curated objects &amp; atelier pieces
             </span>
           </div>
         </motion.div>
@@ -348,16 +348,16 @@ function HomeShowcase({ products, homeData }) {
                 {/* Atelier Enquiry Section Placed at Last */}
                 <div className={styles.galleryFooterCta}>
                   <div className={styles.galleryFooterInner}>
-                    <p className={styles.galleryFooterEyebrow}>BESPOKE ATELIER COMMISSIONS</p>
+                    <p className={styles.galleryFooterEyebrow}>ATELIER ACQUISITIONS</p>
                     <h4 className={styles.galleryFooterHeading}>
-                      COMMISSION A <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">custom piece</span>
+                      ACQUIRE AN <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">atelier piece</span>
                     </h4>
                     <div className={styles.galleryFooterDivider} />
                     <p className={`${styles.galleryFooterText} ${styles.sans}`}>
-                      Every object in the Insync Home collection is crafted to order. Calibrate dimensions, natural stone selection, metals, and artisan finishes to your space.
+                      Every piece in the Insync Home collection is an original studio creation. Inquire to acquire an available object or arrange a private gallery viewing.
                     </p>
                     <Link
-                      href="/contact?service=Insync%20Home&note=Custom%20Object%20Commission"
+                      href="/contact?service=Insync%20Home&note=Acquire%20Atelier%20Object"
                       className={styles.galleryFooterBtn}
                       onClick={() => setIsGalleryOpen(false)}
                     >
@@ -626,7 +626,7 @@ export default function ServicesExperience({ data, initialProducts }) {
                 >
                   <span className={`${styles.no} ${styles.sans}`}>{s.no}</span>
                   <span className={styles.rowTitle}>{s.title}</span>
-                  {s.shop && <span className={`${styles.shopTag} ${styles.sans}`}>Shop &amp; customise</span>}
+                  {s.shop && <span className={`${styles.shopTag} ${styles.sans}`}>Curated collection</span>}
                   <span className={styles.arrow} aria-hidden="true">
                     →
                   </span>
@@ -644,7 +644,7 @@ export default function ServicesExperience({ data, initialProducts }) {
                     )}
                     <div className={`${styles.links} ${styles.sans}`}>
                       <Link href={enquire(s.title)}>Enquire →</Link>
-                      {s.shop && <a href="#insync-home">Customise a piece ↓</a>}
+                      {s.shop && <a href="#insync-home">Explore the collection ↓</a>}
                     </div>
                   </div>
                 </div>
