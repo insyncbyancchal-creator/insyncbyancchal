@@ -8,19 +8,19 @@ export default function HeroSection() {
     {
       id: 1,
       type: 'image',
-      category: 'Bespoke Architectural Villa',
-      rawTitle: 'Contemporary Residence Bathed in Twilight Radiance',
+      category: 'Grand Dining Salon',
+      rawTitle: 'Classical Elegance and Radiant Crystal Splendor',
       title: (
         <>
-          CONTEMPORARY RESIDENCE{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">bathed in</span>{' '}
-          TWILIGHT RADIANCE
+          CLASSICAL ELEGANCE{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and radiant</span>{' '}
+          CRYSTAL SPLENDOR
         </>
       ),
       description:
-        'Crisp geometric massing, warm amber interior illumination, and sweeping manicured lawns composed in seamless modern balance.',
-      image: '/hero/photo%20(2).avif?v=4',
-      fallbackCandidates: ['/hero/photo (2).avif'],
+        'Monochrome checkered marble paving, cascading crystal chandeliers, and fluted architectural colonnades composed for elevated entertaining.',
+      image: '/hero/photo%20(3).avif?v=5',
+      fallbackCandidates: ['/hero/photo (3).avif'],
     },
     {
       id: 2,
@@ -36,25 +36,25 @@ export default function HeroSection() {
       ),
       description:
         'Four-poster canopy bed architecture, coffered ceiling reliefs, and layered tactile fabrics composed for deeply restful living.',
-      image: '/hero/photo%20(1).avif?v=4',
+      image: '/hero/photo%20(1).avif?v=5',
       fallbackCandidates: ['/hero/photo (1).avif'],
     },
     {
       id: 3,
       type: 'image',
-      category: 'Grand Dining Salon',
-      rawTitle: 'Classical Elegance and Radiant Crystal Splendor',
+      category: 'Bespoke Architectural Villa',
+      rawTitle: 'Contemporary Residence Bathed in Twilight Radiance',
       title: (
         <>
-          CLASSICAL ELEGANCE{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and radiant</span>{' '}
-          CRYSTAL SPLENDOR
+          CONTEMPORARY RESIDENCE{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">bathed in</span>{' '}
+          TWILIGHT RADIANCE
         </>
       ),
       description:
-        'Monochrome checkered marble paving, cascading crystal chandeliers, and fluted architectural colonnades composed for elevated entertaining.',
-      image: '/hero/photo%20(3).avif?v=4',
-      fallbackCandidates: ['/hero/photo (3).avif'],
+        'Crisp geometric massing, warm amber interior illumination, and sweeping manicured lawns composed in seamless modern balance.',
+      image: '/hero/photo%20(2).avif?v=5',
+      fallbackCandidates: ['/hero/photo (2).avif'],
     },
     {
       id: 4,
@@ -70,7 +70,7 @@ export default function HeroSection() {
       ),
       description:
         'Monumental multi-bay porticos, rhythmic perimeter uplighting, and sweeping landscaped grounds crafted with timeless architectural poise.',
-      image: '/hero/photo%20(4).avif?v=4',
+      image: '/hero/photo%20(4).avif?v=5',
       fallbackCandidates: ['/hero/photo (4).avif'],
     },
     {
@@ -87,7 +87,7 @@ export default function HeroSection() {
       ),
       description:
         'Handcrafted fluted timber millwork, warm backlit bottle displays, and patinated leather seating conceived for slow evening leisure.',
-      image: '/hero/photo%20(5).avif?v=4',
+      image: '/hero/photo%20(5).avif?v=5',
       fallbackCandidates: ['/hero/photo (5).avif'],
     },
   ]
@@ -273,7 +273,7 @@ export default function HeroSection() {
                   }}
                   src={
                     videoFailed[slide.id]
-                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo%20(2).avif'
+                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo%20(3).avif'
                       : imgSrcs[slide.id] || slide.image
                   }
                   alt={slide.rawTitle || slide.category}
