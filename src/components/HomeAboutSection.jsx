@@ -45,8 +45,8 @@ export default function HomeAboutSection({ data }) {
   }
 
   const photoSrc = sanityImageUrl || '/about/ancchal-home.jpeg';
-  const photoAlt = data?.founderPhotoAlt || 'Ancchal, Founder & Principal Designer of Insync by Ancchal';
-  const founderName = data?.founderName || 'Ancchal';
+  const photoAlt = data?.founderPhotoAlt || 'Ancchal Sharma, Founder & Principal Designer of Insync by Ancchal';
+  const founderName = (data?.founderName && data.founderName !== 'Ancchal') ? data.founderName : 'Ancchal Sharma';
   const founderRole = data?.founderRole || 'FOUNDER & PRINCIPAL DESIGNER';
 
   return (

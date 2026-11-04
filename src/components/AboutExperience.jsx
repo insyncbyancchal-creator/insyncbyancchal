@@ -20,7 +20,7 @@ const OWNER = {
   photo: "/about/ancchal-about.jpeg",
   alt: "Portrait of Ancchal Sharma, Founder and Principal Designer of Insync",
   focus: "50% 20%",
-  name: "Ancchal",
+  name: "Ancchal Sharma",
   role: "Founder & Principal Designer",
   lead: null,
   details: [
@@ -132,7 +132,7 @@ export default function AboutExperience({ data, children }) {
             )}
           </span>
           <div className={`${styles.portraitCaption} ${styles.sans}`}>
-            <span className={styles.captionName}>Ancchal</span>
+            <span className={styles.captionName}>Ancchal Sharma</span>
             <span className={styles.captionRole}>FOUNDER & PRINCIPAL DESIGNER</span>
           </div>
 
