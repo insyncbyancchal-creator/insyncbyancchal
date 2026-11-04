@@ -20,11 +20,11 @@ export default function HeroSection() {
       description:
         'Double-height travertine stone volumes, fluted oak millwork, and private landscaped courtyard views resolved into one continuous sanctuary.',
       image: '/hero/photo_1.avif',
-      fallbackCandidates: ['/hero/photo_1.jpg', '/hero/photo_3.jpg'],
+      fallbackCandidates: ['/hero/photo_1.webp', '/hero/photo_1.jpg'],
     },
     {
       id: 2,
-      type: 'video',
+      type: 'image',
       category: 'The Solstice Sky Penthouse · Gurugram',
       rawTitle: 'Sky Sanctuary Living at Panoramic Urban Scale',
       title: (
@@ -36,9 +36,8 @@ export default function HeroSection() {
       ),
       description:
         'Suspended bronze fireplace reveals, full-height bookmatched Calacatta marble, and private sunset terraces overlooking the skyline.',
-      video: '/hero/video_2.mp4',
-      image: '/hero/photo_1.avif',
-      fallbackCandidates: ['/hero/photo_1.avif', '/hero/photo_3.jpg'],
+      image: '/hero/photo_2.avif',
+      fallbackCandidates: ['/hero/photo_2.webp', '/hero/photo_2.jpg'],
     },
     {
       id: 3,
@@ -55,12 +54,12 @@ export default function HeroSection() {
       ),
       description:
         'Indoor reflecting pools, acoustic ceiling slat baffles, and circadian rhythm architectural lighting composed with natural restraint.',
-      image: '/hero/photo_3.jpg?v=2',
-      fallbackCandidates: ['/hero/photo_3.jpg', '/hero/photo_1.avif', '/hero/photo_5.jpg'],
+      image: '/hero/photo_3.avif',
+      fallbackCandidates: ['/hero/photo_3.webp', '/hero/photo_3.jpg'],
     },
     {
       id: 4,
-      type: 'video',
+      type: 'image',
       category: 'Celica Duplex Estate · Kolkata',
       rawTitle: 'Warm Curved Plaster and Organic Living',
       title: (
@@ -72,9 +71,8 @@ export default function HeroSection() {
       ),
       description:
         'Serene five thousand square foot duplex conceived with warm hand-troweled clay reliefs, tactile boucle seating, and natural linen textures.',
-      video: '/hero/video_4.mp4',
-      image: '/hero/photo_3.jpg',
-      fallbackCandidates: ['/hero/photo_3.jpg', '/hero/photo_5.jpg'],
+      image: '/hero/photo_4.avif',
+      fallbackCandidates: ['/hero/photo_4.webp', '/hero/photo_4.jpg'],
     },
     {
       id: 5,
@@ -90,8 +88,8 @@ export default function HeroSection() {
       ),
       description:
         'Hand-carved laterite stone pillars, motorized bronze window louvers, and shaded poolside terraces designed for tropical tranquility.',
-      image: '/hero/photo_5.jpg',
-      fallbackCandidates: ['/hero/photo_5.avif', '/hero/photo_3.jpg'],
+      image: '/hero/photo_5.avif',
+      fallbackCandidates: ['/hero/photo_5.webp', '/hero/photo_5.jpg'],
     },
   ]
 

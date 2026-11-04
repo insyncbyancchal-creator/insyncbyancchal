@@ -83,3 +83,6 @@ scratch/
 *.docx
 *.xlsx
 *.csv
+
+# Raw uncompressed camera uploads (source images kept locally, optimized versions tracked in git)
+public/hero/photo (*).avif
