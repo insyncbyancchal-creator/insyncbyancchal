@@ -431,38 +431,35 @@
 }
 
 /* -------------------------------------------------------------
-   MODE 2: Editorial Architectural Mosaic (Curtain Wipe Animation)
+   MODE 2: Editorial Architectural Mosaic (Left-to-Right Balanced Grid)
    ------------------------------------------------------------- */
-.masonry {
-  column-count: 4;
-  column-gap: 16px;
+.masonryGrid {
+  display: grid;
+  gap: 16px;
   width: 100%;
+  align-items: start;
 }
 
-@media (max-width: 1200px) {
-  .masonry {
-    column-count: 3;
-    column-gap: 14px;
+.masonryCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .masonryGrid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
   }
-}
-
-@media (max-width: 840px) {
-  .masonry {
-    column-count: 2;
-    column-gap: 12px;
-  }
-}
-
-@media (max-width: 500px) {
-  .masonry {
-    column-count: 1;
-    column-gap: 0;
+  .masonryCol {
+    gap: 14px;
   }
 }
 
 .mosaicCard {
   break-inside: avoid;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   position: relative;
   overflow: hidden;
   border-radius: 4px;

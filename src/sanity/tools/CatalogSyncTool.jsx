@@ -149,7 +149,6 @@ export function CatalogSyncTool() {
           area: p.area || '',
           status: p.status || 'Completed',
           tagline: p.tagline || '',
-          summary: p.description || '',
           concept: p.concept || [],
           materials: p.materials || [],
         }

@@ -127,12 +127,6 @@ export const projectType = defineType({
       description: 'e.g. A bespoke architectural sanctuary of quiet luxury and hospitality.',
     }),
     defineField({
-      name: 'summary',
-      title: 'Project Summary',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
       name: 'concept',
       title: 'Design Concept Paragraphs',
       description: 'Add paragraphs explaining the design story, daylight, and spatial concept.',

@@ -34,24 +34,31 @@ function normalizeSanityProject(doc) {
   const hoverUrl = optimizeSanityUrl(rawHover, 800, 800, 80);
   const heroUrl = optimizeSanityUrl(rawCover, 1920, 1080, 85);
 
-  // Resolve inside gallery photos with optimal 1600px width limit
+  // Resolve inside gallery photos with optimal 1600px width limit and hotspot focus
   const gallery = (doc.gallery || [])
     .map((img, i) => {
       const rawSrc = img.asset?.url || (img.asset ? urlForImage(img)?.url() : null);
       if (!rawSrc) return null;
+      const imgFocus = img.hotspot
+        ? `${Math.round(img.hotspot.x * 100)}% ${Math.round(img.hotspot.y * 100)}%`
+        : "50% 50%";
       return {
         src: optimizeSanityUrl(rawSrc, 1600, null, 82),
         alt: img.alt || doc.title || `Gallery photo ${i + 1}`,
         caption: img.caption || "",
         aspectRatio: img.aspectRatio || "16 / 10",
+        focus: imgFocus,
       };
     })
     .filter(Boolean);
 
-  // Cover focus
+  // Cover focus & Hover focus
   const coverFocus = doc.mainImage?.hotspot
     ? `${Math.round(doc.mainImage.hotspot.x * 100)}% ${Math.round(doc.mainImage.hotspot.y * 100)}%`
     : "50% 50%";
+  const hoverFocus = doc.hoverImage?.hotspot
+    ? `${Math.round(doc.hoverImage.hotspot.x * 100)}% ${Math.round(doc.hoverImage.hotspot.y * 100)}%`
+    : coverFocus;
 
   return {
     _id: doc._id,
@@ -64,22 +71,24 @@ function normalizeSanityProject(doc) {
     year: doc.year || "2025",
     area: doc.area || "",
     status: doc.status || "Completed",
-    description: doc.summary || "",
-    tagline: doc.tagline || doc.summary || "",
+    description: doc.tagline || "",
+    tagline: doc.tagline || "",
     cover: {
       src: coverUrl || null,
       hoverSrc: hoverUrl || coverUrl || null,
       alt: doc.mainImage?.alt || doc.title,
       focus: coverFocus,
+      hoverFocus: hoverFocus,
     },
     hero: {
       src: heroUrl || coverUrl || null,
       alt: doc.title,
+      focus: coverFocus,
     },
     concept:
       Array.isArray(doc.concept) && doc.concept.length > 0
         ? doc.concept
-        : [doc.summary || "A bespoke architectural study crafted with quiet luxury, proportion, and natural light."].filter(Boolean),
+        : [doc.tagline || "A bespoke architectural study crafted with quiet luxury, proportion, and natural light."].filter(Boolean),
     materials: doc.materials || [],
     gallery,
     featured: Boolean(doc.featured),
@@ -102,7 +111,6 @@ export async function getProjects() {
         area,
         status,
         featured,
-        summary,
         concept,
         materials,
         mainImage {
@@ -119,9 +127,10 @@ export async function getProjects() {
           caption,
           alt,
           aspectRatio,
+          hotspot,
           asset-> { url, metadata { dimensions } }
         }
-      }`);
+      }`, {}, { next: { revalidate: 10 } });
 
       if (Array.isArray(docs)) {
         // Return ONLY the real projects created in Sanity backend — zero mock or fallback boxes

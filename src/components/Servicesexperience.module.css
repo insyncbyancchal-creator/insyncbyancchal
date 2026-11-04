@@ -88,7 +88,8 @@
   line-height: 1.25;
   letter-spacing: -.015em;
   color: #4A463F; /* Elegant high-contrast legible tone across all devices */
-  transition: color .35s ease, transform .45s cubic-bezier(.2,.8,.2,1);
+  transition: color .35s ease, transform .45s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
 }
 .shopTag {
   align-self: center;
@@ -109,11 +110,23 @@
   color: var(--gold);
   opacity: 0;
   transform: translateX(-12px);
-  transition: opacity .35s ease, transform .4s cubic-bezier(.2,.8,.2,1);
+  transition: opacity .3s ease, transform .38s cubic-bezier(.16,1,.3,1);
+  will-change: transform, opacity;
 }
 
-.rowBody { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .9s cubic-bezier(.2,.7,.2,1), opacity .6s; }
-.rowBody > div { overflow: hidden; padding-left: 3.5rem; min-height: 0; }
+.rowBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.32s ease;
+  will-change: grid-template-rows, opacity;
+}
+.rowBody > div {
+  overflow: hidden;
+  padding-left: 3.5rem;
+  min-height: 0;
+  contain: paint;
+}
 .desc { max-width: 34rem; color: #3E3A34; font-weight: 400; font-size: clamp(14.5px, 1.1vw, 15.5px); line-height: 1.75; margin: 1rem 0 1.25rem; }
 .tags { list-style: none; margin: 0 0 1.4rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
 .tags li { font-size: 11.5px; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; color: var(--ink); border: 1px solid rgba(197, 160, 89, 0.35); padding: .4rem .85rem; border-radius: 0; }
@@ -131,7 +144,12 @@
 .on .rowBody { grid-template-rows: 1fr; opacity: 1; }
 
 /* sticky image panel */
-.panelWrap { position: sticky; top: 6rem; height: min(76vh, 44rem); }
+.panelWrap {
+  position: sticky;
+  top: 6rem;
+  height: min(76vh, 44rem);
+  will-change: transform;
+}
 .panel {
   --tx: 0px;
   --ty: 0px;
@@ -144,7 +162,7 @@
   background: var(--gold-soft);
   box-shadow: 0 20px 45px -15px rgba(27, 26, 23, 0.06);
 }
-/* Smooth Down-To-Up Architectural Reveal On Hover (Framer Motion) */
+/* Smooth Architectural Reveal On Hover (Framer Motion) */
 .slideMotion {
   position: absolute;
   inset: 0;
@@ -153,6 +171,9 @@
   overflow: hidden;
   pointer-events: none;
   box-shadow: 0 -15px 35px rgba(27, 26, 23, 0.12);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .slideInner {
@@ -162,6 +183,8 @@
   height: 100%;
   overflow: hidden;
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .slideImg {
@@ -177,10 +200,12 @@
   object-fit: cover !important;
   object-position: center;
   background-color: transparent;
-  transform: translate(var(--tx, 0px), var(--ty, 0px));
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
   display: block;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .chip {
@@ -516,16 +541,23 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* Product Gallery Grid: Minimalist, Name Only, No Description, No Card Enquire */
-.galleryGrid {
+/* Product Gallery Mosaic: True Multi-Column Masonry like Project Gallery */
+.galleryMasonry {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: clamp(1.25rem, 2.2vw, 2rem);
+  align-items: start;
+  gap: clamp(1rem, 1.8vw, 1.6rem);
+  width: 100%;
+}
+
+.masonryCol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1.8vw, 1.6rem);
 }
 
 .galleryCard {
   background: #FFFFFF;
-  border: 1px solid rgba(197, 160, 89, 0.24);
+  border: 1px solid rgba(197, 160, 89, 0.28);
   border-radius: 4px;
   overflow: hidden;
   padding: 0.85rem 0.85rem 1.15rem;
@@ -534,21 +566,29 @@
   align-items: center;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 16px rgba(27, 26, 23, 0.04);
+  cursor: default;
+  user-select: none;
+  break-inside: avoid;
 }
 
 .galleryCard:hover {
   transform: translateY(-4px);
   border-color: var(--gold);
-  box-shadow: 0 16px 36px -8px rgba(197, 160, 89, 0.24);
+  box-shadow: 0 16px 36px -8px rgba(197, 160, 89, 0.28);
 }
 
 .galleryThumb {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 2px;
   background: #EAE6DE;
+  border: 1px solid rgba(197, 160, 89, 0.18);
+  transition: border-color 0.3s ease;
+}
+
+.galleryCard:hover .galleryThumb {
+  border-color: rgba(197, 160, 89, 0.45);
 }
 
 .galleryThumb img {
@@ -560,7 +600,51 @@
 }
 
 .galleryCard:hover .galleryThumb img {
-  transform: scale(1.05);
+  transform: scale(1.04);
+}
+
+/* Viewfinder Architectural Corner Crosshairs */
+.cornerTL, .cornerTR, .cornerBL, .cornerBR {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.cornerTL { top: 6px; left: 6px; border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+.cornerTR { top: 6px; right: 6px; border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+.cornerBL { bottom: 6px; left: 6px; border-bottom: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+.cornerBR { bottom: 6px; right: 6px; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+
+.galleryCard:hover .cornerTL,
+.galleryCard:hover .cornerTR,
+.galleryCard:hover .cornerBL,
+.galleryCard:hover .cornerBR {
+  opacity: 1;
+}
+
+/* Plate Badge */
+.viewfinderBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(18, 17, 16, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 3px 7px;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #E5BA69;
+  font-weight: 600;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .thumbPlaceholder {

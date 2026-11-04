@@ -22,7 +22,7 @@ export const MOCK_PROJECTS = [
     year: '2024',
     area: '6,400 sq ft',
     featured: true,
-    summary: 'A glass-encased sky sanctuary combining minimalism, brushed champagne brass accents, and raw monolithic travertine architecture.',
+    tagline: 'A glass-encased sky sanctuary combining minimalism, brushed champagne brass accents, and raw monolithic travertine architecture.',
     highlights: [
       'Custom floating marble fireplace centerpiece',
       'Acoustically tuned architectural ceiling reveals',
@@ -42,7 +42,7 @@ export const MOCK_PROJECTS = [
     year: '2023',
     area: '9,200 sq ft',
     featured: true,
-    summary: 'Harmonizing Mediterranean light with warm plaster finishes, sculptural furniture, and seamless indoor-outdoor transitions.',
+    tagline: 'Harmonizing Mediterranean light with warm plaster finishes, sculptural furniture, and seamless indoor-outdoor transitions.',
     highlights: [
       'Hand-troweled Venetian plaster throughout all gallery walls',
       'Custom curved boucle sofa designed in Italy',
@@ -62,7 +62,7 @@ export const MOCK_PROJECTS = [
     year: '2024',
     area: '4,100 sq ft',
     featured: true,
-    summary: 'A dramatic high-fashion atelier interior featuring dark smoked oak, antiqued bronze mirrors, and ambient halo illumination.',
+    tagline: 'A dramatic high-fashion atelier interior featuring dark smoked oak, antiqued bronze mirrors, and ambient halo illumination.',
     highlights: [
       'Acoustic velvet wall panels with hidden shadow lines',
       'Sculptural brass reception desk handcrafted by local artisans',
@@ -169,7 +169,7 @@ export async function getProjects() {
   try {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project"] | order(_createdAt desc) {
-        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights
+        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, highlights
       }`, {}, FETCH_OPTIONS);
       if (Array.isArray(data)) return data;
     }
@@ -183,7 +183,7 @@ export async function getProjectBySlug(slug) {
   try {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project" && slug.current == $slug][0] {
-        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, summary, highlights, description
+        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, featured, highlights, description
       }`, { slug }, FETCH_OPTIONS);
       if (data) return data;
     }

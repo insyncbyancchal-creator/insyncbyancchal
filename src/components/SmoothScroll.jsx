@@ -97,7 +97,21 @@ export default function SmoothScroll() {
         document.body.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
       } else if (window.lenis) {
         window.lenis.start();
-        window.lenis.scrollTo(0, { immediate: true });
+
+        const hash = typeof window !== "undefined" ? window.location.hash : "";
+        let hasReturnProject = false;
+        try {
+          hasReturnProject = Boolean(sessionStorage.getItem("return_to_project"));
+        } catch {}
+
+        // If navigating to a specific project hash or returning to a project, do NOT force scroll to 0
+        if (hash && hash.startsWith("#project-")) {
+          // Let the target component scroll to it accurately
+        } else if (hasReturnProject && (pathname === "/portfolio" || pathname === "/")) {
+          // Returning to project location, do not override scroll to top
+        } else {
+          window.lenis.scrollTo(0, { immediate: true });
+        }
         window.lenis.resize();
       }
     }

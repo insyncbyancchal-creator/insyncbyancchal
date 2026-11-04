@@ -1,13 +1,75 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import styles from "./PortfolioExperience.module.css";
 
 export default function PortfolioExperience({ projects }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const hash = window.location.hash || "";
+        const targetSlug = hash.startsWith("#project-")
+          ? hash.replace("#project-", "")
+          : sessionStorage.getItem("return_to_project");
+        if (targetSlug && Array.isArray(projects)) {
+          const idx = projects.findIndex((p) => p.slug === targetSlug);
+          if (idx >= 6) return true;
+        }
+        return sessionStorage.getItem("portfolio_expanded") === "1";
+      } catch {}
+    }
+    return false;
+  });
+
+  // Scroll directly in front of the same project when returning from a project detail page
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let targetSlug = null;
+    const hash = window.location.hash || "";
+    if (hash.startsWith("#project-")) {
+      targetSlug = hash.replace("#project-", "");
+    } else {
+      try {
+        targetSlug = sessionStorage.getItem("return_to_project");
+      } catch {}
+    }
+
+    if (!targetSlug) return;
+
+    if (Array.isArray(projects)) {
+      const idx = projects.findIndex((p) => p.slug === targetSlug);
+      if (idx >= 6) {
+        setIsExpanded(true);
+      }
+    }
+
+    let attempts = 0;
+    const scrollToTarget = () => {
+      const el = document.getElementById(`project-${targetSlug}`);
+      if (el) {
+        const offset = 90;
+        if (window.lenis) {
+          window.lenis.scrollTo(el, { offset: -offset, immediate: true });
+        } else {
+          const y = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: "instant" });
+        }
+        try {
+          sessionStorage.removeItem("return_to_project");
+        } catch {}
+      } else if (attempts < 12) {
+        attempts++;
+        setTimeout(scrollToTarget, 60);
+      }
+    };
+
+    const timer = setTimeout(scrollToTarget, 80);
+    return () => clearTimeout(timer);
+  }, [projects]);
 
   // One click on Discover More unfolds ALL remaining projects immediately
   const displayProjects = isExpanded ? projects : projects.slice(0, 6);
@@ -15,6 +77,9 @@ export default function PortfolioExperience({ projects }) {
 
   const handleDiscoverMore = () => {
     setIsExpanded(true);
+    try {
+      sessionStorage.setItem("portfolio_expanded", "1");
+    } catch {}
   };
 
   return (
@@ -59,7 +124,6 @@ export default function PortfolioExperience({ projects }) {
       </header>
 
       {/* ---------------- 3-Column Square Project Gallery Matching Reference ---------------- */}
-      {/* ---------------- 3-Column Square Project Gallery Matching Reference ---------------- */}
       <section className={styles.container} aria-label="Selected Projects">
         <div className={styles.galleryGrid}>
           {displayProjects.map((p, index) => {
@@ -68,6 +132,7 @@ export default function PortfolioExperience({ projects }) {
             return (
               <motion.article
                 key={p.slug}
+                id={`project-${p.slug}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.05 }}
@@ -80,6 +145,12 @@ export default function PortfolioExperience({ projects }) {
               >
                 <Link
                   href={`/portfolio/${p.slug}`}
+                  onClick={() => {
+                    try {
+                      sessionStorage.setItem("return_to_project", p.slug);
+                      sessionStorage.setItem("return_source_path", "/portfolio");
+                    } catch {}
+                  }}
                   className={styles.cardLink}
                   aria-label={`View project: ${p.title}`}
                 >
@@ -91,6 +162,7 @@ export default function PortfolioExperience({ projects }) {
                           src={p.cover.src}
                           alt={p.title}
                           className={styles.primaryImg}
+                          style={{ objectPosition: p.cover.focus || "50% 50%" }}
                           loading={index < 6 ? "eager" : "lazy"}
                           decoding="async"
                           width={800}
@@ -101,6 +173,7 @@ export default function PortfolioExperience({ projects }) {
                             src={p.cover.hoverSrc}
                             alt={`${p.title} interior detail`}
                             className={styles.hoverImg}
+                            style={{ objectPosition: p.cover.hoverFocus || p.cover.focus || "50% 50%" }}
                             loading="lazy"
                             decoding="async"
                             width={800}

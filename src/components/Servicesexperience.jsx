@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
-import { ArrowDown, ArrowUp, ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import { DEFAULT_SERVICES, DEFAULT_PRODUCTS } from "@/lib/services";
 import styles from "./Servicesexperience.module.css";
 
@@ -91,7 +91,9 @@ function HomeShowcase({ products, homeData }) {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e) => {
-      if (e.key === "Escape") setIsGalleryOpen(false);
+      if (e.key === "Escape") {
+        setIsGalleryOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
@@ -99,6 +101,30 @@ function HomeShowcase({ products, homeData }) {
       window.removeEventListener("keydown", onKey);
     };
   }, [isGalleryOpen]);
+
+  // Dynamic responsive columns for editorial masonry
+  const [numCols, setNumCols] = useState(4);
+
+  useEffect(() => {
+    function computeCols() {
+      const w = window.innerWidth;
+      if (w < 640) setNumCols(1);
+      else if (w < 960) setNumCols(2);
+      else if (w < 1380) setNumCols(3);
+      else setNumCols(4);
+    }
+    computeCols();
+    window.addEventListener("resize", computeCols);
+    return () => window.removeEventListener("resize", computeCols);
+  }, []);
+
+  const columns = useMemo(() => {
+    const cols = Array.from({ length: numCols }, () => []);
+    allProducts.forEach((item, index) => {
+      cols[index % numCols].push({ item, index });
+    });
+    return cols;
+  }, [allProducts, numCols]);
 
   // Main showcase photo: Sanity uploaded homeImage or first product or fallback
   const featurePhoto =
@@ -265,34 +291,57 @@ function HomeShowcase({ products, homeData }) {
                 data-lenis-prevent="true"
                 onWheel={(e) => e.stopPropagation()}
               >
-                {/* Cards have ONLY image and product name (No description, No card enquire link) */}
-                <div className={styles.galleryGrid}>
-                  {allProducts.map((prod, idx) => (
-                    <article
-                      key={prod.id || prod._id || idx}
-                      className={styles.galleryCard}
-                    >
-                      <div className={styles.galleryThumb}>
-                        {prod.img ? (
-                          <img
-                            src={prod.img}
-                            alt={prod.name}
-                            loading="lazy"
-                            decoding="async"
-                            style={{ objectPosition: prod.imageFocus || "50% 50%" }}
-                          />
-                        ) : (
-                          <div className={styles.thumbPlaceholder}>
-                            <span className={styles.placeholderBrand}>INSYNC</span>
-                            <div className={styles.placeholderDivider} />
-                            <span className={styles.placeholderText}>OBJECT ARCHIVE</span>
-                          </div>
-                        )}
-                      </div>
+                {/* Multi-Column Masonry like Project Gallery */}
+                <div
+                  className={styles.galleryMasonry}
+                  style={{
+                    gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))`,
+                  }}
+                >
+                  {columns.map((col, colIdx) => (
+                    <div key={colIdx} className={styles.masonryCol}>
+                      {col.map(({ item: prod, index: idx }) => (
+                        <article
+                          key={prod.id || prod._id || idx}
+                          className={styles.galleryCard}
+                        >
+                          <div
+                            className={styles.galleryThumb}
+                            style={{ aspectRatio: prod.aspectRatio || "3 / 4" }}
+                          >
+                            {prod.img ? (
+                              <img
+                                src={prod.img}
+                                alt={prod.name}
+                                loading={idx < 8 ? "eager" : "lazy"}
+                                decoding="async"
+                                style={{ objectPosition: prod.imageFocus || "50% 50%" }}
+                              />
+                            ) : (
+                              <div className={styles.thumbPlaceholder}>
+                                <span className={styles.placeholderBrand}>INSYNC</span>
+                                <div className={styles.placeholderDivider} />
+                                <span className={styles.placeholderText}>OBJECT ARCHIVE</span>
+                              </div>
+                            )}
 
-                      {/* Product Name ONLY */}
-                      <h3 className={styles.galleryCardName}>{prod.name}</h3>
-                    </article>
+                            {/* Viewfinder Architectural Corner Crosshairs */}
+                            <div className={styles.cornerTL} />
+                            <div className={styles.cornerTR} />
+                            <div className={styles.cornerBL} />
+                            <div className={styles.cornerBR} />
+
+                            {/* Plate Badge */}
+                            <div className={styles.viewfinderBadge}>
+                              PLATE {String(idx + 1).padStart(2, "0")}
+                            </div>
+                          </div>
+
+                          {/* Product Name ONLY */}
+                          <h3 className={styles.galleryCardName}>{prod.name}</h3>
+                        </article>
+                      ))}
+                    </div>
                   ))}
                 </div>
 
@@ -326,13 +375,65 @@ function HomeShowcase({ products, homeData }) {
   );
 }
 
+const slideVariants = {
+  enter: (direction) => ({
+    y: direction >= 0 ? "100%" : "-100%",
+    opacity: 1,
+    zIndex: 2,
+  }),
+  center: {
+    y: "0%",
+    opacity: 1,
+    zIndex: 2,
+    transition: {
+      y: { duration: 0.52, ease: [0.16, 1, 0.3, 1] },
+      opacity: { duration: 0.3, ease: "easeOut" },
+    },
+  },
+  exit: (direction) => ({
+    y: direction >= 0 ? "-26%" : "26%",
+    opacity: 0,
+    zIndex: 1,
+    transition: {
+      y: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+      opacity: { duration: 0.28, ease: "easeIn" },
+    },
+  }),
+};
+
+const innerVariants = {
+  enter: (direction) => ({
+    y: direction >= 0 ? "-8%" : "8%",
+    scale: 1.05,
+  }),
+  center: {
+    y: "0%",
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (direction) => ({
+    y: direction >= 0 ? "3%" : "-3%",
+    scale: 1.02,
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
 /* ------------------------------------------------------------------ */
 /*  Main Services Experience Component                                 */
 /* ------------------------------------------------------------------ */
 export default function ServicesExperience({ data, initialProducts }) {
   useReveal();
-  const [active, setActive] = useState(0);
+  const [[active, direction], setActiveState] = useState([0, 1]);
+  const hoverTimeoutRef = useRef(null);
   const panelRef = useRef(null);
+  const rectRef = useRef(null);
+  const rafRef = useRef(null);
   const mRefs = useRef([]);
   useParallax(mRefs);
 
@@ -364,26 +465,64 @@ export default function ServicesExperience({ data, initialProducts }) {
     });
   }, [services]);
 
-  const go = (i) => {
-    if (i === active) return;
-    setActive(i);
-  };
+  const go = useCallback((i) => {
+    setActiveState(([prevActive]) => {
+      if (i === prevActive) return [prevActive, 0];
+      const dir = i > prevActive ? 1 : -1;
+      return [i, dir];
+    });
+  }, []);
 
-  const onMove = (e) => {
+  const handleRowHover = useCallback((i) => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => {
+      go(i);
+    }, 35);
+  }, [go]);
+
+  const handleRowClick = useCallback((i) => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    go(i);
+  }, [go]);
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  const onEnterPanel = useCallback(() => {
+    if (panelRef.current) {
+      rectRef.current = panelRef.current.getBoundingClientRect();
+    }
+  }, []);
+
+  const onMove = useCallback((e) => {
     const el = panelRef.current;
     if (!el) return;
-    const r = el.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
-    const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
-    el.style.setProperty("--tx", `${(-x * 14).toFixed(1)}px`);
-    el.style.setProperty("--ty", `${(-y * 14).toFixed(1)}px`);
-  };
-  const onLeave = () => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const r = rectRef.current || el.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      el.style.setProperty("--tx", `${(-x * 12).toFixed(1)}px`);
+      el.style.setProperty("--ty", `${(-y * 12).toFixed(1)}px`);
+    });
+  }, []);
+
+  const onLeave = useCallback(() => {
+    rectRef.current = null;
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     const el = panelRef.current;
     if (!el) return;
     el.style.setProperty("--tx", "0px");
     el.style.setProperty("--ty", "0px");
-  };
+  }, []);
 
   const currentService = services[active] || services[0] || {};
 
@@ -446,8 +585,8 @@ export default function ServicesExperience({ data, initialProducts }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className={`${styles.row} ${active === i ? styles.on : ""}`}
-                onMouseEnter={() => go(i)}
-                onClick={() => go(i)}
+                onMouseEnter={() => handleRowHover(i)}
+                onClick={() => handleRowClick(i)}
               >
                 {/* stacked image: tablet & mobile only */}
                 <div className={styles.mImg} ref={(el) => (mRefs.current[i] = el)}>
@@ -481,7 +620,7 @@ export default function ServicesExperience({ data, initialProducts }) {
                   className={styles.rowHead}
                   onClick={(e) => {
                     e.stopPropagation();
-                    go(i);
+                    handleRowClick(i);
                   }}
                   aria-expanded={active === i}
                 >
@@ -514,35 +653,43 @@ export default function ServicesExperience({ data, initialProducts }) {
           </ol>
 
           {/* sticky image panel: desktop only */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-            className={styles.panelWrap}
-            aria-hidden="true"
-          >
-            <div className={styles.panel} ref={panelRef} onMouseMove={onMove} onMouseLeave={onLeave}>
-              <AnimatePresence initial={false}>
+          <div className={styles.panelWrap} aria-hidden="true">
+            <motion.div
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className={styles.panel}
+              ref={panelRef}
+              onMouseEnter={onEnterPanel}
+              onMouseMove={onMove}
+              onMouseLeave={onLeave}
+            >
+              <AnimatePresence initial={false} custom={direction}>
                 <motion.div
                   key={active}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   className={styles.slideMotion}
-                  initial={{ y: "100%", zIndex: 2 }}
-                  animate={{ y: "0%", zIndex: 2 }}
-                  exit={{ y: "-20%", opacity: 0.35, zIndex: 1 }}
-                  transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <motion.div
+                    custom={direction}
+                    variants={innerVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
                     className={styles.slideInner}
-                    initial={{ y: "-12%", scale: 1.06 }}
-                    animate={{ y: "0%", scale: 1 }}
-                    transition={{ duration: 1.02, ease: [0.22, 1, 0.36, 1] }}
                   >
                     {currentService.img ? (
                       <img
                         src={currentService.img}
                         alt={currentService.title}
                         className={styles.slideImg}
+                        decoding="async"
+                        loading="eager"
                         style={{ objectPosition: currentService.imageFocus || "50% 50%" }}
                       />
                     ) : (
@@ -577,17 +724,17 @@ export default function ServicesExperience({ data, initialProducts }) {
                 <motion.div
                   key={`chip-${active}`}
                   className={`${styles.chip} ${styles.sans}`}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <b>{currentService.no}</b>
                   <span>{currentService.title}</span>
                 </motion.div>
               </AnimatePresence>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.section>
 
         {/* ---------- INSYNC HOME (Dynamic products from Sanity) ---------- */}

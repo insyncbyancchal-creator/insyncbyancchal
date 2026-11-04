@@ -103,8 +103,7 @@ export const ALL_PROJECTS_QUERY = groq`
     location,
     year,
     area,
-    featured,
-    summary
+    featured
   }
 `
 
@@ -119,8 +118,7 @@ export const FEATURED_PROJECTS_QUERY = groq`
     client,
     location,
     year,
-    area,
-    summary
+    area
   }
 `
 
@@ -138,7 +136,6 @@ export const SINGLE_PROJECT_QUERY = groq`
     year,
     area,
     featured,
-    summary,
     description,
     highlights
   }

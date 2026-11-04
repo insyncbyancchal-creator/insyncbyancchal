@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -33,6 +33,7 @@ export default function ProjectGallery({ project }) {
             alt: project.cover.alt || project.title,
             caption: "Primary Elevation",
             aspectRatio: "16 / 10",
+            focus: project.cover.focus || "50% 50%",
           },
         ]
       : [];
@@ -41,6 +42,49 @@ export default function ProjectGallery({ project }) {
 
   const total = gallery.length;
   const hasItems = total > 0;
+
+  // Dynamic column count:
+  // Fills the grid from LEFT TO RIGHT across the entire width so there is never an empty gap on the right
+  const [numCols, setNumCols] = useState(() => {
+    if (total <= 1) return 1;
+    if (total === 2 || total === 4) return 2;
+    return 3;
+  });
+
+  useEffect(() => {
+    function computeCols() {
+      const w = window.innerWidth;
+      if (total <= 1) {
+        setNumCols(1);
+      } else if (w < 640) {
+        setNumCols(1);
+      } else if (w < 1024) {
+        setNumCols(Math.min(2, total));
+      } else if (w >= 1600 && total >= 8) {
+        setNumCols(4);
+      } else if (total === 2 || total === 4) {
+        setNumCols(2); // Symmetrical 2x1 or 2x2 grid
+      } else {
+        setNumCols(Math.min(3, total)); // 3 columns fill 100% width, covering right edge
+      }
+    }
+
+    computeCols();
+    window.addEventListener("resize", computeCols);
+    return () => window.removeEventListener("resize", computeCols);
+  }, [total]);
+
+  // Distribute items round-robin across columns (0, 1, 2, then 0, 1, 2...)
+  // Guarantees:
+  // 1. Reading order flows horizontally Left-to-Right, then down
+  // 2. All columns are populated so the right side is completely filled
+  const columns = useMemo(() => {
+    const cols = Array.from({ length: numCols }, () => []);
+    gallery.forEach((item, index) => {
+      cols[index % numCols].push({ item, index });
+    });
+    return cols;
+  }, [gallery, numCols]);
 
   // -------------------------------------------------------------
   // Fullscreen Lightbox Handlers & Autoplay
@@ -178,79 +222,93 @@ export default function ProjectGallery({ project }) {
       </div>
 
       {/* -------------------------------------------------------------
-          Editorial Architectural Mosaic (Hardware-Accelerated 60fps)
+          Editorial Architectural Mosaic (Left-to-Right Balanced Grid)
           ------------------------------------------------------------- */}
-      <div className={styles.masonry} role="region" aria-label="Editorial photo mosaic">
-        {gallery.map((item, index) => (
-          <motion.div
-            key={item.src + index}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "60px 0px" }}
-            transition={{
-              duration: 0.4,
-              ease: "easeOut",
-            }}
-            className={styles.mosaicCard}
-            onClick={() => openLightbox(index)}
-            tabIndex={0}
-            role="button"
-            aria-label={`View photo ${index + 1}: ${item.caption || item.alt || project.title}`}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                openLightbox(index);
-              }
-            }}
-          >
-            <div
-              className={styles.mosaicFrame}
-              style={{ aspectRatio: item.aspectRatio || "4 / 3" }}
-            >
-              <img
-                src={item.src}
-                alt={item.alt || `${project.title} photo ${index + 1}`}
-                className={styles.mosaicImg}
-                loading={index < 4 ? "eager" : "lazy"}
-                decoding="async"
-              />
-
-              {/* Silky Architectural Shutter Curtain Wipe */}
+      <div
+        className={styles.masonryGrid}
+        style={{
+          gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))`,
+          maxWidth: numCols === 1 ? "900px" : "100%",
+          margin: numCols === 1 ? "0 auto" : undefined,
+        }}
+        role="region"
+        aria-label="Editorial photo mosaic"
+      >
+        {columns.map((col, colIdx) => (
+          <div key={colIdx} className={styles.masonryCol}>
+            {col.map(({ item, index }) => (
               <motion.div
-                className={styles.shutterCurtain}
-                initial={{ y: "0%" }}
-                whileInView={{ y: "-102%" }}
-                viewport={{ once: true, margin: "0px 0px -20px 0px" }}
+                key={item.src + index}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "60px 0px" }}
                 transition={{
-                  duration: 0.72,
-                  delay: (index % 3) * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 0.4,
+                  ease: "easeOut",
                 }}
-              />
+                className={styles.mosaicCard}
+                onClick={() => openLightbox(index)}
+                tabIndex={0}
+                role="button"
+                aria-label={`View photo ${index + 1}: ${item.caption || item.alt || project.title}`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openLightbox(index);
+                  }
+                }}
+              >
+                <div
+                  className={styles.mosaicFrame}
+                  style={{ aspectRatio: item.aspectRatio || "4 / 3" }}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt || `${project.title} photo ${index + 1}`}
+                    className={styles.mosaicImg}
+                    style={{ objectPosition: item.focus || "50% 50%" }}
+                    loading={index < 4 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
 
-              {/* Frosted Viewfinder Overlay on Hover */}
-              <div className={styles.mosaicOverlay} aria-hidden="true">
-                <div className={styles.viewfinderTop}>
-                  <span>PLATE {String(index + 1).padStart(2, "0")}</span>
-                  <span>{project.location}</span>
+                  {/* Silky Architectural Shutter Curtain Wipe */}
+                  <motion.div
+                    className={styles.shutterCurtain}
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "-102%" }}
+                    viewport={{ once: true, margin: "0px 0px -20px 0px" }}
+                    transition={{
+                      duration: 0.72,
+                      delay: (index % numCols) * 0.06,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  />
+
+                  {/* Frosted Viewfinder Overlay on Hover */}
+                  <div className={styles.mosaicOverlay} aria-hidden="true">
+                    <div className={styles.viewfinderTop}>
+                      <span>PLATE {String(index + 1).padStart(2, "0")}</span>
+                      <span>{project.location}</span>
+                    </div>
+
+                    <div className={styles.viewfinderCenter}>
+                      <Plus size={16} />
+                    </div>
+
+                    <div className={styles.viewfinderBottom}>
+                      {item.caption || project.title}
+                    </div>
+                  </div>
                 </div>
 
-                <div className={styles.viewfinderCenter}>
-                  <Plus size={16} />
+                {/* Static Card Meta underneath */}
+                <div className={styles.mosaicDetails}>
+                  <span className={styles.mosaicPlate}>PLATE NO. {String(index + 1).padStart(2, "0")}</span>
+                  <span className={styles.mosaicCap}>{item.caption || project.type}</span>
                 </div>
-
-                <div className={styles.viewfinderBottom}>
-                  {item.caption || project.title}
-                </div>
-              </div>
-            </div>
-
-            {/* Static Card Meta underneath */}
-            <div className={styles.mosaicDetails}>
-              <span className={styles.mosaicPlate}>PLATE NO. {String(index + 1).padStart(2, "0")}</span>
-              <span className={styles.mosaicCap}>{item.caption || project.type}</span>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
         ))}
       </div>
 

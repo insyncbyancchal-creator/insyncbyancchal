@@ -1,7 +1,22 @@
-// Master Data Access Layer for Services & Insync Home Products
 import { sanityClient } from "@/sanity/lib/client";
 import { projectId } from "@/sanity/lib/env";
 import { urlForImage } from "@/sanity/lib/image";
+
+// Helper to inject Sanity CDN resize, WebP/AVIF auto-format, and compression params
+function optimizeSanityUrl(url, width = 800, height = null, quality = 82) {
+  if (!url || typeof url !== 'string') return url;
+  if (url.includes('cdn.sanity.io/images/')) {
+    const base = url.split('?')[0];
+    const params = new URLSearchParams();
+    if (width) params.set('w', String(width));
+    if (height) params.set('h', String(height));
+    params.set('fit', 'max');
+    params.set('auto', 'format');
+    params.set('q', String(quality));
+    return `${base}?${params.toString()}`;
+  }
+  return url;
+}
 
 // 5 Disciplines default data with ZERO placeholder images (ready for client photos from Sanity)
 export const DEFAULT_SERVICES = [
@@ -295,7 +310,7 @@ export async function getServicesPageData() {
               title: d.title || defaultItem.title,
               line: d.line || defaultItem.line,
               tags: Array.isArray(d.tags) && d.tags.length > 0 ? d.tags : defaultItem.tags || [],
-              img: imgUrl || null,
+              img: optimizeSanityUrl(imgUrl, 1200, null, 85),
               imageFocus: focus,
               tone: defaultItem.tone || ["#e9e3d5", "#cdc2a9"],
               shop: d.shop ?? defaultItem.shop ?? false,
@@ -316,7 +331,7 @@ export async function getServicesPageData() {
           homeEyebrow: doc.homeEyebrow || "INSYNC HOME",
           homeTitle: doc.homeTitle || "CURATED OBJECTS, made for your SPACE.",
           homeLede: doc.homeLede || "Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.",
-          homeImage: homeImageUrl || null,
+          homeImage: optimizeSanityUrl(homeImageUrl, 1400, null, 85),
           homeImageFocus: homeFocus,
         };
       }
@@ -567,6 +582,7 @@ export async function getDecorProducts() {
         desc,
         badge,
         options,
+        aspectRatio,
         image {
           asset-> { url, metadata { dimensions } },
           hotspot
@@ -581,6 +597,24 @@ export async function getDecorProducts() {
             const focus = doc.image?.hotspot
               ? `${Math.round(doc.image.hotspot.x * 100)}% ${Math.round(doc.image.hotspot.y * 100)}%`
               : "50% 50%";
+
+            const dims = doc.image?.asset?.metadata?.dimensions;
+            let computedAspectRatio = "3 / 4";
+
+            if (doc.aspectRatio && doc.aspectRatio !== "auto") {
+              computedAspectRatio = doc.aspectRatio;
+            } else if (dims?.aspectRatio) {
+              const r = dims.aspectRatio;
+              if (r >= 1.2) {
+                computedAspectRatio = "4 / 3";
+              } else if (r >= 0.92 && r <= 1.08) {
+                computedAspectRatio = "1 / 1";
+              } else if (r < 0.65) {
+                computedAspectRatio = "2 / 3";
+              } else {
+                computedAspectRatio = "3 / 4";
+              }
+            }
 
             const enhanced = DECOR_ENHANCEMENTS[doc._id];
             const isPlaceholder = PLACEHOLDER_NAMES.has(doc.name.trim().toLowerCase());
@@ -600,8 +634,10 @@ export async function getDecorProducts() {
               name: finalName,
               category: finalCategory,
               desc: doc.desc || "",
-              img: imgUrl || null,
+              img: optimizeSanityUrl(imgUrl, 800, null, 82),
               imageFocus: focus,
+              aspectRatio: computedAspectRatio,
+              dimensions: dims || null,
               badge: finalBadge,
               options: finalOptions,
             };

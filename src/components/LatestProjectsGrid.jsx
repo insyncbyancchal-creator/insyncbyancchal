@@ -1,13 +1,54 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+
 export default function LatestProjectsGrid({ projects = [] }) {
   const list = projects && projects.length > 0 ? projects : [];
   const featuredOnly = list.filter((p) => p.featured);
   const displayProjects = (featuredOnly.length >= 3 ? featuredOnly : list).slice(0, 3);
+
+  // Restore scroll in front of the project if returning to homepage
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash || "";
+    let targetSlug = null;
+    if (hash.startsWith("#project-")) {
+      targetSlug = hash.replace("#project-", "");
+    } else {
+      try {
+        if (sessionStorage.getItem("return_source_path") === "/") {
+          targetSlug = sessionStorage.getItem("return_to_project");
+        }
+      } catch {}
+    }
+    if (!targetSlug) return;
+
+    let attempts = 0;
+    const scrollToTarget = () => {
+      const el = document.getElementById(`project-${targetSlug}`);
+      if (el) {
+        const offset = 90;
+        if (window.lenis) {
+          window.lenis.scrollTo(el, { offset: -offset, immediate: true });
+        } else {
+          const y = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: "instant" });
+        }
+        try {
+          sessionStorage.removeItem("return_to_project");
+          sessionStorage.removeItem("return_source_path");
+        } catch {}
+      } else if (attempts < 12) {
+        attempts++;
+        setTimeout(scrollToTarget, 60);
+      }
+    };
+    const timer = setTimeout(scrollToTarget, 80);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section
@@ -51,6 +92,7 @@ export default function LatestProjectsGrid({ projects = [] }) {
             return (
               <motion.div
                 key={project.slug}
+                id={`project-${project.slug}`}
                 initial={{ opacity: 0, x: initialX, y: 25 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, margin: '-20px 0px' }}
@@ -63,6 +105,12 @@ export default function LatestProjectsGrid({ projects = [] }) {
               >
                 <Link
                   href={`/portfolio/${project.slug}`}
+                  onClick={() => {
+                    try {
+                      sessionStorage.setItem("return_to_project", project.slug);
+                      sessionStorage.setItem("return_source_path", "/");
+                    } catch {}
+                  }}
                   className="group block active:scale-[0.985] transition-transform duration-200 focus-visible:outline-2 focus-visible:outline-[#C5A059]"
                   aria-label={`View project: ${project.title}`}
                 >
@@ -75,6 +123,7 @@ export default function LatestProjectsGrid({ projects = [] }) {
                         alt={project.cover.alt || project.title}
                         loading="lazy"
                         decoding="async"
+                        style={{ objectPosition: project.cover?.focus || "50% 50%" }}
                         className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 will-change-transform"
                       />
                     ) : (

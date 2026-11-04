@@ -58,7 +58,24 @@ export default function ProjectStory({ project, next, others }) {
         transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
         className={styles.head}
       >
-        <Link href="/portfolio" className={`${styles.back} ${styles.sans}`}>
+        <Link
+          href={`/portfolio#project-${p.slug}`}
+          onClick={(e) => {
+            e.preventDefault();
+            try {
+              sessionStorage.setItem("return_to_project", p.slug);
+            } catch {}
+            const source = (typeof window !== "undefined" && sessionStorage.getItem("return_source_path")) || "/portfolio";
+            const targetUrl = `${source}#project-${p.slug}`;
+            if (typeof window !== "undefined" && window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
+              window.history.back();
+            } else if (typeof window !== "undefined") {
+              window.location.href = targetUrl;
+            }
+          }}
+          className={`${styles.back} ${styles.sans}`}
+          title="Return to projects"
+        >
           <span aria-hidden="true">‹</span> Projects
         </Link>
         <h1 className={styles.h1}>
@@ -175,7 +192,15 @@ export default function ProjectStory({ project, next, others }) {
               ))}
             </ul>
             <div className={styles.allWrap}>
-              <Link href="/portfolio" className={`${styles.all} ${styles.sans}`}>
+              <Link
+                href={`/portfolio#project-${p.slug}`}
+                onClick={() => {
+                  try {
+                    sessionStorage.setItem("return_to_project", p.slug);
+                  } catch {}
+                }}
+                className={`${styles.all} ${styles.sans}`}
+              >
                 View all projects <i aria-hidden="true">→</i>
               </Link>
             </div>

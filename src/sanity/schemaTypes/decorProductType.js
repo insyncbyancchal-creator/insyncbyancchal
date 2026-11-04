@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { DecorCardPreviewSelector } from '../components/DecorCardPreviewSelector'
 
 export const decorProductType = defineType({
   name: 'decorProduct',
@@ -42,6 +43,14 @@ export const decorProductType = defineType({
           description: 'Accessibility & SEO description of the piece.',
         },
       ],
+    }),
+    defineField({
+      name: 'aspectRatio',
+      title: 'Card Framing & Aspect Ratio (Live Website Preview)',
+      type: 'string',
+      components: { input: DecorCardPreviewSelector },
+      initialValue: 'auto',
+      description: 'Select how this piece frames on the website. See the live interactive preview below update in real time.',
     }),
     defineField({
       name: 'order',
@@ -106,13 +115,15 @@ export const decorProductType = defineType({
       no: 'no',
       order: 'order',
       category: 'category',
+      aspectRatio: 'aspectRatio',
       media: 'image',
     },
-    prepare({ name, no, order, category, media }) {
+    prepare({ name, no, order, category, aspectRatio, media }) {
       const displayName = name || 'Untitled Product'
+      const ratioTag = aspectRatio && aspectRatio !== 'auto' ? ` · ${aspectRatio}` : ''
       return {
         title: order !== undefined ? `#${order} — ${displayName}` : displayName,
-        subtitle: `${no ? no + ' · ' : ''}${category || 'Product'}`,
+        subtitle: `${no ? no + ' · ' : ''}${category || 'Product'}${ratioTag}`,
         media,
       }
     },
