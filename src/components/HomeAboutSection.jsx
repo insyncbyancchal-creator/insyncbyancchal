@@ -9,18 +9,18 @@ import { urlForImage } from '@/sanity/lib/image'
 const PRINCIPLES = [
   {
     number: '01',
-    label: 'RESTRAINT',
-    description: 'Editing until only what truly matters remains.',
+    label: 'ALIGNMENT',
+    description: 'Harmonising architectural proportion, flow, and spatial rhythm.',
   },
   {
     number: '02',
-    label: 'DAYLIGHT',
-    description: 'Natural light treated as our first architectural material.',
+    label: 'PERSONALISATION',
+    description: 'Translating individual identity into tailored, deeply personal spaces.',
   },
   {
     number: '03',
-    label: 'CRAFT',
-    description: 'Every reveal and joint resolved on-site by hand.',
+    label: 'TIMELESS',
+    description: 'Designing beyond fleeting trends with enduring architectural grace.',
   },
 ]
 
