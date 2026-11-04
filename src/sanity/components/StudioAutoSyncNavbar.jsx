@@ -112,7 +112,50 @@ export function StudioAutoSyncNavbar(props) {
         }
 
         // 4. Auto-initialize servicesPage singleton if not existing to prevent 'Cannot create published document'
-        const servicesPageDoc = await client.fetch('*[_type == "servicesPage" && (_id == "servicesPage" || _id == "drafts.servicesPage")][0]._id')
+        const servicesPageDoc = await client.fetch('*[_type == "servicesPage" && (_id == "servicesPage" || _id == "drafts.servicesPage")][0]')
+        const ELEVATED_DISCIPLINES = [
+          {
+            _key: 'disc-1',
+            no: '01',
+            title: 'Architectural Design',
+            line: 'Bespoke spatial architecture conceived with timeless proportion, natural light, and structural harmony.',
+            tags: ['Spatial Planning', 'Architectural Form', 'Elevations'],
+            shop: false,
+          },
+          {
+            _key: 'disc-2',
+            no: '02',
+            title: 'Interior Design',
+            line: 'Refined interior environments composed with quiet restraint, noble materials, and artisanal depth.',
+            tags: ['Materiality', 'Atmospheric Lighting', 'Spatial Harmony'],
+            shop: false,
+          },
+          {
+            _key: 'disc-3',
+            no: '03',
+            title: 'Procurement',
+            line: 'Global sourcing of rare finishes, collector-grade furniture, and verified artisan craftsmanship.',
+            tags: ['Global Sourcing', 'Artisan Ateliers', 'Quality Curation'],
+            shop: false,
+          },
+          {
+            _key: 'disc-4',
+            no: '04',
+            title: 'Delivery & Installation',
+            line: 'Flawless white-glove logistics, precision on-site placement, and turnkey architectural styling.',
+            tags: ['White-Glove Logistics', 'Precision Placement', 'Turnkey Styling'],
+            shop: false,
+          },
+          {
+            _key: 'disc-5',
+            no: '05',
+            title: 'Insync Home',
+            line: 'An exclusive collection of curated décor and sculptural atelier objects, ready to acquire for discerning spaces.',
+            tags: ['Curated Décor', 'Atelier Objects', 'Limited Pieces'],
+            shop: true,
+          },
+        ]
+
         if (!servicesPageDoc && !isCancelled) {
           await client.createIfNotExists({
             _id: 'servicesPage',
@@ -120,52 +163,31 @@ export function StudioAutoSyncNavbar(props) {
             heroEyebrow: 'OUR PRACTICE',
             heroTitle: 'FIVE DISCIPLINES, one quiet STUDIO.',
             heroLede: 'From the first sketch to the final cushion, everything under one roof, and one standard.',
-            disciplines: [
-              {
-                _key: 'disc-1',
-                no: '01',
-                title: 'Architectural Design',
-                line: 'Spaces conceived from the ground up, where structure, light and proportion are resolved before a single finish is chosen.',
-                tags: ['Concept', 'Planning', 'Elevations'],
-                shop: false,
-              },
-              {
-                _key: 'disc-2',
-                no: '02',
-                title: 'Interior Design',
-                line: 'Rooms composed with restraint: layered materials, considered light, and furniture that truly belongs.',
-                tags: ['Space planning', 'Materials', 'Lighting'],
-                shop: false,
-              },
-              {
-                _key: 'disc-3',
-                no: '03',
-                title: 'Procurement',
-                line: 'Furniture, fittings and finishes sourced and negotiated on your behalf, to the standard we would specify for ourselves.',
-                tags: ['Sourcing', 'Vendors', 'Quality checks'],
-                shop: false,
-              },
-              {
-                _key: 'disc-4',
-                no: '04',
-                title: 'Delivery & Installation',
-                line: 'Every piece delivered, placed and finished by our own team, so the room you approved is the room you receive.',
-                tags: ['Logistics', 'Installation', 'Styling'],
-                shop: false,
-              },
-              {
-                _key: 'disc-5',
-                no: '05',
-                title: 'Insync Home',
-                line: 'A curated collection of sculptural décor and collectible atelier objects, ready to acquire for discerning spaces.',
-                tags: ['Décor', 'Atelier Objects', 'Curated Pieces'],
-                shop: true,
-              },
-            ],
+            disciplines: ELEVATED_DISCIPLINES,
             homeEyebrow: 'INSYNC HOME',
             homeTitle: 'CURATED OBJECTS, ready for your SPACE.',
             homeLede: 'A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.',
           })
+        } else if (servicesPageDoc && Array.isArray(servicesPageDoc.disciplines) && !isCancelled) {
+          const hasCustomCopy = servicesPageDoc.disciplines.some((d) =>
+            (d.line && (d.line.toLowerCase().includes('custom') || d.line.toLowerCase().includes('made to order'))) ||
+            (Array.isArray(d.tags) && d.tags.some((t) => t.toLowerCase().includes('custom') || t.toLowerCase().includes('made to order')))
+          )
+          if (hasCustomCopy) {
+            const healedDisciplines = servicesPageDoc.disciplines.map((d, i) => {
+              const def = ELEVATED_DISCIPLINES[i] || {}
+              return {
+                ...d,
+                line: def.line || d.line,
+                tags: def.tags || d.tags,
+              }
+            })
+            try {
+              await client.patch(servicesPageDoc._id).set({ disciplines: healedDisciplines }).commit()
+            } catch (patchErr) {
+              console.warn('Auto-heal servicesPage disciplines skipped:', patchErr?.message)
+            }
+          }
         }
         // 5. Elevate any casual placeholder decor product names to luxury editorial names
         const decorDocs = await client.fetch('*[_type == "decorProduct"] { _id, name }')

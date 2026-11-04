@@ -125,8 +125,8 @@ export function CatalogSyncTool() {
           shop: Boolean(d.shop),
         })),
         homeEyebrow: 'INSYNC HOME',
-        homeTitle: 'CURATED OBJECTS, made for your SPACE.',
-        homeLede: 'Our home collection is crafted to order in our partner ateliers. Each piece is customizable in dimensions, materials and artisan finishes.',
+        homeTitle: 'CURATED OBJECTS, ready for your SPACE.',
+        homeLede: 'A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.',
       })
 
       // 2. Initialize Interior Projects
