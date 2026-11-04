@@ -5,7 +5,7 @@ import ProjectStory from "@/components/ProjectStory";
 import { getProjects, getProject, getNeighbours } from "@/lib/projects";
 import { getSiteSettings } from "@/sanity/lib/client";
 
-export const revalidate = 60;
+export const revalidate = 10;
 
 export async function generateStaticParams() {
   const all = await getProjects();

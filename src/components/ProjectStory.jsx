@@ -37,13 +37,37 @@ export default function ProjectStory({ project, next, others }) {
   const p = project;
   useReveal(p.slug);
 
+  const formatArea = (val) => {
+    if (!val) return "Bespoke Scale";
+    const str = String(val).trim();
+    if (!str) return "Bespoke Scale";
+    if (/[a-zA-Z²]/.test(str)) return str;
+    const num = Number(str.replace(/,/g, ""));
+    if (!isNaN(num)) {
+      return `${num.toLocaleString()} sq ft`;
+    }
+    return `${str} sq ft`;
+  };
+
+  const formatMaterials = (mats) => {
+    if (!mats) return null;
+    let list = [];
+    if (Array.isArray(mats)) {
+      list = mats.flatMap((m) => (typeof m === "string" ? m.split(/\s{2,}|\n|,/) : m));
+    } else if (typeof mats === "string") {
+      list = mats.split(/\s{2,}|\n|,/);
+    }
+    const cleaned = list.map((s) => String(s).trim()).filter(Boolean);
+    return cleaned.length > 0 ? cleaned.join(" · ") : null;
+  };
+
   const facts = [
-    ["Location", p.location],
-    ["Typology", p.type],
-    ["Year", p.year],
-    ["Area", p.area],
-    ["Status", p.status],
-    ["Materials", p.materials?.join(", ")],
+    ["Location", p.location || "LUDHIANA"],
+    ["Typology", p.type || "Bespoke Residence"],
+    ["Year", p.year || "2025"],
+    ["Area", formatArea(p.area)],
+    ["Status", p.status || "Completed"],
+    ["Materials", formatMaterials(p.materials)],
   ].filter(([, v]) => v);
 
   const more = [next, ...(others || [])].filter(Boolean).slice(0, 3);
