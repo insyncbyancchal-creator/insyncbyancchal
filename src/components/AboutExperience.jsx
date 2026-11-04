@@ -136,6 +136,37 @@ export default function AboutExperience({ data, children }) {
             <span className={styles.captionRole}>FOUNDER & PRINCIPAL DESIGNER</span>
           </div>
 
+          {/* Three-row Studio Specification Details */}
+          <dl className={styles.details}>
+            {OWNER.details.map(([k, v]) => (
+              <div key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </motion.figure>
+
+        {/* Right Column: Founder Biography */}
+        <motion.div
+          initial={{ opacity: 0, x: 35 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-20px 0px' }}
+          transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className={`${styles.bio} will-change-transform`}
+        >
+          <p className={styles.role}>{OWNER.role}</p>
+          <h2 className={styles.name}>{OWNER.name}</h2>
+          {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
+          <div className={styles.paras}>
+            <p className={styles.firstPara}>
+              Ancchal Sharma’s passion for art, colour, and historic design shaped her journey into interior architecture. What began as a childhood love for painting and decorating spaces evolved into a vision of creating bespoke interiors defined by timeless elegance, luxury, and individuality, leading to the founding of Insync Interiors.
+            </p>
+            <p>
+              Driven by refined craftsmanship and spatial harmony, her approach centres on understanding each client&apos;s lifestyle and translating it into thoughtfully curated spaces that feel both sophisticated and effortless. Her work has also been featured in Urban M&eacute;lange Magazine.
+            </p>
+          </div>
+
           {/* Editorial Feature Spotlight Card */}
           <div className={styles.pressCard}>
             {/* Ambient Watermark Monogram */}
@@ -177,36 +208,6 @@ export default function AboutExperience({ data, children }) {
               </a>
             </div>
           </div>
-        </motion.figure>
-
-        {/* Right Column: Founder Biography */}
-        <motion.div
-          initial={{ opacity: 0, x: 35 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-20px 0px' }}
-          transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className={`${styles.bio} will-change-transform`}
-        >
-          <p className={styles.role}>{OWNER.role}</p>
-          <h2 className={styles.name}>{OWNER.name}</h2>
-          {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
-          <div className={styles.paras}>
-            <p className={styles.firstPara}>
-              Ancchal Sharma’s passion for art, colour, and historic design shaped her journey into interior architecture. What began as a childhood love for painting and decorating spaces evolved into a vision of creating bespoke interiors defined by timeless elegance, luxury, and individuality, leading to the founding of Insync Interiors.
-            </p>
-            <p>
-              Driven by refined craftsmanship and spatial harmony, her approach centres on understanding each client&apos;s lifestyle and translating it into thoughtfully curated spaces that feel both sophisticated and effortless. Her work has also been featured in Urban M&eacute;lange Magazine.
-            </p>
-          </div>
-
-          <dl className={styles.details}>
-            {OWNER.details.map(([k, v]) => (
-              <div key={k}>
-                <dt>{k}</dt>
-                <dd>{v}</dd>
-              </div>
-            ))}
-          </dl>
         </motion.div>
       </section>
 
