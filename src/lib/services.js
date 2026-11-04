@@ -325,7 +325,7 @@ export async function getServicesPageData() {
 
         return {
           heroEyebrow: doc.heroEyebrow || "OUR PRACTICE",
-          heroTitle: doc.heroTitle || "FIVE DISCIPLINES, one quiet STUDIO.",
+          heroTitle: (doc.heroTitle || "FIVE DISCIPLINES, one unified STUDIO.").replace(/one quiet/gi, "one unified"),
           heroLede: doc.heroLede || "From the first sketch to the final cushion, everything under one roof, and one standard.",
           disciplines,
           homeEyebrow: doc.homeEyebrow || "INSYNC HOME",
@@ -344,7 +344,7 @@ export async function getServicesPageData() {
 
   return {
     heroEyebrow: "OUR PRACTICE",
-    heroTitle: "FIVE DISCIPLINES, one quiet STUDIO.",
+    heroTitle: "FIVE DISCIPLINES, one unified STUDIO.",
     heroLede: "From the first sketch to the final cushion, everything under one roof, and one standard.",
     disciplines: DEFAULT_SERVICES,
     homeEyebrow: "INSYNC HOME",

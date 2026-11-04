@@ -32,7 +32,7 @@ const OWNER = {
 
 const MANIFESTO = {
   eyebrow: "Our approach",
-  title: "Luxury, in its quietest form.",
+  title: "Luxury, in its purest form.",
   paragraphs: [
     "Great design begins with understanding how a space serves everyday living, balancing functionality with thoughtful aesthetics.",
     "At Insync, every project is deeply personalized, shaped through client collaboration and guided by timeless design principles rather than fleeting trends.",
@@ -91,7 +91,7 @@ export default function AboutExperience({ data, children }) {
         <h1 className={styles.h1}>
           <span className={styles.line}>
             <span>
-              DESIGNED <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">with quiet</span> INTENTION.
+              DESIGNED <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">with soulful</span> INTENTION.
             </span>
           </span>
         </h1>
@@ -226,7 +226,7 @@ export default function AboutExperience({ data, children }) {
               <p className={`${styles.eyebrow} ${styles.sans}`}>{MANIFESTO.eyebrow}</p>
 
               <h2 className={styles.mHeading}>
-                LUXURY, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">in its quietest</span> FORM.
+                LUXURY, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">in its purest</span> FORM.
               </h2>
 
               <div className={styles.mDivider} />

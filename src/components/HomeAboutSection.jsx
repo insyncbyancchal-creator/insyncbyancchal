@@ -140,7 +140,7 @@ export default function HomeAboutSection({ data }) {
                   <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">meets</span>
                 </span>
                 <span className="block leading-[1.16] mt-1.5 sm:mt-2">
-                  QUIET RESTRAINT{' '}
+                  TIMELESS RESTRAINT{' '}
                   <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and soulful</span>
                 </span>
                 <span className="block leading-[1.16] mt-1.5 sm:mt-2">

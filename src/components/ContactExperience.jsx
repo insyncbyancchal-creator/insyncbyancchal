@@ -188,7 +188,7 @@ export default function ContactExperience({ siteSettings }) {
       whatsapp,
       email: siteSettings?.contactEmail || STUDIO.email,
       instagram: siteSettings?.instagramUrl || STUDIO.instagram,
-      contactHeroTitle: siteSettings?.contactHeroTitle || "LET’S BEGIN a quiet CONVERSATION.",
+      contactHeroTitle: (siteSettings?.contactHeroTitle || "LET’S BEGIN a thoughtful CONVERSATION.").replace(/a quiet/gi, "a thoughtful"),
       contactHeroLede: siteSettings?.contactHeroLede || "Tell us about the space you imagine. We’ll listen first, then design.",
       enquireButtonText: siteSettings?.enquireButtonText || "ENQUIRE NOW",
       enquireButtonSubtitle: siteSettings?.enquireButtonSubtitle || "Begin your bespoke architectural commission",
@@ -419,10 +419,16 @@ export default function ContactExperience({ siteSettings }) {
             <h1 className={styles.title}>
               <span className={styles.line}>
                 <span style={{ "--d": "0s" }}>
-                  {studio.contactHeroTitle.includes("a quiet") ? (
+                  {studio.contactHeroTitle.includes("a thoughtful") ? (
+                    <>
+                      {studio.contactHeroTitle.split("a thoughtful")[0]}
+                      <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">a thoughtful</span>
+                      {studio.contactHeroTitle.split("a thoughtful")[1]}
+                    </>
+                  ) : studio.contactHeroTitle.includes("a quiet") ? (
                     <>
                       {studio.contactHeroTitle.split("a quiet")[0]}
-                      <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">a quiet</span>
+                      <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">a thoughtful</span>
                       {studio.contactHeroTitle.split("a quiet")[1]}
                     </>
                   ) : (

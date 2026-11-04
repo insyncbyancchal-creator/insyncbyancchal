@@ -87,7 +87,7 @@ export default function AboutHero() {
                 : 'text-[#555048]'
             }`}
           >
-            IN PURSUIT OF QUIET HARMONY
+            IN PURSUIT OF SPATIAL SERENITY
           </p>
         </motion.div>
       </div>

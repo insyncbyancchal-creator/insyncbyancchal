@@ -59,9 +59,9 @@ export const siteSettingsType = defineType({
     defineField({
       name: 'contactHeroTitle',
       title: 'Contact Hero Headline',
-      description: 'Main heading on Contact Page (e.g. LET’S BEGIN a quiet CONVERSATION.)',
+      description: 'Main heading on Contact Page (e.g. LET’S BEGIN a thoughtful CONVERSATION.)',
       type: 'string',
-      initialValue: 'LET’S BEGIN a quiet CONVERSATION.',
+      initialValue: 'LET’S BEGIN a thoughtful CONVERSATION.',
     }),
     defineField({
       name: 'contactHeroLede',

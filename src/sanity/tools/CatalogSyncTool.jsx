@@ -114,7 +114,7 @@ export function CatalogSyncTool() {
         _id: 'servicesPage',
         _type: 'servicesPage',
         heroEyebrow: 'OUR PRACTICE',
-        heroTitle: 'FIVE DISCIPLINES, one quiet STUDIO.',
+        heroTitle: 'FIVE DISCIPLINES, one unified STUDIO.',
         heroLede: 'From the first sketch to the final cushion, everything under one roof, and one standard.',
         disciplines: DEFAULT_SERVICES.map((d, i) => ({
           _key: `disc-${i + 1}`,
@@ -182,7 +182,7 @@ export function CatalogSyncTool() {
         _type: 'siteSettings',
         studioName: 'INSYNC INTERIORS',
         subName: 'by Ancchal',
-        contactHeroTitle: 'LET’S BEGIN a quiet CONVERSATION.',
+        contactHeroTitle: 'LET’S BEGIN a thoughtful CONVERSATION.',
         contactHeroLede: 'Tell us about the space you imagine. We’ll listen first, then design.',
         enquireButtonText: 'ENQUIRE NOW',
         enquireButtonSubtitle: 'Begin your bespoke architectural commission',

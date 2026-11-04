@@ -442,7 +442,7 @@ export default function ServicesExperience({ data, initialProducts }) {
     data?.disciplines && data.disciplines.length > 0 ? data.disciplines : DEFAULT_SERVICES;
 
   const heroEyebrow = data?.heroEyebrow || "OUR PRACTICE";
-  const heroTitle = data?.heroTitle || "FIVE DISCIPLINES, one quiet STUDIO.";
+  const heroTitle = (data?.heroTitle || "FIVE DISCIPLINES, one unified STUDIO.").replace(/one quiet/gi, "one unified");
   const heroLede =
     data?.heroLede ||
     "From the first sketch to the final cushion, everything under one roof, and one standard.";
@@ -547,9 +547,9 @@ export default function ServicesExperience({ data, initialProducts }) {
           <h1 className={styles.title}>
             <span className={styles.line}>
               <span>
-                {heroTitle.includes("one quiet") ? (
+                {heroTitle.includes("one unified") ? (
                   <>
-                    FIVE DISCIPLINES, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one quiet</span> STUDIO.
+                    FIVE DISCIPLINES, <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one unified</span> STUDIO.
                   </>
                 ) : (
                   heroTitle

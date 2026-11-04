@@ -144,7 +144,7 @@ export const MOCK_TESTIMONIALS = [
 export const MOCK_SITE_SETTINGS = {
   studioName: 'INSYNC INTERIORS',
   subName: 'by Ancchal',
-  contactHeroTitle: 'LET’S BEGIN a quiet CONVERSATION.',
+  contactHeroTitle: 'LET’S BEGIN a thoughtful CONVERSATION.',
   contactHeroLede: 'Tell us about the space you imagine. We’ll listen first, then design.',
   enquireButtonText: 'ENQUIRE NOW',
   enquireButtonSubtitle: 'Begin your bespoke architectural commission',

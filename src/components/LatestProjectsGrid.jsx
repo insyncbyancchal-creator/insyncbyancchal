@@ -74,7 +74,7 @@ export default function LatestProjectsGrid({ projects = [] }) {
             LATEST PROJECTS
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#1A1A1A] font-light tracking-[0.05em]">
-            CURATED SPACES <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">of</span> QUIET INTENT
+            CURATED SPACES <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">of timeless</span> DISTINCTION
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
