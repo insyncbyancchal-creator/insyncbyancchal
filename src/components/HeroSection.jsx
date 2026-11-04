@@ -8,87 +8,86 @@ export default function HeroSection() {
     {
       id: 1,
       type: 'image',
-      category: 'Bespoke Architectural Villa · Ludhiana',
-      rawTitle: 'Monolithic Architecture and Quiet Spatial Stillness',
+      category: 'Bespoke Architectural Villa',
+      rawTitle: 'Contemporary Residence Bathed in Twilight Radiance',
       title: (
         <>
-          MONOLITHIC ARCHITECTURE{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and quiet</span>{' '}
-          SPATIAL STILLNESS
+          CONTEMPORARY RESIDENCE{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">bathed in</span>{' '}
+          TWILIGHT RADIANCE
         </>
       ),
       description:
-        'Double-height travertine stone volumes, fluted oak millwork, and private landscaped courtyard views resolved into one continuous sanctuary.',
-      image: '/hero/photo%20(1).avif?v=3',
-      fallbackCandidates: ['/hero/photo (1).avif'],
+        'Crisp geometric massing, warm amber interior illumination, and sweeping manicured lawns composed in seamless modern balance.',
+      image: '/hero/photo%20(2).avif?v=4',
+      fallbackCandidates: ['/hero/photo (2).avif'],
     },
     {
       id: 2,
       type: 'image',
-      category: 'The Solstice Sky Penthouse · Gurugram',
-      rawTitle: 'Sky Sanctuary Living at Panoramic Urban Scale',
+      category: 'Master Sanctuary Suite',
+      rawTitle: 'Serene Sanctuary and Tailored Spatial Comfort',
       title: (
         <>
-          SKY SANCTUARY{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">living at</span>{' '}
-          PANORAMIC URBAN SCALE
+          SERENE SANCTUARY{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and tailored</span>{' '}
+          SPATIAL COMFORT
         </>
       ),
       description:
-        'Suspended bronze fireplace reveals, full-height bookmatched Calacatta marble, and private sunset terraces overlooking the skyline.',
-      image: '/hero/photo%20(2).avif?v=3',
-      fallbackCandidates: ['/hero/photo (2).avif'],
+        'Four-poster canopy bed architecture, coffered ceiling reliefs, and layered tactile fabrics composed for deeply restful living.',
+      image: '/hero/photo%20(1).avif?v=4',
+      fallbackCandidates: ['/hero/photo (1).avif'],
     },
     {
       id: 3,
       type: 'image',
-      category: 'Oasis Wellness Residence · Chandigarh',
-      rawTitle: 'Harmonizing Light, Water and Venetian Plaster',
+      category: 'Grand Dining Salon',
+      rawTitle: 'Classical Elegance and Radiant Crystal Splendor',
       title: (
         <>
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">harmonizing</span>{' '}
-          LIGHT, WATER{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and</span>{' '}
-          VENETIAN PLASTER
+          CLASSICAL ELEGANCE{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and radiant</span>{' '}
+          CRYSTAL SPLENDOR
         </>
       ),
       description:
-        'Indoor reflecting pools, acoustic ceiling slat baffles, and circadian rhythm architectural lighting composed with natural restraint.',
-      image: '/hero/photo%20(3).avif?v=3',
+        'Monochrome checkered marble paving, cascading crystal chandeliers, and fluted architectural colonnades composed for elevated entertaining.',
+      image: '/hero/photo%20(3).avif?v=4',
       fallbackCandidates: ['/hero/photo (3).avif'],
     },
     {
       id: 4,
       type: 'image',
-      category: 'Celica Duplex Estate · Kolkata',
-      rawTitle: 'Warm Curved Plaster and Organic Living',
+      category: 'Palatial Manor Colonnade',
+      rawTitle: 'Neoclassical Proportion and Enduring Architectural Scale',
       title: (
         <>
-          WARM CURVED PLASTER{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and organic</span>{' '}
-          LIVING
+          NEOCLASSICAL PROPORTION{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and enduring</span>{' '}
+          ARCHITECTURAL SCALE
         </>
       ),
       description:
-        'Serene five thousand square foot duplex conceived with warm hand-troweled clay reliefs, tactile boucle seating, and natural linen textures.',
-      image: '/hero/photo%20(4).avif?v=3',
+        'Monumental multi-bay porticos, rhythmic perimeter uplighting, and sweeping landscaped grounds crafted with timeless architectural poise.',
+      image: '/hero/photo%20(4).avif?v=4',
       fallbackCandidates: ['/hero/photo (4).avif'],
     },
     {
       id: 5,
       type: 'image',
-      category: 'Villa Riviera Estates · Goa',
-      rawTitle: 'Seamless Indoor-Outdoor Coastal Architecture',
+      category: 'Private Speakeasy Lounge',
+      rawTitle: 'Bespoke Timber Craftsmanship and Warm Amber Conviviality',
       title: (
         <>
-          SEAMLESS{' '}
-          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">indoor-outdoor</span>{' '}
-          COASTAL ARCHITECTURE
+          BESPOKE CRAFTSMANSHIP{' '}
+          <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and warm</span>{' '}
+          AMBER CONVIVIALITY
         </>
       ),
       description:
-        'Hand-carved laterite stone pillars, motorized bronze window louvers, and shaded poolside terraces designed for tropical tranquility.',
-      image: '/hero/photo%20(5).avif?v=3',
+        'Handcrafted fluted timber millwork, warm backlit bottle displays, and patinated leather seating conceived for slow evening leisure.',
+      image: '/hero/photo%20(5).avif?v=4',
       fallbackCandidates: ['/hero/photo (5).avif'],
     },
   ]
@@ -274,7 +273,7 @@ export default function HeroSection() {
                   }}
                   src={
                     videoFailed[slide.id]
-                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo%20(1).avif'
+                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo%20(2).avif'
                       : imgSrcs[slide.id] || slide.image
                   }
                   alt={slide.rawTitle || slide.category}
