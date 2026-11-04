@@ -23,10 +23,10 @@ export default function PortfolioHero() {
       <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
         <img
           ref={imgRef}
-          src="/portfolio/portfolio-hero.jpg"
+          src="/portfolio/portfolio-hero.avif?v=1"
           onLoad={() => setIsLoaded(true)}
           onError={(e) => {
-            e.currentTarget.src = "/video/portfolio-hero.jpg"
+            e.currentTarget.src = "/portfolio/portfolio-hero.avif"
           }}
           alt="Insync by Ancchal Portfolio Atelier"
           loading="eager"

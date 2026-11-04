@@ -23,7 +23,7 @@ export default function AboutHero() {
       <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
         <img
           ref={imgRef}
-          src="/about/about-hero.jpg"
+          src="/about/about-hero.avif?v=1"
           onLoad={() => setIsLoaded(true)}
           alt="Insync by Ancchal Atelier"
           loading="eager"
