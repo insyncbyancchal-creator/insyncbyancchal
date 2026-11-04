@@ -79,16 +79,7 @@ export default function AboutHero() {
             <div className="w-6 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shrink shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
           </div>
 
-          {/* Subtitle */}
-          <p
-            className={`text-[12.5px] sm:text-[14px] font-serif tracking-[0.16em] uppercase font-light max-w-md transition-colors duration-500 ${
-              isLoaded
-                ? 'text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]'
-                : 'text-[#555048]'
-            }`}
-          >
-            IN PURSUIT OF SPATIAL SERENITY
-          </p>
+
         </motion.div>
       </div>
 

@@ -70,18 +70,6 @@ export default function PortfolioHero() {
           <div className="w-6 sm:w-16 md:w-24 h-[1.5px] bg-[#C5A059] shrink" />
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className={`mt-4 text-[10.5px] sm:text-[11.5px] font-sans uppercase tracking-[0.3em] font-medium transition-colors duration-500 ${
-            isLoaded
-              ? 'text-[#C5A059] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]'
-              : 'text-[#8C6D37]'
-          }`}
-        >
-          SELECTED COMMISSIONS · 2022 — 2026
-        </motion.p>
       </div>
 
       {/* Subtle Scroll Indicator */}
