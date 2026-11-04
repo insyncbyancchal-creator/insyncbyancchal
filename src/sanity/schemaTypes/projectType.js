@@ -85,6 +85,17 @@ export const projectType = defineType({
       initialValue: '2025',
     }),
     defineField({
+      name: 'area',
+      title: 'Total Area (e.g. 8,500 sq ft)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'status',
+      title: 'Project Status',
+      type: 'string',
+      initialValue: 'Completed',
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Cover Image (Portfolio Grid & Page Hero)',
       type: 'image',
@@ -114,6 +125,19 @@ export const projectType = defineType({
       title: 'Tagline / Short Hook',
       type: 'string',
       description: 'e.g. A bespoke architectural sanctuary of quiet luxury and hospitality.',
+    }),
+    defineField({
+      name: 'concept',
+      title: 'Design Concept Paragraphs',
+      description: 'Add paragraphs explaining the design story, daylight, and spatial concept.',
+      type: 'array',
+      of: [{ type: 'text', rows: 3 }],
+    }),
+    defineField({
+      name: 'materials',
+      title: 'Materials Palette (e.g. Travertine stone, Fluted oak)',
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
     defineField({
       name: 'gallery',

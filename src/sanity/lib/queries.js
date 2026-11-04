@@ -135,6 +135,9 @@ export const SINGLE_PROJECT_QUERY = groq`
     location,
     year,
     area,
+    status,
+    materials,
+    concept,
     featured,
     description,
     highlights
