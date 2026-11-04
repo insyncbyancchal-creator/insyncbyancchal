@@ -159,9 +159,7 @@ export default function HomeAboutSection({ data }) {
               </p>
               <p className="text-[#55524C]">
                 Each project begins with an understanding of the client&apos;s lifestyle, taste, and budget, translating individual identity into thoughtfully crafted spaces. Combining rich detailing with low-maintenance, timeless design, Insync creates interiors that balance grandeur with practicality, while expanding its presence nationally and internationally under its ethos:{' '}
-                <strong className="font-bold text-[#1A1A1A]">
-                  &ldquo;Design globally, rooted in luxury and always in sync.&rdquo;
-                </strong>
+                &ldquo;Design globally, rooted in luxury and always in sync.&rdquo;
               </p>
             </div>
 

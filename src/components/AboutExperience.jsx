@@ -195,7 +195,7 @@ export default function AboutExperience({ data, children }) {
               Ancchal Sharma’s passion for art, colour, and historic design shaped her journey into interior architecture. What began as a childhood love for painting and decorating spaces evolved into a vision of creating bespoke interiors defined by timeless elegance, luxury, and individuality, leading to the founding of Insync Interiors.
             </p>
             <p>
-              Driven by refined craftsmanship and spatial harmony, her approach centres on understanding each client&apos;s lifestyle and translating it into thoughtfully curated spaces that feel both sophisticated and effortless. Her work has also been featured in <strong className={styles.magHighlight}>Urban M&eacute;lange Magazine</strong>.
+              Driven by refined craftsmanship and spatial harmony, her approach centres on understanding each client&apos;s lifestyle and translating it into thoughtfully curated spaces that feel both sophisticated and effortless. Her work has also been featured in Urban M&eacute;lange Magazine.
             </p>
           </div>
 
