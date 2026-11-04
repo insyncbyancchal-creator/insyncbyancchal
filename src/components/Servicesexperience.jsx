@@ -130,7 +130,7 @@ function HomeShowcase({ products, homeData }) {
   const featurePhoto =
     homeData?.homeImage ||
     allProducts[0]?.img ||
-    "/hero/photo_3.jpg";
+    "/hero/photo%20(3).avif";
   const featureFocus =
     homeData?.homeImageFocus ||
     allProducts[0]?.imageFocus ||

@@ -19,8 +19,8 @@ export default function HeroSection() {
       ),
       description:
         'Double-height travertine stone volumes, fluted oak millwork, and private landscaped courtyard views resolved into one continuous sanctuary.',
-      image: '/hero/photo_1.avif',
-      fallbackCandidates: ['/hero/photo_1.webp', '/hero/photo_1.jpg'],
+      image: '/hero/photo%20(1).avif?v=3',
+      fallbackCandidates: ['/hero/photo (1).avif'],
     },
     {
       id: 2,
@@ -36,8 +36,8 @@ export default function HeroSection() {
       ),
       description:
         'Suspended bronze fireplace reveals, full-height bookmatched Calacatta marble, and private sunset terraces overlooking the skyline.',
-      image: '/hero/photo_2.avif',
-      fallbackCandidates: ['/hero/photo_2.webp', '/hero/photo_2.jpg'],
+      image: '/hero/photo%20(2).avif?v=3',
+      fallbackCandidates: ['/hero/photo (2).avif'],
     },
     {
       id: 3,
@@ -54,8 +54,8 @@ export default function HeroSection() {
       ),
       description:
         'Indoor reflecting pools, acoustic ceiling slat baffles, and circadian rhythm architectural lighting composed with natural restraint.',
-      image: '/hero/photo_3.avif',
-      fallbackCandidates: ['/hero/photo_3.webp', '/hero/photo_3.jpg'],
+      image: '/hero/photo%20(3).avif?v=3',
+      fallbackCandidates: ['/hero/photo (3).avif'],
     },
     {
       id: 4,
@@ -71,8 +71,8 @@ export default function HeroSection() {
       ),
       description:
         'Serene five thousand square foot duplex conceived with warm hand-troweled clay reliefs, tactile boucle seating, and natural linen textures.',
-      image: '/hero/photo_4.avif',
-      fallbackCandidates: ['/hero/photo_4.webp', '/hero/photo_4.jpg'],
+      image: '/hero/photo%20(4).avif?v=3',
+      fallbackCandidates: ['/hero/photo (4).avif'],
     },
     {
       id: 5,
@@ -88,8 +88,8 @@ export default function HeroSection() {
       ),
       description:
         'Hand-carved laterite stone pillars, motorized bronze window louvers, and shaded poolside terraces designed for tropical tranquility.',
-      image: '/hero/photo_5.avif',
-      fallbackCandidates: ['/hero/photo_5.webp', '/hero/photo_5.jpg'],
+      image: '/hero/photo%20(5).avif?v=3',
+      fallbackCandidates: ['/hero/photo (5).avif'],
     },
   ]
 
@@ -274,7 +274,7 @@ export default function HeroSection() {
                   }}
                   src={
                     videoFailed[slide.id]
-                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo_1.avif'
+                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo%20(1).avif'
                       : imgSrcs[slide.id] || slide.image
                   }
                   alt={slide.rawTitle || slide.category}

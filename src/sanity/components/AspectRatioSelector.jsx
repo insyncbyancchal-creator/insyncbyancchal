@@ -48,7 +48,7 @@ const RATIO_OPTIONS = [
 ]
 
 // Architectural sample photo for instant preview before image upload
-const SAMPLE_PREVIEW_PHOTO = '/hero/photo_1.jpg'
+const SAMPLE_PREVIEW_PHOTO = '/hero/photo%20(1).avif'
 
 // Fallback Sanity CDN URL builder in case imageBuilder is unavailable
 function parseSanityAssetRef(ref, projectId = '5g37myau', dataset = 'production') {
