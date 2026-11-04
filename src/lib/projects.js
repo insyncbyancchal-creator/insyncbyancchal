@@ -68,7 +68,6 @@ function normalizeSanityProject(doc) {
     location: doc.location || "LUDHIANA",
     type: doc.type || doc.category || "Bespoke Residence",
     category: doc.category || "Residential",
-    year: doc.year || "2025",
     area: doc.area || "",
     status: doc.status || "Completed",
     description: doc.tagline || "",
@@ -89,7 +88,6 @@ function normalizeSanityProject(doc) {
       Array.isArray(doc.concept) && doc.concept.length > 0
         ? doc.concept
         : [doc.tagline || "A bespoke architectural study crafted with quiet luxury, proportion, and natural light."].filter(Boolean),
-    materials: doc.materials || [],
     gallery,
     featured: Boolean(doc.featured),
   };
@@ -107,12 +105,10 @@ export async function getProjects() {
         category,
         location,
         type,
-        year,
         area,
         status,
         featured,
         concept,
-        materials,
         mainImage {
           asset-> { url, metadata { dimensions } },
           hotspot,

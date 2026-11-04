@@ -101,7 +101,6 @@ export const ALL_PROJECTS_QUERY = groq`
     mainImage,
     client,
     location,
-    year,
     area,
     featured
   }
@@ -117,7 +116,6 @@ export const FEATURED_PROJECTS_QUERY = groq`
     mainImage,
     client,
     location,
-    year,
     area
   }
 `
@@ -133,10 +131,8 @@ export const SINGLE_PROJECT_QUERY = groq`
     gallery,
     client,
     location,
-    year,
     area,
     status,
-    materials,
     concept,
     featured,
     description,

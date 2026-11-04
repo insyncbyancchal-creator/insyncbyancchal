@@ -183,7 +183,7 @@ export async function getProjectBySlug(slug) {
   try {
     if (projectId && projectId !== 'demo-project-id') {
       const data = await sanityClient.fetch(`*[_type == "project" && slug.current == $slug][0] {
-        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, year, area, status, materials, concept, featured, highlights, description
+        _id, title, "slug": slug.current, category, mainImage, gallery, client, location, area, status, concept, featured, highlights, description
       }`, { slug }, FETCH_OPTIONS);
       if (data) return data;
     }

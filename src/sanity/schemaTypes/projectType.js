@@ -79,12 +79,6 @@ export const projectType = defineType({
       initialValue: 'LUDHIANA',
     }),
     defineField({
-      name: 'year',
-      title: 'Year Completed (e.g. 2025)',
-      type: 'string',
-      initialValue: '2025',
-    }),
-    defineField({
       name: 'area',
       title: 'Total Area (e.g. 8,500 sq ft)',
       type: 'string',
@@ -132,12 +126,6 @@ export const projectType = defineType({
       description: 'Add paragraphs explaining the design story, daylight, and spatial concept.',
       type: 'array',
       of: [{ type: 'text', rows: 3 }],
-    }),
-    defineField({
-      name: 'materials',
-      title: 'Materials Palette (e.g. Travertine stone, Fluted oak)',
-      type: 'array',
-      of: [{ type: 'string' }],
     }),
     defineField({
       name: 'gallery',

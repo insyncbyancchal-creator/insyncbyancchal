@@ -145,12 +145,10 @@ export function CatalogSyncTool() {
           category: p.category || 'Residential',
           type: p.type || 'Boutique Residence',
           location: p.location || 'LUDHIANA',
-          year: p.year || '2025',
           area: p.area || '',
           status: p.status || 'Completed',
           tagline: p.tagline || '',
           concept: p.concept || [],
-          materials: p.materials || [],
         }
 
         await client.createIfNotExists(projectDoc)
