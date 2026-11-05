@@ -126,8 +126,8 @@ export function StudioAutoSyncNavbar(props) {
             _key: 'disc-2',
             no: '02',
             title: 'Interior Design',
-            line: 'Refined interior environments composed with quiet restraint, noble materials, and artisanal depth.',
-            tags: ['Materiality', 'Atmospheric Lighting', 'Spatial Harmony'],
+            line: 'Tailored interior concepts, bespoke furniture, material palettes and refined detailing shaped around the way you live and work.',
+            tags: ['Functional Design', 'Practical Luxury', 'Timeless Aesthetics'],
             shop: false,
           },
           {

@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import styles from "./PortfolioExperience.module.css";
 
-export default function PortfolioExperience({ projects }) {
+export default function PortfolioExperience({ projects, siteSettings }) {
+  // Ensure projects are strictly sorted by order number (1st, 2nd, 10th...)
+  const sortedProjects = useMemo(() => {
+    if (!Array.isArray(projects)) return [];
+    return [...projects].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+  }, [projects]);
+
   const [isExpanded, setIsExpanded] = useState(() => {
     if (typeof window !== "undefined") {
       try {
@@ -14,8 +20,8 @@ export default function PortfolioExperience({ projects }) {
         const targetSlug = hash.startsWith("#project-")
           ? hash.replace("#project-", "")
           : sessionStorage.getItem("return_to_project");
-        if (targetSlug && Array.isArray(projects)) {
-          const idx = projects.findIndex((p) => p.slug === targetSlug);
+        if (targetSlug && Array.isArray(sortedProjects)) {
+          const idx = sortedProjects.findIndex((p) => p.slug === targetSlug);
           if (idx >= 6) return true;
         }
         return sessionStorage.getItem("portfolio_expanded") === "1";
@@ -40,8 +46,8 @@ export default function PortfolioExperience({ projects }) {
 
     if (!targetSlug) return;
 
-    if (Array.isArray(projects)) {
-      const idx = projects.findIndex((p) => p.slug === targetSlug);
+    if (Array.isArray(sortedProjects)) {
+      const idx = sortedProjects.findIndex((p) => p.slug === targetSlug);
       if (idx >= 6) {
         setTimeout(() => setIsExpanded(true), 0);
       }
@@ -69,11 +75,14 @@ export default function PortfolioExperience({ projects }) {
 
     const timer = setTimeout(scrollToTarget, 80);
     return () => clearTimeout(timer);
-  }, [projects]);
+  }, [sortedProjects]);
 
   // One click on Discover More unfolds ALL remaining projects immediately
-  const displayProjects = isExpanded ? projects : projects.slice(0, 6);
-  const hasMore = !isExpanded && projects.length > 6;
+  const displayProjects = useMemo(
+    () => (isExpanded ? sortedProjects : sortedProjects.slice(0, 6)),
+    [isExpanded, sortedProjects]
+  );
+  const hasMore = !isExpanded && sortedProjects.length > 6;
 
   const handleDiscoverMore = () => {
     setIsExpanded(true);
@@ -93,7 +102,7 @@ export default function PortfolioExperience({ projects }) {
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerEyebrow}
         >
-          SELECTED COMMISSIONS &bull; 2022 &ndash; 2026
+          {siteSettings?.portfolioEyebrow || "SELECTED COMMISSIONS \u2022 2021 \u2013 2026"}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
@@ -102,7 +111,7 @@ export default function PortfolioExperience({ projects }) {
           transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerTitle}
         >
-          CURATED SPACES <span className={`montecarlo-regular ${styles.headerScript}`}>and bespoke</span> LIVING
+          BESPOKE SPACES <span className={`montecarlo-regular ${styles.headerScript}`}>and elevated</span> LIVING &ndash; PORTFOLIO
         </motion.h2>
         <motion.div
           initial={{ scaleX: 0 }}
@@ -119,7 +128,7 @@ export default function PortfolioExperience({ projects }) {
           transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerLede}
         >
-          Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials.
+          {siteSettings?.portfolioLede || "Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials."}
         </motion.p>
       </header>
 

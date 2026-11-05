@@ -29,7 +29,9 @@ export default function ProjectGallery({ project }) {
       project?.cover?.src && !hasCoverInGallery
         ? [
             {
+              order: 0,
               src: project.cover.src,
+              thumbSrc: project.cover.src,
               alt: project.cover.alt || project.title,
               caption: "Primary Elevation",
               aspectRatio: "16 / 10",
@@ -38,7 +40,10 @@ export default function ProjectGallery({ project }) {
           ]
         : [];
 
-    return [...coverItem, ...baseGallery];
+    // Strictly sort by manual order number (1st, 2nd, 10th...) with fallback to natural sequence
+    return [...coverItem, ...baseGallery].sort(
+      (a, b) => (a.order ?? 999) - (b.order ?? 999)
+    );
   }, [project]);
 
   const total = gallery.length;
@@ -53,26 +58,33 @@ export default function ProjectGallery({ project }) {
   });
 
   useEffect(() => {
+    let rAF = null;
     function computeCols() {
-      const w = window.innerWidth;
-      if (total <= 1) {
-        setNumCols(1);
-      } else if (w < 640) {
-        setNumCols(1);
-      } else if (w < 1024) {
-        setNumCols(Math.min(2, total));
-      } else if (w >= 1600 && total >= 8) {
-        setNumCols(4);
-      } else if (total === 2 || total === 4) {
-        setNumCols(2); // Symmetrical 2x1 or 2x2 grid
-      } else {
-        setNumCols(Math.min(3, total)); // 3 columns fill 100% width, covering right edge
-      }
+      if (rAF) cancelAnimationFrame(rAF);
+      rAF = requestAnimationFrame(() => {
+        const w = window.innerWidth;
+        if (total <= 1) {
+          setNumCols(1);
+        } else if (w < 640) {
+          setNumCols(1);
+        } else if (w < 1024) {
+          setNumCols(Math.min(2, total));
+        } else if (w >= 1600 && total >= 8) {
+          setNumCols(4);
+        } else if (total === 2 || total === 4) {
+          setNumCols(2); // Symmetrical 2x1 or 2x2 grid
+        } else {
+          setNumCols(Math.min(3, total)); // 3 columns fill 100% width, covering right edge
+        }
+      });
     }
 
     computeCols();
-    window.addEventListener("resize", computeCols);
-    return () => window.removeEventListener("resize", computeCols);
+    window.addEventListener("resize", computeCols, { passive: true });
+    return () => {
+      window.removeEventListener("resize", computeCols);
+      if (rAF) cancelAnimationFrame(rAF);
+    };
   }, [total]);
 
   // Distribute items round-robin across columns (0, 1, 2, then 0, 1, 2...)
@@ -264,7 +276,7 @@ export default function ProjectGallery({ project }) {
                   style={{ aspectRatio: item.aspectRatio || "4 / 3" }}
                 >
                   <img
-                    src={item.src}
+                    src={item.thumbSrc || item.src}
                     alt={item.alt || `${project.title} photo ${index + 1}`}
                     className={styles.mosaicImg}
                     style={{ objectPosition: item.focus || "50% 50%" }}

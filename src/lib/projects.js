@@ -34,8 +34,8 @@ function normalizeSanityProject(doc) {
   const hoverUrl = optimizeSanityUrl(rawHover, 800, 800, 80);
   const heroUrl = optimizeSanityUrl(rawCover, 1920, 1080, 85);
 
-  // Resolve inside gallery photos with optimal 1600px width limit and hotspot focus
-  const gallery = (doc.gallery || [])
+  // Resolve inside gallery photos with optimal CDN width and hotspot focus
+  const rawGallery = (doc.gallery || [])
     .map((img, i) => {
       const rawSrc = img.asset?.url || (img.asset ? urlForImage(img)?.url() : null);
       if (!rawSrc) return null;
@@ -43,7 +43,9 @@ function normalizeSanityProject(doc) {
         ? `${Math.round(img.hotspot.x * 100)}% ${Math.round(img.hotspot.y * 100)}%`
         : "50% 50%";
       return {
-        src: optimizeSanityUrl(rawSrc, 1600, null, 82),
+        order: typeof img.order === 'number' ? img.order : (i + 1),
+        src: optimizeSanityUrl(rawSrc, 1600, null, 85),
+        thumbSrc: optimizeSanityUrl(rawSrc, 900, null, 80),
         alt: img.alt || doc.title || `Gallery photo ${i + 1}`,
         caption: img.caption || "",
         aspectRatio: img.aspectRatio || "16 / 10",
@@ -51,6 +53,9 @@ function normalizeSanityProject(doc) {
       };
     })
     .filter(Boolean);
+
+  // Sort photos cleanly by manual order number (1st, 2nd, 10th...) with fallback to natural upload sequence
+  const gallery = rawGallery.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
   // Cover focus & Hover focus
   const coverFocus = doc.mainImage?.hotspot
@@ -120,6 +125,7 @@ export async function getProjects() {
         },
         gallery[] {
           _key,
+          order,
           caption,
           alt,
           aspectRatio,
@@ -129,8 +135,11 @@ export async function getProjects() {
       }`, {}, { next: { revalidate: 10 } });
 
       if (Array.isArray(docs)) {
-        // Return ONLY the real projects created in Sanity backend — zero mock or fallback boxes
-        return docs.map(normalizeSanityProject).filter(Boolean);
+        // Return ONLY real projects created in Sanity backend, ordered strictly by position then date
+        return docs
+          .map(normalizeSanityProject)
+          .filter(Boolean)
+          .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
       }
     }
   } catch (err) {

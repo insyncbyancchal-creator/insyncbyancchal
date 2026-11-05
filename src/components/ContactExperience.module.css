@@ -95,6 +95,11 @@
 .scrollCue { position: absolute; right: clamp(1.25rem, 6vw, 6rem); bottom: 2rem; width: 1px; height: 64px; background: linear-gradient(var(--gold), transparent); animation: cue 2.4s ease-in-out infinite; transform-origin: top; }
 @keyframes cue { 0%,100% { transform: scaleY(.3); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
 
+.studioSection {
+  padding: 0 clamp(1.25rem, 6vw, 6rem) clamp(4rem, 8vh, 6rem);
+  color: #1B1A17;
+}
+
 /* split */
 .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 7rem); padding: 2rem clamp(1.25rem, 6vw, 6rem) clamp(4rem, 10vh, 7rem); align-items: start; }
 .details { position: sticky; top: 6rem; }

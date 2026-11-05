@@ -324,7 +324,7 @@
 }
 
 .pillarTitle {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--ink);
@@ -499,7 +499,7 @@
 }
 
 .modalHeading {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 1.45rem;
   font-weight: 400;
   color: #1A1A1A;
@@ -662,7 +662,7 @@
 }
 
 .placeholderBrand {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 1.1rem;
   color: var(--gold);
   letter-spacing: 0.15em;
@@ -686,7 +686,7 @@
 }
 
 .galleryCardName {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 1.18rem;
   font-weight: 400;
   color: #1A1A1A;
@@ -729,7 +729,7 @@
 }
 
 .galleryFooterHeading {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: clamp(1.6rem, 2.8vw, 2.25rem);
   font-weight: 400;
   color: #1A1A1A;

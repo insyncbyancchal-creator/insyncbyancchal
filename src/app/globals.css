@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --font-serif: 'Bodoni Moda', serif;
-  --font-heading: 'Bodoni Moda', serif;
-  --font-bodoni: 'Bodoni Moda', serif;
+  --font-serif: 'DM Serif Display', serif;
+  --font-heading: 'DM Serif Display', serif;
+  --font-bodoni: 'DM Serif Display', serif;
+  --font-dm-serif: 'DM Serif Display', serif;
   --font-subheading: 'Montserrat', sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
@@ -11,7 +12,7 @@
   --font-calligraphy: 'MonteCarlo', cursive;
   --font-montecarlo: 'MonteCarlo', cursive;
   --sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --serif: 'Bodoni Moda', Georgia, serif;
+  --serif: 'DM Serif Display', Georgia, serif;
   
   --bg-alabaster: #FBF9F6;
   --bg-sand: #F3F0EA;
@@ -66,12 +67,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* User-Requested Google Font: Bodoni Moda (For All Headings) */
+/* User-Requested Google Font: DM Serif Display */
+.dm-serif-display-regular {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dm-serif-display-regular-italic {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.dm-serif-display,
 .bodoni-moda,
 .bodoni-moda-regular,
 [class*="bodoni-moda"] {
-  font-family: "Bodoni Moda", serif !important;
-  font-optical-sizing: auto;
+  font-family: "DM Serif Display", serif !important;
   font-style: normal;
 }
 
@@ -93,10 +106,9 @@ body {
   line-height: 1;
 }
 
-/* Global Headings: Bodoni Moda with Optical Sizing */
+/* Global Headings: DM Serif Display */
 h1, h2, h3, h4, .font-serif, .font-heading, .heading-bodoni {
-  font-family: 'Bodoni Moda', serif !important;
-  font-optical-sizing: auto;
+  font-family: 'DM Serif Display', serif !important;
 }
 
 /* Global Subheadings & Eyebrows: Montserrat with Clean Spacing */

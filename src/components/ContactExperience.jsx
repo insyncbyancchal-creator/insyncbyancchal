@@ -398,7 +398,7 @@ export default function ContactExperience({ siteSettings }) {
     <main
       className={styles.root}
       style={{
-        fontFamily: "'Bodoni Moda', serif",
+        fontFamily: "'DM Serif Display', serif",
         "--sans": "'Montserrat', sans-serif",
       }}
     >
@@ -476,178 +476,178 @@ export default function ContactExperience({ siteSettings }) {
       </section>
 
       {/* ---------- HORIZONTAL STUDIO DETAILS ---------- */}
-      <section
-        className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 pt-2 pb-16 sm:pb-24 text-[#1B1A17]"
-      >
-        {/* Top Header Row with Studio Title, Live Status Badge, and Hairline Rule */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#C5A059]/30"
-        >
-          <div>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#C5A059] font-normal tracking-[0.06em]">
-              {studio.name}
-            </h2>
-            {openStatus && (
-              <p className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.2em] text-[#555048] font-medium mt-2">
-                <span className={`w-2 h-2 rounded-full ${openStatus.open ? 'bg-[#5f9b6b] animate-pulse shadow-[0_0_8px_rgba(95,155,107,0.6)]' : 'bg-[#C5A059]'}`} />
-                {openStatus.text}
-              </p>
-            )}
-          </div>
-
-          <div className="text-left sm:text-right">
-            <span className="text-[12.5px] font-sans uppercase tracking-[0.22em] text-[#555048] font-semibold block">
-              SARABHA NAGAR &bull; LUDHIANA
-            </span>
-            <span className="text-[14px] font-serif italic text-[#B58D44] block mt-1">
-              Architecture &bull; Interiors &bull; Insync Home
-            </span>
-          </div>
-        </motion.div>
-
-        {/* 3 Horizontal Columns Directly on Background (Seamless Editorial Luxury Layout) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-16 mt-10 sm:mt-12">
-          
-          {/* 1. VISIT */}
+      <section className={styles.studioSection}>
+        <div className="w-full max-w-[1400px] mx-auto">
+          {/* Top Header Row with Studio Title, Live Status Badge, and Hairline Rule */}
           <motion.div
-            initial={{ opacity: 0, y: 35, x: -20 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
-                <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
-                  01 / ATELIER
-                </span>
-                <span className="text-xs font-serif italic text-[#555048]">Punjab</span>
-              </div>
-              <h3 className="text-xs font-sans uppercase tracking-[0.24em] font-semibold text-[#1A1A1A] mb-3">
-                VISIT
-              </h3>
-              <address className="not-italic text-[15px] text-[#3E3A34] leading-[1.85] font-normal font-sans">
-                {studio.addressLines.map((l) => (
-                  <span key={l} className="block">{l}</span>
-                ))}
-              </address>
-            </div>
-
-            <div className="flex items-center gap-5 pt-5 mt-5 border-t border-[#C5A059]/15 text-xs font-sans uppercase tracking-[0.2em] font-semibold">
-              <a
-                href={directions}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
-              >
-                Get directions ↗
-              </a>
-              <button
-                type="button"
-                onClick={copyAddress}
-                className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors cursor-pointer"
-              >
-                {copied ? "Copied ✓" : "Copy address"}
-              </button>
-            </div>
-          </motion.div>
-
-          {/* 2. HOURS */}
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col justify-between"
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#C5A059]/30"
           >
             <div>
-              <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
-                <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
-                  02 / SCHEDULE
-                </span>
-                <span className="text-xs font-serif italic text-[#555048]">IST</span>
-              </div>
-              <h3 className="text-xs font-sans uppercase tracking-[0.24em] font-semibold text-[#1A1A1A] mb-3">
-                HOURS
-              </h3>
-              <div className="space-y-2 text-[15px] text-[#3E3A34] font-sans leading-[1.75]">
-                <p className="font-medium text-[#1A1A1A]">
-                  Monday – Saturday
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#C5A059] font-normal tracking-[0.06em]">
+                {studio.name}
+              </h2>
+              {openStatus && (
+                <p className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.2em] text-[#555048] font-medium mt-2">
+                  <span className={`w-2 h-2 rounded-full ${openStatus.open ? 'bg-[#5f9b6b] animate-pulse shadow-[0_0_8px_rgba(95,155,107,0.6)]' : 'bg-[#C5A059]'}`} />
+                  {openStatus.text}
                 </p>
-                <p className="text-[#6B665E]">
-                  10:00 AM – 6:00 PM IST
-                </p>
-                <p className="text-[13px] text-[#555048] pt-1">
-                  Sunday: Studio Closed
-                </p>
-              </div>
+              )}
             </div>
 
-            <div className="pt-5 mt-5 border-t border-[#C5A059]/15">
-              <p className="text-sm text-[#555048] italic font-serif leading-relaxed">
-                Private architectural and design consultations by appointment.
-              </p>
+            <div className="text-left sm:text-right">
+              <span className="text-[12.5px] font-sans uppercase tracking-[0.22em] text-[#555048] font-semibold block">
+                SARABHA NAGAR &bull; LUDHIANA
+              </span>
+              <span className="text-[14px] font-serif italic text-[#B58D44] block mt-1">
+                Architecture &bull; Interiors &bull; Insync Home
+              </span>
             </div>
           </motion.div>
 
-          {/* 3. REACH US */}
-          <motion.div
-            initial={{ opacity: 0, y: 35, x: 20 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
-                <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
-                  03 / CONNECT
-                </span>
-                <span className="text-xs font-serif italic text-[#555048]">Direct</span>
+          {/* 3 Horizontal Columns Directly on Background (Seamless Editorial Luxury Layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-16 mt-10 sm:mt-12">
+            
+            {/* 1. VISIT */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
+                  <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
+                    01 / ATELIER
+                  </span>
+                  <span className="text-xs font-serif italic text-[#555048]">Punjab</span>
+                </div>
+                <h3 className="text-xs font-sans uppercase tracking-[0.24em] font-semibold text-[#1A1A1A] mb-3">
+                  VISIT
+                </h3>
+                <address className="not-italic text-[15px] text-[#3E3A34] leading-[1.85] font-normal font-sans">
+                  {studio.addressLines.map((l) => (
+                    <span key={l} className="block">{l}</span>
+                  ))}
+                </address>
               </div>
-              <h3 className="text-xs font-sans uppercase tracking-[0.24em] font-semibold text-[#1A1A1A] mb-3">
-                REACH US
-              </h3>
-              <div className="space-y-2 text-[15px] text-[#3E3A34] font-sans">
-                <p>
-                  <a href={`tel:${studio.phoneHref}`} className="hover:text-[#C5A059] transition-colors">
-                    {studio.phone}
-                  </a>
-                </p>
-                <p>
-                  <a href={`mailto:${studio.email}`} className="hover:text-[#C5A059] transition-colors">
-                    {studio.email}
-                  </a>
+
+              <div className="flex items-center gap-5 pt-5 mt-5 border-t border-[#C5A059]/15 text-xs font-sans uppercase tracking-[0.2em] font-semibold">
+                <a
+                  href={directions}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
+                >
+                  Get directions ↗
+                </a>
+                <button
+                  type="button"
+                  onClick={copyAddress}
+                  className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors cursor-pointer"
+                >
+                  {copied ? "Copied ✓" : "Copy address"}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* 2. HOURS */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
+                  <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
+                    02 / SCHEDULE
+                  </span>
+                  <span className="text-xs font-serif italic text-[#555048]">IST</span>
+                </div>
+                <h3 className="text-xs font-sans uppercase tracking-[0.24em] font-semibold text-[#1A1A1A] mb-3">
+                  HOURS
+                </h3>
+                <div className="space-y-2 text-[15px] text-[#3E3A34] font-sans leading-[1.75]">
+                  <p className="font-medium text-[#1A1A1A]">
+                    Monday – Saturday
+                  </p>
+                  <p className="text-[#6B665E]">
+                    10:00 AM – 6:00 PM IST
+                  </p>
+                  <p className="text-[13px] text-[#555048] pt-1">
+                    Sunday: Studio Closed
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-5 mt-5 border-t border-[#C5A059]/15">
+                <p className="text-sm text-[#555048] italic font-serif leading-relaxed">
+                  Private architectural and design consultations by appointment.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center gap-5 pt-5 mt-5 border-t border-[#C5A059]/15 text-xs font-sans uppercase tracking-[0.2em] font-semibold">
-              <a
-                href={`https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(
-                  "Hello Insync, I'd like to discuss a project."
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
-              >
-                WhatsApp ↗
-              </a>
-              <a
-                href={studio.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
-              >
-                Instagram ↗
-              </a>
-            </div>
-          </motion.div>
+            {/* 3. REACH US */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#C5A059]/20">
+                  <span className="text-xs font-sans uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
+                    03 / CONNECT
+                  </span>
+                  <span className="text-xs font-serif italic text-[#555048]">Direct</span>
+                </div>
+                <h3 className="text-xs font-sans uppercase tracking-[0.24em] font-semibold text-[#1A1A1A] mb-3">
+                  REACH US
+                </h3>
+                <div className="space-y-2 text-[15px] text-[#3E3A34] font-sans">
+                  <p>
+                    <a href={`tel:${studio.phoneHref}`} className="hover:text-[#C5A059] transition-colors">
+                      {studio.phone}
+                    </a>
+                  </p>
+                  <p>
+                    <a href={`mailto:${studio.email}`} className="hover:text-[#C5A059] transition-colors">
+                      {studio.email}
+                    </a>
+                  </p>
+                </div>
+              </div>
 
+              <div className="flex items-center gap-5 pt-5 mt-5 border-t border-[#C5A059]/15 text-xs font-sans uppercase tracking-[0.2em] font-semibold">
+                <a
+                  href={`https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(
+                    "Hello Insync, I'd like to discuss a project."
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
+                >
+                  WhatsApp ↗
+                </a>
+                <a
+                  href={studio.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#C5A059] hover:text-[#1A1A1A] transition-colors"
+                >
+                  Instagram ↗
+                </a>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 

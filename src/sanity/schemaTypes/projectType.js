@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { AspectRatioSelector } from '../components/AspectRatioSelector'
+import { CategoryInput } from '../components/CategoryInput'
 
 export const projectType = defineType({
   name: 'project',
@@ -54,17 +55,12 @@ export const projectType = defineType({
     defineField({
       name: 'category',
       title: 'Category',
+      description: 'Type any custom category (e.g. Modern Farmhouse, Residential Villa, Duplex...). You can write freely or click a quick preset below.',
       type: 'string',
-      options: {
-        list: [
-          { title: 'Residential Villa', value: 'Residential' },
-          { title: 'Luxury Penthouse', value: 'Penthouse' },
-          { title: 'Commercial Atelier', value: 'Commercial' },
-          { title: 'Hospitality & Resort', value: 'Hospitality' },
-          { title: 'Architectural Renovation', value: 'Renovation' },
-        ],
+      components: {
+        input: CategoryInput,
       },
-      initialValue: 'Residential',
+      initialValue: 'Residential Villa',
     }),
     defineField({
       name: 'location',
@@ -124,7 +120,7 @@ export const projectType = defineType({
     defineField({
       name: 'gallery',
       title: 'Inside Project Gallery (Photos, Rooms, Details)',
-      description: 'Add, replace, reorder, or delete inside gallery images. You can drag and drop to rearrange them.',
+      description: 'Add, replace, or arrange gallery images. You can drag and drop to rearrange, or set a Photo Order number (e.g. 1 for 1st photo, 10 for 10th).',
       type: 'array',
       of: [
         {
@@ -134,9 +130,10 @@ export const projectType = defineType({
             select: {
               title: 'caption',
               subtitle: 'aspectRatio',
+              order: 'order',
               media: 'asset',
             },
-            prepare({ title, subtitle, media }) {
+            prepare({ title, subtitle, order, media }) {
               const ratioMap = {
                 '16 / 10': 'Landscape (16:10)',
                 '3 / 4': 'Portrait (3:4)',
@@ -144,14 +141,22 @@ export const projectType = defineType({
                 '1 / 1': 'Square (1:1)',
               }
               const ratioLabel = ratioMap[subtitle] || subtitle || 'Landscape (16:10)'
+              const photoTitle = title || 'Gallery Photograph'
+              const orderPrefix = order !== undefined && order !== null ? `#${order} — ` : ''
               return {
-                title: title || 'Gallery Photograph',
+                title: `${orderPrefix}${photoTitle}`,
                 subtitle: `Aspect Ratio: ${ratioLabel}`,
                 media,
               }
             },
           },
           fields: [
+            defineField({
+              name: 'order',
+              type: 'number',
+              title: 'Photo Display Position (1 for 1st, 2 for 2nd, 10 for 10th...)',
+              description: 'Set which position this photo should appear in the gallery (1 = 1st, 2 = 2nd, 10 = 10th). Smaller numbers appear first.',
+            }),
             defineField({
               name: 'caption',
               type: 'string',

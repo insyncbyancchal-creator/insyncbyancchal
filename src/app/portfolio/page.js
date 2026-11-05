@@ -23,7 +23,7 @@ export default async function PortfolioPage() {
     <div className="bg-[#FBF9F6] min-h-screen text-[#1A1A1A] selection:bg-[#C5A059] selection:text-white">
       <Navbar siteSettings={siteSettings} />
       <PortfolioHero />
-      <PortfolioExperience projects={projects} />
+      <PortfolioExperience projects={projects} siteSettings={siteSettings} />
       <SimpleFooter siteSettings={siteSettings} />
     </div>
   );

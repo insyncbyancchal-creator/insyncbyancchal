@@ -107,5 +107,24 @@ export const siteSettingsType = defineType({
       type: 'string',
       initialValue: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
     }),
+
+    // ==============================================================
+    // 4. PORTFOLIO PAGE SETTINGS
+    // ==============================================================
+    defineField({
+      name: 'portfolioEyebrow',
+      title: 'Portfolio Section Eyebrow (Years / Subtitle)',
+      description: 'The golden eyebrow text displayed above the portfolio title (e.g. SELECTED COMMISSIONS · 2021 – 2026). Change the years or text anytime.',
+      type: 'string',
+      initialValue: 'SELECTED COMMISSIONS · 2021 – 2026',
+    }),
+    defineField({
+      name: 'portfolioLede',
+      title: 'Portfolio Section Description / Lede',
+      description: 'The intro description paragraph below the portfolio title.',
+      type: 'text',
+      rows: 2,
+      initialValue: 'Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials.',
+    }),
   ],
 })

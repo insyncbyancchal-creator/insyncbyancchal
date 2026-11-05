@@ -395,10 +395,10 @@ export function DecorCardPreviewSelector(props) {
               </div>
             </div>
 
-            {/* Product Name (Bodoni Moda styling) */}
+            {/* Product Name (DM Serif Display styling) */}
             <h4
               style={{
-                fontFamily: "'Bodoni Moda', Georgia, serif",
+                fontFamily: "'DM Serif Display', Georgia, serif",
                 fontSize: '14.5px',
                 fontWeight: 400,
                 color: '#1A1A1A',

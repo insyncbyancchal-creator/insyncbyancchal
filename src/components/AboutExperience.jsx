@@ -159,7 +159,7 @@ export default function AboutExperience({ data, children }) {
           <h2 className={styles.name}>{OWNER.name}</h2>
           {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
           <div className={styles.paras}>
-            <p className={styles.firstPara}>
+            <p>
               Ancchal Sharma&apos;s passion for art, colour, and historic design has shaped her creative journey. Her appreciation for painting, craftsmanship, and thoughtfully curated spaces is reflected in her distinctive design approach.
             </p>
             <p>

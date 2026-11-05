@@ -531,7 +531,7 @@ export default function ServicesExperience({ data, initialProducts }) {
       <main
         className={styles.root}
         style={{
-          fontFamily: "'Bodoni Moda', serif",
+          fontFamily: "'DM Serif Display', serif",
           "--sans": "'Montserrat', sans-serif",
         }}
       >

@@ -31,8 +31,8 @@ export const DEFAULT_SERVICES = [
   {
     no: "02",
     title: "Interior Design",
-    line: "Refined interior environments composed with quiet restraint, noble materials, and artisanal depth.",
-    tags: ["Materiality", "Atmospheric Lighting", "Spatial Harmony"],
+    line: "Tailored interior concepts, bespoke furniture, material palettes and refined detailing shaped around the way you live and work.",
+    tags: ["Functional Design", "Practical Luxury", "Timeless Aesthetics"],
     img: null,
     tone: ["#dccdb4", "#a98f68"],
   },

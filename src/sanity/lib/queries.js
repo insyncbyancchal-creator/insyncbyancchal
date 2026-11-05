@@ -178,6 +178,8 @@ export const SITE_SETTINGS_QUERY = groq`
     pinterestUrl,
     yearsExperience,
     completedProjects,
-    awardsCount
+    awardsCount,
+    portfolioEyebrow,
+    portfolioLede
   }
 `
