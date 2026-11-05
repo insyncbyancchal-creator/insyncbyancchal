@@ -111,7 +111,7 @@ export default function PortfolioExperience({ projects, siteSettings }) {
           transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerTitle}
         >
-          BESPOKE SPACES <span className={`montecarlo-regular ${styles.headerScript}`}>and elevated</span> LIVING &ndash; PORTFOLIO
+          BESPOKE SPACES <span className={`montecarlo-regular ${styles.headerScript}`}>and elevated</span> LIVING
         </motion.h2>
         <motion.div
           initial={{ scaleX: 0 }}
