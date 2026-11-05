@@ -160,10 +160,10 @@ export default function AboutExperience({ data, children }) {
           {OWNER.lead && <p className={styles.lead}>{OWNER.lead}</p>}
           <div className={styles.paras}>
             <p className={styles.firstPara}>
-              Ancchal Sharma’s passion for art, colour, and historic design shaped her journey into interior architecture. What began as a childhood love for painting and decorating spaces evolved into a vision of creating bespoke interiors defined by timeless elegance, luxury, and individuality, leading to the founding of Insync.
+              Ancchal Sharma&apos;s passion for art, colour, and historic design has shaped her creative journey. Her appreciation for painting, craftsmanship, and thoughtfully curated spaces is reflected in her distinctive design approach.
             </p>
             <p>
-              Driven by refined craftsmanship and spatial harmony, her approach centres on understanding each client&apos;s lifestyle and translating it into thoughtfully curated spaces that feel both sophisticated and effortless. Her work has also been featured in Urban M&eacute;lange Magazine.
+              With an eye for refined detailing and spatial harmony, she creates bespoke spaces that balance timeless elegance, luxury, and individuality. Her philosophy centres on understanding each client&apos;s lifestyle and translating it into spaces that feel both sophisticated and effortless. Her work has also been featured in Urban M&eacute;lange Magazine.
             </p>
           </div>
 
