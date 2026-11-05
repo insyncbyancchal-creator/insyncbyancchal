@@ -128,7 +128,7 @@ export default function PortfolioExperience({ projects, siteSettings }) {
           transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className={styles.headerLede}
         >
-          {siteSettings?.portfolioLede || "Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials."}
+          {siteSettings?.portfolioLede || "Every commission reflects a thoughtful dialogue between architecture, artistry and the essence of its surroundings."}
         </motion.p>
       </header>
 
@@ -142,12 +142,12 @@ export default function PortfolioExperience({ projects, siteSettings }) {
               <motion.article
                 key={p.slug}
                 id={`project-${p.slug}`}
-                initial={{ opacity: 0, y: 16 }}
+                initial={index < 3 ? false : { opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
+                viewport={{ once: true, margin: "100px 0px" }}
                 transition={{
-                  duration: 0.5,
-                  delay: (index % 3) * 0.06,
+                  duration: 0.4,
+                  delay: (index % 3) * 0.04,
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 className={styles.card}
@@ -173,6 +173,7 @@ export default function PortfolioExperience({ projects, siteSettings }) {
                           className={styles.primaryImg}
                           style={{ objectPosition: p.cover.focus || "50% 50%" }}
                           loading={index < 6 ? "eager" : "lazy"}
+                          fetchPriority={index < 3 ? "high" : "auto"}
                           decoding="async"
                           width={800}
                           height={800}

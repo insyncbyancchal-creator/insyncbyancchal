@@ -124,7 +124,7 @@ export const siteSettingsType = defineType({
       description: 'The intro description paragraph below the portfolio title.',
       type: 'text',
       rows: 2,
-      initialValue: 'Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials.',
+      initialValue: 'Every commission reflects a thoughtful dialogue between architecture, artistry and the essence of its surroundings.',
     }),
   ],
 })

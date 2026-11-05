@@ -203,7 +203,7 @@ export function CatalogSyncTool() {
         mapQuery: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
         instagramUrl: 'https://www.instagram.com/insync_byancchal/',
         portfolioEyebrow: 'SELECTED COMMISSIONS · 2021 – 2026',
-        portfolioLede: 'Each commission is an intimate architectural dialogue between monolithic stone volumes, calibrated natural daylight, and hand-finished artisan materials.',
+        portfolioLede: 'Every commission reflects a thoughtful dialogue between architecture, artistry and the essence of its surroundings.',
       })
 
       setStatusMsg('All items & Studio Contact Settings successfully initialized in Sanity!')
