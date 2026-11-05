@@ -142,8 +142,8 @@ export function StudioAutoSyncNavbar(props) {
             _key: 'disc-4',
             no: '04',
             title: 'Delivery & Installation',
-            line: 'Flawless white-glove logistics, precision on-site placement, and turnkey architectural styling.',
-            tags: ['White-Glove Logistics', 'Precision Placement', 'Turnkey Styling'],
+            line: 'Seamless delivery and installation, ensuring every detail is executed with precision and care.',
+            tags: ['Site Checking', 'Proper Execution', 'Quality Check'],
             shop: false,
           },
           {
