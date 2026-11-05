@@ -63,7 +63,7 @@ export default function SimpleFooter({ siteSettings: initialSettings }) {
     : `https://www.instagram.com/${rawInsta.replace(/^@/, '')}/`
 
   const inquireLabel = siteSettings?.enquireButtonText || 'INQUIRE'
-  const studioAddress = siteSettings?.studioAddress || 'INSYNC INTERIORS • SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001'
+  const studioAddress = siteSettings?.studioAddress || 'INSYNC • SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001'
 
   return (
     <footer className="bg-[#FBF9F6] text-[#1A1A1A] py-8 sm:py-10 px-6 md:px-12 border-t border-[#1A1A1A]/10">

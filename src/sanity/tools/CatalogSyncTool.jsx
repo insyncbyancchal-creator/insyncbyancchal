@@ -189,18 +189,18 @@ export function CatalogSyncTool() {
       await client.createIfNotExists({
         _id: 'siteSettings',
         _type: 'siteSettings',
-        studioName: 'INSYNC INTERIORS',
+        studioName: 'INSYNC',
         subName: 'by Ancchal',
         contactHeroTitle: 'LET’S BEGIN a thoughtful CONVERSATION.',
         contactHeroLede: 'Tell us about the space you imagine. We’ll listen first, then design.',
         enquireButtonText: 'ENQUIRE NOW',
         enquireButtonSubtitle: 'Begin your bespoke architectural commission',
-        studioAddress: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
+        studioAddress: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
         contactPhone: '+91 98774 17531',
         whatsappNumber: '919877417531',
         contactEmail: 'hello@insyncinteriors.com',
         studioHours: 'Monday – Saturday · 10:00 AM – 6:00 PM',
-        mapQuery: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
+        mapQuery: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
         instagramUrl: 'https://www.instagram.com/insync_byancchal/',
       })
 

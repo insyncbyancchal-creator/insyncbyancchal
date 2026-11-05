@@ -142,7 +142,7 @@ export const MOCK_TESTIMONIALS = [
 ];
 
 export const MOCK_SITE_SETTINGS = {
-  studioName: 'INSYNC INTERIORS',
+  studioName: 'INSYNC',
   subName: 'by Ancchal',
   contactHeroTitle: 'LET’S BEGIN a thoughtful CONVERSATION.',
   contactHeroLede: 'Tell us about the space you imagine. We’ll listen first, then design.',
@@ -153,9 +153,9 @@ export const MOCK_SITE_SETTINGS = {
   contactEmail: 'hello@insyncinteriors.com',
   contactPhone: '+91 98774 17531',
   whatsappNumber: '919877417531',
-  studioAddress: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
+  studioAddress: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
   studioHours: 'Monday – Saturday · 10:00 AM – 6:00 PM',
-  mapQuery: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
+  mapQuery: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
   instagramUrl: 'https://www.instagram.com/insync_byancchal/',
   yearsExperience: 8,
   completedProjects: 65,

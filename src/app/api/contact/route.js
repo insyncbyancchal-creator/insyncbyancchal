@@ -233,7 +233,7 @@ export async function POST(req) {
             <p style="line-height:1.8;font-size:15px;color:#3E3A34">We listen closely to every client’s spatial philosophy and lifestyle nuances. Our team will review your project details and reach out within one working day.</p>
             
             <div style="margin:28px 0;padding:20px;background:#FFFFFF;border-left:3px solid #C5A059;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.65;color:#555048">
-              <strong style="color:#1A1A1A;font-size:14px">Insync Interiors Atelier</strong><br/>
+              <strong style="color:#1A1A1A;font-size:14px">Insync Atelier</strong><br/>
               SCF - 1, Third Floor, I Block Market, Sarabha Nagar<br/>
               (Opp. Nav Durga Mata Mandir), Ludhiana – 141001<br/>
               <span style="color:#8C867C;display:inline-block;margin-top:4px">Monday – Saturday &bull; 10:00 AM – 6:00 PM IST</span>

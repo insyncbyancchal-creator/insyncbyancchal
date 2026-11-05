@@ -44,7 +44,7 @@ export const siteSettingsType = defineType({
       name: 'studioName',
       title: 'Studio Name',
       type: 'string',
-      initialValue: 'INSYNC INTERIORS',
+      initialValue: 'INSYNC',
     }),
     defineField({
       name: 'subName',
@@ -84,7 +84,7 @@ export const siteSettingsType = defineType({
       description: 'Full address shown on Contact page and Footer.',
       type: 'text',
       rows: 3,
-      initialValue: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
+      initialValue: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana – 141001',
     }),
     defineField({
       name: 'contactPhone',
@@ -105,7 +105,7 @@ export const siteSettingsType = defineType({
       title: 'Google Maps Search Query / Atelier Landmark',
       description: 'Address used to pin the atelier on Google Maps.',
       type: 'string',
-      initialValue: 'INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
+      initialValue: 'INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001',
     }),
   ],
 })

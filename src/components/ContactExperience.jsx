@@ -9,15 +9,15 @@ import styles from "./ContactExperience.module.css";
 /* EDIT THESE: single source of truth for studio details              */
 /* ------------------------------------------------------------------ */
 const STUDIO = {
-  name: "INSYNC INTERIORS",
+  name: "INSYNC",
   subName: "by Ancchal",
   addressLines: [
-    "INSYNC INTERIORS",
+    "INSYNC",
     "SCF - 1, Third Floor, I Block Market,",
     "Sarabha Nagar (Opp. Nav Durga Mata Mandir),",
     "Ludhiana – 141001",
   ],
-  mapQuery: "INSYNC INTERIORS, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001",
+  mapQuery: "INSYNC, SCF - 1, Third Floor, I Block Market, Sarabha Nagar (Opp. Nav Durga Mata Mandir), Ludhiana 141001",
   hours: "Monday – Saturday · 10:00 AM – 6:00 PM",
   phone: "+91 98774 17531",
   phoneHref: "+919877417531",
