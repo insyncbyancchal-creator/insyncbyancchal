@@ -1,7 +1,7 @@
 .root { --bg: #f7f4ee; --ink: #1b1a17; --mute: #7a766c; --line: #ddd6c6; --gold: #b99a5b;
   --gutter: clamp(1.25rem, 5vw, 4.5rem); --gap: clamp(1.1rem, 2.2vw, 2rem); --rhythm: clamp(3.5rem, 9vw, 7.5rem);
   background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: clip;
-  font-family: 'DM Serif Display', Georgia, serif; }
+  font-family: 'Libre Bodoni', Georgia, serif; }
 .sans { font-family: 'Montserrat', system-ui, sans-serif; }
 .root [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1); }
 .root [data-reveal][data-in] { opacity: 1; transform: none; }
@@ -79,7 +79,7 @@
 .moreGrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 .moreGrid li { transition-delay: calc(var(--k) * 90ms); }
 .moreGrid a { display: block; color: inherit; text-decoration: none; }
-.moreGrid h3 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(20px, 1.5vw, 24px); line-height: 1.25; margin: 0; transition: color .3s ease; }
+.moreGrid h3 { font-family: 'Libre Bodoni', serif; font-weight: 400; font-size: clamp(20px, 1.5vw, 24px); line-height: 1.25; margin: 0; transition: color .3s ease; }
 .moreGrid a:hover h3 { color: var(--gold); }
 .moreGrid p { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
 .allWrap { margin-top: clamp(2.4rem, 6vh, 3.6rem); text-align: center; }

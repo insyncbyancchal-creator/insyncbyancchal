@@ -228,7 +228,7 @@
 }
 
 .name {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Libre Bodoni', serif;
   font-weight: 400;
   font-size: clamp(2.4rem, 3.2vw, 3rem);
   line-height: 1.15;
@@ -311,7 +311,7 @@
   position: absolute;
   right: -8px;
   bottom: -20px;
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: 'Libre Bodoni', Georgia, serif;
   font-size: 6.8rem;
   font-weight: 400;
   font-style: italic;
@@ -379,7 +379,7 @@
 }
 
 .pressMag {
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: 'Libre Bodoni', Georgia, serif;
   font-size: clamp(1.65rem, 1.85vw, 1.95rem);
   font-weight: 400;
   color: #11100D;

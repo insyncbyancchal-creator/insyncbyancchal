@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --font-serif: 'DM Serif Display', serif;
-  --font-heading: 'DM Serif Display', serif;
-  --font-bodoni: 'DM Serif Display', serif;
-  --font-dm-serif: 'DM Serif Display', serif;
+  --font-serif: 'Libre Bodoni', serif;
+  --font-heading: 'Libre Bodoni', serif;
+  --font-bodoni: 'Libre Bodoni', serif;
+  --font-libre-bodoni: 'Libre Bodoni', serif;
+  --font-dm-serif: 'Libre Bodoni', serif;
   --font-subheading: 'Montserrat', sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
@@ -12,7 +13,7 @@
   --font-calligraphy: 'MonteCarlo', cursive;
   --font-montecarlo: 'MonteCarlo', cursive;
   --sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --serif: 'DM Serif Display', Georgia, serif;
+  --serif: 'Libre Bodoni', Georgia, serif;
   
   --bg-alabaster: #FBF9F6;
   --bg-sand: #F3F0EA;
@@ -67,24 +68,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* User-Requested Google Font: DM Serif Display */
-.dm-serif-display-regular {
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
+/* User-Requested Google Font: Libre Bodoni */
+.libre-bodoni,
+.libre-bodoni-regular,
+[class*="libre-bodoni"] {
+  font-family: "Libre Bodoni", serif !important;
+  font-optical-sizing: auto;
   font-style: normal;
 }
 
-.dm-serif-display-regular-italic {
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
+.libre-bodoni-italic {
+  font-family: "Libre Bodoni", serif !important;
+  font-optical-sizing: auto;
   font-style: italic;
 }
 
+.dm-serif-display-regular,
 .dm-serif-display,
 .bodoni-moda,
 .bodoni-moda-regular,
 [class*="bodoni-moda"] {
-  font-family: "DM Serif Display", serif !important;
+  font-family: "Libre Bodoni", serif !important;
+  font-optical-sizing: auto;
   font-style: normal;
 }
 
@@ -106,9 +111,10 @@ body {
   line-height: 1;
 }
 
-/* Global Headings: DM Serif Display */
-h1, h2, h3, h4, .font-serif, .font-heading, .heading-bodoni {
-  font-family: 'DM Serif Display', serif !important;
+/* Global Headings: Libre Bodoni */
+h1, h2, h3, h4, .font-serif, .font-heading, .heading-bodoni, [class*="libre-bodoni"], .dm-serif-display-regular {
+  font-family: 'Libre Bodoni', serif !important;
+  font-optical-sizing: auto;
 }
 
 /* Global Subheadings & Eyebrows: Montserrat with Clean Spacing */

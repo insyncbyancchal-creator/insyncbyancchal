@@ -76,7 +76,7 @@
 }
 
 .headingSpaces {
-  font-family: var(--serif), 'DM Serif Display', Georgia, serif;
+  font-family: var(--serif), 'Libre Bodoni', Georgia, serif;
   font-size: clamp(2.2rem, 2.8vw, 3rem);
   font-weight: 500;
   letter-spacing: 0.08em;
