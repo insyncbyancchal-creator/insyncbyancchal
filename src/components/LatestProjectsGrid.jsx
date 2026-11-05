@@ -151,7 +151,7 @@ export default function LatestProjectsGrid({ projects = [] }) {
                       {project.title}
                     </h3>
                     <span className="text-[11.5px] sm:text-[12px] font-sans uppercase tracking-[0.2em] text-[#6B665F] block font-medium">
-                      {project.location} &bull; {project.type}
+                      {project.location} &bull; {project.category || project.type}
                     </span>
                   </div>
                 </Link>

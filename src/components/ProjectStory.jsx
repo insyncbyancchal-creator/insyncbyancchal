@@ -52,7 +52,7 @@ export default function ProjectStory({ project, next, others }) {
 
   const facts = [
     ["Location", p.location || "LUDHIANA"],
-    ["Typology", p.type || "Bespoke Residence"],
+    ["Category", p.category || p.type || "Residential"],
     ["Area", formatArea(p.area)],
     ["Status", p.status || "Completed"],
   ].filter(([, v]) => v);

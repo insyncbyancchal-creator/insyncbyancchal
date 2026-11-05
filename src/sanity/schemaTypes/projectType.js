@@ -67,12 +67,6 @@ export const projectType = defineType({
       initialValue: 'Residential',
     }),
     defineField({
-      name: 'type',
-      title: 'Typology / Subtitle (e.g. Boutique Residence & BNB)',
-      type: 'string',
-      initialValue: 'Boutique Residence',
-    }),
-    defineField({
       name: 'location',
       title: 'Location (City & Country)',
       type: 'string',

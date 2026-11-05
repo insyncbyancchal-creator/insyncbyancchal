@@ -205,7 +205,7 @@ export default function PortfolioExperience({ projects }) {
                   <div className={styles.cardMeta}>
                     <h3 className={styles.cardTitle}>{p.title}</h3>
                     <span className={styles.cardSub}>
-                      {p.location} &bull; {p.type}
+                      {p.location} &bull; {p.category || p.type}
                     </span>
                   </div>
                 </Link>

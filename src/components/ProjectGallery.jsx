@@ -305,7 +305,7 @@ export default function ProjectGallery({ project }) {
                 {/* Static Card Meta underneath */}
                 <div className={styles.mosaicDetails}>
                   <span className={styles.mosaicPlate}>PLATE NO. {String(index + 1).padStart(2, "0")}</span>
-                  <span className={styles.mosaicCap}>{item.caption || project.type}</span>
+                  <span className={styles.mosaicCap}>{item.caption || project.category || project.type}</span>
                 </div>
               </motion.div>
             ))}

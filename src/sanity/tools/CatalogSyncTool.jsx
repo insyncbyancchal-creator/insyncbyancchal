@@ -153,7 +153,6 @@ export function CatalogSyncTool() {
           slug: { _type: 'slug', current: p.slug },
           featured: i < 3,
           category: p.category || 'Residential',
-          type: p.type || 'Boutique Residence',
           location: p.location || 'LUDHIANA',
           area: p.area || '',
           status: p.status || 'Completed',
