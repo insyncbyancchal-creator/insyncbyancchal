@@ -165,15 +165,22 @@ export function StudioAutoSyncNavbar(props) {
             heroLede: 'From the first sketch to the final cushion, everything under one roof, and one standard.',
             disciplines: ELEVATED_DISCIPLINES,
             homeEyebrow: 'INSYNC HOME',
-            homeTitle: 'CURATED OBJECTS, ready for your SPACE.',
+            homeTitle: 'CURATED OBJECTS, made for your SPACE.',
             homeLede: 'A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.',
           })
         } else if (servicesPageDoc && !isCancelled) {
+          const patchFields = {}
           if (!servicesPageDoc.heroTitle || /five disciplines|quiet studio|unified studio/i.test(servicesPageDoc.heroTitle)) {
+            patchFields.heroTitle = 'Diverse Expertise. One Creative Vision.'
+          }
+          if (!servicesPageDoc.homeTitle || /ready for your/i.test(servicesPageDoc.homeTitle)) {
+            patchFields.homeTitle = 'CURATED OBJECTS, made for your SPACE.'
+          }
+          if (Object.keys(patchFields).length > 0) {
             try {
-              await client.patch(servicesPageDoc._id).set({ heroTitle: 'Diverse Expertise. One Creative Vision.' }).commit()
+              await client.patch(servicesPageDoc._id).set(patchFields).commit()
             } catch (patchErr) {
-              console.warn('Auto-heal servicesPage heroTitle skipped:', patchErr?.message)
+              console.warn('Auto-heal servicesPage titles skipped:', patchErr?.message)
             }
           }
           const hasCustomCopy = Array.isArray(servicesPageDoc.disciplines) && servicesPageDoc.disciplines.some((d) =>

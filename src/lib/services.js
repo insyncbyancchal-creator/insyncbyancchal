@@ -331,7 +331,7 @@ export async function getServicesPageData() {
           heroLede: doc.heroLede || "From the first sketch to the final cushion, everything under one roof, and one standard.",
           disciplines,
           homeEyebrow: doc.homeEyebrow || "INSYNC HOME",
-          homeTitle: doc.homeTitle || "CURATED OBJECTS, ready for your SPACE.",
+          homeTitle: doc.homeTitle || "CURATED OBJECTS, made for your SPACE.",
           homeLede: doc.homeLede && !doc.homeLede.includes("customizable") && !doc.homeLede.includes("crafted to order")
             ? doc.homeLede
             : "A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.",
@@ -350,7 +350,7 @@ export async function getServicesPageData() {
     heroLede: "From the first sketch to the final cushion, everything under one roof, and one standard.",
     disciplines: DEFAULT_SERVICES,
     homeEyebrow: "INSYNC HOME",
-    homeTitle: "CURATED OBJECTS, ready for your SPACE.",
+    homeTitle: "CURATED OBJECTS, made for your SPACE.",
     homeLede: "A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.",
     homeImage: null,
     homeImageFocus: "50% 50%",

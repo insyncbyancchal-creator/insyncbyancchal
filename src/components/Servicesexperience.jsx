@@ -149,17 +149,48 @@ function HomeShowcase({ products, homeData }) {
         >
           <p className={styles.eyebrow}>{homeData?.eyebrow || "INSYNC HOME"}</p>
           <h2 className={styles.homeTitle}>
-            {homeData?.title ? (
-              homeData.title
-            ) : (
-              <>
-                CURATED OBJECTS,{" "}
-                <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">
-                  made for your
-                </span>{" "}
-                SPACE.
-              </>
-            )}
+            {(() => {
+              const title = homeData?.title || "CURATED OBJECTS, made for your SPACE.";
+              if (/curated objects/i.test(title)) {
+                const cursive = /ready for your/i.test(title)
+                  ? "ready for your"
+                  : /made for your/i.test(title)
+                  ? "made for your"
+                  : /for your/i.test(title)
+                  ? "for your"
+                  : "made for your";
+                return (
+                  <>
+                    CURATED OBJECTS,{" "}
+                    <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">
+                      {cursive}
+                    </span>{" "}
+                    SPACE.
+                  </>
+                );
+              }
+              const parts = title.split(/\b(made for your|ready for your|for your)\b/i);
+              if (parts.length > 1) {
+                return (
+                  <>
+                    {parts[0]}
+                    <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">
+                      {parts[1].toLowerCase()}
+                    </span>
+                    {parts.slice(2).join("")}
+                  </>
+                );
+              }
+              return (
+                <>
+                  CURATED OBJECTS,{" "}
+                  <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">
+                    made for your
+                  </span>{" "}
+                  SPACE.
+                </>
+              );
+            })()}
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
