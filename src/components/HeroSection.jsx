@@ -41,19 +41,19 @@ const heroSlides = [
   {
     id: 3,
     type: 'image',
-    category: 'Bespoke Architectural Villa',
-    rawTitle: 'Contemporary Residence Bathed in Twilight Radiance',
+    category: 'Palatial Villa Estate',
+    rawTitle: 'Palatial Villa Bathed in Twilight Radiance',
     title: (
       <>
-        CONTEMPORARY RESIDENCE{' '}
+        PALATIAL VILLA{' '}
         <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">bathed in</span>{' '}
         TWILIGHT RADIANCE
       </>
     ),
     description:
-      'Crisp geometric massing, warm amber interior illumination, and sweeping manicured lawns composed in seamless modern balance.',
-    image: '/hero/photo%20(2).avif?v=5',
-    fallbackCandidates: ['/hero/photo (2).avif'],
+      'Monumental double-height arched fenestrations, warm golden interior illumination, and a sweeping arrival motor court composed in palatial neoclassical poise.',
+    image: '/hero/photo(2).avif?v=7',
+    fallbackCandidates: ['/hero/photo(2).avif', '/hero/photo (2).avif', '/hero/photo%20(2).avif'],
   },
   {
     id: 4,
