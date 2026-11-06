@@ -23,8 +23,12 @@ export default function ContactHero() {
       <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
         <img
           ref={imgRef}
-          src="/contact/contact-hero.avif?v=1"
+          src="/contact/contact-hero.avif?v=2026_nov_contact"
           onLoad={() => setIsLoaded(true)}
+          onError={(e) => {
+            e.currentTarget.src = "/contact/contact-hero.avif"
+            setIsLoaded(true)
+          }}
           alt="Insync by Ancchal Atelier Contact"
           loading="eager"
           decoding="async"

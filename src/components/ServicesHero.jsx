@@ -23,8 +23,12 @@ export default function ServicesHero() {
       <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
         <img
           ref={imgRef}
-          src="/services/services-hero.avif?v=2"
+          src="/services/services-hero.avif?v=2026_nov_services"
           onLoad={() => setIsLoaded(true)}
+          onError={(e) => {
+            e.currentTarget.src = "/services/services-hero.avif"
+            setIsLoaded(true)
+          }}
           alt="Insync by Ancchal Bespoke Services"
           loading="eager"
           decoding="async"
