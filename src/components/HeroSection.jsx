@@ -18,8 +18,8 @@ const heroSlides = [
     ),
     description:
       'Monochrome checkered marble paving, cascading crystal chandeliers, and fluted architectural colonnades composed for elevated entertaining.',
-    image: '/hero/photo%20(3).avif?v=5',
-    fallbackCandidates: ['/hero/photo (3).avif'],
+    image: '/hero/photo(3).avif?v=8',
+    fallbackCandidates: ['/hero/photo(3).avif', '/hero/photo (3).avif', '/hero/photo%20(3).avif'],
   },
   {
     id: 2,
@@ -35,8 +35,8 @@ const heroSlides = [
     ),
     description:
       'Four-poster canopy bed architecture, coffered ceiling reliefs, and layered tactile fabrics composed for deeply restful living.',
-    image: '/hero/photo%20(1).avif?v=5',
-    fallbackCandidates: ['/hero/photo (1).avif'],
+    image: '/hero/photo(1).avif?v=8',
+    fallbackCandidates: ['/hero/photo(1).avif', '/hero/photo (1).avif', '/hero/photo%20(1).avif'],
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const heroSlides = [
     ),
     description:
       'Monumental double-height arched fenestrations, warm golden interior illumination, and a sweeping arrival motor court composed in palatial neoclassical poise.',
-    image: '/hero/photo(2).avif?v=7',
+    image: '/hero/photo(2).avif?v=8',
     fallbackCandidates: ['/hero/photo(2).avif', '/hero/photo (2).avif', '/hero/photo%20(2).avif'],
   },
   {
@@ -69,8 +69,8 @@ const heroSlides = [
     ),
     description:
       'Monumental multi-bay porticos, rhythmic perimeter uplighting, and sweeping landscaped grounds crafted with timeless architectural poise.',
-    image: '/hero/photo%20(4).avif?v=5',
-    fallbackCandidates: ['/hero/photo (4).avif'],
+    image: '/hero/photo(4).avif?v=8',
+    fallbackCandidates: ['/hero/photo(4).avif', '/hero/photo (4).avif', '/hero/photo%20(4).avif'],
   },
   {
     id: 5,
@@ -86,8 +86,8 @@ const heroSlides = [
     ),
     description:
       'Handcrafted fluted timber millwork, warm backlit bottle displays, and patinated leather seating conceived for slow evening leisure.',
-    image: '/hero/photo%20(5).avif?v=5',
-    fallbackCandidates: ['/hero/photo (5).avif'],
+    image: '/hero/photo(5).avif?v=8',
+    fallbackCandidates: ['/hero/photo(5).avif', '/hero/photo (5).avif', '/hero/photo%20(5).avif'],
   },
 ]
 
@@ -194,15 +194,16 @@ export default function HeroSection() {
 
   const currentSlideObj = heroSlides[currentSlide]
   const isCurrentLoaded = Boolean(mediaLoaded[currentSlideObj.id])
+  const hasAnyLoaded = Object.values(mediaLoaded).some(Boolean)
 
   return (
     <section
-      className="relative h-screen min-h-[100dvh] w-full bg-white text-[#1A1A1A] overflow-hidden select-none"
+      className="relative h-screen min-h-[100dvh] w-full bg-[#0D0C0A] text-[#1A1A1A] overflow-hidden select-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Stacked Full-Bleed Background Media for Seamless Cross-Fade */}
-      <div className="absolute inset-0 z-0 bg-white">
+      <div className="absolute inset-0 z-0 bg-[#0D0C0A]">
         {heroSlides.map((slide, idx) => {
           const isActive = idx === currentSlide
           const isLoaded = Boolean(mediaLoaded[slide.id])
@@ -220,7 +221,8 @@ export default function HeroSection() {
                 opacity: { duration: 1.4, ease: [0.25, 1, 0.5, 1] },
                 scale: { duration: 7, ease: 'linear' },
               }}
-              className="absolute inset-0 pointer-events-none bg-white will-change-transform transform-gpu"
+              style={{ zIndex: isActive ? 2 : 1 }}
+              className="absolute inset-0 pointer-events-none will-change-transform transform-gpu"
             >
 
               {isVideo ? (
@@ -258,7 +260,7 @@ export default function HeroSection() {
                   onError={() => {
                     setVideoFailed((prev) => ({ ...prev, [slide.id]: true }))
                   }}
-                  className={`w-full h-full object-cover bg-white filter brightness-[1.02] contrast-[1.03] saturate-[1.05] transition-opacity duration-700 ${
+                  className={`w-full h-full object-cover filter brightness-[1.02] contrast-[1.03] saturate-[1.05] transition-opacity duration-700 ${
                     isLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
@@ -274,16 +276,16 @@ export default function HeroSection() {
                   }}
                   src={
                     videoFailed[slide.id]
-                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo%20(3).avif'
+                      ? (slide.fallbackCandidates && slide.fallbackCandidates[0]) || '/hero/photo(3).avif'
                       : imgSrcs[slide.id] || slide.image
                   }
                   alt={slide.rawTitle || slide.category}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  loading="eager"
                   decoding="async"
-                  fetchPriority={idx === 0 ? 'high' : 'auto'}
+                  fetchPriority={idx < 2 ? 'high' : 'auto'}
                   onLoad={() => markLoaded(slide.id)}
                   onError={() => handleImageFallback(slide.id, slide.fallbackCandidates)}
-                  className={`w-full h-full object-cover bg-white filter brightness-[1.02] contrast-[1.03] saturate-[1.05] transition-opacity duration-700 ${
+                  className={`w-full h-full object-cover filter brightness-[1.02] contrast-[1.03] saturate-[1.05] transition-opacity duration-700 ${
                     isVideo && !videoFailed[slide.id] ? 'absolute inset-0 -z-10' : ''
                   } ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
                 />
@@ -293,20 +295,20 @@ export default function HeroSection() {
         })}
       </div>
 
-      {/* Gentle radiant ambient lighting - only visible when media is loaded so background stays pure white when not loaded */}
+      {/* Gentle radiant ambient lighting - seamless constant gradient */}
       <div
         className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-1 transition-opacity duration-700 ${
-          isCurrentLoaded ? 'opacity-100' : 'opacity-0'
+          hasAnyLoaded ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <div
         className={`absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/75 via-black/25 to-transparent pointer-events-none z-1 transition-opacity duration-700 ${
-          isCurrentLoaded ? 'opacity-100' : 'opacity-0'
+          hasAnyLoaded ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <div
         className={`absolute inset-y-0 left-0 w-full sm:w-2/3 bg-gradient-to-r from-black/45 via-black/15 to-transparent pointer-events-none z-1 transition-opacity duration-700 ${
-          isCurrentLoaded ? 'opacity-100' : 'opacity-0'
+          hasAnyLoaded ? 'opacity-100' : 'opacity-0'
         }`}
       />
 
