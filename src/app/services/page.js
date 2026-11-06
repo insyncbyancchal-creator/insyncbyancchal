@@ -10,7 +10,7 @@ export const revalidate = 60;
 export const metadata = {
   title: "Services | Insync by Ancchal",
   description:
-    "Architectural design, interior design, procurement, delivery & installation, and Insync Home: five disciplines, one studio.",
+    "Architectural design, interior design, procurement, delivery & installation, and Insync Home: diverse expertise, one creative vision.",
 };
 
 export default async function ServicesPage() {

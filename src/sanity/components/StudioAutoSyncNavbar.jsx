@@ -161,7 +161,7 @@ export function StudioAutoSyncNavbar(props) {
             _id: 'servicesPage',
             _type: 'servicesPage',
             heroEyebrow: 'OUR PRACTICE',
-            heroTitle: 'FIVE DISCIPLINES, one unified STUDIO.',
+            heroTitle: 'Diverse Expertise. One Creative Vision.',
             heroLede: 'From the first sketch to the final cushion, everything under one roof, and one standard.',
             disciplines: ELEVATED_DISCIPLINES,
             homeEyebrow: 'INSYNC HOME',
