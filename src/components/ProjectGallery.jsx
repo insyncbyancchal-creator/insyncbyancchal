@@ -143,14 +143,31 @@ export default function ProjectGallery({ project }) {
     }
   };
 
-  // Automatic Autoplay for Fullscreen Lightbox (Brisk, increased speed)
+  // Preload upcoming and adjacent images so cross-fade is 100% instantaneous with zero latency
+  useEffect(() => {
+    if (activeLightboxIdx === null || !gallery.length) return;
+    const preloadIndices = [
+      (activeLightboxIdx + 1) % gallery.length,
+      (activeLightboxIdx + 2) % gallery.length,
+      (activeLightboxIdx - 1 + gallery.length) % gallery.length,
+    ];
+    preloadIndices.forEach((idx) => {
+      const src = gallery[idx]?.src;
+      if (src && typeof window !== "undefined") {
+        const img = new window.Image();
+        img.src = src;
+      }
+    });
+  }, [activeLightboxIdx, gallery]);
+
+  // Automatic Autoplay for Fullscreen Lightbox (Continuous, silky-smooth stream)
   useEffect(() => {
     if (activeLightboxIdx === null || !isLbPlaying) {
       if (lbTimerRef.current) clearInterval(lbTimerRef.current);
       return;
     }
 
-    const durationMs = 2200; // Increased speed for brisk auto slideshow
+    const durationMs = 2800; // Continuous luxury pacing without blank pauses
 
     lbTimerRef.current = setInterval(() => {
       handleLbNext();
@@ -388,17 +405,23 @@ export default function ProjectGallery({ project }) {
                 <ChevronLeft size={20} />
               </button>
 
-              <AnimatePresence mode="wait">
-                <motion.img
+              <AnimatePresence initial={false}>
+                <motion.div
                   key={gallery[activeLightboxIdx].src}
-                  src={gallery[activeLightboxIdx].src}
-                  alt={gallery[activeLightboxIdx].alt || project.title}
-                  className={styles.lbImg}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                />
+                  className={styles.lbImgWrapper}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <img
+                    src={gallery[activeLightboxIdx].src}
+                    alt={gallery[activeLightboxIdx].alt || project.title}
+                    className={styles.lbImg}
+                    loading="eager"
+                    decoding="async"
+                  />
+                </motion.div>
               </AnimatePresence>
 
               <button
