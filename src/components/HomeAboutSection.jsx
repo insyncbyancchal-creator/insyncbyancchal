@@ -136,15 +136,11 @@ export default function HomeAboutSection({ data }) {
                 className="font-serif text-[26px] sm:text-[32px] md:text-[36px] lg:text-[38px] xl:text-[42px] text-[#1A1A1A] font-light tracking-[0.04em]"
               >
                 <span className="block leading-[1.16]">
-                  WHERE ARCHITECTURE{' '}
-                  <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">meets</span>
+                  WHERE ARCHITECTURE
                 </span>
                 <span className="block leading-[1.16] mt-1.5 sm:mt-2">
-                  TIMELESS RESTRAINT{' '}
-                  <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">and soulful</span>
-                </span>
-                <span className="block leading-[1.16] mt-1.5 sm:mt-2">
-                  PRECISION
+                  <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">meets</span>{' '}
+                  TIMELESS ELEGANCE.
                 </span>
               </h2>
             </div>
