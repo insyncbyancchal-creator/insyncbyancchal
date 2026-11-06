@@ -325,7 +325,9 @@ export async function getServicesPageData() {
 
         return {
           heroEyebrow: doc.heroEyebrow || "OUR PRACTICE",
-          heroTitle: (doc.heroTitle || "Diverse Expertise. One Creative Vision.").replace(/FIVE DISCIPLINES,?\s*(one unified)?\s*STUDIO\.?/gi, "Diverse Expertise. One Creative Vision."),
+          heroTitle: (!doc.heroTitle || /five disciplines|quiet studio|unified studio/i.test(doc.heroTitle))
+            ? "Diverse Expertise. One Creative Vision."
+            : doc.heroTitle,
           heroLede: doc.heroLede || "From the first sketch to the final cushion, everything under one roof, and one standard.",
           disciplines,
           homeEyebrow: doc.homeEyebrow || "INSYNC HOME",

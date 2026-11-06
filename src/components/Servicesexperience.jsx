@@ -442,7 +442,9 @@ export default function ServicesExperience({ data, initialProducts }) {
     data?.disciplines && data.disciplines.length > 0 ? data.disciplines : DEFAULT_SERVICES;
 
   const heroEyebrow = data?.heroEyebrow || "OUR PRACTICE";
-  const heroTitle = (data?.heroTitle || "Diverse Expertise. One Creative Vision.").replace(/FIVE DISCIPLINES,?\s*(one unified)?\s*STUDIO\.?/gi, "Diverse Expertise. One Creative Vision.");
+  const rawTitle = data?.heroTitle || "";
+  const isLegacyOrDiverse = !rawTitle || /five disciplines|quiet studio|unified studio|one creative|diverse expertise/i.test(rawTitle);
+  const heroTitle = isLegacyOrDiverse ? "Diverse Expertise. One Creative Vision." : rawTitle;
   const heroLede =
     data?.heroLede ||
     "From the first sketch to the final cushion, everything under one roof, and one standard.";
@@ -547,7 +549,7 @@ export default function ServicesExperience({ data, initialProducts }) {
           <h1 className={styles.title}>
             <span className={styles.line}>
               <span>
-                {heroTitle.includes("Creative Vision") || heroTitle.includes("creative vision") || heroTitle.includes("Diverse Expertise") ? (
+                {isLegacyOrDiverse || heroTitle.toLowerCase().includes("creative vision") || heroTitle.toLowerCase().includes("diverse expertise") ? (
                   <>
                     DIVERSE EXPERTISE. <span className="montecarlo-regular italic lowercase font-normal text-[#C5A059]">one creative</span> VISION.
                   </>
@@ -557,13 +559,6 @@ export default function ServicesExperience({ data, initialProducts }) {
               </span>
             </span>
           </h1>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-20 h-[1.5px] bg-[#C5A059] mt-5 origin-left"
-          />
           <p className={`${styles.lede} ${styles.sans}`}>{heroLede}</p>
         </motion.section>
 

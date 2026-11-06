@@ -168,8 +168,15 @@ export function StudioAutoSyncNavbar(props) {
             homeTitle: 'CURATED OBJECTS, ready for your SPACE.',
             homeLede: 'A curated collection of home décor and collectible objects selected by the studio. Finished pieces, ready to acquire and bring timeless character to your home.',
           })
-        } else if (servicesPageDoc && Array.isArray(servicesPageDoc.disciplines) && !isCancelled) {
-          const hasCustomCopy = servicesPageDoc.disciplines.some((d) =>
+        } else if (servicesPageDoc && !isCancelled) {
+          if (!servicesPageDoc.heroTitle || /five disciplines|quiet studio|unified studio/i.test(servicesPageDoc.heroTitle)) {
+            try {
+              await client.patch(servicesPageDoc._id).set({ heroTitle: 'Diverse Expertise. One Creative Vision.' }).commit()
+            } catch (patchErr) {
+              console.warn('Auto-heal servicesPage heroTitle skipped:', patchErr?.message)
+            }
+          }
+          const hasCustomCopy = Array.isArray(servicesPageDoc.disciplines) && servicesPageDoc.disciplines.some((d) =>
             (d.line && (d.line.toLowerCase().includes('custom') || d.line.toLowerCase().includes('made to order'))) ||
             (Array.isArray(d.tags) && d.tags.some((t) => t.toLowerCase().includes('custom') || t.toLowerCase().includes('made to order')))
           )
